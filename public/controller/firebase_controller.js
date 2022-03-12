@@ -1,4 +1,5 @@
 import { Card } from "../model/card.js";
+import { SBCHProject } from "../model/sBCHProject.js";
 import * as Constant from "../model/constant.js";
 import {
   getFirestore,
@@ -26,6 +27,23 @@ export async function getHomeCardList() {
     }
   });
   return cards;
+}
+
+export async function getSBCHProjectList() {
+  let projects = [];
+  const q = query(
+    collection(db, Constant.collectionName.SBCH_PROJECTS),
+    orderBy("new_listing", "desc"),
+    orderBy("bias", "desc"),
+    orderBy("name", "desc")
+  );
+  const snapshot = await getDocs(q);
+  snapshot.forEach((doc) => {
+    const project = new SBCHProject(doc.data());
+    project.docID = doc.id;
+    projects.push(project);
+  });
+  return projects;
 }
 
 export async function getAboutCardList() {

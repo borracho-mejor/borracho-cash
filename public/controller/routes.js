@@ -14,7 +14,7 @@ export const routes = [
   { pathname: routePathname.HOME, page: HomePage.home_page },
   { pathname: routePathname.ABOUT, page: AboutPage.about_page },
   { pathname: routePathname.WHITEPAPER, page: WhitepaperPage.whitepaper_page },
-  { pathname: routePathname.SBCH, page: WhitepaperPage.whitepaper_page },
+  { pathname: routePathname.SBCH, page: SBCHPage.smartBCH_page },
 ];
 
 export function routing(pathname, href) {
