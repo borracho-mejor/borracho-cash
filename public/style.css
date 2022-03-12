@@ -122,6 +122,27 @@ a:hover {
   display: inline-block;
 }
 
+.float-right {
+  position: relative;
+  float: right;
+}
+
+.inner {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.inner-top {
+  display: inline-block;
+  vertical-align: top;
+  line-height: normal;
+}
+
+.padding-bottom {
+  padding-bottom: 0.5rem;
+}
+
 .hidden {
   position: absolute;
   left: -999px;

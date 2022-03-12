@@ -62,21 +62,84 @@ function buildProjectCard(project, index) {
       }
       linkIndex++;
     });
-    let types = project.type;
   }
+  let typesText = "";
+  if (project.type.length > 0) {
+    typesText += "Type: ";
+    let linkIndex = 0;
+    project.type.forEach((type) => {
+      typesText += type;
+      if (linkIndex < project.type.length - 1) {
+        typesText += ", ";
+      }
+      linkIndex++;
+    });
+  }
+  let myThoughtsText = "My two sats: ";
+  if (project.my_thoughts) {
+    myThoughtsText += project.my_thoughts;
+  } else {
+    myThoughtsText += "None... 🤷‍♂️";
+  }
+  let socialsHTML = "";
+  if (project.socials["telegram"] !== "") {
+    console.log("telegram");
+  }
+  if (project.socials["twitter"] !== "") {
+    socialsHTML += `<a href="${project.socials["twitter"]}" target="_blank"><img src="./images/twitter.png" alt="Twitter logo" style="height: 2em; padding: 5px" /></a>`;
+  }
+  if (project.socials["discord"] !== "") {
+    console.log("discord");
+  }
+  if (project.socials["github"] !== "") {
+    console.log("github");
+  }
+  if (project.socials["noise"] !== "") {
+    console.log("noise");
+  }
+  if (project.socials["read"] !== "") {
+    console.log("read");
+  }
+  if (project.socials["reddit"] !== "") {
+    console.log("reddit");
+  }
+  if (project.socials["medium"] !== "") {
+    console.log("medium");
+  }
+  if (project.socials["linkedin"] !== "") {
+    console.log("linkedin");
+  }
+  if (project.socials["facebook"] !== "") {
+    console.log("facebook");
+  }
+  if (project.socials["instagram"] !== "") {
+    console.log("instagram");
+  }
+  if (project.socials["weibo"] !== "") {
+    console.log("weibo");
+  }
+  if (project.socials["youtube"] !== "") {
+    console.log("youtube");
+  }
+
   return `
           <div class="card mb-3">
             <div class="card-header">
-              <h6>${project.name}${listingTag}${auditTag}${dyorTag}</h6>
-              <h6>Type: </h6>
+              <h6 class="inline">${project.name}${listingTag}${auditTag}${dyorTag}</h6>
+              <h6 class="inline text-muted float-right">${typesText}</h6>
             </div>
             <div class="card-body">
-              <div class="inline">
+              <div class="inner">
                 <img src="${project.logo_path}" alt="Project logo" style=" height: 5em; padding: 5px;" />
               </div>
-              <div class="inline">
-                <div>${project.description}</div>
+              <div class="inner">
+                <div class="padding-bottom">${project.description}</div>
+                <div class="padding-bottom">${myThoughtsText}</div>
                 <div>${helpfulLinksText}</div>
+              </div>
+              <div class="inner-top float-right" style="height: 100%; width: 20%; text-align: right;">
+                <h5>Socials:</h5>
+                <div>${socialsHTML}</div>
               </div>
             </div>
           </div>`;
