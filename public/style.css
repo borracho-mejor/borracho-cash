@@ -7,10 +7,6 @@ body {
   overflow-x: hidden;
 }
 
-body {
-  font-family: "Trebuchet MS", sans-serif;
-}
-
 :root {
   --color-background: #1e2225;
   --color-text: rgba(245, 248, 250, 0.87);
@@ -28,9 +24,15 @@ body {
 }
 
 body {
+  font-family: "Trebuchet MS", sans-serif;
   background-color: var(--color-background);
   color: var(--color-text);
 }
+
+del {
+  color: var(--color-text);
+}
+
 .card {
   background-color: var(--color-card-background);
 }
