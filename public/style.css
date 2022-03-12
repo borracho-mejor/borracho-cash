@@ -1,0 +1,128 @@
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+:root {
+  --color-background: #1e2225;
+  --color-text: rgba(245, 248, 250, 0.87);
+  --color-card-background: #292f33;
+  --light-mode: none;
+  --dark-mode: inline-block;
+}
+
+.lightmode {
+  --color-background: #f7f7f7;
+  --color-text: rgba(0, 0, 0, 0.87);
+  --color-card-background: #ffffff;
+  --light-mode: inline-block;
+  --dark-mode: none;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+.card {
+  background-color: var(--color-card-background);
+}
+.light-mode {
+  display: var(--light-mode);
+}
+.dark-mode {
+  display: var(--dark-mode);
+}
+
+a:link {
+  color: green;
+}
+
+a:visited {
+  color: green;
+}
+
+a:hover {
+  color: green;
+}
+
+@media screen and (max-width: 640px) {
+  body {
+    height: auto;
+  }
+  .footer {
+    border-top: 2px solid grey;
+    position: absolute;
+    bottom: 1;
+  }
+  #content {
+    max-height: 75vh;
+  }
+  .twitter-feed {
+    height: 75vh;
+    width: 100%;
+  }
+}
+
+.breakable {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+@media screen and (min-width: 640px) {
+  .flex-container {
+    display: flex;
+  }
+  #main-content {
+    max-height: 79vh;
+  }
+  .footer {
+    display: grid;
+    justify-content: center;
+    border-top: 2px solid grey;
+  }
+}
+
+.footer-content {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#content {
+  flex: 1;
+  height: 78vh;
+}
+
+.twitter-feed {
+  flex: 0 1 450px;
+}
+
+.flex-child:first-child {
+  margin-right: 20px;
+}
+
+.wrapper {
+  margin: auto;
+  max-width: 100rem;
+}
+
+.card-body {
+  overflow: auto;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.hidden {
+  position: absolute;
+  left: -999px;
+}

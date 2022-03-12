@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyAzJTplGTpnIWf7lCu1ItUiyjfCxRtn-oo",
+      authDomain: "borracho-cash.firebaseapp.com",
+      projectId: "borracho-cash",
+      storageBucket: "borracho-cash.appspot.com",
+      messagingSenderId: "1039134592060",
+      appId: "1:1039134592060:web:4da238df66ba33bc624739",
+      measurementId: "G-ZDBH87B99W",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+
+  <script type="module" src="app.js"></script>
+
+  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  <script
+    src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"
+  ></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-L6SR84SJ2B"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-L6SR84SJ2B");
+  </script>
+
+  <!-- Twitter feed -->
+  <script
+    async
+    src="https://platform.twitter.com/widgets.js"
+    charset="utf-8"
+  ></script>
+  <!-- App -->
+  <script type="module" src="app.js"></script>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>borracho.cash</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+  </head>
+  <body>
+    <!-- Success Green - #198754 -->
+    <nav
+      class="navbar navbar-expand-lg navbar-dark"
+      style="background-color: #115c39"
+    >
+      <a class="navbar-brand mb-0" style="padding-right: 10px"
+        ><h2>Borracho.cash</h2></a
+      >
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav mr-auto">
+          <li><a id="menu-home" class="nav-link">Home</a></li>
+          <li><a id="menu-about" class="nav-link">About</a></li>
+          <li><a id="menu-whitepaper" class="nav-link">BCH Whitepaper</a></li>
+          <li><a id="menu-smartBCH" class="nav-link">smartBCH</a></li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li>
+            <a
+              class="nav-link ml-auto inline"
+              href="https://whybitcoincash.com/"
+              target="_blank"
+              ><h5>Visit: whybitcoincash.com</h5></a
+            >
+          </li>
+          <li>
+            <input
+              id="button-light-mode"
+              type="image"
+              class="dark-mode"
+              src="./images/sun.png"
+              style="height: 2.5em; padding: 5px"
+              alt="light mode sun"
+            />
+            <input
+              id="button-dark-mode"
+              type="image"
+              class="light-mode"
+              src="./images/moon.png"
+              style="height: 2.5em; padding: 5px"
+              alt="dark mode moon"
+            />
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div id="main-content" class="flex-container wrapper" style="padding: 10px">
+      <div id="content" style="padding: 10px; overflow: auto">
+        <!-- This is where the content wil go. -->
+      </div>
+      <div
+        id="twitter-feed-dark"
+        class="twitter-feed dark-mode"
+        style="padding: 10px"
+      >
+        <a
+          class="twitter-timeline"
+          data-theme="dark"
+          data-width="100%"
+          data-height="100%"
+          href="https://twitter.com/borrachomejor?ref_src=twsrc%5Etfw"
+          >Tweets by borrachomejor</a
+        >
+      </div>
+      <div
+        id="twitter-feed-light"
+        class="twitter-feed light-mode"
+        style="padding: 10px"
+      >
+        <a
+          class="twitter-timeline"
+          data-theme="light"
+          data-width="100%"
+          data-height="100%"
+          href="https://twitter.com/borrachomejor?ref_src=twsrc%5Etfw"
+          >Tweets by borrachomejor</a
+        >
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer-content" style="z-index: 1; padding-top: 5px">
+        <p>
+          Copyright &copy; 2022 - &#x20BF;randon -
+          <a href="mailto:brandon@borracho.cash">brandon@borracho.cash</a>
+        </p>
+        <a href="https://twitter.com/borrachomejor" target="_blank"
+          ><img
+            src="./images/twitter.png"
+            alt="Twitter logo"
+            style="height: 2em; padding: 5px"
+        /></a>
+        <a href="https://t.me/borrachomejor" target="_blank"
+          ><img
+            src="./images/telegram.png"
+            alt="Telegram logo"
+            style="height: 2em; padding: 5px"
+        /></a>
+        <a href="https://www.reddit.com/user/Borracho_mejor" target="_blank"
+          ><img
+            src="./images/reddit.png"
+            alt="Reddit logo"
+            style="height: 2em; padding: 5px"
+        /></a>
+      </div>
+      <div class="footer-content" style="z-index: 2; padding-top: 5px">
+        <p class="breakable">
+          <b>Donations ✌️💚🚀</b>
+          <br />
+          BCH: bitcoincash:qqdmf9x02vaf993z6sxje5ac47l0djcg6sa9hcusl4
+          <br />
+          SmartBCH:0x51da43da6A8C555983575023149a237dC8A9803f
+          <br />
+          Celery Referral:
+          https://celery.cash/account?r=0x51da43da6a8c555983575023149a237dc8a9803f
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
