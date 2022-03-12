@@ -12,7 +12,7 @@ export function addEventListeners() {
 let cards;
 
 export async function smartBCH_page() {
-  let html = "TESTING!!!";
+  let html = "TESTING (in a new branch)!!!";
 
   Element.content.innerHTML = html;
   Util.scrollToTop();
