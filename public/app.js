@@ -21,9 +21,7 @@ LightMode.mode();
 import * as HomePage from "./viewpage/home_page.js";
 import * as AboutPage from "./viewpage/about_page.js";
 import * as WhitepaperPage from "./viewpage/whitepaper_page.js";
-import * as SBCHPage from "./viewpage/smartBCH_page.js";
 
 HomePage.addEventListeners();
 AboutPage.addEventListeners();
 WhitepaperPage.addEventListeners();
-SBCHPage.addEventListeners();
