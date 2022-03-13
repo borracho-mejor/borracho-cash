@@ -39,7 +39,7 @@ export async function smartBCH_page() {
 function buildProjectCard(project, index) {
   let dyorTag = "";
   if (project.dyor) {
-    dyorTag += `<div class="inline padding-left"><span class="badge badge-danger">DYOR</span></div>`;
+    dyorTag += `<div class="inline padding-left"><span class="badge badge-danger">!!--DYOR--!!</span></div>`;
   }
   let auditTag = "";
   if (project.audit) {
