@@ -81,46 +81,7 @@ function buildProjectCard(project, index) {
   } else {
     myThoughtsText += "None... 🤷‍♂️";
   }
-  let socialsHTML = "";
-  if (project.socials["telegram"] !== "") {
-    socialsHTML += `<a href="${project.socials["telegram"]}" target="_blank"><img src="./images/telegram.png" alt="Telegram logo" style="height: 1.75em; padding: 5px" /></a>`;
-  }
-  if (project.socials["twitter"] !== "") {
-    socialsHTML += `<a href="${project.socials["twitter"]}" target="_blank"><img src="./images/twitter.png" alt="Twitter logo" style="height: 1.5em; padding: 5px" /></a>`;
-  }
-  if (project.socials["discord"] !== "") {
-    console.log("discord");
-  }
-  if (project.socials["github"] !== "") {
-    console.log("github");
-  }
-  if (project.socials["noise"] !== "") {
-    console.log("noise");
-  }
-  if (project.socials["read"] !== "") {
-    console.log("read");
-  }
-  if (project.socials["reddit"] !== "") {
-    socialsHTML += `<a href="${project.socials["reddit"]}" target="_blank"><img src="./images/reddit.png" alt="Reddit logo" style="height: 1.75em; padding: 5px" /></a>`;
-  }
-  if (project.socials["medium"] !== "") {
-    console.log("medium");
-  }
-  if (project.socials["linkedin"] !== "") {
-    console.log("linkedin");
-  }
-  if (project.socials["facebook"] !== "") {
-    console.log("facebook");
-  }
-  if (project.socials["instagram"] !== "") {
-    console.log("instagram");
-  }
-  if (project.socials["weibo"] !== "") {
-    console.log("weibo");
-  }
-  if (project.socials["youtube"] !== "") {
-    console.log("youtube");
-  }
+  let socialsHTML = buildSocials(project);
 
   return `
           <div class="card mb-3">
@@ -135,12 +96,61 @@ function buildProjectCard(project, index) {
               <div class="inner">
                 <div class="padding-bottom">${project.description}</div>
                 <div class="padding-bottom">${myThoughtsText}</div>
-                <div>${helpfulLinksText}</div>
               </div>
               <div class="inner-top float-right" style="height: 100%; width: 20%; text-align: right;">
                 <h5>Socials:</h5>
                 <div>${socialsHTML}</div>
               </div>
+              <div class="inner">${helpfulLinksText}</div>
             </div>
           </div>`;
+}
+
+function buildSocials(project) {
+  let html = "";
+  if (project.socials["telegram"] !== "") {
+    html += `<a href="${project.socials["telegram"]}" target="_blank"><img src="./images/telegram.png" alt="Telegram logo" style="height: 2em; padding: 5px" /></a>`;
+  }
+  if (project.socials["twitter"] !== "") {
+    html += `<a href="${project.socials["twitter"]}" target="_blank"><img src="./images/twitter.png" alt="Twitter logo" style="height: 2em; padding: 5px" /></a>`;
+  }
+  if (project.socials["github"] !== "") {
+    html += `<a href="${project.socials["github"]}" target="_blank"><img class="light-mode" src="./images/github_dark.png" alt="Github logo" style="height: 2em; padding: 5px" /></a>`;
+    html += `<a href="${project.socials["github"]}" target="_blank"><img class="dark-mode" src="./images/github_light.png" alt="Github logo" style="height: 2em; padding: 5px" /></a>`;
+  }
+  if (project.socials["read"] !== "") {
+    html += `<a href="${project.socials["read"]}" target="_blank"><img src="./images/read.png" alt="Read.cash logo" style="height: 2em; padding: 5px" /></a>`;
+  }
+  if (project.socials["noise"] !== "") {
+    html += `<a href="${project.socials["noise"]}" target="_blank"><img src="./images/noise.png" alt="Noise.cash logo" style="height: 2em; padding: 5px" /></a>`;
+  }
+  if (project.socials["memo"] !== "") {
+    html += `<a href="${project.socials["memo"]}" target="_blank"><img src="./images/memocash.png" alt="Memo.cash logo" style="height: 2em; padding: 5px" /></a>`;
+  }
+  if (project.socials["discord"] !== "") {
+    html += `<a href="${project.socials["discord"]}" target="_blank"><img src="./images/discord.png" alt="Discord logo" style="height: 2em; padding: 5px" /></a>`;
+  }
+  if (project.socials["reddit"] !== "") {
+    html += `<a href="${project.socials["reddit"]}" target="_blank"><img src="./images/reddit.png" alt="Reddit logo" style="height: 2em; padding: 5px" /></a>`;
+  }
+  if (project.socials["medium"] !== "") {
+    html += `<a href="${project.socials["medium"]}" target="_blank"><img class="light-mode" src="./images/medium_dark.png" alt="Medium logo" style="height: 2em; padding: 5px" /></a>`;
+    html += `<a href="${project.socials["medium"]}" target="_blank"><img class="dark-mode" src="./images/medium_light.png" alt="Medium logo" style="height: 2em; padding: 5px" /></a>`;
+  }
+  if (project.socials["linkedin"] !== "") {
+    html += `<a href="${project.socials["linkedin"]}" target="_blank"><img src="./images/linkedin.png" alt="LinkedIn logo" style="height: 2em; padding: 5px" /></a>`;
+  }
+  if (project.socials["facebook"] !== "") {
+    html += `<a href="${project.socials["facebook"]}" target="_blank"><img src="./images/facebook.png" alt="Facebook logo" style="height: 2em; padding: 5px" /></a>`;
+  }
+  if (project.socials["instagram"] !== "") {
+    html += `<a href="${project.socials["instagram"]}" target="_blank"><img src="./images/instagram.png" alt="Instagram logo" style="height: 2em; padding: 5px" /></a>`;
+  }
+  if (project.socials["weibo"] !== "") {
+    html += `<a href="${project.socials["weibo"]}" target="_blank"><img src="./images/weibo.png" alt="Weibo logo" style="height: 2em; padding: 5px" /></a>`;
+  }
+  if (project.socials["youtube"] !== "") {
+    html += `<a href="${project.socials["youtube"]}" target="_blank"><img src="./images/youtube.png" alt="Youtube logo" style="height: 2em; padding: 5px" /></a>`;
+  }
+  return html;
 }
