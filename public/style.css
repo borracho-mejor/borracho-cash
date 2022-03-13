@@ -143,6 +143,10 @@ a:hover {
   padding-bottom: 0.5rem;
 }
 
+.padding-left {
+  padding-left: 5px;
+}
+
 .hidden {
   position: absolute;
   left: -999px;

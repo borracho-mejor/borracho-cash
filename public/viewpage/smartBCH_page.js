@@ -39,17 +39,17 @@ export async function smartBCH_page() {
 function buildProjectCard(project, index) {
   let dyorTag = "";
   if (project.dyor) {
-    dyorTag += ` <span class="badge badge-danger">DYOR</span>`;
+    dyorTag += `<div class="inline padding-left"><span class="badge badge-danger">DYOR</span></div>`;
   }
   let auditTag = "";
   if (project.audit) {
-    auditTag += ` <span class="badge badge-success">Audit</span>`;
+    auditTag += `<div class="inline padding-left"><span class="badge badge-success">Audit</span></div>`;
   } else {
-    auditTag += ` <span class="badge badge-warning">No Audit</span>`;
+    auditTag += `<div class="inline padding-left"><span class="badge badge-warning">No Audit</span></div>`;
   }
   let listingTag = "";
   if (project.new_listing) {
-    listingTag += ` <span class="badge badge-warning">New Listing</span>`;
+    listingTag += `<div class="inline padding-left"><span class="badge badge-warning">New Listing</span></div>`;
   }
   let helpfulLinksText = "";
   if (project.helpful_links.length > 0) {
@@ -83,10 +83,10 @@ function buildProjectCard(project, index) {
   }
   let socialsHTML = "";
   if (project.socials["telegram"] !== "") {
-    console.log("telegram");
+    socialsHTML += `<a href="${project.socials["telegram"]}" target="_blank"><img src="./images/telegram.png" alt="Telegram logo" style="height: 1.75em; padding: 5px" /></a>`;
   }
   if (project.socials["twitter"] !== "") {
-    socialsHTML += `<a href="${project.socials["twitter"]}" target="_blank"><img src="./images/twitter.png" alt="Twitter logo" style="height: 2em; padding: 5px" /></a>`;
+    socialsHTML += `<a href="${project.socials["twitter"]}" target="_blank"><img src="./images/twitter.png" alt="Twitter logo" style="height: 1.5em; padding: 5px" /></a>`;
   }
   if (project.socials["discord"] !== "") {
     console.log("discord");
@@ -101,7 +101,7 @@ function buildProjectCard(project, index) {
     console.log("read");
   }
   if (project.socials["reddit"] !== "") {
-    console.log("reddit");
+    socialsHTML += `<a href="${project.socials["reddit"]}" target="_blank"><img src="./images/reddit.png" alt="Reddit logo" style="height: 1.75em; padding: 5px" /></a>`;
   }
   if (project.socials["medium"] !== "") {
     console.log("medium");
