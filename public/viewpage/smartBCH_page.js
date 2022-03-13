@@ -93,7 +93,7 @@ function buildProjectCard(project, index) {
               <div style="flex: 10%">
                 <span class="vertical-center-helper"></span><img src="${project.logo_path}" alt="Project logo" style="width: 100%; padding: 5px;" />
               </div>
-              <div style="flex: 65%">
+              <div style="flex: 75%">
                 <div class="alert alert-custom">
                   <h6 class="alert-heading">Description:</h6>
                   <hr>
@@ -105,11 +105,15 @@ function buildProjectCard(project, index) {
                   <p class="mb-0">${myThoughtsText}</p>
                 </div>
               </div>
-              <div style="flex: 25%; text-align: right; height 100%;">
-                <h5>Socials:</h5>
-                <p class="padding-bottom">${socialsHTML}</p>
-                <h5>Helpful Links:</h5>
-                <p>${helpfulLinksText}</p
+              <div style="flex: 15%; text-align: right; height 100%;">
+                <div class="padding-bottom">
+                  <h5>Socials:</h5>
+                  <p>${socialsHTML}</p>
+                </div>
+                <div>
+                  <h5>Helpful Links:</h5>
+                  <p>${helpfulLinksText}</p>
+                </div>
             </div>
           </div>`;
 }
