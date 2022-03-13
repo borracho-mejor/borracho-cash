@@ -11,6 +11,7 @@ export class SBCHProject {
     this.socials = data.socials;
     this.type = data.type;
     this.my_thoughts = data.my_thoughts;
+    this.quoted_description = data.quoted_description;
   }
 
   serialize() {
@@ -26,6 +27,7 @@ export class SBCHProject {
       socials: this.socials,
       type: this.type,
       my_thoughts: this.my_thoughts,
+      quoted_description: this.quoted_description,
     };
   }
 
@@ -63,6 +65,9 @@ export class SBCHProject {
     }
     if (this.my_thoughts) {
       r.my_thoughts = this.my_thoughts;
+    }
+    if (this.quoted_description) {
+      r.quoted_description = this.quoted_description;
     }
     return r;
   }

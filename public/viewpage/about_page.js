@@ -36,6 +36,7 @@ export async function about_page() {
   Element.content.innerHTML = html;
   Util.scrollToTop();
   Util.showTwitterFeeds();
+  Util.hideHeader();
 }
 
 function buildCard(card, index) {

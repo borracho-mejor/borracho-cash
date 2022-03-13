@@ -14,3 +14,11 @@ export function showTwitterFeeds() {
   Element.twitterFeedDark.classList.remove("hidden");
   Element.twitterFeedLight.classList.remove("hidden");
 }
+
+export function hideHeader() {
+  Element.contentHeader.classList.add("hidden");
+}
+
+export function showHeader() {
+  Element.contentHeader.classList.remove("hidden");
+}
