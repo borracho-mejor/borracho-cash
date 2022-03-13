@@ -53,7 +53,7 @@ function buildProjectCard(project, index) {
   }
   let helpfulLinksText = "";
   if (project.helpful_links.length > 0) {
-    helpfulLinksText += "Helpful Links: ";
+    helpfulLinksText += "";
     let linkIndex = 0;
     project.helpful_links.forEach((helpfulLink) => {
       helpfulLinksText += `<a href="${helpfulLink["link"]}" target="_blank">${helpfulLink["name"]}</a>`;
@@ -75,7 +75,7 @@ function buildProjectCard(project, index) {
       linkIndex++;
     });
   }
-  let myThoughtsText = "My two sats: ";
+  let myThoughtsText = "";
   if (project.my_thoughts) {
     myThoughtsText += project.my_thoughts;
   } else {
@@ -89,19 +89,27 @@ function buildProjectCard(project, index) {
               <h6 class="inline">${project.name}${listingTag}${auditTag}${dyorTag}</h6>
               <h6 class="inline text-muted float-right">${typesText}</h6>
             </div>
-            <div class="card-body">
-              <div class="inner">
-                <img src="${project.logo_path}" alt="Project logo" style=" height: 5em; padding: 5px;" />
+            <div class="card-body flex-container">
+              <div style="flex: 10%">
+                <span class="vertical-center-helper"></span><img src="${project.logo_path}" alt="Project logo" style="width: 100%; padding: 5px;" />
               </div>
-              <div class="inner">
-                <div class="padding-bottom">${project.description}</div>
-                <div class="padding-bottom">${myThoughtsText}</div>
+              <div style="flex: 65%">
+                <div class="alert alert-custom">
+                  <h6 class="alert-heading">Description:</h6>
+                  <hr>
+                  <p class="mb-0">${project.description}</p>
+                </div>
+                <div class="alert alert-custom">
+                  <h6 class="alert-heading">My two sats:</h6>
+                  <hr>
+                  <p class="mb-0">${myThoughtsText}</p>
+                </div>
               </div>
-              <div class="inner-top float-right" style="height: 100%; width: 20%; text-align: right;">
+              <div style="flex: 25%; text-align: right; height 100%;">
                 <h5>Socials:</h5>
-                <div>${socialsHTML}</div>
-              </div>
-              <div class="inner">${helpfulLinksText}</div>
+                <p class="padding-bottom">${socialsHTML}</p>
+                <h5>Helpful Links:</h5>
+                <p>${helpfulLinksText}</p
             </div>
           </div>`;
 }

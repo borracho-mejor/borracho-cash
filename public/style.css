@@ -15,6 +15,7 @@ body {
   --color-background: #1e2225;
   --color-text: rgba(245, 248, 250, 0.87);
   --color-card-background: #292f33;
+  --color-inner-card-background: #353c41;
   --light-mode: none;
   --dark-mode: inline-block;
 }
@@ -23,6 +24,7 @@ body {
   --color-background: #f7f7f7;
   --color-text: rgba(0, 0, 0, 0.87);
   --color-card-background: #ffffff;
+  --color-inner-card-background: #f7f7f7;
   --light-mode: inline-block;
   --dark-mode: none;
 }
@@ -39,6 +41,9 @@ body {
 }
 .dark-mode {
   display: var(--dark-mode);
+}
+.alert-custom {
+  background-color: var(--color-inner-card-background);
 }
 
 a:link {
@@ -140,7 +145,7 @@ a:hover {
 }
 
 .padding-bottom {
-  padding-bottom: 0.5rem;
+  padding-bottom: 1rem;
 }
 
 .padding-left {
@@ -154,5 +159,20 @@ a:hover {
 
 #flex-container {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
+}
+
+#flex-container-column {
+  flex-direction: column;
+}
+
+.bottom {
+  margin-top: auto;
+}
+
+.vertical-center-helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
 }
