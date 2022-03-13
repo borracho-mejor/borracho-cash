@@ -120,48 +120,48 @@ function buildProjectCard(project, index) {
 
 function buildSocials(project) {
   let html = "";
-  if (project.socials["telegram"] !== "") {
+  if (project.socials["telegram"]) {
     html += `<a href="${project.socials["telegram"]}" target="_blank"><img src="./images/telegram.png" alt="Telegram logo" style="height: 2em; padding: 5px" /></a>`;
   }
-  if (project.socials["twitter"] !== "") {
+  if (project.socials["twitter"]) {
     html += `<a href="${project.socials["twitter"]}" target="_blank"><img src="./images/twitter.png" alt="Twitter logo" style="height: 2em; padding: 5px" /></a>`;
   }
-  if (project.socials["github"] !== "") {
+  if (project.socials["github"]) {
     html += `<a href="${project.socials["github"]}" target="_blank"><img class="light-mode" src="./images/github_dark.png" alt="Github logo" style="height: 2em; padding: 5px" /></a>`;
     html += `<a href="${project.socials["github"]}" target="_blank"><img class="dark-mode" src="./images/github_light.png" alt="Github logo" style="height: 2em; padding: 5px" /></a>`;
   }
-  if (project.socials["read"] !== "") {
+  if (project.socials["read"]) {
     html += `<a href="${project.socials["read"]}" target="_blank"><img src="./images/read.png" alt="Read.cash logo" style="height: 2em; padding: 5px" /></a>`;
   }
-  if (project.socials["noise"] !== "") {
+  if (project.socials["noise"]) {
     html += `<a href="${project.socials["noise"]}" target="_blank"><img src="./images/noise.png" alt="Noise.cash logo" style="height: 2em; padding: 5px" /></a>`;
   }
-  if (project.socials["memo"] !== "") {
+  if (project.socials["memo"]) {
     html += `<a href="${project.socials["memo"]}" target="_blank"><img src="./images/memocash.png" alt="Memo.cash logo" style="height: 2em; padding: 5px" /></a>`;
   }
-  if (project.socials["discord"] !== "") {
+  if (project.socials["discord"]) {
     html += `<a href="${project.socials["discord"]}" target="_blank"><img src="./images/discord.png" alt="Discord logo" style="height: 2em; padding: 5px" /></a>`;
   }
-  if (project.socials["reddit"] !== "") {
+  if (project.socials["reddit"]) {
     html += `<a href="${project.socials["reddit"]}" target="_blank"><img src="./images/reddit.png" alt="Reddit logo" style="height: 2em; padding: 5px" /></a>`;
   }
-  if (project.socials["medium"] !== "") {
+  if (project.socials["medium"]) {
     html += `<a href="${project.socials["medium"]}" target="_blank"><img class="light-mode" src="./images/medium_dark.png" alt="Medium logo" style="height: 2em; padding: 5px" /></a>`;
     html += `<a href="${project.socials["medium"]}" target="_blank"><img class="dark-mode" src="./images/medium_light.png" alt="Medium logo" style="height: 2em; padding: 5px" /></a>`;
   }
-  if (project.socials["linkedin"] !== "") {
+  if (project.socials["linkedin"]) {
     html += `<a href="${project.socials["linkedin"]}" target="_blank"><img src="./images/linkedin.png" alt="LinkedIn logo" style="height: 2em; padding: 5px" /></a>`;
   }
-  if (project.socials["facebook"] !== "") {
+  if (project.socials["facebook"]) {
     html += `<a href="${project.socials["facebook"]}" target="_blank"><img src="./images/facebook.png" alt="Facebook logo" style="height: 2em; padding: 5px" /></a>`;
   }
-  if (project.socials["instagram"] !== "") {
+  if (project.socials["instagram"]) {
     html += `<a href="${project.socials["instagram"]}" target="_blank"><img src="./images/instagram.png" alt="Instagram logo" style="height: 2em; padding: 5px" /></a>`;
   }
-  if (project.socials["weibo"] !== "") {
+  if (project.socials["weibo"]) {
     html += `<a href="${project.socials["weibo"]}" target="_blank"><img src="./images/weibo.png" alt="Weibo logo" style="height: 2em; padding: 5px" /></a>`;
   }
-  if (project.socials["youtube"] !== "") {
+  if (project.socials["youtube"]) {
     html += `<a href="${project.socials["youtube"]}" target="_blank"><img src="./images/youtube.png" alt="Youtube logo" style="height: 2em; padding: 5px" /></a>`;
   }
   return html;
