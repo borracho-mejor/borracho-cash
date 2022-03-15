@@ -15,7 +15,10 @@ export function addEventListeners() {
 let cards;
 
 export async function about_page() {
-  LightMode.mode();
+  Util.scrollToTop();
+  Util.showTwitterFeeds();
+  Util.hideHeader();
+
   let html = "";
 
   try {
@@ -34,9 +37,6 @@ export async function about_page() {
   }
 
   Element.content.innerHTML = html;
-  Util.scrollToTop();
-  Util.showTwitterFeeds();
-  Util.hideHeader();
 }
 
 function buildCard(card, index) {
@@ -48,7 +48,7 @@ function buildCard(card, index) {
     }
   }
   return `
-          <div class="card mb-3">
+          <div class="card mb-3 mr-1">
             <h6 class="card-header">${pinnedTag}${card.header}</h6>
             <div class="card-body">${card.body}</div>
           </div>`;

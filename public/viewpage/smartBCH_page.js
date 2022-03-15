@@ -12,32 +12,57 @@ export function addEventListeners() {
 }
 
 let projects;
+let types;
 
 export async function smartBCH_page() {
+  Util.scrollToTop();
+  Util.hideTwitterFeeds();
+  Util.showHeader();
+
   let html = "";
-  let headerHTML = `<div style="height: 100%;">
+  let typeChecksHTML = "";
+  let sidebarHTML = `<div style="height: 100%;">
                       <img class="dark-mode" src="./images/smartBCH_light.png" alt="smartBCH logo" style="width: 100%; padding: 5px; margin: auto;" /><img class="light-mode" src="./images/smartBCH_dark.png" alt="smartBCH logo" style="width: 100%; padding: 5px;" />
                       <div style="max-width: 65rem; padding: 5px; margin: auto; text-align: left;">                  
-                        <h5>Here's a list of smartBCH projects. This will only include projects like DEXs, Launchpads, Staking Platforms, NFT Marketplaces, and tokens with large use-cases. 
-                          I am not currently including NFT projects or tokens without large use-cases (i.e: Celery with its staking platform and SIDX with its governance and managed portfolio.).
+                        <h5>Here's a list of smartBCH projects. This will only include projects like DEXs, Launchpads, Staking Platforms, NFT Marketplaces, and tokens with large use-cases (i.e: Celery with its staking platform and SIDX with its governance and managed portfolio). 
+                          I am not currently including NFT projects or tokens without use-cases.
                         </h5>
                         <p class="text-muted"><b>Disclaimer: Do Your Own Research!</b> Although I give my thoughts on most projects, nothing included here should be interpretted as financial advice in any shape or form.
                          Please research any project thoroughly before even contemplating investing, and only invest what you are able and willing to lose.</p>
-                        <p>Use the filters below to filter projects.</p>
+                        <div class="text-center padding-bottom">
+                          <button type="button" class="btn btn-success">FILTER RESULTS</button>
+                          <button type="button" class="btn btn-danger">CLEAR</button>
+                        </div>
+                        <p style="text-align: center;">Use the filters below to filter projects.</p>
                         <div class="alert alert-custom">
-                          <p class="alert-heading">New Listing:</p>
+                          <p class="alert-heading">New Listings:</p>
                           <hr>
-                          <p>New Listings Only</p>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="checkbox-new">
+                            <label class="form-check-label" for="checkbox-new">
+                              New Listings Only
+                            </label>
+                          </div>
                         </div>
                         <div class="alert alert-custom">
                           <p class="alert-heading">Type:</p>
                           <hr>
-                          <p>DEX, Launchpad, Market, etc</p>
+                          <div id="type-check-form"></div>
                         </div>
                         <div class="alert alert-custom">
                           <p class="alert-heading">Audited:</p>
                           <hr>
-                          <p>Audited Only</p>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="checkbox-audited">
+                            <label class="form-check-label" for="checkbox-audited">
+                              Audited Listings Only
+                            </label>
+                          </div>
+                        </div>
+                        <div class="alert alert-custom">
+                          <p class="alert-heading">Socials Available:</p>
+                          <hr>
+                          <div id="socials-check-form"></div>
                         </div>
                       </div>
                     </div>
@@ -57,12 +82,24 @@ export async function smartBCH_page() {
       return;
     }
   }
+  try {
+    types = await FirebaseController.getTypeList();
+    let index = 0;
+    types.forEach((type) => {
+      typeChecksHTML += buildCheckboxes(type, index);
+      ++index;
+    });
+  } catch (error) {
+    if (Constant.DEV) {
+      console.log(error);
+      // Util.popUpInfo("Error in getHomeprojectList", JSON.stringify(error));
+    }
+    return;
+  }
 
   Element.content.innerHTML = html;
-  Element.contentSidebar.innerHTML = headerHTML;
-  Util.scrollToTop();
-  Util.hideTwitterFeeds();
-  Util.showHeader();
+  Element.contentSidebar.innerHTML = sidebarHTML;
+  document.getElementById("type-check-form").innerHTML = typeChecksHTML;
 }
 
 function buildProjectCard(project, index) {
@@ -82,7 +119,7 @@ function buildProjectCard(project, index) {
   }
   let listingTag = "";
   if (project.new_listing) {
-    listingTag += `<div class="inline padding-right"><span class="badge badge-warning">New Listing</span></div>`;
+    listingTag += `<div class="inline padding-left"><span class="badge badge-warning">New Listing</span></div>`;
   }
   let helpfulLinksText = "";
   if (project.helpful_links.length > 0) {
@@ -127,7 +164,7 @@ function buildProjectCard(project, index) {
           <div class="card mb-3 mr-1">
             <div class="card-header">
               <h6 class="inline">${project.name}${auditTag}${dyorTag}</h6>
-              <h6 class="inline text-muted float-right">${listingTag}${typesText}</h6>
+              <h6 class="inline text-muted float-right">${typesText}${listingTag}</h6>
             </div>
             <div class="card-body flex-container">
               <div class="mr-3" style="flex: 10%">
@@ -157,6 +194,15 @@ function buildProjectCard(project, index) {
                 </div>
               </div>
             </div>
+          </div>`;
+}
+
+function buildCheckboxes(type, index) {
+  return `<div class="form-check inline padding-right-large">
+            <input class="form-check-input" type="checkbox" value="" id="checkbox-type-${type}">
+            <label class="form-check-label" for="checkbox-type-${type}">
+              ${type}
+            </label>
           </div>`;
 }
 

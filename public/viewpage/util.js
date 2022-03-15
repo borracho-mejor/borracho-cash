@@ -2,6 +2,7 @@ import * as Element from "./element.js";
 
 export function scrollToTop() {
   Element.content.scrollTo(0, 0);
+  Element.contentSidebar.scrollTo(0, 0);
   window.scrollTo(0, 0);
 }
 

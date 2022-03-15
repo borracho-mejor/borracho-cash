@@ -60,7 +60,7 @@ a:hover {
   color: green;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 900px) {
   /* Mobile */
   body {
     height: auto;
@@ -79,7 +79,7 @@ a:hover {
   }
 }
 
-@media screen and (min-width: 640px) {
+@media screen and (min-width: 900px) {
   /* Not mobile */
   .flex-container {
     display: flex;
@@ -102,7 +102,7 @@ a:hover {
 
 #content-sidebar {
   padding: 10px;
-  flex: 0 1 300px;
+  flex: 0 1 450px;
   background-color: var(--color-card-background);
   border-color: var(--border-color) !important;
   overflow: auto;
@@ -152,7 +152,7 @@ a:hover {
 }
 
 .padding-bottom {
-  padding-bottom: 1rem;
+  padding-bottom: 5px;
 }
 
 .padding-left {
@@ -161,6 +161,10 @@ a:hover {
 
 .padding-right {
   padding-right: 5px;
+}
+
+.padding-right-large {
+  padding-right: 20px;
 }
 
 .hidden {
