@@ -16,6 +16,7 @@ body {
   --color-text: rgba(245, 248, 250, 0.87);
   --color-card-background: #292f33;
   --color-inner-card-background: #353c41;
+  --color-nav-bar: #115c39;
   --light-mode: none;
   --dark-mode: inline-block;
   --border-color: #272d30;
@@ -26,6 +27,7 @@ body {
   --color-text: rgba(0, 0, 0, 0.87);
   --color-card-background: #ffffff;
   --color-inner-card-background: #f7f7f7;
+  --color-nav-bar: #28a745;
   --light-mode: inline-block;
   --dark-mode: none;
   --border-color: lightgrey;
@@ -34,6 +36,9 @@ body {
 body {
   background-color: var(--color-background);
   color: var(--color-text);
+}
+nav {
+  background-color: var(--color-nav-bar);
 }
 .card {
   background-color: var(--color-card-background);

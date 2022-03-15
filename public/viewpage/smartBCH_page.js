@@ -205,7 +205,7 @@ function buildProjectCard(project, index) {
                   <p class="text-muted">"${quoteText}"</p>
                 </div>
                 <div class="alert alert-custom">
-                  <h6 class="alert-heading">My two sats:</h6>
+                  <h6 class="alert-heading inline">My two sats:</h6>
                   <hr>
                   <p class="mb-0">${myThoughtsText}</p>
                 </div>
