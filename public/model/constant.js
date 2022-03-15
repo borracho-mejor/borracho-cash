@@ -4,3 +4,19 @@ export const collectionName = {
   CARDS: "cards",
   SBCH_PROJECTS: "sBCH_projects",
 };
+
+export const socialsList = [
+  "discord",
+  "facebook",
+  "github",
+  "instagram",
+  "linkedin",
+  "medium",
+  "noise",
+  "read",
+  "reddit",
+  "telegram",
+  "twitter",
+  "weibo",
+  "youtube",
+];

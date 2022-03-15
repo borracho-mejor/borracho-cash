@@ -196,3 +196,7 @@ a:hover {
   word-wrap: break-word;
   word-break: break-all;
 }
+
+input[type="checkbox"] {
+  accent-color: green;
+}

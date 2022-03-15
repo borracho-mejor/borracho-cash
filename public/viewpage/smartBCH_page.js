@@ -21,6 +21,7 @@ export async function smartBCH_page() {
 
   let html = "";
   let typeChecksHTML = "";
+  let socialsChecksHTML = "";
   let sidebarHTML = `<div style="height: 100%;">
                       <img class="dark-mode" src="./images/smartBCH_light.png" alt="smartBCH logo" style="width: 100%; padding: 5px; margin: auto;" /><img class="light-mode" src="./images/smartBCH_dark.png" alt="smartBCH logo" style="width: 100%; padding: 5px;" />
                       <div style="max-width: 65rem; padding: 5px; margin: auto; text-align: left;">                  
@@ -56,6 +57,16 @@ export async function smartBCH_page() {
                             <input class="form-check-input" type="checkbox" value="" id="checkbox-audited">
                             <label class="form-check-label" for="checkbox-audited">
                               Audited Listings Only
+                            </label>
+                          </div>
+                        </div>
+                        <div class="alert alert-custom">
+                          <p class="alert-heading">My two sats:</p>
+                          <hr>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="checkbox-mysats">
+                            <label class="form-check-label" for="checkbox-mysats">
+                              My Two Sats Given
                             </label>
                           </div>
                         </div>
@@ -97,9 +108,25 @@ export async function smartBCH_page() {
     return;
   }
 
+  try {
+    let index = 0;
+    Constant.socialsList.forEach((social) => {
+      let capitalSocial = social[0].toUpperCase() + social.substring(1);
+      socialsChecksHTML += buildCheckboxes(capitalSocial, index);
+      ++index;
+    });
+  } catch (error) {
+    if (Constant.DEV) {
+      console.log(error);
+      // Util.popUpInfo("Error in getHomeprojectList", JSON.stringify(error));
+    }
+    return;
+  }
+
   Element.content.innerHTML = html;
   Element.contentSidebar.innerHTML = sidebarHTML;
   document.getElementById("type-check-form").innerHTML = typeChecksHTML;
+  document.getElementById("socials-check-form").innerHTML = socialsChecksHTML;
 }
 
 function buildProjectCard(project, index) {
