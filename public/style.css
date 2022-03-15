@@ -18,7 +18,7 @@ body {
   --color-inner-card-background: #353c41;
   --light-mode: none;
   --dark-mode: inline-block;
-  --border-color: transparent;
+  --border-color: #272d30;
 }
 
 .lightmode {
