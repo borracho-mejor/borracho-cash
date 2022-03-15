@@ -5,7 +5,7 @@ export const menuSmartBCH = document.getElementById("menu-smartBCH");
 
 export const mainContent = document.getElementById("main-content");
 export const content = document.getElementById("content");
-export const contentHeader = document.getElementById("content-header");
+export const contentSidebar = document.getElementById("content-sidebar");
 
 export const buttonDarkMode = document.getElementById("button-dark-mode");
 export const buttonLightMode = document.getElementById("button-light-mode");

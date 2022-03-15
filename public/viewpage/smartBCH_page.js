@@ -15,14 +15,31 @@ let projects;
 
 export async function smartBCH_page() {
   let html = "";
-  let headerHTML = `<img class="dark-mode" src="./images/smartBCH_light.png" alt="smartBCH logo" style="width: 20rem; padding: 5px; margin: auto;" /><img class="light-mode" src="./images/smartBCH_dark.png" alt="smartBCH logo" style="width: 20rem; padding: 5px;" />
-                    <div style="max-width: 65rem; padding: 5px; margin: auto; text-align: left;">                  
-                      <h5>Here's a list of smartBCH projects. This will only include projects like DEXs, Launchpads, Staking Platforms, NFT Marketplaces, and tokens with large use-cases. 
-                        I am not currently including NFT projects or tokens without large use-cases (i.e: Celery with its staking platform and SIDX with its governance and managed portfolio.).
-                      </h5>
-                      <p class="text-muted"><b>Disclaimer: Do Your Own Research!</b> Although I give my thoughts on most projects, nothing included here should be interpretted as financial advice in any shape or form.
-                        Please research any project thoroughly before even contemplating investing, and only invest what you are able and willing to lose.</p>
-                      <p>Use the filters below to filter projects by type.</p>
+  let headerHTML = `<div style="height: 100%;">
+                      <img class="dark-mode" src="./images/smartBCH_light.png" alt="smartBCH logo" style="width: 100%; padding: 5px; margin: auto;" /><img class="light-mode" src="./images/smartBCH_dark.png" alt="smartBCH logo" style="width: 100%; padding: 5px;" />
+                      <div style="max-width: 65rem; padding: 5px; margin: auto; text-align: left;">                  
+                        <h5>Here's a list of smartBCH projects. This will only include projects like DEXs, Launchpads, Staking Platforms, NFT Marketplaces, and tokens with large use-cases. 
+                          I am not currently including NFT projects or tokens without large use-cases (i.e: Celery with its staking platform and SIDX with its governance and managed portfolio.).
+                        </h5>
+                        <p class="text-muted"><b>Disclaimer: Do Your Own Research!</b> Although I give my thoughts on most projects, nothing included here should be interpretted as financial advice in any shape or form.
+                         Please research any project thoroughly before even contemplating investing, and only invest what you are able and willing to lose.</p>
+                        <p>Use the filters below to filter projects.</p>
+                        <div class="alert alert-custom">
+                          <p class="alert-heading">New Listing:</p>
+                          <hr>
+                          <p>New Listings Only</p>
+                        </div>
+                        <div class="alert alert-custom">
+                          <p class="alert-heading">Type:</p>
+                          <hr>
+                          <p>DEX, Launchpad, Market, etc</p>
+                        </div>
+                        <div class="alert alert-custom">
+                          <p class="alert-heading">Audited:</p>
+                          <hr>
+                          <p>Audited Only</p>
+                        </div>
+                      </div>
                     </div>
                     `;
 
@@ -42,7 +59,7 @@ export async function smartBCH_page() {
   }
 
   Element.content.innerHTML = html;
-  Element.contentHeader.innerHTML = headerHTML;
+  Element.contentSidebar.innerHTML = headerHTML;
   Util.scrollToTop();
   Util.hideTwitterFeeds();
   Util.showHeader();
@@ -107,7 +124,7 @@ function buildProjectCard(project, index) {
   let socialsHTML = buildSocials(project);
 
   return `
-          <div class="card mb-3">
+          <div class="card mb-3 mr-1">
             <div class="card-header">
               <h6 class="inline">${project.name}${auditTag}${dyorTag}</h6>
               <h6 class="inline text-muted float-right">${listingTag}${typesText}</h6>

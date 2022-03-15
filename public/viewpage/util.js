@@ -16,9 +16,9 @@ export function showTwitterFeeds() {
 }
 
 export function hideHeader() {
-  Element.contentHeader.classList.add("hidden");
+  Element.contentSidebar.classList.add("hidden");
 }
 
 export function showHeader() {
-  Element.contentHeader.classList.remove("hidden");
+  Element.contentSidebar.classList.remove("hidden");
 }

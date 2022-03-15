@@ -18,6 +18,7 @@ body {
   --color-inner-card-background: #353c41;
   --light-mode: none;
   --dark-mode: inline-block;
+  --border-color: transparent;
 }
 
 .lightmode {
@@ -27,6 +28,7 @@ body {
   --color-inner-card-background: #f7f7f7;
   --light-mode: inline-block;
   --dark-mode: none;
+  --border-color: lightgrey;
 }
 
 body {
@@ -98,13 +100,17 @@ a:hover {
   text-align: center;
 }
 
-#content-header {
-  text-align: center;
+#content-sidebar {
+  padding: 10px;
+  flex: 0 1 300px;
+  background-color: var(--color-card-background);
+  border-color: var(--border-color) !important;
+  overflow: auto;
 }
 
 #content {
   flex: 1;
-  max-height: 78vh;
+  height: 78vh;
 }
 
 .twitter-feed {
@@ -159,7 +165,7 @@ a:hover {
 
 .hidden {
   position: absolute;
-  left: -999px;
+  left: -9999px;
 }
 
 #flex-container {
