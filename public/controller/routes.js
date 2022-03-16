@@ -2,12 +2,14 @@ import * as HomePage from "../viewpage/home_page.js";
 import * as AboutPage from "../viewpage/about_page.js";
 import * as WhitepaperPage from "../viewpage/whitepaper_page.js";
 import * as SBCHPage from "../viewpage/smartBCH_page.js";
+import * as LoginPage from "../viewpage/login_page.js";
 
 export const routePathname = {
   HOME: "/",
   ABOUT: "/about",
   WHITEPAPER: "/whitepaper",
   SBCH: "/smartBCH",
+  LOGIN: "/login",
 };
 
 export const routes = [
@@ -15,6 +17,7 @@ export const routes = [
   { pathname: routePathname.ABOUT, page: AboutPage.about_page },
   { pathname: routePathname.WHITEPAPER, page: WhitepaperPage.whitepaper_page },
   { pathname: routePathname.SBCH, page: SBCHPage.smartBCH_page },
+  { pathname: routePathname.LOGIN, page: LoginPage.login_page },
 ];
 
 export function routing(pathname, href) {

@@ -43,6 +43,9 @@ nav {
 .card {
   background-color: var(--color-card-background);
 }
+.modal-content {
+  background-color: var(--color-card-background);
+}
 .light-mode {
   display: var(--light-mode);
 }
@@ -204,4 +207,12 @@ a:hover {
 
 input[type="checkbox"] {
   accent-color: green;
+}
+
+.modal-pre-auth {
+  display: block;
+}
+
+.modal-post-auth {
+  display: none;
 }

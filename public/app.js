@@ -5,7 +5,7 @@ window.onload = () => {
   const pathname = window.location.pathname;
   const href = window.location.href;
   Routes.routing(pathname, href);
-  console.log(pathname);
+  // console.log(pathname);
 };
 
 window.addEventListener("popstate", (e) => {
@@ -22,8 +22,10 @@ import * as HomePage from "./viewpage/home_page.js";
 import * as AboutPage from "./viewpage/about_page.js";
 import * as WhitepaperPage from "./viewpage/whitepaper_page.js";
 import * as SBCHPage from "./viewpage/smartBCH_page.js";
+import * as Auth from "./controller/auth.js";
 
 HomePage.addEventListeners();
 AboutPage.addEventListeners();
 WhitepaperPage.addEventListeners();
 SBCHPage.addEventListeners();
+Auth.addEventListeners();
