@@ -135,14 +135,12 @@ function buildProjectCard(project, index) {
     dyorTag += `<div class="inline padding-left"><span class="badge badge-danger">!!--DYOR--!!</span></div>`;
   }
   let auditTag = "";
-  if (project.audit.length > 0) {
-    let linkIndex = 0;
-    project.audit.forEach((audit) => {
-      auditTag += `<a href="${audit["link"]}" target="_blank"><div class="inline padding-left"><span class="badge badge-success">Audit: ${audit["name"]}</span></div></a>`;
-      linkIndex++;
-    });
-  } else {
-    auditTag += `<div class="inline padding-left"><span class="badge badge-warning">No Audit</span></div>`;
+  for (var key in project.audit) {
+    if (project.audit.hasOwnProperty(key)) {
+      auditTag += `<a href="${project.audit[key]}" target="_blank"><div class="inline padding-left"><span class="badge badge-success">Audit: ${key}</span></div></a>`;
+    } else {
+      auditTag += `<div class="inline padding-left"><span class="badge badge-warning">No Audit</span></div>`;
+    }
   }
   let listingTag = "";
   if (project.new_listing) {
