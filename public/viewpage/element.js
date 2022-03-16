@@ -16,3 +16,15 @@ export const twitterFeedLight = document.getElementById("twitter-feed-light");
 export const twitterFeedDark = document.getElementById("twitter-feed-dark");
 
 export const formSignIn = document.getElementById("form-sign-in");
+
+// For add project modal
+export const imageTagAddProject = document.getElementById("form-add-image-tag");
+export const formAddProject = document.getElementById("form-add-project");
+export const formAddProjectError = {
+  name: document.getElementById("error-add-name"),
+  //   price: document.getElementById("error-add-price"),
+  description: document.getElementById("error-add-description"),
+  twosats: document.getElementById("error-add-two-sats"),
+  logo: document.getElementById("error-add-logo"),
+  bias: document.getElementById("error-add-bias"),
+};

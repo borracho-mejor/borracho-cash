@@ -22,7 +22,7 @@ export async function login_page() {
                 <button class="btn btn-success modal-post-auth" style="margin-bottom: 10px;" data-toggle="modal" data-target="#modal-form-add-sBCH-project">
                     Add sBCH Project
                 </button>
-                <button id="button-sign-out" class="btn btn-danger modal-post-auth" data-toggle="modal" data-target="#modal-form-add-sBCH-project">
+                <button id="button-sign-out" class="btn btn-danger modal-post-auth">
                     Sign out
                 </button>
             </div>
