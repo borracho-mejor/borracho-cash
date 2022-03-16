@@ -216,30 +216,66 @@
                 <p id="error-add-description" class="error-add-project"></p>
               </div>
               <div>
-                My 2 Sats: <br />
-                <textarea name="twosats" style="width: 100%"></textarea>
-                <p id="error-add-two-sats" class="error-add-two-sats"></p>
-              </div>
-              <div>
+                Type(s): (Enter Array)<br />
                 <input
-                  type="number"
-                  name="bias"
-                  placeholder="Bias"
+                  type="text"
+                  name="type"
+                  placeholder="['type1','type2']"
                   style="width: 100%"
                 />
-                <p id="error-add-bias" class="error-add-project"></p>
+                <p id="error-add-type" class="error-add-project"></p>
               </div>
               <div>
+                My 2 Sats: <br />
+                <textarea name="twosats" style="width: 100%"></textarea>
+                <p id="error-add-two-sats" class="error-add-project"></p>
+              </div>
+              <div>
+                Audits: (Blank If None)<br />
+                <input
+                  type="text"
+                  name="audits"
+                  placeholder="{'name1':'link1','name2':'link2'}"
+                  style="width: 100%"
+                />
+                <p id="error-add-audit" class="error-add-project"></p>
+              </div>
+              <div>
+                Socials: (Blank If None)<br />
+                <input
+                  type="text"
+                  name="socials"
+                  placeholder="{'name1':'link1','name2':'link2'}"
+                  style="width: 100%"
+                />
+                <p id="error-add-socials" class="error-add-project"></p>
+              </div>
+              <div>
+                Helpful Links: (Blank If None)<br />
+                <input
+                  type="text"
+                  name="links"
+                  placeholder="{'name1':'link1','name2':'link2'}"
+                  style="width: 100%"
+                />
+                <p id="error-add-links" class="error-add-project"></p>
+              </div>
+              <div class="form-check inline">
                 <input type="checkbox" name="dyor" />
                 <label class="form-check-label" for="dyor">DYOR?</label>
-                <p id="error-add-dyor" class="error-add-dyor"></p>
+                <p id="error-add-dyor" class="error-add-project"></p>
               </div>
-              <div>
+              <div class="form-check inline padding-right-large">
                 <input type="checkbox" name="new-listing" checked />
                 <label class="form-check-label" for="new-listing"
                   >New Listing?</label
                 >
-                <p id="error-add-new-listing" class="error-add-new-listing"></p>
+                <p id="error-add-new-listing" class="error-add-project"></p>
+              </div>
+              <div>
+                Bias: <br />
+                <input type="number" name="bias" style="width: 100%" />
+                <p id="error-add-bias" class="error-add-project"></p>
               </div>
               <div>
                 Project Logo:
@@ -248,7 +284,11 @@
                 <input id="form-add-image-button" type="file" value="Upload" />
               </div>
               <div>
-                <button type="submit" class="btn btn-outline-success">
+                <button
+                  type="submit"
+                  class="btn btn-outline-success"
+                  style="margin-top: 5px"
+                >
                   Add
                 </button>
               </div>

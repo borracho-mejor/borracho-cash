@@ -19,7 +19,7 @@ export const formSignIn = document.getElementById("form-sign-in");
 
 // For add project modal
 export const imageTagAddProject = document.getElementById("form-add-image-tag");
-export const formAddProject = document.getElementById("form-add-project");
+export const formAddProject = document.getElementById("form-add-sbch-project");
 export const formAddProjectError = {
   name: document.getElementById("error-add-name"),
   //   price: document.getElementById("error-add-price"),

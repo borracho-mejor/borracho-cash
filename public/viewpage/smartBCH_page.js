@@ -135,11 +135,13 @@ function buildProjectCard(project, index) {
     dyorTag += `<div class="inline padding-left"><span class="badge badge-danger">!!--DYOR--!!</span></div>`;
   }
   let auditTag = "";
-  for (var key in project.audit) {
-    if (project.audit.hasOwnProperty(key)) {
-      auditTag += `<a href="${project.audit[key]}" target="_blank"><div class="inline padding-left"><span class="badge badge-success">Audit: ${key}</span></div></a>`;
-    } else {
-      auditTag += `<div class="inline padding-left"><span class="badge badge-warning">No Audit</span></div>`;
+  if (Object.keys(project.audit).length === 0) {
+    auditTag += `<div class="inline padding-left"><span class="badge badge-warning">No Audit</span></div>`;
+  } else {
+    for (var key in project.audit) {
+      if (project.audit.hasOwnProperty(key)) {
+        auditTag += `<a href="${project.audit[key]}" target="_blank"><div class="inline padding-left"><span class="badge badge-success">Audit: ${key}</span></div></a>`;
+      }
     }
   }
   let listingTag = "";
@@ -147,18 +149,33 @@ function buildProjectCard(project, index) {
     listingTag += `<div class="inline padding-left"><span class="badge badge-warning">New Listing</span></div>`;
   }
   let helpfulLinksText = "";
-  if (project.helpful_links.length > 0) {
-    let linkIndex = 0;
-    project.helpful_links.forEach((helpfulLink) => {
-      helpfulLinksText += `<a href="${helpfulLink["link"]}" target="_blank">${helpfulLink["name"]}</a>`;
-      if (linkIndex < project.helpful_links.length - 1) {
-        helpfulLinksText += " - ";
-      }
-      linkIndex++;
-    });
+  if (Object.keys(project.helpful_links).length === 0) {
+    helpfulLinksText += helpfulLinksText += "None... 🤷‍♂️";
   } else {
-    helpfulLinksText += "None... 🤷‍♂️";
+    let linkIndex = 0;
+    for (var keyy in project.helpful_links) {
+      if (project.helpful_links.hasOwnProperty(keyy)) {
+        if (linkIndex !== 0) {
+          helpfulLinksText += " - ";
+        }
+        linkIndex++;
+        helpfulLinksText += `<a href="${project.helpful_links[keyy]}" target="_blank">${keyy}</a>`;
+      }
+    }
   }
+  // let helpfulLinksText = "";
+  // if (project.helpful_links.length > 0) {
+  //   let linkIndex = 0;
+  //   project.helpful_links.forEach((helpfulLink) => {
+  //     helpfulLinksText += `<a href="${helpfulLink["link"]}" target="_blank">${helpfulLink["name"]}</a>`;
+  //     if (linkIndex < project.helpful_links.length - 1) {
+  //       helpfulLinksText += " - ";
+  //     }
+  //     linkIndex++;
+  //   });
+  // } else {
+  //   helpfulLinksText += "None... 🤷‍♂️";
+  // }
   let typesText = "";
   if (project.type.length > 0) {
     typesText += "Type: ";
