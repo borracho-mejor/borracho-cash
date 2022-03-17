@@ -1,5 +1,28 @@
 import * as Element from "./element.js";
 
+export function popUpInfo(title, body, closeModal) {
+  if (closeModal) {
+    $("#" + closeModal).modal("hide");
+  }
+  Element.popUpInfoTitle.innerHTML = title;
+  Element.popUpInfoBody.innerHTML = body;
+  $("#modal-pop-up-info").modal("show");
+}
+
+export function disableButton(button) {
+  button.disabled = true;
+  const label = button.innerHTML;
+  button.innerHTML = "Wait...";
+  return label;
+}
+
+export function enableButton(button, label) {
+  if (label) {
+    button.innerHTML = label;
+    button.disabled = false;
+  }
+}
+
 export function scrollToTop() {
   Element.content.scrollTo(0, 0);
   Element.contentSidebar.scrollTo(0, 0);
