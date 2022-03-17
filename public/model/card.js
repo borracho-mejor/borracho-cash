@@ -10,7 +10,7 @@ export class Card {
   serialize() {
     return {
       header: this.header,
-      rating: this.rating,
+      body: this.body,
       isPinned: this.isPinned,
       page: this.page,
       timestamp: this.timestamp,

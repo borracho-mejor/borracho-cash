@@ -178,34 +178,96 @@
       </div>
     </div>
 
-        <!-- Modal: Pop-up Info Box -->
-        <div
-        class="modal fade"
-        id="modal-pop-up-info"
-        data-backdrop="static"
-        data-keyboard="false"
-        tabindex="-1"
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modal-pop-up-info-title"></h5>
-            </div>
-            <div class="modal-body" id="modal-pop-up-info-body"></div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-            </div>
+    <!-- Modal: Pop-up Info Box -->
+    <div
+      class="modal fade"
+      id="modal-pop-up-info"
+      data-backdrop="static"
+      data-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-pop-up-info-title"></h5>
+          </div>
+          <div class="modal-body" id="modal-pop-up-info-body"></div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Modal: Add Card -->
+    <div
+      class="modal fade"
+      id="modal-form-add-card"
+      data-backdrop="static"
+      data-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-add-card-label">
+              Add a New Card
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="form-add-card" method="post">
+              <div>
+                Card Header: <br />
+                <input type="text" name="header" style="width: 100%" />
+                <p id="error-add-header" class="error-add-card"></p>
+              </div>
+              <div>
+                Card Body: <br />
+                <textarea name="body" style="width: 100%"></textarea>
+                <p id="error-add-body" class="error-add-card"></p>
+              </div>
+              <div>
+                Page: <br />
+                <input type="text" name="page" style="width: 100%" />
+                <p id="error-add-page" class="error-add-card"></p>
+              </div>
+              <div class="form-check inline">
+                <input type="checkbox" name="isPinned" />
+                <label class="form-check-isPinned" for="isPinned">isPinned</label>
+                <p id="error-add-isPinned" class="error-add-card"></p>
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  class="btn btn-outline-success"
+                  style="margin-top: 5px"
+                >
+                  Add
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Modal: Add sBCH Project -->
     <div

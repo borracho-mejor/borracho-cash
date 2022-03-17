@@ -20,6 +20,10 @@ export async function login_page() {
                     Sign-in
                 </button>
                 <div class="button-center">
+                  <button class="btn btn-success modal-post-auth" style="margin: 0 auto;" data-toggle="modal" data-target="#modal-form-add-card">
+                      Add Card
+                  </button>
+                  <div style="height: 5px;"></div>
                   <button class="btn btn-success modal-post-auth" style="margin: 0 auto;" data-toggle="modal" data-target="#modal-form-add-sBCH-project">
                       Add sBCH Project
                   </button>

@@ -17,12 +17,16 @@ export const twitterFeedDark = document.getElementById("twitter-feed-dark");
 
 export const formSignIn = document.getElementById("form-sign-in");
 
+export const popUpInfoTitle = document.getElementById(
+  "modal-pop-up-info-title"
+);
+export const popUpInfoBody = document.getElementById("modal-pop-up-info-body");
+
 // For add project modal
 export const imageTagAddProject = document.getElementById("form-add-image-tag");
 export const formAddProject = document.getElementById("form-add-sbch-project");
 export const formAddProjectError = {
   name: document.getElementById("error-add-name"),
-  //   price: document.getElementById("error-add-price"),
   description: document.getElementById("error-add-description"),
   twosats: document.getElementById("error-add-two-sats"),
   logo: document.getElementById("error-add-logo"),
@@ -31,3 +35,11 @@ export const formAddProjectError = {
 export const formImageAddButton = document.getElementById(
   "form-add-image-button"
 );
+
+// For add card modal
+export const formAddCard = document.getElementById("form-add-card");
+export const formAddCardError = {
+  header: document.getElementById("error-add-header"),
+  body: document.getElementById("error-add-body"),
+  page: document.getElementById("error-add-page"),
+};
