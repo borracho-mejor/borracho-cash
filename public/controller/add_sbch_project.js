@@ -41,7 +41,6 @@ async function addNewsBCHProject(e) {
   const helpful_links = trimAndParse(e.target.links.value);
   const my_thoughts = e.target.twosats.value;
   const name = e.target.name.value;
-  const new_listing = e.target.newlisting.checked;
   const quoted_description = e.target.quoteddescription.value;
   const socials = trimAndParse(e.target.socials.value);
   const type = e.target.type.value.split(",");
@@ -60,7 +59,6 @@ async function addNewsBCHProject(e) {
     helpful_links,
     my_thoughts,
     name,
-    new_listing,
     quoted_description,
     socials,
     type,

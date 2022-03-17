@@ -7,7 +7,6 @@ export class SBCHProject {
     this.dyor = data.dyor;
     this.helpful_links = data.helpful_links;
     this.logo_path = data.logo_path;
-    this.new_listing = data.new_listing;
     this.socials = data.socials;
     this.type = data.type;
     this.my_thoughts = data.my_thoughts;
@@ -24,7 +23,6 @@ export class SBCHProject {
       dyor: this.dyor,
       helpful_links: this.helpful_links,
       logo_path: this.logo_path,
-      new_listing: this.new_listing,
       socials: this.socials,
       type: this.type,
       my_thoughts: this.my_thoughts,
@@ -55,9 +53,6 @@ export class SBCHProject {
     }
     if (this.logo_path) {
       r.logo_path = this.logo_path;
-    }
-    if (this.new_listing) {
-      r.new_listing = this.new_listing;
     }
     if (this.socials) {
       r.socials = this.socials;
