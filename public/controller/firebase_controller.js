@@ -82,6 +82,7 @@ export async function getAboutCardList() {
 }
 
 export async function addsBCHProject(project) {
+  project.timestamp = Timestamp.fromDate(new Date());
   const docRef = await addDoc(
     collection(db, Constant.collectionName.SBCH_PROJECTS),
     project
@@ -90,7 +91,6 @@ export async function addsBCHProject(project) {
 
 export async function addCard(card) {
   card.timestamp = Timestamp.fromDate(new Date());
-  console.log(card);
   const docRef = await addDoc(
     collection(db, Constant.collectionName.CARDS),
     card

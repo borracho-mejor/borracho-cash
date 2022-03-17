@@ -12,6 +12,7 @@ export class SBCHProject {
     this.type = data.type;
     this.my_thoughts = data.my_thoughts;
     this.quoted_description = data.quoted_description;
+    this.timestamp = data.timestamp;
   }
 
   serialize() {
@@ -28,6 +29,7 @@ export class SBCHProject {
       type: this.type,
       my_thoughts: this.my_thoughts,
       quoted_description: this.quoted_description,
+      timestamp: this.timestamp,
     };
   }
 
@@ -68,6 +70,9 @@ export class SBCHProject {
     }
     if (this.quoted_description) {
       r.quoted_description = this.quoted_description;
+    }
+    if (this.timestamp) {
+      r.timestamp = this.timestamp;
     }
     return r;
   }

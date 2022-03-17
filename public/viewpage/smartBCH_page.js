@@ -3,6 +3,7 @@ import * as Element from "./element.js";
 import * as Constant from "../model/constant.js";
 import * as FirebaseController from "../controller/firebase_controller.js";
 import * as Util from "./util.js";
+import { Timestamp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
 
 export function addEventListeners() {
   Element.menuSmartBCH.addEventListener("click", () => {
@@ -145,7 +146,10 @@ function buildProjectCard(project, index) {
     }
   }
   let listingTag = "";
-  if (project.new_listing) {
+  const date = Timestamp.fromDate(new Date());
+  console.log();
+  if (Math.floor((date - project.timestamp) / (3600 * 24)) < 30) {
+    // if project has been listed less than 30 days
     listingTag += `<div class="inline padding-left"><span class="badge badge-warning">New Listing</span></div>`;
   }
   let helpfulLinksText = "";
