@@ -16,15 +16,18 @@ export async function login_page() {
   Util.hideHeader();
 
   let html = `<div style="height: 100%;">
-                <button class="btn btn-success modal-pre-auth" data-toggle="modal" data-target="#modal-form-sign-in">
+                <button class="btn btn-success modal-pre-auth button-center" data-toggle="modal" data-target="#modal-form-sign-in">
                     Sign-in
                 </button>
-                <button class="btn btn-success modal-post-auth" style="margin-bottom: 10px;" data-toggle="modal" data-target="#modal-form-add-sBCH-project">
-                    Add sBCH Project
-                </button>
-                <button id="button-sign-out" class="btn btn-danger modal-post-auth">
-                    Sign out
-                </button>
+                <div class="button-center">
+                  <button class="btn btn-success modal-post-auth" style="margin: 0 auto;" data-toggle="modal" data-target="#modal-form-add-sBCH-project">
+                      Add sBCH Project
+                  </button>
+                  <div style="height: 5px;"></div>
+                  <button id="button-sign-out" class="btn btn-danger modal-post-auth" style="margin-bottom: 10px; margin: 0 auto;">
+                     Sign out
+                  </button>
+                </div>
             </div>
                 `;
 
