@@ -23,9 +23,11 @@ import * as AboutPage from "./viewpage/about_page.js";
 import * as WhitepaperPage from "./viewpage/whitepaper_page.js";
 import * as SBCHPage from "./viewpage/smartBCH_page.js";
 import * as Auth from "./controller/auth.js";
+import * as AddsBCHProject from "./controller/add_sbch_project.js";
 
 HomePage.addEventListeners();
 AboutPage.addEventListeners();
 WhitepaperPage.addEventListeners();
 SBCHPage.addEventListeners();
 Auth.addEventListeners();
+AddsBCHProject.addEventListeners();

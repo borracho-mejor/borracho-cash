@@ -20,3 +20,7 @@ export const socialsList = [
   "weibo",
   "youtube",
 ];
+
+export const storageFolderName = {
+  SBCH_LOGOS: "sBCH_logos/",
+};

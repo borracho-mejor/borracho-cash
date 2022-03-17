@@ -27,7 +27,7 @@ body {
   --color-text: rgba(0, 0, 0, 0.87);
   --color-card-background: #ffffff;
   --color-inner-card-background: #f7f7f7;
-  --color-nav-bar: #28a745;
+  --color-nav-bar: #115c39;
   --light-mode: inline-block;
   --dark-mode: none;
   --border-color: lightgrey;
@@ -53,6 +53,26 @@ nav {
   display: var(--dark-mode);
 }
 .alert-custom {
+  background-color: var(--color-inner-card-background);
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea {
+  color: var(--color-text);
+  background-color: var(--color-inner-card-background);
+}
+
+/* textarea:focus,
+input:focus {
+  color: var(--color-text);
+  background-color: var(--color-inner-card-background);
+} */
+
+textarea:after,
+input:after {
+  color: var(--color-text);
   background-color: var(--color-inner-card-background);
 }
 
@@ -219,4 +239,8 @@ input[type="checkbox"] {
 
 .modal-post-auth {
   display: none;
+}
+
+.error-add-project {
+  color: red;
 }

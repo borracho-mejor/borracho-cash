@@ -28,3 +28,6 @@ export const formAddProjectError = {
   logo: document.getElementById("error-add-logo"),
   bias: document.getElementById("error-add-bias"),
 };
+export const formImageAddButton = document.getElementById(
+  "form-add-image-button"
+);

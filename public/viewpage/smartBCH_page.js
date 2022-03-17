@@ -163,19 +163,6 @@ function buildProjectCard(project, index) {
       }
     }
   }
-  // let helpfulLinksText = "";
-  // if (project.helpful_links.length > 0) {
-  //   let linkIndex = 0;
-  //   project.helpful_links.forEach((helpfulLink) => {
-  //     helpfulLinksText += `<a href="${helpfulLink["link"]}" target="_blank">${helpfulLink["name"]}</a>`;
-  //     if (linkIndex < project.helpful_links.length - 1) {
-  //       helpfulLinksText += " - ";
-  //     }
-  //     linkIndex++;
-  //   });
-  // } else {
-  //   helpfulLinksText += "None... 🤷‍♂️";
-  // }
   let typesText = "";
   if (project.type.length > 0) {
     typesText += "Type: ";
