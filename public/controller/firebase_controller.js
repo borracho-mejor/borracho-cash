@@ -7,6 +7,7 @@ import {
   query,
   orderBy,
   getDocs,
+  addDoc,
 } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
 
 const db = getFirestore();
@@ -77,4 +78,11 @@ export async function getAboutCardList() {
     }
   });
   return cards;
+}
+
+export async function addsBCHProject(project) {
+  const docRef = await addDoc(
+    collection(db, Constant.collectionName.SBCH_PROJECTS),
+    project
+  );
 }
