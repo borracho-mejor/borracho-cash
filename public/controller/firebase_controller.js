@@ -35,7 +35,6 @@ export async function getSBCHProjectList() {
   let projects = [];
   const q = query(
     collection(db, Constant.collectionName.SBCH_PROJECTS),
-    orderBy("new_listing", "desc"),
     orderBy("bias", "desc"),
     orderBy("name", "asc")
   );
