@@ -205,8 +205,8 @@ function buildProjectCard(project, index) {
               <h6 class="inline text-muted float-right">${typesText}</h6>
             </div>
             <div class="card-body flex-container">
-              <div class="mr-3" style="flex: 10%">
-                <span class="vertical-center-helper"></span><img src="${project.logo_path}" alt="Project logo" style="width: 100%; padding: 5px;" />
+              <div class="mr-3" style="flex: 10%; text-align: center;">
+                <span class="vertical-center-helper"></span><a href=${project.site} target="_blank"><img src="${project.logo_path}" alt="Project logo" style="max-height: 8rem; max-width: 100%; padding: 5px;" /></a>
               </div>
               <div style="flex: 75%">
                 <div class="alert alert-custom">

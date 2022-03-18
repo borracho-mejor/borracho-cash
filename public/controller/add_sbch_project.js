@@ -44,6 +44,7 @@ async function addNewsBCHProject(e) {
   const quoted_description = e.target.quoteddescription.value;
   const socials = trimAndParse(e.target.socials.value);
   const type = e.target.type.value.split(",");
+  const site = e.target.site.value;
 
   // Clear error tags before validating again
   const errorTags = document.getElementsByClassName("error-add-project");
@@ -62,6 +63,7 @@ async function addNewsBCHProject(e) {
     quoted_description,
     socials,
     type,
+    site,
   });
   // Check
   const errors = project.validate(imageFile2Upload);
