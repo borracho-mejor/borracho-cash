@@ -22,6 +22,11 @@ export async function home_page() {
 
   try {
     cards = await FirebaseController.getHomeCardList();
+
+    if (cards.length == 0) {
+      html += `<h4 style="text-align:center;">No cards found!</h4>`;
+    }
+
     let index = 0;
     cards.forEach((card) => {
       html += buildCard(card, index);

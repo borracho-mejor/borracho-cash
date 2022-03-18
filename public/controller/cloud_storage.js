@@ -10,7 +10,7 @@ const storage = getStorage();
 
 export async function uploadImage(imageFile, imageName) {
   if (!imageName) {
-    imageName = Date.now() + imageFile.name;
+    imageName = Date.now() + "_" + imageFile.name;
   }
   const storageRef = ref(
     storage,

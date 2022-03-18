@@ -82,6 +82,11 @@ export async function smartBCH_page() {
 
   try {
     projects = await FirebaseController.getSBCHProjectList();
+
+    if (projects.length == 0) {
+      html += `<h4 style="text-align:center;">No projects found!</h4>`;
+    }
+
     let index = 0;
     projects.forEach((project) => {
       html += buildProjectCard(project, index);
