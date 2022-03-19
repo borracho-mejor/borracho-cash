@@ -54,7 +54,7 @@ function buildCard(card, index) {
   }
   return `
           <div class="card mb-3 mr-1">
-            <h6 class="card-header">${pinnedTag}${card.header}</h6>
+            <h5 class="card-header">${pinnedTag}${card.header}</h5>
             <div class="card-body">${card.body}</div>
           </div>`;
 }
