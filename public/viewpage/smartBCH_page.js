@@ -209,8 +209,8 @@ function buildProjectCard(project, index) {
   return `
           <div class="card mb-3 mr-1">
             <div class="card-header">
-              <h6 class="inline">${project.name}${listingTag}${auditTag}${dyorTag}</h6>
-              <h6 class="inline text-muted float-right">${typesText}</h6>
+              <div class="inline"><h1 class="inline"><h4 class="inline" style="vertical-align: middle;">${project.name}</h4><h6 class="inline" style="vertical-align: middle;">${listingTag}${auditTag}${dyorTag}</h6></div>
+              <div class="inline float-right"><h6 class="text-muted">${typesText}</h6></div>
             </div>
             <div class="card-body flex-container">
               <div class="mr-3" style="flex: 10%; text-align: center;">
