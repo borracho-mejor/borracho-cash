@@ -31,6 +31,7 @@ export async function smartBCH_page() {
                         </h5>
                         <p class="text-muted"><b>Disclaimer: Do Your Own Research!</b> Although I give my thoughts on most projects, nothing included here should be interpretted as financial advice in any shape or form.
                          Please research any project thoroughly before even contemplating investing, and only invest what you are able and willing to lose.</p>
+                        <div class="text-center" style="padding-bottom: 0.625rem;">Project Count: <span id="project-count"></span></div>
                         <div class="text-center padding-bottom">
                           <button type="button" class="btn btn-success">FILTER RESULTS</button>
                           <button type="button" class="btn btn-danger">CLEAR</button>
@@ -133,6 +134,7 @@ export async function smartBCH_page() {
   Element.contentSidebar.innerHTML = sidebarHTML;
   document.getElementById("type-check-form").innerHTML = typeChecksHTML;
   document.getElementById("socials-check-form").innerHTML = socialsChecksHTML;
+  document.getElementById("project-count").innerHTML = projects.length;
 }
 
 function buildProjectCard(project, index) {
@@ -184,6 +186,12 @@ function buildProjectCard(project, index) {
       linkIndex++;
     });
   }
+  let descriptionText = "";
+  if (project.description) {
+    descriptionText += project.description;
+  } else {
+    descriptionText += "None... 🤷‍♂️";
+  }
   let myThoughtsText = "";
   if (project.my_thoughts) {
     myThoughtsText += project.my_thoughts;
@@ -212,7 +220,7 @@ function buildProjectCard(project, index) {
                 <div class="alert alert-custom">
                   <h6 class="alert-heading">Description:</h6>
                   <hr>
-                  <p>${project.description}</p>
+                  <p>${descriptionText}</p>
                   <p class="text-muted">"${quoteText}"</p>
                 </div>
                 <div class="alert alert-custom">
