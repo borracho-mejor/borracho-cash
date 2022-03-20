@@ -102,6 +102,7 @@ export async function smartBCH_page() {
   }
   try {
     types = await FirebaseController.getTypeList();
+    types.sort();
     let index = 0;
     types.forEach((type) => {
       typeChecksHTML += buildCheckboxes(type, index);

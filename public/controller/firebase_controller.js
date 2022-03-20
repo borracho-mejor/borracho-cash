@@ -35,7 +35,7 @@ export async function getSBCHProjectList() {
   let projects = [];
   const q = query(
     collection(db, Constant.collectionName.SBCH_PROJECTS),
-    orderBy("bias", "desc"),
+    orderBy("bias", "asc"),
     orderBy("name", "asc")
   );
   const snapshot = await getDocs(q);
