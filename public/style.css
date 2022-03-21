@@ -114,7 +114,7 @@ a:hover {
     display: flex;
   }
   #main-content {
-    max-height: 79vh;
+    max-height: 78vh;
   }
   .footer {
     display: grid;
@@ -139,7 +139,7 @@ a:hover {
 
 #content {
   flex: 1;
-  height: 78vh;
+  max-height: 100%;
 }
 
 .twitter-feed {
