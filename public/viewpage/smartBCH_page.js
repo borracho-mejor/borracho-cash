@@ -75,7 +75,7 @@ export async function smartBCH_page() {
                           </div>
                         </div>
                         <div class="alert alert-custom">
-                          <p class="alert-heading">Socials Available:</p>
+                          <p class="alert-heading">Socials Available: (an OR relationship)</p>
                           <hr>
                           <div id="socials-check-form"></div>
                         </div>
@@ -107,7 +107,7 @@ export async function smartBCH_page() {
     types.sort();
     let index = 0;
     types.forEach((type) => {
-      typeChecksHTML += buildCheckboxes(type, index);
+      typeChecksHTML += buildCheckboxesForTypes(type, index);
       ++index;
     });
   } catch (error) {
@@ -124,7 +124,7 @@ export async function smartBCH_page() {
     let index = 0;
     socials.forEach((social) => {
       let capitalSocial = social[0].toUpperCase() + social.substring(1);
-      socialsChecksHTML += buildCheckboxes(capitalSocial, index);
+      socialsChecksHTML += buildCheckboxesForSocials(capitalSocial, index);
       ++index;
     });
   } catch (error) {
@@ -258,10 +258,19 @@ function buildProjectCard(project, index) {
           </div>`;
 }
 
-function buildCheckboxes(label, index) {
+function buildCheckboxesForTypes(label, index) {
   return `<div class="form-check-type inline padding-right-large">
             <input class="form-check-type-input" type="checkbox" value="" id="checkbox-type-${label}">
             <label class="form-check-type-label" for="checkbox-type-${label}">
+              ${label}
+            </label>
+          </div>`;
+}
+
+function buildCheckboxesForSocials(label, index) {
+  return `<div class="form-check-social inline padding-right-large">
+            <input class="form-check-social-input" type="checkbox" value="" id="checkbox-social-${label}">
+            <label class="form-check-social-label" for="checkbox-social-${label}">
               ${label}
             </label>
           </div>`;
@@ -313,6 +322,10 @@ function buildSocials(project) {
   if (project.socials["youtube"]) {
     html += `<a href="${project.socials["youtube"]}" target="_blank"><img src="./images/youtube.png" alt="Youtube logo" style="height: 2em; padding: 5px" /></a>`;
   }
+  if (project.socials["angel"]) {
+    html += `<a href="${project.socials["angel"]}" target="_blank"><img class="light-mode" src="./images/angel_dark.png" alt="Angel logo" style="height: 2em; padding: 5px" /></a>`;
+    html += `<a href="${project.socials["angel"]}" target="_blank"><img class="dark-mode" src="./images/angel_light.png" alt="Angel logo" style="height: 2em; padding: 5px" /></a>`;
+  }
   return html;
 }
 
@@ -354,6 +367,25 @@ function filterResults() {
   if (document.getElementById("checkbox-mysats").checked) {
     filteredProjects = filteredProjects.filter(function (project) {
       return project.my_thoughts != "";
+    });
+  }
+  // socials
+  let socialsCheckboxArray = document.getElementsByClassName(
+    "form-check-social-input"
+  );
+  let socialsArray = [];
+  for (let i = 0; i < socialsCheckboxArray.length; i++) {
+    if (socialsCheckboxArray[i].checked) {
+      socialsArray.push(
+        socialsCheckboxArray[i].parentNode.textContent.trim().toLowerCase()
+      );
+    }
+  }
+  if (socialsArray.length != 0) {
+    filteredProjects = filteredProjects.filter(function (project) {
+      return Object.keys(project.socials).some(
+        (val) => socialsArray.indexOf(val) != -1
+      );
     });
   }
 
