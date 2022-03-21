@@ -328,10 +328,16 @@ function filterResults() {
   let typesCheckboxArray = document.getElementsByClassName(
     "form-check-type-input"
   );
+  let typesArray = [];
   for (let i = 0; i < typesCheckboxArray.length; i++) {
     if (typesCheckboxArray[i].checked) {
-      console.log(typesCheckboxArray[i].parentNode.textContent.trim());
+      typesArray.push(typesCheckboxArray[i].parentNode.textContent.trim());
     }
+  }
+  if (typesArray.length != 0) {
+    filteredProjects = filteredProjects.filter(function (project) {
+      return project.type.some((val) => typesArray.indexOf(val) != -1);
+    });
   }
 
   if (filteredProjects.length == 0) {
