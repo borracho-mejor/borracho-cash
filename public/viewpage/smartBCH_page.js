@@ -314,11 +314,11 @@ function buildSocials(project) {
 }
 
 function filterResults() {
-  let filteredProjects = [];
+  let filteredProjects = [...projects];
   let newHTML = "";
   if (document.getElementById("checkbox-new").checked) {
     const date = Timestamp.fromDate(new Date());
-    filteredProjects = projects.filter(function (project) {
+    filteredProjects = filteredProjects.filter(function (project) {
       return (
         Math.floor((date - project.timestamp) / (3600 * 24)) <
         Constant.NEW_LISTING_TIME
