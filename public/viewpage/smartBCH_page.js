@@ -4,6 +4,7 @@ import * as Constant from "../model/constant.js";
 import * as FirebaseController from "../controller/firebase_controller.js";
 import * as Util from "./util.js";
 import { Timestamp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
+import { home_page } from "./home_page.js";
 
 export function addEventListeners() {
   Element.menuSmartBCH.addEventListener("click", () => {
@@ -33,8 +34,8 @@ export async function smartBCH_page() {
                          Please research any project thoroughly before even contemplating investing, and only invest what you are able and willing to lose.</p>
                         <div class="text-center" style="padding-bottom: 0.625rem;">Project Count: <span id="project-count"></span></div>
                         <div class="text-center padding-bottom">
-                          <button type="button" class="btn btn-success">FILTER RESULTS</button>
-                          <button type="button" class="btn btn-danger">CLEAR</button>
+                          <button id="button-filter" type="button" class="btn btn-success">FILTER RESULTS</button>
+                          <button id="button-filter-clear" type="button" class="btn btn-danger">CLEAR</button>
                         </div>
                         <p style="text-align: center;">Use the filters below to filter projects.</p>
                         <div class="alert alert-custom">
@@ -48,7 +49,7 @@ export async function smartBCH_page() {
                           </div>
                         </div>
                         <div class="alert alert-custom">
-                          <p class="alert-heading">Type:</p>
+                          <p class="alert-heading">Type(s): (an OR relationship)</p>
                           <hr>
                           <div id="type-check-form"></div>
                         </div>
@@ -136,6 +137,14 @@ export async function smartBCH_page() {
   document.getElementById("type-check-form").innerHTML = typeChecksHTML;
   document.getElementById("socials-check-form").innerHTML = socialsChecksHTML;
   document.getElementById("project-count").innerHTML = projects.length;
+  document.getElementById("button-filter").addEventListener("click", () => {
+    filterResults();
+  });
+  document
+    .getElementById("button-filter-clear")
+    .addEventListener("click", () => {
+      clearResults();
+    });
 }
 
 function buildProjectCard(project, index) {
@@ -155,8 +164,10 @@ function buildProjectCard(project, index) {
   }
   let listingTag = "";
   const date = Timestamp.fromDate(new Date());
-  console.log();
-  if (Math.floor((date - project.timestamp) / (3600 * 24)) < 30) {
+  if (
+    Math.floor((date - project.timestamp) / (3600 * 24)) <
+    Constant.NEW_LISTING_TIME
+  ) {
     // if project has been listed less than 30 days
     listingTag += `<div class="inline padding-left"><span class="badge badge-warning">New Listing</span></div>`;
   }
@@ -245,9 +256,9 @@ function buildProjectCard(project, index) {
 }
 
 function buildCheckboxes(type, index) {
-  return `<div class="form-check inline padding-right-large">
-            <input class="form-check-input" type="checkbox" value="" id="checkbox-type-${type}">
-            <label class="form-check-label" for="checkbox-type-${type}">
+  return `<div class="form-check-type inline padding-right-large">
+            <input class="form-check-type-input" type="checkbox" value="" id="checkbox-type-${type}">
+            <label class="form-check-type-label" for="checkbox-type-${type}">
               ${type}
             </label>
           </div>`;
@@ -300,4 +311,52 @@ function buildSocials(project) {
     html += `<a href="${project.socials["youtube"]}" target="_blank"><img src="./images/youtube.png" alt="Youtube logo" style="height: 2em; padding: 5px" /></a>`;
   }
   return html;
+}
+
+function filterResults() {
+  let filteredProjects = [];
+  let newHTML = "";
+  if (document.getElementById("checkbox-new").checked) {
+    filteredProjects = filterByNew(filteredProjects);
+  }
+  let typesCheckboxArray = document.getElementsByClassName(
+    "form-check-type-input"
+  );
+  for (let i = 0; i < typesCheckboxArray.length; i++) {
+    if (typesCheckboxArray[i].checked) {
+      console.log(typesCheckboxArray[i].parentNode.textContent.trim());
+    }
+  }
+
+  if (filteredProjects.length == 0) {
+    newHTML += `<h4 style="text-align:center;">No projects found with that filter!</h4>`;
+  }
+  let index = 0;
+  filteredProjects.forEach((project) => {
+    newHTML += buildProjectCard(project, index);
+    ++index;
+  });
+
+  document.getElementById("project-count").innerHTML = filteredProjects.length;
+  Element.content.innerHTML = newHTML;
+}
+
+function clearResults() {
+  smartBCH_page();
+}
+
+function filterByNew(list) {
+  let index = 0;
+  projects.forEach((project) => {
+    const date = Timestamp.fromDate(new Date());
+    if (
+      Math.floor((date - project.timestamp) / (3600 * 24)) <
+      Constant.NEW_LISTING_TIME
+    ) {
+      // if project has been listed less than XX days
+      list.push(project);
+    }
+    ++index;
+  });
+  return list;
 }
