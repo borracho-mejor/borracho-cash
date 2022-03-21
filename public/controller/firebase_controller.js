@@ -47,9 +47,8 @@ export async function getSBCHProjectList() {
   return projects;
 }
 
-export async function getTypeList() {
+export async function getTypeList(projects) {
   let types = [];
-  let projects = await getSBCHProjectList();
   projects.forEach((project) => {
     if (project.type.length > 0) {
       project.type.forEach((type) => {
@@ -60,6 +59,21 @@ export async function getTypeList() {
     }
   });
   return types;
+}
+
+export async function getSocialsList(projects) {
+  let socials = [];
+  projects.forEach((project) => {
+    let keyArray = Object.keys(project.socials);
+    if (keyArray) {
+      keyArray.forEach((key) => {
+        if (socials.indexOf(key) === -1) {
+          socials.push(key);
+        }
+      });
+    }
+  });
+  return socials;
 }
 
 export async function getAboutCardList() {

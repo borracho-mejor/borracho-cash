@@ -15,6 +15,7 @@ export function addEventListeners() {
 
 let projects;
 let types;
+let socials;
 
 export async function smartBCH_page() {
   Util.scrollToTop();
@@ -102,7 +103,7 @@ export async function smartBCH_page() {
     }
   }
   try {
-    types = await FirebaseController.getTypeList();
+    types = await FirebaseController.getTypeList(projects);
     types.sort();
     let index = 0;
     types.forEach((type) => {
@@ -118,8 +119,10 @@ export async function smartBCH_page() {
   }
 
   try {
+    socials = await FirebaseController.getSocialsList(projects);
+    socials.sort();
     let index = 0;
-    Constant.socialsList.forEach((social) => {
+    socials.forEach((social) => {
       let capitalSocial = social[0].toUpperCase() + social.substring(1);
       socialsChecksHTML += buildCheckboxes(capitalSocial, index);
       ++index;
@@ -255,11 +258,11 @@ function buildProjectCard(project, index) {
           </div>`;
 }
 
-function buildCheckboxes(type, index) {
+function buildCheckboxes(label, index) {
   return `<div class="form-check-type inline padding-right-large">
-            <input class="form-check-type-input" type="checkbox" value="" id="checkbox-type-${type}">
-            <label class="form-check-type-label" for="checkbox-type-${type}">
-              ${type}
+            <input class="form-check-type-input" type="checkbox" value="" id="checkbox-type-${label}">
+            <label class="form-check-type-label" for="checkbox-type-${label}">
+              ${label}
             </label>
           </div>`;
 }
