@@ -316,6 +316,7 @@ function buildSocials(project) {
 function filterResults() {
   let filteredProjects = [...projects];
   let newHTML = "";
+  // new_listing
   if (document.getElementById("checkbox-new").checked) {
     const date = Timestamp.fromDate(new Date());
     filteredProjects = filteredProjects.filter(function (project) {
@@ -325,6 +326,7 @@ function filterResults() {
       );
     });
   }
+  // project type
   let typesCheckboxArray = document.getElementsByClassName(
     "form-check-type-input"
   );
@@ -339,8 +341,20 @@ function filterResults() {
       return project.type.some((val) => typesArray.indexOf(val) != -1);
     });
   }
+  // audit
+  if (document.getElementById("checkbox-audited").checked) {
+    filteredProjects = filteredProjects.filter(function (project) {
+      return Object.keys(project.audit).length != 0;
+    });
+  }
+  // two sats
+  if (document.getElementById("checkbox-mysats").checked) {
+    filteredProjects = filteredProjects.filter(function (project) {
+      return project.my_thoughts != "";
+    });
+  }
 
-  if (filteredProjects.length == 0) {
+  if (filteredProjects.length === 0) {
     newHTML += `<h4 style="text-align:center;">No projects found with that filter!</h4>`;
   }
   let index = 0;
@@ -349,7 +363,7 @@ function filterResults() {
     ++index;
   });
 
-  Util.scrollToTop();
+  Element.content.scrollTo(0, 0);
   document.getElementById("project-count").innerHTML = filteredProjects.length;
   Element.content.innerHTML = newHTML;
 }
