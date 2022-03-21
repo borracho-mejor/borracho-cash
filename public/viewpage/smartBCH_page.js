@@ -40,12 +40,30 @@ export async function smartBCH_page() {
                         </div>
                         <p style="text-align: center;">Use the filters below to filter projects.</p>
                         <div class="alert alert-custom">
-                          <p class="alert-heading">New Listings:</p>
+                          <p class="alert-heading">Quick Filters:</p>
                           <hr>
-                          <div class="form-check">
+                          <div class="form-check inline padding-right-large">
                             <input class="form-check-input" type="checkbox" value="" id="checkbox-new">
                             <label class="form-check-label" for="checkbox-new">
-                              New Listings Only
+                              Newly Listed
+                            </label>
+                          </div>
+                          <div class="form-check inline padding-right-large">
+                            <input class="form-check-input" type="checkbox" value="" id="checkbox-audited">
+                            <label class="form-check-label" for="checkbox-audited">
+                              Audited
+                            </label>
+                          </div>
+                          <div class="form-check inline padding-right-large">
+                            <input class="form-check-input" type="checkbox" value="" id="checkbox-mysats">
+                            <label class="form-check-label" for="checkbox-mysats">
+                              My Two Sats
+                            </label>
+                          </div>
+                          <div class="form-check inline padding-right-large">
+                            <input class="form-check-input" type="checkbox" value="" id="checkbox-dyor">
+                            <label class="form-check-label" for="checkbox-dyor">
+                              DYOR
                             </label>
                           </div>
                         </div>
@@ -53,26 +71,6 @@ export async function smartBCH_page() {
                           <p class="alert-heading">Type(s): (an OR relationship)</p>
                           <hr>
                           <div id="type-check-form"></div>
-                        </div>
-                        <div class="alert alert-custom">
-                          <p class="alert-heading">Audited:</p>
-                          <hr>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkbox-audited">
-                            <label class="form-check-label" for="checkbox-audited">
-                              Audited Listings Only
-                            </label>
-                          </div>
-                        </div>
-                        <div class="alert alert-custom">
-                          <p class="alert-heading">My two sats:</p>
-                          <hr>
-                          <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="checkbox-mysats">
-                            <label class="form-check-label" for="checkbox-mysats">
-                              My Two Sats Given
-                            </label>
-                          </div>
                         </div>
                         <div class="alert alert-custom">
                           <p class="alert-heading">Socials Available: (an OR relationship)</p>
@@ -342,6 +340,24 @@ function filterResults() {
       );
     });
   }
+  // audit
+  if (document.getElementById("checkbox-audited").checked) {
+    filteredProjects = filteredProjects.filter(function (project) {
+      return Object.keys(project.audit).length != 0;
+    });
+  }
+  // two sats
+  if (document.getElementById("checkbox-mysats").checked) {
+    filteredProjects = filteredProjects.filter(function (project) {
+      return project.my_thoughts != "";
+    });
+  }
+  // DYOR
+  if (document.getElementById("checkbox-dyor").checked) {
+    filteredProjects = filteredProjects.filter(function (project) {
+      return project.dyor;
+    });
+  }
   // project type
   let typesCheckboxArray = document.getElementsByClassName(
     "form-check-type-input"
@@ -355,18 +371,6 @@ function filterResults() {
   if (typesArray.length != 0) {
     filteredProjects = filteredProjects.filter(function (project) {
       return project.type.some((val) => typesArray.indexOf(val) != -1);
-    });
-  }
-  // audit
-  if (document.getElementById("checkbox-audited").checked) {
-    filteredProjects = filteredProjects.filter(function (project) {
-      return Object.keys(project.audit).length != 0;
-    });
-  }
-  // two sats
-  if (document.getElementById("checkbox-mysats").checked) {
-    filteredProjects = filteredProjects.filter(function (project) {
-      return project.my_thoughts != "";
     });
   }
   // socials
