@@ -317,7 +317,13 @@ function filterResults() {
   let filteredProjects = [];
   let newHTML = "";
   if (document.getElementById("checkbox-new").checked) {
-    filteredProjects = filterByNew(filteredProjects);
+    const date = Timestamp.fromDate(new Date());
+    filteredProjects = projects.filter(function (project) {
+      return (
+        Math.floor((date - project.timestamp) / (3600 * 24)) <
+        Constant.NEW_LISTING_TIME
+      );
+    });
   }
   let typesCheckboxArray = document.getElementsByClassName(
     "form-check-type-input"
@@ -337,26 +343,11 @@ function filterResults() {
     ++index;
   });
 
+  Util.scrollToTop();
   document.getElementById("project-count").innerHTML = filteredProjects.length;
   Element.content.innerHTML = newHTML;
 }
 
 function clearResults() {
   smartBCH_page();
-}
-
-function filterByNew(list) {
-  let index = 0;
-  projects.forEach((project) => {
-    const date = Timestamp.fromDate(new Date());
-    if (
-      Math.floor((date - project.timestamp) / (3600 * 24)) <
-      Constant.NEW_LISTING_TIME
-    ) {
-      // if project has been listed less than XX days
-      list.push(project);
-    }
-    ++index;
-  });
-  return list;
 }
