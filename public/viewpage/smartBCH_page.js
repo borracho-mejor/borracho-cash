@@ -33,6 +33,9 @@ export async function smartBCH_page() {
                         </h5>
                         <p class="text-muted"><b>Disclaimer: Do Your Own Research!</b> Although I give my thoughts on most projects, nothing included here should be interpretted as financial advice in any shape or form.
                          Please research any project thoroughly before even contemplating investing, and only invest what you are able and willing to lose.</p>
+                        <p>I do my best to add new VALID projects as they become available, but please let me know if I am missing any you think should be listed, including your own. For now, I can be reached best at the email in the footer below.
+                          Please be respectful and patient, WAGMI in the end.
+                        </p>
                         <div class="text-center" style="padding-bottom: 0.625rem;">Project Count: <span id="project-count"></span></div>
                         <div class="text-center padding-bottom">
                           <button id="button-filter" type="button" class="btn btn-success">FILTER RESULTS</button>
