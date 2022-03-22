@@ -73,7 +73,7 @@ export async function smartBCH_page() {
                           <div id="type-check-form"></div>
                         </div>
                         <div class="alert alert-custom">
-                          <p class="alert-heading">Socials Available: (an OR relationship)</p>
+                          <p class="alert-heading">Socials Available: (an AND relationship)</p>
                           <hr>
                           <div id="socials-check-form"></div>
                         </div>
@@ -387,9 +387,9 @@ function filterResults() {
   }
   if (socialsArray.length != 0) {
     filteredProjects = filteredProjects.filter(function (project) {
-      return Object.keys(project.socials).some(
-        (val) => socialsArray.indexOf(val) != -1
-      );
+      return socialsArray.every((element) => {
+        return Object.keys(project.socials).includes(element);
+      });
     });
   }
 
