@@ -115,6 +115,7 @@ a:hover {
   }
   #main-content {
     max-height: 80vh;
+    height: 100%;
   }
   .footer {
     display: grid;
