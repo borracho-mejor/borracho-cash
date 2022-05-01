@@ -37,11 +37,17 @@ export async function smartBCH_page() {
                           Please be respectful and patient, WAGMI in the end.
                         </p>
                         <div class="text-center" style="padding-bottom: 0.625rem;">Project Count: <span id="project-count"></span></div>
-                        <div class="text-center padding-bottom">
+                        <p style="text-align: center;">You can either...</p>
+                        <form id="form-search" class="my-2 my-lg-0 form-inline">
+                          <input name="searchKeywords" class="form-control mr-sm-2 inline flex-fill" type="search" placeholder="Search" aria-label="Search" />
+                          <button class="btn btn-outline-success my-2 my-sm-0 inline" type="submit">Search</button>
+                        </form>
+                        <p class="padding-top" style="text-align: center; margin: 5px;">...or...</p>
+                        <p style="text-align: center; margin: 5px;">Use the filters below to filter projects.</p>
+                        <div class="text-center padding-bottom-medium">
                           <button id="button-filter" type="button" class="btn btn-success">FILTER RESULTS</button>
                           <button id="button-filter-clear" type="button" class="btn btn-danger">CLEAR</button>
                         </div>
-                        <p style="text-align: center;">Use the filters below to filter projects.</p>
                         <div class="alert alert-custom">
                           <p class="alert-heading">Quick Filters:</p>
                           <hr>
