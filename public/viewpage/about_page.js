@@ -4,6 +4,7 @@ import * as Constant from "../model/constant.js";
 import * as FirebaseController from "../controller/firebase_controller.js";
 import * as LightMode from "../controller/lightmode.js";
 import * as Util from "./util.js";
+import * as Auth from "../controller/auth.js";
 
 export function addEventListeners() {
   Element.menuAbout.addEventListener("click", () => {
@@ -42,6 +43,10 @@ export async function about_page() {
   }
 
   Element.content.innerHTML = html;
+
+  if (Auth.currentUser) {
+    Auth.authStateChangeObserver(Auth.currentUser);
+  }
 }
 
 function buildCard(card, index) {
@@ -59,6 +64,14 @@ function buildCard(card, index) {
           <h6 class="inline float-right text-muted">Posted: ${new Date(
             card.timestamp.toDate()
           ).toDateString()}</h6>
+          <form class="form-delete-product inline float-right modal-post-auth" method="post">
+                <input type="hidden" name="docID" value="${card.docID}">
+                <button class="btn btn-outline-danger" style="margin-right: 5px;" type="submit">Delete</button>
+              </form>
+              <form class="form-edit-product inline float-right modal-post-auth" method="post">
+                <input type="hidden" name="docID" value="${card.docID}">
+                <button class="btn btn-outline-success" style="margin-right: 5px;" type="submit">Edit</button>
+              </form>
         </div>
             <div class="card-body">${card.body}</div>
           </div>`;
