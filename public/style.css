@@ -88,6 +88,10 @@ a:hover {
   color: green;
 }
 
+.ignore-hyper-color {
+  color: var(--color-text);
+}
+
 @media screen and (max-width: 900px) {
   /* Mobile */
   body {
@@ -252,8 +256,8 @@ input[type="checkbox"] {
 }
 
 .button-center {
-  position: absolute;
+  /* position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
 }

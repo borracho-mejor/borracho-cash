@@ -7,7 +7,10 @@ import { signOut } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.
 import * as Auth from "../controller/auth.js";
 
 export function addEventListeners() {
-  //
+  Element.menuLogin.addEventListener("click", () => {
+    history.pushState(null, null, Routes.routePathname.LOGIN);
+    login_page();
+  });
 }
 
 export async function login_page() {
@@ -15,8 +18,8 @@ export async function login_page() {
   Util.hideTwitterFeeds();
   Util.hideHeader();
 
-  let html = `<div style="height: 100%;">
-                <button class="btn btn-success modal-pre-auth button-center" data-toggle="modal" data-target="#modal-form-sign-in">
+  let html = `<div>
+                <button class="btn btn-success modal-pre-auth button-center" data-toggle="modal" data-target="#modal-form-sign-in" style="margin: 0 auto;">
                     Sign-in
                 </button>
                 <div class="button-center">
@@ -37,4 +40,8 @@ export async function login_page() {
 
   Element.content.innerHTML = html;
   Auth.addSignOutEventListener();
+
+  if (Auth.currentUser) {
+    Auth.authStateChangeObserver(Auth.currentUser);
+  }
 }

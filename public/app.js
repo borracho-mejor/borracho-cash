@@ -20,6 +20,7 @@ LightMode.mode();
 
 import * as HomePage from "./viewpage/home_page.js";
 import * as AboutPage from "./viewpage/about_page.js";
+import * as LoginPage from "./viewpage/login_page.js";
 import * as WhitepaperPage from "./viewpage/whitepaper_page.js";
 import * as SBCHPage from "./viewpage/smartBCH_page.js";
 import * as Auth from "./controller/auth.js";
@@ -28,6 +29,7 @@ import * as AddCard from "./controller/add_card.js";
 
 HomePage.addEventListeners();
 AboutPage.addEventListeners();
+LoginPage.addEventListeners();
 WhitepaperPage.addEventListeners();
 SBCHPage.addEventListeners();
 Auth.addEventListeners();

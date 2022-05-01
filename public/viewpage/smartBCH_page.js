@@ -5,6 +5,7 @@ import * as FirebaseController from "../controller/firebase_controller.js";
 import * as Util from "./util.js";
 import { Timestamp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
 import { home_page } from "./home_page.js";
+import * as Auth from "../controller/auth.js";
 
 export function addEventListeners() {
   Element.menuSmartBCH.addEventListener("click", () => {
@@ -160,6 +161,10 @@ export async function smartBCH_page() {
     .addEventListener("click", () => {
       clearResults();
     });
+
+  if (Auth.currentUser) {
+    Auth.authStateChangeObserver(Auth.currentUser);
+  }
 }
 
 function buildProjectCard(project, index) {
@@ -235,13 +240,29 @@ function buildProjectCard(project, index) {
 
   return `
           <div class="card mb-3 mr-1">
-            <div class="card-header">
-              <div class="inline"><h1 class="inline"><h4 class="inline" style="vertical-align: middle;">${project.name}</h4><h6 class="inline" style="vertical-align: middle;">${listingTag}${auditTag}${dyorTag}</h6></div>
+            <div class="card-header" >
+              <div class="inline"><h1 class="inline"><a href=${
+                project.site
+              } target="_blank"><h4 class="inline ignore-hyper-color" style="vertical-align: middle;">${
+    project.name
+  }</h4></a><h6 class="inline" style="vertical-align: middle;">${listingTag}${auditTag}${dyorTag}</h6></div>
+              <form class="form-delete-product inline float-right modal-post-auth" method="post">
+                <input type="hidden" name="docID" value="${project.docID}">
+                <button class="btn btn-outline-danger" style="margin-left: 5px;" type="submit">Delete</button>
+              </form>
+              <form class="form-edit-product inline float-right modal-post-auth" method="post">
+                <input type="hidden" name="docID" value="${project.docID}">
+                <button class="btn btn-outline-success" style="margin-left: 5px;" type="submit">Edit</button>
+              </form>
               <div class="inline float-right"><h6 class="text-muted">${typesText}</h6></div>
             </div>
             <div class="card-body flex-container">
               <div class="mr-3" style="flex: 10%; text-align: center;">
-                <span class="vertical-center-helper"></span><a href=${project.site} target="_blank"><img src="${project.logo_path}" alt="Project logo" style="max-height: 8rem; max-width: 100%; padding: 5px;" /></a>
+                <span class="vertical-center-helper"></span><a href=${
+                  project.site
+                } target="_blank"><img src="${
+    project.logo_path
+  }" alt="Project logo" style="max-height: 8rem; max-width: 100%; padding: 5px;" /></a>
               </div>
               <div style="flex: 75%">
                 <div class="alert alert-custom">
@@ -261,12 +282,18 @@ function buildProjectCard(project, index) {
                   <h5>Socials:</h5>
                   <p>${socialsHTML}</p>
                 </div>
-                <div>
+                <div class="padding-bottom">
                   <h5>Helpful Links:</h5>
                   <p>${helpfulLinksText}</p>
                 </div>
+                <div class="padding-bottom">
+                  <h5>Added:</h5>
+                  <p>${new Date(project.timestamp.toDate()).toDateString()}</p>
+                </div>
               </div>
+              
             </div>
+            
           </div>`;
 }
 

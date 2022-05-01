@@ -56,7 +56,7 @@ export function addSignOutEventListener() {
     });
 }
 
-function authStateChangeObserver(user) {
+export function authStateChangeObserver(user) {
   if (user) {
     // signed in
     currentUser = user;
