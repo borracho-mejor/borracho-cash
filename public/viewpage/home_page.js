@@ -51,7 +51,12 @@ function buildCard(card, index) {
   }
   return `
           <div class="card mb-3 mr-1">
-            <h5 class="card-header">${pinnedTag}${card.header}</h5>
+          <div class="card-header">
+            <h5 class="inline">${pinnedTag}${card.header}</h5>
+            <h6 class="inline float-right text-muted">Posted: ${new Date(
+              card.timestamp.toDate()
+            ).toDateString()}</h6>
+          </div>
             <div class="card-body">${card.body}</div>
           </div>`;
 }
