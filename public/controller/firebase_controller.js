@@ -9,6 +9,7 @@ import {
   getDocs,
   addDoc,
   Timestamp,
+  where,
 } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
 
 const db = getFirestore();
@@ -40,6 +41,35 @@ export async function getSBCHProjectList() {
   );
   const snapshot = await getDocs(q);
   snapshot.forEach((doc) => {
+    const project = new SBCHProject(doc.data());
+    project.docID = doc.id;
+    projects.push(project);
+  });
+  return projects;
+}
+
+export async function getSBCHProjectSearch(keywords) {
+  let projects = [];
+  const nameContains = query(
+    collection(db, Constant.collectionName.SBCH_PROJECTS),
+    where("name", "in", keywords)
+  );
+  const nameSnapshot = await getDocs(nameContains);
+  const typeContains = query(
+    collection(db, Constant.collectionName.SBCH_PROJECTS),
+    where("type", "array-contains-any", keywords)
+  );
+  const typeSnapshot = await getDocs(typeContains);
+  const [nameQuerySnapshot, typeQuerySnapshot] = await Promise.all([
+    nameSnapshot,
+    typeSnapshot,
+  ]);
+  nameQuerySnapshot.forEach((doc) => {
+    const project = new SBCHProject(doc.data());
+    project.docID = doc.id;
+    projects.push(project);
+  });
+  typeQuerySnapshot.forEach((doc) => {
     const project = new SBCHProject(doc.data());
     project.docID = doc.id;
     projects.push(project);
