@@ -194,15 +194,27 @@ a:hover {
 }
 
 .padding-top {
-  padding-bottom: 5px;
+  padding-top: 5px;
+}
+
+.padding-top-medium {
+  padding-top: 10px;
 }
 
 .padding-left {
   padding-left: 5px;
 }
 
+.padding-left-medium {
+  padding-left: 10px;
+}
+
 .padding-right {
   padding-right: 5px;
+}
+
+.padding-right-medium {
+  padding-right: 10px;
 }
 
 .padding-right-large {

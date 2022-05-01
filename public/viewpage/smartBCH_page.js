@@ -240,21 +240,13 @@ function buildProjectCard(project, index) {
 
   return `
           <div class="card mb-3 mr-1">
-            <div class="card-header" >
+            <div class="card-header" style="padding: 0;">
               <div class="inline"><h1 class="inline"><a href=${
                 project.site
-              } target="_blank"><h4 class="inline ignore-hyper-color" style="vertical-align: middle;">${
+              } target="_blank"><h4 class="inline padding-left-medium ignore-hyper-color" style="vertical-align: middle;">${
     project.name
   }</h4></a><h6 class="inline" style="vertical-align: middle;">${listingTag}${auditTag}${dyorTag}</h6></div>
-              <form class="form-delete-product inline float-right modal-post-auth" method="post">
-                <input type="hidden" name="docID" value="${project.docID}">
-                <button class="btn btn-outline-danger" style="margin-left: 5px;" type="submit">Delete</button>
-              </form>
-              <form class="form-edit-product inline float-right modal-post-auth" method="post">
-                <input type="hidden" name="docID" value="${project.docID}">
-                <button class="btn btn-outline-success" style="margin-left: 5px;" type="submit">Edit</button>
-              </form>
-              <div class="inline float-right"><h6 class="text-muted">${typesText}</h6></div>
+              <div class="inline padding-right-medium padding-top-medium float-right"><h6 class="text-muted">${typesText}</h6></div>
             </div>
             <div class="card-body flex-container">
               <div class="mr-3" style="flex: 10%; text-align: center;">
@@ -290,6 +282,14 @@ function buildProjectCard(project, index) {
                   <h5>Added:</h5>
                   <p>${new Date(project.timestamp.toDate()).toDateString()}</p>
                 </div>
+                <form class="form-delete-product inline float-right modal-post-auth" method="post">
+                <input type="hidden" name="docID" value="${project.docID}">
+                <button class="btn btn-outline-danger" style="margin-left: 5px;" type="submit">Delete</button>
+              </form>
+              <form class="form-edit-product inline float-right modal-post-auth" method="post">
+                <input type="hidden" name="docID" value="${project.docID}">
+                <button class="btn btn-outline-success" style="margin-left: 5px;" type="submit">Edit</button>
+              </form>
               </div>
               
             </div>
