@@ -4,7 +4,6 @@ import * as Constant from "../model/constant.js";
 import * as FirebaseController from "../controller/firebase_controller.js";
 import * as Util from "./util.js";
 import { Timestamp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
-import { home_page } from "./home_page.js";
 import * as Auth from "../controller/auth.js";
 
 export function addEventListeners() {
@@ -106,7 +105,7 @@ export async function smartBCH_page() {
   } catch (error) {
     if (Constant.DEV) {
       console.log(error);
-      // Util.popUpInfo("Error in getHomeprojectList", JSON.stringify(error));
+      Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
       return;
     }
   }
@@ -121,7 +120,7 @@ export async function smartBCH_page() {
   } catch (error) {
     if (Constant.DEV) {
       console.log(error);
-      // Util.popUpInfo("Error in getHomeprojectList", JSON.stringify(error));
+      Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
     }
     return;
   }
@@ -138,7 +137,7 @@ export async function smartBCH_page() {
   } catch (error) {
     if (Constant.DEV) {
       console.log(error);
-      // Util.popUpInfo("Error in getHomeprojectList", JSON.stringify(error));
+      Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
     }
     return;
   }
