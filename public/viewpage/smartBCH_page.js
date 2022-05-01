@@ -162,6 +162,27 @@ export async function smartBCH_page() {
       clearResults();
     });
 
+  const editButtons = document.getElementsByClassName("form-edit-project");
+  for (let i = 0; i < editButtons.length; i++) {
+    editButtons[i].addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const button = e.target.getElementsByTagName("button")[0];
+      const label = Util.disableButton(button);
+      await Edit.editProject(e.target.docID.value);
+      Util.enableButton(button, label);
+    });
+  }
+  const deleteButtons = document.getElementsByClassName("form-delete-project");
+  for (let i = 0; i < deleteButtons.length; i++) {
+    deleteButtons[i].addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const button = e.target.getElementsByTagName("button")[0];
+      const label = Util.disableButton(button);
+      await Edit.deleteProject(e.target.docID.value, e.target.imageName.value);
+      Util.enableButton(button, label);
+    });
+  }
+
   if (Auth.currentUser) {
     Auth.authStateChangeObserver(Auth.currentUser);
   }
@@ -282,11 +303,11 @@ function buildProjectCard(project, index) {
                   <h5>Added:</h5>
                   <p>${new Date(project.timestamp.toDate()).toDateString()}</p>
                 </div>
-                <form class="form-delete-product inline float-right modal-post-auth" method="post">
+                <form class="form-delete-project inline float-right modal-post-auth" method="post">
                 <input type="hidden" name="docID" value="${project.docID}">
                 <button class="btn btn-outline-danger" style="margin-left: 5px;" type="submit">Delete</button>
               </form>
-              <form class="form-edit-product inline float-right modal-post-auth" method="post">
+              <form class="form-edit-project inline float-right modal-post-auth" method="post">
                 <input type="hidden" name="docID" value="${project.docID}">
                 <button class="btn btn-outline-success" style="margin-left: 5px;" type="submit">Edit</button>
               </form>
