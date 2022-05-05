@@ -5,6 +5,8 @@ import * as Element from "../viewpage/element.js";
 import { SBCHProject } from "../model/sBCHProject.js";
 import * as CloudStorage from "./cloud_storage.js";
 import { trimAndParse, trimStrings } from "./add_sbch_project.js";
+import { home_page } from "../viewpage/home_page.js";
+import { smartBCH_page } from "../viewpage/smartBCH_page.js";
 
 let imageFile2Upload;
 
@@ -73,6 +75,7 @@ export function addEventListeners() {
       // cardTag.getElementsByClassName(
       //   "card-text"
       // )[0].innerHTML = `$ ${p.price}<br>${p.summary}`;
+      smartBCH_page();
       Util.popUpInfo(
         "Project Updated",
         `${p.name} is updated successfully`,
@@ -129,6 +132,7 @@ export async function deleteProject(docID, logo_path) {
     // Update web browser
     // const card = document.getElementById(`card-${docID}`);
     // card.remove();
+    smartBCH_page();
     Util.popUpInfo("Deleted Product", `${docID} has sucessfully been deleted.`);
   } catch (error) {
     Util.popUpInfo("Error with Deletion", JSON.stringify(error));

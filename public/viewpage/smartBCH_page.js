@@ -283,7 +283,7 @@ function buildProjectCard(project, index) {
                   <p class="mb-0">${myThoughtsText}</p>
                 </div>
               </div>
-              <div style="flex: 15%; text-align: right; height 100%;">
+              <div style="flex: 15%; text-align: right; height 100%; margin: 5px;">
                 <div class="padding-bottom">
                   <h5>Socials:</h5>
                   <p>${socialsHTML}</p>
