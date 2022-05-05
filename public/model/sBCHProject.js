@@ -1,6 +1,7 @@
 export class SBCHProject {
   constructor(data) {
     this.name = data.name;
+    this.sort_name = data.sort_name;
     this.description = data.description;
     this.audit = data.audit;
     this.bias = data.bias;
@@ -18,6 +19,7 @@ export class SBCHProject {
   serialize() {
     return {
       name: this.name,
+      sort_name: this.sort_name,
       description: this.description,
       audit: this.audit,
       bias: this.bias,
@@ -37,6 +39,9 @@ export class SBCHProject {
     const r = {};
     if (this.name) {
       r.name = this.name;
+    }
+    if (this.sort_name) {
+      r.sort_name = this.sort_name;
     }
     if (this.description) {
       r.description = this.description;

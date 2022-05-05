@@ -31,6 +31,7 @@ export function addEventListeners() {
       helpful_links: trimAndParse(e.target.links.value),
       my_thoughts: e.target.twosats.value,
       name: e.target.name.value,
+      sort_name: e.target.name.value.toLowerCase(),
       quoted_description: e.target.quoteddescription.value,
       socials: trimAndParse(e.target.socials.value),
       type: e.target.type.value.split(","),
