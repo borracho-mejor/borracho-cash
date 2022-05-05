@@ -38,12 +38,10 @@ export const formImageAddButton = document.getElementById(
 );
 
 // For edit project modal
-export const formImageEditButton = document.getElementById(
+export const formEditImageFileButton = document.getElementById(
   "form-edit-image-button"
 );
-export const imageTagEditProject = document.getElementById(
-  "form-edit-image-tag"
-);
+export const formEditImageTag = document.getElementById("form-edit-image-tag");
 export const formEditProject = document.getElementById(
   "form-edit-sbch-project"
 );

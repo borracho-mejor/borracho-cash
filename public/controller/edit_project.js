@@ -117,19 +117,18 @@ export async function editProject(docID) {
   }
 
   Element.formEditProject.docID.value = project.docID;
-  Element.formEditProject.audits.value = project.audit;
+  Element.formEditProject.audits.value = JSON.stringify(project.audit);
   Element.formEditProject.bias.value = project.bias;
   Element.formEditProject.description.value = project.description;
-  Element.formEditProject.dyor.value = project.dyor;
-  // Element.formEditProject.helpful_links.value = project.helpful_links;
-  // Element.formEditProject.my_thoughts.value = project.my_thoughts;
+  Element.formEditProject.dyor.checked = project.dyor;
+  Element.formEditProject.links.value = JSON.stringify(project.helpful_links);
+  Element.formEditProject.twosats.value = project.my_thoughts;
   Element.formEditProject.name.value = project.name;
-  // Element.formEditProject.quoted_description.value = project.quoted_description;
-  Element.formEditProject.socials.value = project.socials;
+  Element.formEditProject.quoteddescription.value = project.quoted_description;
+  Element.formEditProject.socials.value = JSON.stringify(project.socials);
   Element.formEditProject.type.value = project.type;
   Element.formEditProject.site.value = project.site;
-  Element.formEditProject.imageName.value = project.imageName;
-  Element.formEditProject.src = project.imageURL;
+  Element.formEditImageTag.src = project.logo_path;
 
   // Set imageFile2Upload to null since it is a global variable
   imageFile2Upload = null;

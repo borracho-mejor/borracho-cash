@@ -273,7 +273,7 @@ function buildProjectCard(project, index) {
               <div class="mr-3" style="flex: 10%; text-align: center;">
                 <span class="vertical-center-helper"></span><a href=${
                   project.site
-                } target="_blank"><img src="${
+                } target="_blank"><img class="shaking-image" src="${
     project.logo_path
   }" alt="Project logo" style="max-height: 8rem; max-width: 100%; padding: 5px;" /></a>
               </div>
