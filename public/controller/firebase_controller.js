@@ -11,8 +11,20 @@ import {
   Timestamp,
   where,
 } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
+import {
+  getFunctions,
+  httpsCallable,
+  connectFunctionsEmulator,
+} from "https://www.gstatic.com/firebasejs/9.6.8/firebase-functions.js";
 
 const db = getFirestore();
+const functions = getFunctions();
+
+// setup for emulator
+const hostname = window.location.hostname;
+if (hostname == "localhost" || hostname == "127.0.0.1") {
+  connectFunctionsEmulator(functions, hostname, 5001);
+}
 
 export async function getHomeCardList() {
   let cards = [];
@@ -138,4 +150,30 @@ export async function addCard(card) {
     collection(db, Constant.collectionName.CARDS),
     card
   );
+}
+
+export async function uploadImage(imageFile, imageName) {
+  if (!imageName) {
+    imageName = Date.now() + imageFile.name;
+  }
+  const ref = firebase
+    .storage()
+    .ref()
+    .child(Constant.storageFolderName.PRODUCT_IMAGES + imageName);
+  const taskSnapShot = await ref.put(imageFile);
+  const imageURL = await taskSnapShot.ref.getDownloadURL();
+  return { imageName, imageURL };
+}
+
+const cf_getProjectByID = httpsCallable(functions, "admin_getProjectByID");
+export async function getProjectByID(docID) {
+  console.log("now here");
+  const result = await cf_getProjectByID(docID);
+  if (result.data) {
+    const project = new SBCHProject(result.data);
+    project.docID = result.data.docID;
+    return project;
+  } else {
+    return null;
+  }
 }

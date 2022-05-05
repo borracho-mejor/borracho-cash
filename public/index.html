@@ -3,6 +3,7 @@
   <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
+    import { getFunctions } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-functions.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-analytics.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -22,6 +23,7 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
+    export const functions = getFunctions(app);
   </script>
 
   <script type="module" src="app.js"></script>
@@ -382,7 +384,7 @@
               </div>
               <div>
                 Project Logo:
-                <img id="form-add-image-tag" style="display: block" />
+                <img id="form-add-image-tag" style="display: block" alt="Project logo" />
                 <p id="error-add-logo" class="error-add-project"></p>
                 <input id="form-add-image-button" type="file" value="Upload" />
               </div>
@@ -393,6 +395,133 @@
                   style="margin-top: 5px"
                 >
                   Add
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Edit sBCH Project -->
+    <div
+      class="modal fade"
+      id="modal-form-edit-sBCH-project"
+      data-backdrop="static"
+      data-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-edit-sbch-project-label">
+              Edit a smartBCH Project
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="form-edit-sbch-project" method="post">
+              <input type="hidden" name="docID" />
+              <input type="hidden" name="imageName" />
+              <div>
+                Project Name: <br />
+                <input type="text" name="name" style="width: 100%" />
+                <p id="error-edit-name" class="error-edit-project"></p>
+              </div>
+              <div>
+                Project Site: <br />
+                <input type="text" name="site" style="width: 100%" />
+                <p id="error-edit-site" class="error-edit-project"></p>
+              </div>
+              <div>
+                Project Description: <br />
+                <textarea name="description" style="width: 100%"></textarea>
+                <p id="error-edit-description" class="error-edit-project"></p>
+              </div>
+              <div>
+                Quoted Description: <br />
+                <textarea
+                  name="quoteddescription"
+                  style="width: 100%"
+                ></textarea>
+                <p
+                  id="error-edit-quoted-description"
+                  class="error-edit-project"
+                ></p>
+              </div>
+              <div>
+                Type(s): (Enter Array)<br />
+                <input
+                  type="text"
+                  name="type"
+                  style="width: 100%"
+                />
+                <p id="error-edit-type" class="error-edit-project"></p>
+              </div>
+              <div>
+                My 2 Sats: <br />
+                <textarea name="twosats" style="width: 100%"></textarea>
+                <p id="error-edit-two-sats" class="error-edit-project"></p>
+              </div>
+              <div>
+                Audits: ({} If None)<br />
+                <input
+                  type="text"
+                  name="audits"
+                  style="width: 100%"
+                />
+                <p id="error-edit-audit" class="error-edit-project"></p>
+              </div>
+              <div>
+                Socials: ({} If None)<br />
+                <input
+                  type="text"
+                  name="socials"
+                  style="width: 100%"
+                />
+                <p id="error-edit-socials" class="error-edit-project"></p>
+              </div>
+              <div>
+                Helpful Links: ({} If None)<br />
+                <input
+                  type="text"
+                  name="links"
+                  style="width: 100%"
+                />
+                <p id="error-edit-links" class="error-edit-project"></p>
+              </div>
+              <div class="form-check inline">
+                <input type="checkbox" name="dyor" />
+                <label class="form-check-label" for="dyor">DYOR?</label>
+                <p id="error-edit-dyor" class="error-edit-project"></p>
+              </div>
+              <div>
+                Bias: <br />
+                <input type="text" name="bias" value="z" style="width: 100%" />
+                <p id="error-edit-bias" class="error-edit-project"></p>
+              </div>
+              <div>
+                Project Logo:
+                <img id="form-edit-image-tag" style="display: block" alt="Project logo" />
+                <p id="error-edit-logo" class="error-add-project"></p>
+                <input id="form-edit-image-button" type="file" value="Upload" />
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  class="btn btn-outline-success"
+                  style="margin-top: 5px"
+                >
+                  Update
                 </button>
               </div>
             </form>

@@ -5,6 +5,7 @@ import * as FirebaseController from "../controller/firebase_controller.js";
 import * as Util from "./util.js";
 import { Timestamp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
 import * as Auth from "../controller/auth.js";
+import * as Edit from "../controller/edit_project.js";
 
 export function addEventListeners() {
   Element.menuSmartBCH.addEventListener("click", () => {
@@ -162,8 +163,8 @@ export async function smartBCH_page() {
     });
 
   const editButtons = document.getElementsByClassName("form-edit-project");
-  for (let i = 0; i < editButtons.length; i++) {
-    editButtons[i].addEventListener("submit", async (e) => {
+  for (const element of editButtons) {
+    element.addEventListener("submit", async (e) => {
       e.preventDefault();
       const button = e.target.getElementsByTagName("button")[0];
       const label = Util.disableButton(button);
@@ -172,8 +173,8 @@ export async function smartBCH_page() {
     });
   }
   const deleteButtons = document.getElementsByClassName("form-delete-project");
-  for (let i = 0; i < deleteButtons.length; i++) {
-    deleteButtons[i].addEventListener("submit", async (e) => {
+  for (const element of deleteButtons) {
+    element.addEventListener("submit", async (e) => {
       e.preventDefault();
       const button = e.target.getElementsByTagName("button")[0];
       const label = Util.disableButton(button);

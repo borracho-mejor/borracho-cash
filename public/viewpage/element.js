@@ -37,6 +37,24 @@ export const formImageAddButton = document.getElementById(
   "form-add-image-button"
 );
 
+// For edit project modal
+export const formImageEditButton = document.getElementById(
+  "form-edit-image-button"
+);
+export const imageTagEditProject = document.getElementById(
+  "form-edit-image-tag"
+);
+export const formEditProject = document.getElementById(
+  "form-edit-sbch-project"
+);
+export const formEditProjectError = {
+  name: document.getElementById("error-edit-name"),
+  description: document.getElementById("error-edit-description"),
+  twosats: document.getElementById("error-edit-two-sats"),
+  logo: document.getElementById("error-edit-logo"),
+  bias: document.getElementById("error-edit-bias"),
+};
+
 // For add card modal
 export const formAddCard = document.getElementById("form-add-card");
 export const formAddCardError = {
