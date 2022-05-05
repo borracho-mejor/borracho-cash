@@ -78,6 +78,12 @@ export async function smartBCH_page() {
                               DYOR
                             </label>
                           </div>
+                          <div class="form-check inline padding-right-large">
+                            <input class="form-check-input" type="checkbox" value="" id="checkbox-non-nft">
+                            <label class="form-check-label" for="checkbox-non-nft">
+                              Non-NFT Only
+                            </label>
+                          </div>
                         </div>
                         <div class="alert alert-custom">
                           <p class="alert-heading">Type(s): (an OR relationship)</p>
@@ -414,6 +420,12 @@ function filterResults() {
   if (document.getElementById("checkbox-dyor").checked) {
     filteredProjects = filteredProjects.filter(function (project) {
       return project.dyor;
+    });
+  }
+  // non-NFT
+  if (document.getElementById("checkbox-non-nft").checked) {
+    filteredProjects = filteredProjects.filter(function (project) {
+      return !project.type.includes("NFT Collection");
     });
   }
   // project type
