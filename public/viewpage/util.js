@@ -46,3 +46,10 @@ export function hideHeader() {
 export function showHeader() {
   Element.contentSidebar.classList.remove("hidden");
 }
+
+export function unActivateLinks() {
+  const navItems = document.getElementsByClassName("nav-link");
+  for (const link of navItems) {
+    link.classList.remove("active");
+  }
+}

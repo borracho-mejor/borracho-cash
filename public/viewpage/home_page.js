@@ -18,6 +18,8 @@ export async function home_page() {
   Util.scrollToTop();
   Util.showTwitterFeeds();
   Util.hideHeader();
+  Util.unActivateLinks();
+  Element.menuHome.classList.add("active");
 
   let html = "";
 

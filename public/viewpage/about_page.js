@@ -19,6 +19,8 @@ export async function about_page() {
   Util.scrollToTop();
   Util.showTwitterFeeds();
   Util.hideHeader();
+  Util.unActivateLinks();
+  Element.menuAbout.classList.add("active");
 
   let html = "";
 

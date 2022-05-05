@@ -22,6 +22,8 @@ export async function smartBCH_page() {
   Util.scrollToTop();
   Util.hideTwitterFeeds();
   Util.showHeader();
+  Util.unActivateLinks();
+  Element.menuSmartBCH.classList.add("active");
 
   let html = "";
   let typeChecksHTML = "";

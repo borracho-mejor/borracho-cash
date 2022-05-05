@@ -17,6 +17,8 @@ export async function login_page() {
   Util.scrollToTop();
   Util.hideTwitterFeeds();
   Util.hideHeader();
+  Util.unActivateLinks();
+  Element.menuLogin.classList.add("active");
 
   let html = `<div>
                 <button class="btn btn-success modal-pre-auth button-center" data-toggle="modal" data-target="#modal-form-sign-in" style="margin: 0 auto;">
