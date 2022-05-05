@@ -202,3 +202,27 @@ export async function deleteProject(docID, logo_path) {
   const reference = ref(storage, logo_path);
   await deleteObject(reference);
 }
+
+const cf_getCardByID = httpsCallable(functions, "admin_getCardByID");
+export async function getCardByID(docID) {
+  const result = await cf_getCardByID(docID);
+  if (result.data) {
+    const card = new Card(result.data);
+    card.docID = result.data.docID;
+    return card;
+  } else {
+    return null;
+  }
+}
+
+const cf_updateCard = httpsCallable(functions, "admin_updateCard");
+export async function updateCard(card) {
+  const docID = card.docID;
+  const data = card.serializeForUpdate();
+  await cf_updateCard({ docID, data });
+}
+
+const cf_deleteCard = httpsCallable(functions, "admin_deleteCard");
+export async function deleteCard(docID) {
+  await cf_deleteCard(docID);
+}

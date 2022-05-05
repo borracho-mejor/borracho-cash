@@ -3,6 +3,7 @@ import * as Constant from "../model/constant.js";
 import * as Util from "../viewpage/util.js";
 import * as Element from "../viewpage/element.js";
 import { SBCHProject } from "../model/sBCHProject.js";
+import { Card } from "../model/card.js";
 import * as CloudStorage from "./cloud_storage.js";
 import { trimAndParse, trimStrings } from "./add_sbch_project.js";
 import { home_page } from "../viewpage/home_page.js";
@@ -88,6 +89,51 @@ export function addEventListeners() {
 
     Util.enableButton(button, label);
   });
+  Element.formEditCard.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const button = e.target.getElementsByTagName("button")[0];
+    const label = Util.disableButton(button);
+
+    const c = new Card({
+      body: e.target.body.value,
+      header: e.target.header.value,
+      page: e.target.page.value,
+      isPinned: e.target.isPinned.checked,
+    });
+
+    c.docID = e.target.docID.value;
+
+    const errorTags = document.getElementsByClassName("error-edit-card");
+    for (const element of errorTags) {
+      element.innerHTML = "";
+    }
+
+    try {
+      // Update Firestore
+      await FirebaseController.updateCard(c);
+
+      // Update web browser on update
+      // const cardTag = document.getElementById("card-" + p.docID);
+      // if (imageFile2Upload) {
+      //   cardTag.getElementsByTagName("img")[0].src = p.imageURL;
+      // }
+      // cardTag.getElementsByClassName("card-title")[0].innerHTML = p.name;
+      // cardTag.getElementsByClassName(
+      //   "card-text"
+      // )[0].innerHTML = `$ ${p.price}<br>${p.summary}`;
+      home_page();
+      Util.popUpInfo(
+        "Card Updated",
+        `${c.header} is updated successfully`,
+        "modal-form-edit-card"
+      );
+    } catch (error) {
+      Util.popUpInfo("Error when updating card.", JSON.stringify(error));
+      return;
+    }
+
+    Util.enableButton(button, label);
+  });
 }
 
 export async function editProject(docID) {
@@ -134,6 +180,41 @@ export async function deleteProject(docID, logo_path) {
     // card.remove();
     smartBCH_page();
     Util.popUpInfo("Deleted Product", `${docID} has sucessfully been deleted.`);
+  } catch (error) {
+    Util.popUpInfo("Error with Deletion", JSON.stringify(error));
+  }
+}
+
+export async function editCard(docID) {
+  let card;
+  try {
+    card = await FirebaseController.getCardByID(docID);
+    if (!card) {
+      Util.popUpInfo("getCardByID Error", `No card found with ID: ${docID}`);
+      return;
+    }
+  } catch (error) {
+    Util.popUpInfo("Error in getCardByID", JSON.stringify(error));
+    return;
+  }
+
+  Element.formEditCard.docID.value = card.docID;
+  Element.formEditCard.body.value = card.body;
+  Element.formEditCard.header.value = card.header;
+  Element.formEditCard.page.value = card.page;
+  Element.formEditCard.isPinned.checked = card.isPinned;
+
+  $("#modal-form-edit-card").modal("show");
+}
+
+export async function deleteCard(docID) {
+  try {
+    await FirebaseController.deleteCard(docID);
+    // Update web browser
+    // const card = document.getElementById(`card-${docID}`);
+    // card.remove();
+    home_page();
+    Util.popUpInfo("Deleted Card", `${docID} has sucessfully been deleted.`);
   } catch (error) {
     Util.popUpInfo("Error with Deletion", JSON.stringify(error));
   }

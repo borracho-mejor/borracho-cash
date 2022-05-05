@@ -279,6 +279,69 @@
       </div>
     </div>
 
+    <!-- Modal: Edit Card -->
+    <div
+      class="modal fade"
+      id="modal-form-edit-card"
+      data-backdrop="static"
+      data-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-edit-card-label">Edit a Card</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="form-edit-card" method="post">
+              <input type="hidden" name="docID" />
+              <div>
+                Card Header: <br />
+                <input type="text" name="header" style="width: 100%" />
+                <p id="error-edit-header" class="error-edit-card"></p>
+              </div>
+              <div>
+                Card Body: <br />
+                <textarea name="body" style="width: 100%"></textarea>
+                <p id="error-edit-body" class="error-edit-card"></p>
+              </div>
+              <div>
+                Page: <br />
+                <input type="text" name="page" style="width: 100%" />
+                <p id="error-edit-page" class="error-edit-card"></p>
+              </div>
+              <div class="form-check inline">
+                <input type="checkbox" name="isPinned" />
+                <label class="form-check-isPinned" for="isPinned"
+                  >isPinned</label
+                >
+                <p id="error-edit-isPinned" class="error-edit-card"></p>
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  class="btn btn-outline-success"
+                  style="margin-top: 5px"
+                >
+                  Update
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Modal: Add sBCH Project -->
     <div
       class="modal fade"

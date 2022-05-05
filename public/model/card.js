@@ -25,9 +25,7 @@ export class Card {
     if (this.body) {
       r.body = this.body;
     }
-    if (this.isPinned) {
-      r.isPinned = this.isPinned;
-    }
+    r.isPinned = this.isPinned;
     if (this.page) {
       r.page = this.page;
     }

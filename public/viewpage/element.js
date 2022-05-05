@@ -60,3 +60,11 @@ export const formAddCardError = {
   body: document.getElementById("error-add-body"),
   page: document.getElementById("error-add-page"),
 };
+
+// For edit card modal
+export const formEditCard = document.getElementById("form-edit-card");
+export const formEditCardError = {
+  header: document.getElementById("error-edit-header"),
+  body: document.getElementById("error-edit-body"),
+  page: document.getElementById("error-edit-page"),
+};
