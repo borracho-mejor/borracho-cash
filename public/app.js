@@ -5,7 +5,6 @@ window.onload = () => {
   const pathname = window.location.pathname;
   const href = window.location.href;
   Routes.routing(pathname, href);
-  // console.log(pathname);
 };
 
 window.addEventListener("popstate", (e) => {
@@ -26,6 +25,7 @@ import * as SBCHPage from "./viewpage/smartBCH_page.js";
 import * as Auth from "./controller/auth.js";
 import * as AddsBCHProject from "./controller/add_sbch_project.js";
 import * as AddCard from "./controller/add_card.js";
+import * as EditProject from "./controller/edit_project.js";
 
 HomePage.addEventListeners();
 AboutPage.addEventListeners();
@@ -35,3 +35,4 @@ SBCHPage.addEventListeners();
 Auth.addEventListeners();
 AddsBCHProject.addEventListeners();
 AddCard.addEventListeners();
+EditProject.addEventListeners();

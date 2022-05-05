@@ -47,9 +47,7 @@ export class SBCHProject {
     if (this.bias) {
       r.bias = this.bias;
     }
-    if (this.dyor) {
-      r.dyor = this.dyor;
-    }
+    r.dyor = this.dyor;
     if (this.helpful_links) {
       r.helpful_links = this.helpful_links;
     }

@@ -34,11 +34,8 @@ export async function home_page() {
       ++index;
     });
   } catch (error) {
-    if (Constant.DEV) {
-      console.log(error);
-      // Util.popUpInfo("Error in getHomeCardList", JSON.stringify(error));
-      return;
-    }
+    Util.popUpInfo("Error in getHomeCardList", JSON.stringify(error));
+    return;
   }
 
   Element.content.innerHTML = html;

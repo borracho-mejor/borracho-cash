@@ -4,6 +4,7 @@ import * as Util from "../viewpage/util.js";
 import * as Element from "../viewpage/element.js";
 import { SBCHProject } from "../model/sBCHProject.js";
 import * as CloudStorage from "./cloud_storage.js";
+import { trimAndParse, trimStrings } from "./add_sbch_project.js";
 
 let imageFile2Upload;
 
@@ -23,16 +24,16 @@ export function addEventListeners() {
     const label = Util.disableButton(button);
 
     const p = new SBCHProject({
-      audit: e.target.audit.value,
+      audit: trimAndParse(e.target.audit.value),
       bias: e.target.bias.value,
       description: e.target.description.value,
-      dyor: e.target.dyor.value,
-      helpful_links: e.target.helpful_links.value,
-      my_thoughts: e.target.my_thoughts.value,
+      dyor: e.target.dyor.checked,
+      helpful_links: trimAndParse(e.target.links.value),
+      my_thoughts: e.target.twosats.value,
       name: e.target.name.value,
-      quoted_description: e.target.quoted_description.value,
-      socials: e.target.socials.value,
-      type: e.target.type.value,
+      quoted_description: e.target.quoteddescription.value,
+      socials: trimAndParse(e.target.socials.value),
+      type: e.target.type.value.split(","),
       site: e.target.site.value,
     });
 
@@ -48,15 +49,6 @@ export function addEventListeners() {
       if (errors.name) {
         Element.formEditProjectError.name.innerHTML = errors.name;
       }
-      if (errors.price) {
-        Element.formEditProjectError.price.innerHTML = errors.price;
-      }
-      if (errors.summary) {
-        Element.formEditProjectError.description.innerHTML = errors.description;
-      }
-      if (errors.image) {
-        Element.formEditProjectError.image.innerHTML = errors.image;
-      }
       return;
     }
 
@@ -66,10 +58,10 @@ export function addEventListeners() {
           imageFile2Upload,
           e.target.imageName.value
         );
-        p.imageURL = imageInfo.imageURL;
+        p.logo_path = imageInfo.imageURL;
       }
       // Update Firestore
-      // await FirebaseController.updateProject(p);
+      await FirebaseController.updateSBCHProject(p);
 
       // Update web browser on update
       // const cardTag = document.getElementById("card-" + p.docID);
@@ -80,15 +72,12 @@ export function addEventListeners() {
       // cardTag.getElementsByClassName(
       //   "card-text"
       // )[0].innerHTML = `$ ${p.price}<br>${p.summary}`;
-      // Util.popUpInfo(
-      //   "Product Updated",
-      //   `${p.name} is updated successfully`,
-      //   "modal-edit-product"
-      // );
+      Util.popUpInfo(
+        "Project Updated",
+        `${p.name} is updated successfully`,
+        "modal-form-edit-sBCH-project"
+      );
     } catch (error) {
-      if (Constant.DEV) {
-        console.log(error);
-      }
       Util.popUpInfo("Error when updating project.", JSON.stringify(error));
       return;
     }
@@ -109,15 +98,12 @@ export async function editProject(docID) {
       return;
     }
   } catch (error) {
-    if (Constant.DEV) {
-      console.log(error);
-    }
     Util.popUpInfo("Error in getProjectByID", JSON.stringify(error));
     return;
   }
 
   Element.formEditProject.docID.value = project.docID;
-  Element.formEditProject.audits.value = JSON.stringify(project.audit);
+  Element.formEditProject.audit.value = JSON.stringify(project.audit);
   Element.formEditProject.bias.value = project.bias;
   Element.formEditProject.description.value = project.description;
   Element.formEditProject.dyor.checked = project.dyor;
@@ -136,17 +122,14 @@ export async function editProject(docID) {
   $("#modal-form-edit-sBCH-project").modal("show");
 }
 
-export async function deleteProject(docID, imageName) {
+export async function deleteProject(docID, logo_path) {
   try {
-    await FirebaseController.deleteProject(docID, imageName);
+    await FirebaseController.deleteProject(docID, logo_path);
     // Update web browser
     // const card = document.getElementById(`card-${docID}`);
     // card.remove();
-    // Util.popUpInfo("Deleted Project", `${docID} has sucessfully been deleted.`);
+    Util.popUpInfo("Deleted Product", `${docID} has sucessfully been deleted.`);
   } catch (error) {
-    if (Constant.DEV) {
-      console.log(error);
-    }
     Util.popUpInfo("Error with Deletion", JSON.stringify(error));
   }
 }

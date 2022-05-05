@@ -104,11 +104,8 @@ export async function smartBCH_page() {
       ++index;
     });
   } catch (error) {
-    if (Constant.DEV) {
-      console.log(error);
-      Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
-      return;
-    }
+    Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
+    return;
   }
   try {
     types = await FirebaseController.getTypeList(projects);
@@ -119,10 +116,7 @@ export async function smartBCH_page() {
       ++index;
     });
   } catch (error) {
-    if (Constant.DEV) {
-      console.log(error);
-      Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
-    }
+    Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
     return;
   }
 
@@ -136,10 +130,7 @@ export async function smartBCH_page() {
       ++index;
     });
   } catch (error) {
-    if (Constant.DEV) {
-      console.log(error);
-      Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
-    }
+    Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
     return;
   }
 
@@ -178,7 +169,7 @@ export async function smartBCH_page() {
       e.preventDefault();
       const button = e.target.getElementsByTagName("button")[0];
       const label = Util.disableButton(button);
-      await Edit.deleteProject(e.target.docID.value, e.target.imageName.value);
+      await Edit.deleteProject(e.target.docID.value, e.target.logoPath.value);
       Util.enableButton(button, label);
     });
   }
@@ -305,6 +296,9 @@ function buildProjectCard(project, index) {
                 </div>
                 <form class="form-delete-project inline float-right modal-post-auth" method="post">
                 <input type="hidden" name="docID" value="${project.docID}">
+                <input type="hidden" name="logoPath" value="${
+                  project.logo_path
+                }">
                 <button class="btn btn-outline-danger" style="margin-left: 5px;" type="submit">Delete</button>
               </form>
               <form class="form-edit-project inline float-right modal-post-auth" method="post">

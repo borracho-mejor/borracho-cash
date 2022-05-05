@@ -27,14 +27,11 @@ export function addEventListeners() {
       const user = userCredential.user;
       $("#modal-form-sign-in").modal("hide");
     } catch (error) {
-      if (Constant.DEV) {
-        console.log(error);
-      }
-      //   Util.popUpInfo(
-      //     "Sign-in Error",
-      //     JSON.stringify(error),
-      //     "modal-form-sign-in"
-      //   );
+      Util.popUpInfo(
+        "Sign-in Error",
+        JSON.stringify(error),
+        "modal-form-sign-in"
+      );
     }
   });
 
@@ -49,9 +46,7 @@ export function addSignOutEventListener() {
       try {
         await signOut(auth);
       } catch (e) {
-        if (Constant.DEV) {
-          console.log(e);
-        }
+        // to do
       }
     });
 }

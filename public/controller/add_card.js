@@ -54,13 +54,9 @@ async function addNewCard(e) {
   }
 
   try {
-    console.log(card);
     await FirebaseController.addCard(card.serialize());
     Util.popUpInfo("Success!", `${card.header} added!`, "modal-form-add-card");
   } catch (error) {
-    if (Constant.DEV) {
-      console.log(error);
-    }
     Util.popUpInfo(
       "Failed to Add Card!",
       JSON.stringify(error),

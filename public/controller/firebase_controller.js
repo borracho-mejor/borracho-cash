@@ -16,9 +16,15 @@ import {
   httpsCallable,
   connectFunctionsEmulator,
 } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-functions.js";
+import {
+  getStorage,
+  ref,
+  deleteObject,
+} from "https://www.gstatic.com/firebasejs/9.6.8/firebase-storage.js";
 
 const db = getFirestore();
 const functions = getFunctions();
+const storage = getStorage();
 
 // setup for emulator
 const hostname = window.location.hostname;
@@ -167,7 +173,6 @@ export async function uploadImage(imageFile, imageName) {
 
 const cf_getProjectByID = httpsCallable(functions, "admin_getProjectByID");
 export async function getProjectByID(docID) {
-  console.log("now here");
   const result = await cf_getProjectByID(docID);
   if (result.data) {
     const project = new SBCHProject(result.data);
@@ -176,4 +181,24 @@ export async function getProjectByID(docID) {
   } else {
     return null;
   }
+}
+
+const cf_updateSBCHProject = httpsCallable(
+  functions,
+  "admin_updateSBCHProject"
+);
+export async function updateSBCHProject(project) {
+  const docID = project.docID;
+  const data = project.serializeForUpdate();
+  await cf_updateSBCHProject({ docID, data });
+}
+
+const cf_deleteSBCHProject = httpsCallable(
+  functions,
+  "admin_deleteSBCHProject"
+);
+export async function deleteProject(docID, logo_path) {
+  await cf_deleteSBCHProject(docID);
+  const reference = ref(storage, logo_path);
+  await deleteObject(reference);
 }

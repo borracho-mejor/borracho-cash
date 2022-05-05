@@ -71,15 +71,6 @@ async function addNewsBCHProject(e) {
     if (errors.name) {
       Element.formAddProjectError.name.innerHTML = errors.name;
     }
-    if (errors.price) {
-      Element.formAddProjectError.price.innerHTML = errors.price;
-    }
-    if (errors.summary) {
-      Element.formAddProjectError.description.innerHTML = errors.description;
-    }
-    if (errors.image) {
-      Element.formAddProjectError.image.innerHTML = errors.image;
-    }
     return;
   }
 
@@ -93,9 +84,6 @@ async function addNewsBCHProject(e) {
       "modal-form-add-sBCH-project"
     );
   } catch (error) {
-    if (Constant.DEV) {
-      console.log(error);
-    }
     Util.popUpInfo(
       "Failed to Add Project!",
       JSON.stringify(error),
@@ -104,11 +92,11 @@ async function addNewsBCHProject(e) {
   }
 }
 
-function trimAndParse(string) {
+export function trimAndParse(string) {
   return JSON.parse(JSON.stringify(JSON.parse(string), trimStrings, 4));
 }
 
-function trimStrings(key, value) {
+export function trimStrings(key, value) {
   if (typeof value === "string") {
     return value.trim();
   }

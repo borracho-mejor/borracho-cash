@@ -11,6 +11,8 @@ admin.initializeApp({
 const Constant = require("./constant.js");
 
 exports.admin_getProjectByID = functions.https.onCall(getProjectByID);
+exports.admin_updateSBCHProject = functions.https.onCall(updateSBCHProject);
+exports.admin_deleteSBCHProject = functions.https.onCall(deleteSBCHProject);
 
 function isAdmin(email) {
   return Constant.adminEmails.includes(email);
@@ -70,12 +72,51 @@ async function getProjectByID(docID, context) {
       return null;
     }
   } catch (error) {
-    if (Constant.DEV) {
-      console.log(error);
-    }
     throw new functions.https.HttpsError(
       "internal",
       "An error occurred in getProjectByID."
+    );
+  }
+}
+
+async function updateSBCHProject(projectInfo, context) {
+  if (!isAdmin(context.auth.token.email)) {
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "Only admin users can invoke this function."
+    );
+  }
+  try {
+    await admin
+      .firestore()
+      .collection(Constant.collectionName.SBCHPROJECTS)
+      .doc(projectInfo.docID)
+      .update(projectInfo.data);
+  } catch (error) {
+    throw new functions.https.HttpsError(
+      "internal",
+      "An error occurred in updateProject."
+    );
+  }
+}
+
+async function deleteSBCHProject(docID, context) {
+  if (!isAdmin(context.auth.token.email)) {
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "Only admin users can invoke this function."
+    );
+  }
+  try {
+    await admin
+      .firestore()
+      .collection(Constant.collectionName.SBCHPROJECTS)
+      .doc(docID)
+      .delete();
+  } catch (error) {
+    throw new functions.https.HttpsError(
+      "internal",
+      "An error occurred in deleteProduct."
     );
   }
 }
