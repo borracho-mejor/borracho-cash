@@ -276,20 +276,20 @@ input[type="checkbox"] {
 
 /* Shaking effects */
 .shaking-image {
-  transform: translate(-9px, -15px);
+  transform: translate(0px, 0px);
 }
 @keyframes shake-shaking-image {
   0% {
-    transform: translate(-8px, -14px);
+    transform: translate(1px, 1px);
   }
   33% {
-    transform: translate(-10px, -14px);
+    transform: translate(-1px, 1px);
   }
   66% {
-    transform: translate(-10px, -16px);
+    transform: translate(-1px, -1px);
   }
   100% {
-    transform: translate(-8px, -16px);
+    transform: translate(1px, -1px);
   }
 }
 .shaking-image:hover {
