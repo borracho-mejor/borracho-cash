@@ -425,7 +425,11 @@ function filterResults() {
   // non-NFT
   if (document.getElementById("checkbox-non-nft").checked) {
     filteredProjects = filteredProjects.filter(function (project) {
-      return !project.type.includes("NFT Collection");
+      if (project.type.length === 1) {
+        return !project.type.includes("NFT Collection");
+      } else {
+        return project.type;
+      }
     });
   }
   // project type
