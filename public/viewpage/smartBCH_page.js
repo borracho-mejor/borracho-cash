@@ -260,8 +260,8 @@ function buildProjectCard(project, index) {
 
   return `
           <div class="card mb-3 mr-1">
-            <div class="card-header" style="padding: 0;">
-              <div class="inline"><h1 class="inline"><a href=${
+            <div class="card-header" style="padding: 10px;">
+              <div class="inline"><a href=${
                 project.site
               } target="_blank"><h4 class="inline padding-left-medium ignore-hyper-color" style="vertical-align: middle;">${
     project.name
