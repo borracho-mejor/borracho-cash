@@ -40,7 +40,7 @@ export async function smartBCH_page() {
                         <h5>Here's a list of smartBCH projects. This will only include projects like DEXs, Launchpads, Staking Platforms, NFT Marketplaces, and tokens with large use-cases (i.e: Celery with its staking platform and SIDX with its governance and managed portfolio). 
                           I am not currently including tokens without use-cases.
                         </h5>
-                        <p class="text-muted"><b>Disclaimer: Do Your Own Research!</b> Although I give my thoughts on most projects, nothing included here should be interpretted as financial advice in any shape or form.
+                        <p class="text-muted"><b>Disclaimer: Do Your Own Research!</b> Although I give my thoughts on some projects, nothing included here should be interpretted as financial advice in any shape or form.
                          Please research any project thoroughly before even contemplating investing, and only invest what you are able and willing to lose.</p>
                         <p>I do my best to add new VALID projects as they become available, but please let me know if I am missing any you think should be listed, including your own. For now, I can be reached best at the <b>Support/Listings Telegram</b> in the footer below.
                           Please be respectful and patient, WAGMI in the end.
