@@ -64,7 +64,7 @@ export async function home_page() {
       e.preventDefault();
       const button = e.target.getElementsByTagName("button")[0];
       const label = Util.disableButton(button);
-      await Edit.deleteCard(e.target.docID.value);
+      await Edit.deleteCard(e.target.docID.value, "home");
       Util.enableButton(button, label);
     });
   }

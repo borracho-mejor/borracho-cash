@@ -5,6 +5,7 @@ import * as FirebaseController from "../controller/firebase_controller.js";
 import * as LightMode from "../controller/lightmode.js";
 import * as Util from "./util.js";
 import * as Auth from "../controller/auth.js";
+import * as Edit from "../controller/edit_project.js";
 
 export function addEventListeners() {
   Element.menuAbout.addEventListener("click", () => {
@@ -46,6 +47,27 @@ export async function about_page() {
   if (Auth.currentUser) {
     Auth.authStateChangeObserver(Auth.currentUser);
   }
+
+  const editButtons = document.getElementsByClassName("form-edit-card");
+  for (const element of editButtons) {
+    element.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const button = e.target.getElementsByTagName("button")[0];
+      const label = Util.disableButton(button);
+      await Edit.editCard(e.target.docID.value);
+      Util.enableButton(button, label);
+    });
+  }
+  const deleteButtons = document.getElementsByClassName("form-delete-card");
+  for (const element of deleteButtons) {
+    element.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const button = e.target.getElementsByTagName("button")[0];
+      const label = Util.disableButton(button);
+      await Edit.deleteCard(e.target.docID.value, "about");
+      Util.enableButton(button, label);
+    });
+  }
 }
 
 function buildCard(card, index) {
@@ -63,11 +85,11 @@ function buildCard(card, index) {
           <h6 class="inline float-right text-muted">Posted: ${new Date(
             card.timestamp.toDate()
           ).toDateString()}</h6>
-          <form class="form-delete-product inline float-right modal-post-auth" method="post">
+          <form class="form-delete-card inline float-right modal-post-auth" method="post">
                 <input type="hidden" name="docID" value="${card.docID}">
                 <button class="btn btn-outline-danger" style="margin-right: 5px;" type="submit">Delete</button>
               </form>
-              <form class="form-edit-product inline float-right modal-post-auth" method="post">
+              <form class="form-edit-card inline float-right modal-post-auth" method="post">
                 <input type="hidden" name="docID" value="${card.docID}">
                 <button class="btn btn-outline-success" style="margin-right: 5px;" type="submit">Edit</button>
               </form>

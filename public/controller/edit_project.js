@@ -7,6 +7,7 @@ import { Card } from "../model/card.js";
 import * as CloudStorage from "./cloud_storage.js";
 import { trimAndParse, trimStrings } from "./add_sbch_project.js";
 import { home_page } from "../viewpage/home_page.js";
+import { about_page } from "../viewpage/about_page.js";
 import { smartBCH_page } from "../viewpage/smartBCH_page.js";
 
 let imageFile2Upload;
@@ -121,7 +122,12 @@ export function addEventListeners() {
       // cardTag.getElementsByClassName(
       //   "card-text"
       // )[0].innerHTML = `$ ${p.price}<br>${p.summary}`;
-      home_page();
+      if (c.page === "home") {
+        home_page();
+      }
+      if (c.page === "about") {
+        about_page();
+      }
       Util.popUpInfo(
         "Card Updated",
         `${c.header} is updated successfully`,
@@ -207,13 +213,18 @@ export async function editCard(docID) {
   $("#modal-form-edit-card").modal("show");
 }
 
-export async function deleteCard(docID) {
+export async function deleteCard(docID, page) {
   try {
     await FirebaseController.deleteCard(docID);
     // Update web browser
     // const card = document.getElementById(`card-${docID}`);
     // card.remove();
-    home_page();
+    if (page === "home") {
+      home_page();
+    }
+    if (page === "about") {
+      about_page();
+    }
     Util.popUpInfo("Deleted Card", `${docID} has sucessfully been deleted.`);
   } catch (error) {
     Util.popUpInfo("Error with Deletion", JSON.stringify(error));
