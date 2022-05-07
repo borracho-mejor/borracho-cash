@@ -94,6 +94,10 @@ input:after {
   background-color: var(--color-inner-card-background);
 }
 
+del {
+  color: var(--color-text);
+}
+
 a:link {
   color: green;
 }
