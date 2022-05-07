@@ -45,6 +45,9 @@ export async function smartBCH_page() {
                         <p>I do my best to add new VALID projects as they become available, but please let me know if I am missing any you think should be listed, including your own. For now, I can be reached best at the <b>Support/Listings Telegram</b> in the footer below.
                           Please be respectful and patient, WAGMI in the end.
                         </p>
+                        <div class="text-center padding-bottom-medium" style="max-width: 65%; margin-left: auto; margin-right: auto;">
+                          <button id="button-add-smartBCH" type="button" class="btn btn-block btn-outline-success"><img src="../images/metamask.svg" alt="Metamask Logo" style="max-height: 1.5em;" /> Add smartBCH to MetaMask</button>
+                        </div>
                         <div class="text-center" style="padding-bottom: 0.625rem;">Project Count: <span id="project-count"></span></div>
                         <p style="text-align: center; margin: 5px;">Use the filters below to filter projects.</p>
                         <div class="text-center padding-bottom-medium">
@@ -156,6 +159,11 @@ export async function smartBCH_page() {
   document.getElementById("button-filter").addEventListener("click", () => {
     filterResults();
   });
+  document
+    .getElementById("button-add-smartBCH")
+    .addEventListener("click", () => {
+      addSmartBCHChain();
+    });
   // document.getElementById("form-search").addEventListener("submit", (e) => {
   //   e.preventDefault();
   //   const keywords = e.target.searchKeywords.value.trim();
@@ -524,4 +532,43 @@ async function searchResults(keywords) {
 
 function clearResults() {
   smartBCH_page();
+}
+
+// Thanks im_uname#100🍋 for providing this function
+async function addSmartBCHChain() {
+  try {
+    await window.ethereum.request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: "0x2710" }],
+    });
+  } catch (switchError) {
+    // This error code indicates that the chain has not been added to MetaMask.
+    if (switchError.code === 4902) {
+      try {
+        await window.ethereum.request({
+          method: "wallet_addEthereumChain",
+          params: [
+            {
+              chainId: "0x2710",
+              chainName: "SmartBch Mainnet",
+              blockExplorerUrls: ["https://www.smartscan.cash/"],
+              rpcUrls: [
+                "https://smartbch.fountainhead.cash/mainnet",
+                "https://smartbch.greyh.at:8545",
+                "https://rpc.uatvo.com:8545",
+              ],
+              nativeCurrency: {
+                name: "BCH",
+                symbol: "BCH",
+                decimals: 18,
+              },
+            },
+          ],
+        });
+      } catch (addError) {
+        // handle "add" error
+      }
+    }
+    // handle other "switch" errors
+  }
 }
