@@ -37,7 +37,6 @@ export async function home_page() {
       ++index;
     });
   } catch (error) {
-    console.log(JSON.stringify(error));
     Util.popUpInfo("Error in getHomeCardList", JSON.stringify(error));
     return;
   }

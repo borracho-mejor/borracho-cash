@@ -28,12 +28,6 @@ export async function smartBCH_page() {
   let html = "";
   let typeChecksHTML = "";
   let socialsChecksHTML = "";
-  let placeHolderforSearch = `<p style="text-align: center;">You can either...</p>
-                              <form id="form-search" class="my-2 my-lg-0 form-inline">
-                                <input name="searchKeywords" class="form-control mr-sm-2 inline flex-fill" type="search" placeholder="Search" aria-label="Search" />
-                                <button class="btn btn-outline-success my-2 my-sm-0 inline" type="submit">Search</button>
-                              </form>
-                              <p class="padding-top" style="text-align: center; margin: 5px;">...or...</p>`;
   let sidebarHTML = `<div style="height: 100%;">
                       <img class="dark-mode" src="./images/smartBCH_light.png" alt="smartBCH logo" style="width: 100%; padding: 5px; margin: auto;" /><img class="light-mode" src="./images/smartBCH_dark.png" alt="smartBCH logo" style="width: 100%; padding: 5px;" />
                       <div style="max-width: 65rem; padding: 5px; margin: auto; text-align: left;">                  
@@ -49,6 +43,12 @@ export async function smartBCH_page() {
                           <button id="button-add-smartBCH" type="button" class="btn btn-block btn-outline-success"><img src="../images/metamask.svg" alt="Metamask Logo" style="max-height: 1.5em;" /> Add smartBCH to MetaMask</button>
                         </div>
                         <div class="text-center padding-bottom"><h5>Project Count: <span id="project-count"></span></h5></div>
+                        <p style="text-align: center;">You can either...</p>
+                              <form id="form-search" class="my-2 my-lg-0 form-inline">
+                                <input name="searchKeywords" class="form-control mr-sm-2 inline flex-fill" type="search" placeholder="Search" aria-label="Search" />
+                                <button class="btn btn-outline-success my-2 my-sm-0 inline" type="submit">Search</button>
+                              </form>
+                              <p class="padding-top" style="text-align: center; margin: 5px;">...or...</p>
                         <p style="text-align: center; margin: 5px;">Use the filters below to filter projects.</p>
                         <div class="text-center padding-bottom-medium">
                           <button id="button-filter" type="button" class="btn btn-success" style="margin-right: 5px;">FILTER RESULTS</button>
@@ -164,11 +164,11 @@ export async function smartBCH_page() {
     .addEventListener("click", () => {
       addSmartBCHChain();
     });
-  // document.getElementById("form-search").addEventListener("submit", (e) => {
-  //   e.preventDefault();
-  //   const keywords = e.target.searchKeywords.value.trim();
-  //   searchResults(keywords);
-  // });
+  document.getElementById("form-search").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const keywords = e.target.searchKeywords.value.trim().toLowerCase();
+    searchResults(keywords);
+  });
   document
     .getElementById("button-filter-clear")
     .addEventListener("click", () => {
