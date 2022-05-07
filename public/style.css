@@ -18,7 +18,9 @@ body {
   --color-inner-card-background: #353c41;
   --color-nav-bar: #115c39;
   --light-mode: none;
+  --light-mode-img: none;
   --dark-mode: inline-block;
+  --dark-mode-img: block;
   --border-color: #272d30;
 }
 
@@ -29,7 +31,9 @@ body {
   --color-inner-card-background: #f7f7f7;
   --color-nav-bar: #115c39;
   --light-mode: inline-block;
+  --light-mode-img: block;
   --dark-mode: none;
+  --dark-mode-img: none;
   --border-color: lightgrey;
 }
 
@@ -49,8 +53,14 @@ nav {
 .light-mode {
   display: var(--light-mode);
 }
+.light-mode-img {
+  display: var(--light-mode-img);
+}
 .dark-mode {
   display: var(--dark-mode);
+}
+.dark-mode-img {
+  display: var(--dark-mode-img);
 }
 .alert-custom {
   background-color: var(--color-inner-card-background);
@@ -153,6 +163,12 @@ a:hover {
 
 .flex-child:first-child {
   margin-right: 20px;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 
 .wrapper {
