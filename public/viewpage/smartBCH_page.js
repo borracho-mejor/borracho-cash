@@ -67,21 +67,27 @@ export async function smartBCH_page() {
                             </label>
                           </div>
                           <div class="form-check inline padding-right-large">
+                            <input class="form-check-input" type="checkbox" value="" id="checkbox-non-dyor">
+                            <label class="form-check-label" for="checkbox-non-dyor">
+                              Non-DYOR
+                            </label>
+                          </div>
+                          <div class="form-check inline padding-right-large">
                             <input class="form-check-input" type="checkbox" value="" id="checkbox-mysats">
                             <label class="form-check-label" for="checkbox-mysats">
                               My Two Sats
                             </label>
                           </div>
                           <div class="form-check inline padding-right-large">
-                            <input class="form-check-input" type="checkbox" value="" id="checkbox-dyor">
-                            <label class="form-check-label" for="checkbox-dyor">
-                              DYOR
-                            </label>
-                          </div>
-                          <div class="form-check inline padding-right-large">
                             <input class="form-check-input" type="checkbox" value="" id="checkbox-non-nft">
                             <label class="form-check-label" for="checkbox-non-nft">
                               Non-NFT Only
+                            </label>
+                          </div>
+                          <div class="form-check inline padding-right-large">
+                            <input class="form-check-input" type="checkbox" value="" id="checkbox-dyor">
+                            <label class="form-check-label" for="checkbox-dyor">
+                              DYOR
                             </label>
                           </div>
                         </div>
@@ -435,6 +441,12 @@ function filterResults() {
       } else {
         return project.type;
       }
+    });
+  }
+  // non-DYOR
+  if (document.getElementById("checkbox-non-dyor").checked) {
+    filteredProjects = filteredProjects.filter(function (project) {
+      return !project.dyor;
     });
   }
   // project type
