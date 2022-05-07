@@ -126,7 +126,7 @@ export function addEventListeners() {
       // cardTag.getElementsByClassName(
       //   "card-text"
       // )[0].innerHTML = `$ ${p.price}<br>${p.summary}`;
-      // smartBCH_page();
+      smartBCH_page();
       Util.popUpInfo(
         "Project Updated",
         `${p.name} is updated successfully`,
