@@ -52,8 +52,8 @@ export async function smartBCH_page() {
                         <p class="padding-top" style="text-align: center; margin: 5px;">...or...</p>
                         <p style="text-align: center; margin: 5px;">Use the filters below to filter projects.</p>
                         <div class="text-center padding-bottom-medium">
-                          <button id="button-filter" type="button" class="btn btn-success" style="margin-right: 5px;">FILTER RESULTS</button>
-                          <button id="button-filter-clear" type="button" class="btn btn-danger">CLEAR</button>
+                          <button id="button-filter" type="button" class="btn btn-success" style="margin-right: 5px;">Filter Projects</button>
+                          <button id="button-filter-clear" type="button" class="btn btn-danger">Clear</button>
                         </div>
                         <div class="alert alert-custom">
                           <p class="alert-heading">Quick Filters:</p>
