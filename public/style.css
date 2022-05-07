@@ -208,6 +208,9 @@ a:hover {
 .padding-bottom-medium {
   padding-bottom: 10px;
 }
+.padding-bottom-large {
+  padding-bottom: 15px;
+}
 
 .padding-top {
   padding-top: 5px;

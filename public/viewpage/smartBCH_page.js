@@ -45,10 +45,10 @@ export async function smartBCH_page() {
                         <p>I do my best to add new VALID projects as they become available, but please let me know if I am missing any you think should be listed, including your own. For now, I can be reached best at the <b>Support/Listings Telegram</b> in the footer below.
                           Please be respectful and patient, WAGMI in the end.
                         </p>
-                        <div class="text-center padding-bottom-medium" style="max-width: 65%; margin-left: auto; margin-right: auto;">
+                        <div class="text-center padding-bottom-large" style="max-width: 65%; margin-left: auto; margin-right: auto;">
                           <button id="button-add-smartBCH" type="button" class="btn btn-block btn-outline-success"><img src="../images/metamask.svg" alt="Metamask Logo" style="max-height: 1.5em;" /> Add smartBCH to MetaMask</button>
                         </div>
-                        <div class="text-center" style="padding-bottom: 0.625rem;">Project Count: <span id="project-count"></span></div>
+                        <div class="text-center padding-bottom"><h5>Project Count: <span id="project-count"></span></h5></div>
                         <p style="text-align: center; margin: 5px;">Use the filters below to filter projects.</p>
                         <div class="text-center padding-bottom-medium">
                           <button id="button-filter" type="button" class="btn btn-success" style="margin-right: 5px;">FILTER RESULTS</button>

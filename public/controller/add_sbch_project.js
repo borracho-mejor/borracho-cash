@@ -87,6 +87,8 @@ async function addNewsBCHProject(e) {
       `${project.name} added!`,
       "modal-form-add-sBCH-project"
     );
+    e.target.reset();
+    Element.imageTagAddProject.removeAttribute("src");
   } catch (error) {
     Util.popUpInfo(
       "Failed to Add Project!",
