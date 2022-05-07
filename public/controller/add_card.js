@@ -10,7 +10,6 @@ export function addEventListeners() {
     const button = Element.formAddCard.getElementsByTagName("button")[0];
     const origLabel = Util.disableButton(button);
     await addNewCard(e);
-    // await ProductPage.product_page();
     Util.enableButton(button, origLabel);
   });
 }

@@ -463,9 +463,9 @@ function filterResults() {
     "form-check-type-input"
   );
   let typesArray = [];
-  for (let i = 0; i < typesCheckboxArray.length; i++) {
-    if (typesCheckboxArray[i].checked) {
-      typesArray.push(typesCheckboxArray[i].parentNode.textContent.trim());
+  for (const element of typesCheckboxArray) {
+    if (element.checked) {
+      typesArray.push(element.parentNode.textContent.trim());
     }
   }
   if (typesArray.length != 0) {
@@ -478,11 +478,9 @@ function filterResults() {
     "form-check-social-input"
   );
   let socialsArray = [];
-  for (let i = 0; i < socialsCheckboxArray.length; i++) {
-    if (socialsCheckboxArray[i].checked) {
-      socialsArray.push(
-        socialsCheckboxArray[i].parentNode.textContent.trim().toLowerCase()
-      );
+  for (const element of socialsCheckboxArray) {
+    if (element.checked) {
+      socialsArray.push(element.parentNode.textContent.trim().toLowerCase());
     }
   }
   if (socialsArray.length != 0) {

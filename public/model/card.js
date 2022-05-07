@@ -36,13 +36,8 @@ export class Card {
   }
 
   validate() {
+    // To do
     const errors = {};
-    if (!this.header || this.header.length < 2) {
-      errors.header = "Header should be a minimum of 2 characters.";
-    }
-    if (!this.body || this.body.length < 5) {
-      errors.content = "Body should be a minimum of 5 characters.";
-    }
     if (Object.keys(errors).length == 0) {
       return null;
     } else return errors;

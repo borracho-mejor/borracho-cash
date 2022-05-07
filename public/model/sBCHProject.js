@@ -106,13 +106,8 @@ export class SBCHProject {
   }
 
   validate() {
+    // To do
     const errors = {};
-    // if (!this.name || this.name.length < 2) {
-    //   errors.name = "Name should be a minimum of 2 characters.";
-    // }
-    // if (!this.description || this.description.length < 5) {
-    //   errors.description = "Description should be a minimum of 5 characters.";
-    // }
     if (Object.keys(errors).length == 0) {
       return null;
     } else return errors;

@@ -117,15 +117,6 @@ export function addEventListeners() {
       // Update Firestore
       await FirebaseController.updateSBCHProject(p);
 
-      // Update web browser on update
-      // const cardTag = document.getElementById("card-" + p.docID);
-      // if (imageFile2Upload) {
-      //   cardTag.getElementsByTagName("img")[0].src = p.imageURL;
-      // }
-      // cardTag.getElementsByClassName("card-title")[0].innerHTML = p.name;
-      // cardTag.getElementsByClassName(
-      //   "card-text"
-      // )[0].innerHTML = `$ ${p.price}<br>${p.summary}`;
       smartBCH_page();
       Util.popUpInfo(
         "Project Updated",
@@ -162,15 +153,6 @@ export function addEventListeners() {
       // Update Firestore
       await FirebaseController.updateCard(c);
 
-      // Update web browser on update
-      // const cardTag = document.getElementById("card-" + p.docID);
-      // if (imageFile2Upload) {
-      //   cardTag.getElementsByTagName("img")[0].src = p.imageURL;
-      // }
-      // cardTag.getElementsByClassName("card-title")[0].innerHTML = p.name;
-      // cardTag.getElementsByClassName(
-      //   "card-text"
-      // )[0].innerHTML = `$ ${p.price}<br>${p.summary}`;
       if (c.page === "home") {
         home_page();
       }
@@ -230,9 +212,7 @@ export async function editProject(docID) {
 export async function deleteProject(docID, logo_path) {
   try {
     await FirebaseController.deleteProject(docID, logo_path);
-    // Update web browser
-    // const card = document.getElementById(`card-${docID}`);
-    // card.remove();
+
     smartBCH_page();
     Util.popUpInfo("Deleted Product", `${docID} has sucessfully been deleted.`);
   } catch (error) {
@@ -265,9 +245,7 @@ export async function editCard(docID) {
 export async function deleteCard(docID, page) {
   try {
     await FirebaseController.deleteCard(docID);
-    // Update web browser
-    // const card = document.getElementById(`card-${docID}`);
-    // card.remove();
+
     if (page === "home") {
       home_page();
     }
