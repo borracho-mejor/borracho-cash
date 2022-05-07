@@ -44,11 +44,12 @@ export async function smartBCH_page() {
                         </div>
                         <div class="text-center padding-bottom"><h5>Project Count: <span id="project-count"></span></h5></div>
                         <p style="text-align: center;">You can either...</p>
-                              <form id="form-search" class="my-2 my-lg-0 form-inline">
-                                <input name="searchKeywords" class="form-control mr-sm-2 inline flex-fill" type="search" placeholder="Search" aria-label="Search" />
-                                <button class="btn btn-success my-2 my-sm-0 inline" type="submit">Search</button>
-                              </form>
-                              <p class="padding-top" style="text-align: center; margin: 5px;">...or...</p>
+                        <form id="form-search" class="my-2 my-lg-0 form-inline">
+                          <input name="searchKeywords" class="form-control mr-sm-2 inline flex-fill" type="search" placeholder="Search" aria-label="Search" />
+                          <button class="btn btn-success my-2 my-sm-0 inline" type="submit">Search</button>
+                        </form>
+                        <small style="text-align: center; display: block;">Work in progress, searching is hard... Clear search below.</small>
+                        <p class="padding-top" style="text-align: center; margin: 5px;">...or...</p>
                         <p style="text-align: center; margin: 5px;">Use the filters below to filter projects.</p>
                         <div class="text-center padding-bottom-medium">
                           <button id="button-filter" type="button" class="btn btn-success" style="margin-right: 5px;">FILTER RESULTS</button>
