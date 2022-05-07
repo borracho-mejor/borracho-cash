@@ -194,7 +194,6 @@ export async function getSBCHProjectSearch(keywords) {
       })
     );
   });
-  console.log(unique_projects);
   return unique_projects;
 }
 

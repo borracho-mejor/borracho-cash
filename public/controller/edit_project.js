@@ -84,7 +84,12 @@ export function addEventListeners() {
         .split(","),
       site: e.target.site.value,
     });
-    p.search_audit = Array.from(Object.keys(p.audit));
+    let lowercase_audits = [];
+    let search_audit_array = Array.from(Object.keys(p.audit));
+    search_audit_array.forEach((audit) => {
+      lowercase_audits.push(audit.toLowerCase());
+    });
+    p.search_audit = lowercase_audits;
     p.search_socials = Array.from(Object.keys(p.socials));
     p.docID = e.target.docID.value;
 
@@ -121,7 +126,7 @@ export function addEventListeners() {
       // cardTag.getElementsByClassName(
       //   "card-text"
       // )[0].innerHTML = `$ ${p.price}<br>${p.summary}`;
-      smartBCH_page();
+      // smartBCH_page();
       Util.popUpInfo(
         "Project Updated",
         `${p.name} is updated successfully`,

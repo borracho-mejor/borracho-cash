@@ -114,7 +114,12 @@ async function addNewsBCHProject(e) {
     lower_type,
     site,
   });
-  project.search_audit = Array.from(Object.keys(project.audit));
+  let lowercase_audits = [];
+  let search_audit_array = Array.from(Object.keys(project.audit));
+  search_audit_array.forEach((a) => {
+    lowercase_audits.push(a.toLowerCase());
+  });
+  project.search_audit = lowercase_audits;
   project.search_socials = Array.from(Object.keys(project.socials));
   // Check
   const errors = project.validate(imageFile2Upload);
