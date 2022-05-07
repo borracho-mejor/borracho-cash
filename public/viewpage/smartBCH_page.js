@@ -46,7 +46,7 @@ export async function smartBCH_page() {
                         <p style="text-align: center;">You can either...</p>
                               <form id="form-search" class="my-2 my-lg-0 form-inline">
                                 <input name="searchKeywords" class="form-control mr-sm-2 inline flex-fill" type="search" placeholder="Search" aria-label="Search" />
-                                <button class="btn btn-outline-success my-2 my-sm-0 inline" type="submit">Search</button>
+                                <button class="btn btn-success my-2 my-sm-0 inline" type="submit">Search</button>
                               </form>
                               <p class="padding-top" style="text-align: center; margin: 5px;">...or...</p>
                         <p style="text-align: center; margin: 5px;">Use the filters below to filter projects.</p>
