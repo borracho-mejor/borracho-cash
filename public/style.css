@@ -1,7 +1,8 @@
 html,
 body {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  /* height: auto; */
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
@@ -13,7 +14,6 @@ body {
 }
 
 .box {
-  /* background-color: red; */
   height: 100%;
   margin: 0px;
   padding: 0px;
@@ -118,19 +118,32 @@ a:hover {
   /* Mobile */
   body {
     height: auto;
+    width: 100vw;
   }
   .footer {
     border-top: 2px solid grey;
     position: absolute;
     bottom: 1;
   }
-  #content {
+  #main-content {
     height: 100%;
-    /* max-height: 75vh; */
+    max-height: 75vh;
   }
   .twitter-feed {
-    height: 75vh;
+    height: 85vh;
     width: 100%;
+  }
+  #content {
+    height: 65vh;
+    margin-bottom: 1.5em;
+  }
+  .center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+  }
+  #content-sidebar {
+    margin-bottom: 1.5em;
   }
 }
 
@@ -140,7 +153,7 @@ a:hover {
     display: flex;
   }
   #main-content {
-    /* max-height: 80vh; */
+    height: 100%;
     max-height: 80%;
   }
   #content {
@@ -151,6 +164,11 @@ a:hover {
     display: grid;
     justify-content: center;
     border-top: 2px solid grey;
+  }
+  .center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
   }
 }
 
@@ -181,11 +199,11 @@ a:hover {
   margin-right: 20px;
 }
 
-.center {
+/* .center {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
-}
+} */
 
 .wrapper {
   margin: auto;
