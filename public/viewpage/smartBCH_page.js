@@ -540,6 +540,10 @@ async function addSmartBCHChain() {
       method: "wallet_switchEthereumChain",
       params: [{ chainId: "0x2710" }],
     });
+    Util.popUpInfo(
+      "smartBCH already added!",
+      "Silly, smartBCH has already been added. Get on over to Mistswap/Tangoswap and start trading for low fees on a fast EVM!"
+    );
   } catch (switchError) {
     // This error code indicates that the chain has not been added to MetaMask.
     if (switchError.code === 4902) {
@@ -549,12 +553,12 @@ async function addSmartBCHChain() {
           params: [
             {
               chainId: "0x2710",
-              chainName: "SmartBch Mainnet",
+              chainName: "smartBCH Mainnet",
               blockExplorerUrls: ["https://www.smartscan.cash/"],
               rpcUrls: [
+                "https://smartbch.greyh.at",
                 "https://smartbch.fountainhead.cash/mainnet",
-                "https://smartbch.greyh.at:8545",
-                "https://rpc.uatvo.com:8545",
+                "https://rpc.uatvo.com",
               ],
               nativeCurrency: {
                 name: "BCH",
@@ -564,10 +568,22 @@ async function addSmartBCHChain() {
             },
           ],
         });
+        Util.popUpInfo(
+          "smartBCH added to wallet!",
+          "Go to Mistswap/Tangoswap and start trading for low fees on a fast EVM!"
+        );
       } catch (addError) {
-        // handle "add" error
+        Util.popUpInfo(
+          "Error adding smartBCH! (addError)",
+          JSON.stringify(addError)
+        );
       }
     }
-    // handle other "switch" errors
+    if (switchError.code != 4902) {
+      Util.popUpInfo(
+        "Error adding smartBCH! (switchError)",
+        JSON.stringify(switchError)
+      );
+    }
   }
 }
