@@ -10,7 +10,7 @@ export class Card {
   serialize() {
     return {
       header: this.header,
-      rating: this.rating,
+      body: this.body,
       isPinned: this.isPinned,
       page: this.page,
       timestamp: this.timestamp,
@@ -25,9 +25,7 @@ export class Card {
     if (this.body) {
       r.body = this.body;
     }
-    if (this.isPinned) {
-      r.isPinned = this.isPinned;
-    }
+    r.isPinned = this.isPinned;
     if (this.page) {
       r.page = this.page;
     }
@@ -38,13 +36,8 @@ export class Card {
   }
 
   validate() {
+    // To do
     const errors = {};
-    if (!this.header || this.header.length < 2) {
-      errors.header = "Header should be a minimum of 2 characters.";
-    }
-    if (!this.body || this.body.length < 5) {
-      errors.content = "Body should be a minimum of 5 characters.";
-    }
     if (Object.keys(errors).length == 0) {
       return null;
     } else return errors;

@@ -1,26 +1,48 @@
 html,
 body {
-  width: 100%;
-  min-height: 100vh;
+  width: 100vw;
+  height: 100%;
+  /* height: auto; */
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
+  /* overflow-y: hidden; */
+}
+
+body {
+  font-family: "Trebuchet MS", sans-serif;
+}
+
+.box {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
 }
 
 :root {
   --color-background: #1e2225;
   --color-text: rgba(245, 248, 250, 0.87);
   --color-card-background: #292f33;
+  --color-inner-card-background: #353c41;
+  --color-nav-bar: #115c39;
   --light-mode: none;
+  --light-mode-img: none;
   --dark-mode: inline-block;
+  --dark-mode-img: block;
+  --border-color: #272d30;
 }
 
 .lightmode {
   --color-background: #f7f7f7;
   --color-text: rgba(0, 0, 0, 0.87);
   --color-card-background: #ffffff;
+  --color-inner-card-background: #f7f7f7;
+  --color-nav-bar: #115c39;
   --light-mode: inline-block;
+  --light-mode-img: block;
   --dark-mode: none;
+  --dark-mode-img: none;
+  --border-color: lightgrey;
 }
 
 body {
@@ -28,19 +50,53 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
 }
-
-del {
-  color: var(--color-text);
+nav {
+  background-color: var(--color-nav-bar);
 }
-
 .card {
+  background-color: var(--color-card-background);
+}
+.modal-content {
   background-color: var(--color-card-background);
 }
 .light-mode {
   display: var(--light-mode);
 }
+.light-mode-img {
+  display: var(--light-mode-img);
+}
 .dark-mode {
   display: var(--dark-mode);
+}
+.dark-mode-img {
+  display: var(--dark-mode-img);
+}
+.alert-custom {
+  background-color: var(--color-inner-card-background);
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea {
+  color: var(--color-text);
+  background-color: var(--color-inner-card-background);
+}
+
+/* textarea:focus,
+input:focus {
+  color: var(--color-text);
+  background-color: var(--color-inner-card-background);
+} */
+
+textarea:after,
+input:after {
+  color: var(--color-text);
+  background-color: var(--color-inner-card-background);
+}
+
+del {
+  color: var(--color-text);
 }
 
 a:link {
@@ -55,40 +111,65 @@ a:hover {
   color: green;
 }
 
-@media screen and (max-width: 640px) {
+.ignore-hyper-color {
+  color: var(--color-text);
+}
+
+@media screen and (max-width: 900px) {
+  /* Mobile */
   body {
     height: auto;
+    width: 100vw;
   }
   .footer {
     border-top: 2px solid grey;
     position: absolute;
     bottom: 1;
   }
-  #content {
+  #main-content {
+    height: 100%;
     max-height: 75vh;
   }
   .twitter-feed {
-    height: 75vh;
+    height: 85vh;
     width: 100%;
+  }
+  #content {
+    height: 65vh;
+    margin-bottom: 1.5em;
+  }
+  .center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+  }
+  #content-sidebar {
+    margin-bottom: 1.5em;
   }
 }
 
-.breakable {
-  word-wrap: break-word;
-  word-break: break-all;
-}
-
-@media screen and (min-width: 640px) {
+@media screen and (min-width: 900px) {
+  /* Not mobile */
   .flex-container {
     display: flex;
   }
   #main-content {
-    max-height: 79vh;
+    height: 100%;
+    max-height: 80%;
+  }
+  #content {
+    max-height: 100%;
+    /* max-height: 75vh; */
   }
   .footer {
     display: grid;
     justify-content: center;
     border-top: 2px solid grey;
+  }
+  .center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
   }
 }
 
@@ -98,9 +179,17 @@ a:hover {
   text-align: center;
 }
 
+#content-sidebar {
+  padding: 10px;
+  flex: 0 1 450px;
+  background-color: var(--color-card-background);
+  border-color: var(--border-color) !important;
+  overflow: auto;
+}
+
 #content {
   flex: 1;
-  height: 78vh;
+  max-height: 100%;
 }
 
 .twitter-feed {
@@ -111,9 +200,15 @@ a:hover {
   margin-right: 20px;
 }
 
+/* .center {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+} */
+
 .wrapper {
   margin: auto;
-  max-width: 100rem;
+  max-width: 112.5rem;
 }
 
 .card-body {
@@ -124,7 +219,158 @@ a:hover {
   display: inline-block;
 }
 
+.float-right {
+  position: relative;
+  float: right;
+}
+
+.inner {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.inner-top {
+  display: inline-block;
+  vertical-align: top;
+  line-height: normal;
+}
+
+.padding-bottom {
+  padding-bottom: 5px;
+}
+
+.padding-bottom-medium {
+  padding-bottom: 10px;
+}
+.padding-bottom-large {
+  padding-bottom: 15px;
+}
+
+.padding-top {
+  padding-top: 5px;
+}
+
+.padding-top-medium {
+  padding-top: 10px;
+}
+
+.padding-left {
+  padding-left: 5px;
+}
+
+.padding-left-medium {
+  padding-left: 10px;
+}
+
+.padding-right {
+  padding-right: 5px;
+}
+
+.padding-right-medium {
+  padding-right: 10px;
+}
+
+.padding-right-large {
+  padding-right: 20px;
+}
+
 .hidden {
   position: absolute;
-  left: -999px;
+  left: -9999px;
 }
+
+#flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+#flex-container-column {
+  flex-direction: column;
+}
+
+.bottom {
+  margin-top: auto;
+}
+
+.vertical-center-helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.breakable {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+input[type="checkbox"] {
+  accent-color: green;
+}
+
+.modal-pre-auth {
+  display: block;
+}
+
+.modal-post-auth {
+  display: none;
+}
+
+.error-add-project {
+  color: red;
+}
+
+.button-center {
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+}
+
+/* Shaking effects */
+.shaking-image {
+  transform: translate(0px, 0px);
+}
+@keyframes shake-shaking-image {
+  0% {
+    transform: translate(1px, 1px);
+  }
+  33% {
+    transform: translate(-1px, 1px);
+  }
+  66% {
+    transform: translate(-1px, -1px);
+  }
+  100% {
+    transform: translate(1px, -1px);
+  }
+}
+.shaking-image:hover {
+  animation: shake-shaking-image 0.1s infinite alternate;
+}
+
+/* SIBLING FADE: fade out siblings around a hovered item */
+.sibling-fade {
+  visibility: hidden;
+}
+/* Prevents :hover from triggering in the gaps between items */
+.sibling-fade > * {
+  visibility: visible;
+}
+/* Brings the child items back in, even though the parent is `hidden` */
+.sibling-fade > * {
+  transition: opacity 150ms linear 100ms, transform 150ms ease-in-out 100ms;
+}
+/* Makes the fades smooth with a slight delay to prevent jumps as the mouse moves between items */
+.sibling-fade:hover > * {
+  opacity: 0.25;
+  transform: scale(0.9);
+}
+/* Fade out all items when the parent is hovered */
+.sibling-fade > *:hover {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: 0ms, 0ms;
+}
+/* Fade in the currently hovered item */

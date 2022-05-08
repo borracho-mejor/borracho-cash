@@ -4,6 +4,8 @@ import * as Constant from "../model/constant.js";
 import * as FirebaseController from "../controller/firebase_controller.js";
 import * as LightMode from "../controller/lightmode.js";
 import * as Util from "./util.js";
+import * as Auth from "../controller/auth.js";
+import * as Edit from "../controller/edit_project.js";
 
 export function addEventListeners() {
   Element.menuAbout.addEventListener("click", () => {
@@ -15,27 +17,57 @@ export function addEventListeners() {
 let cards;
 
 export async function about_page() {
-  LightMode.mode();
+  Util.scrollToTop();
+  Util.showTwitterFeeds();
+  Util.hideHeader();
+  Util.unActivateLinks();
+  Element.menuAbout.classList.add("active");
+
   let html = "";
 
   try {
     cards = await FirebaseController.getAboutCardList();
+
+    if (cards.length == 0) {
+      html += `<h4 style="text-align:center;">No cards found!</h4>`;
+    }
+
     let index = 0;
     cards.forEach((card) => {
       html += buildCard(card, index);
       ++index;
     });
   } catch (error) {
-    if (Constant.DEV) {
-      console.log(error);
-      // Util.popUpInfo("Error in getAboutCardList", JSON.stringify(error));
-      return;
-    }
+    Util.popUpInfo("Error in getAboutCardList", JSON.stringify(error));
+    return;
   }
 
   Element.content.innerHTML = html;
-  Util.scrollToTop();
-  Util.showTwitterFeeds();
+
+  if (Auth.currentUser) {
+    Auth.authStateChangeObserver(Auth.currentUser);
+  }
+
+  const editButtons = document.getElementsByClassName("form-edit-card");
+  for (const element of editButtons) {
+    element.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const button = e.target.getElementsByTagName("button")[0];
+      const label = Util.disableButton(button);
+      await Edit.editCard(e.target.docID.value);
+      Util.enableButton(button, label);
+    });
+  }
+  const deleteButtons = document.getElementsByClassName("form-delete-card");
+  for (const element of deleteButtons) {
+    element.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const button = e.target.getElementsByTagName("button")[0];
+      const label = Util.disableButton(button);
+      await Edit.deleteCard(e.target.docID.value, "about");
+      Util.enableButton(button, label);
+    });
+  }
 }
 
 function buildCard(card, index) {
@@ -47,8 +79,21 @@ function buildCard(card, index) {
     }
   }
   return `
-          <div class="card mb-3">
-            <h6 class="card-header">${pinnedTag}${card.header}</h6>
+          <div class="card mb-3 mr-1">
+          <div class="card-header">
+          <h5 class="inline">${pinnedTag}${card.header}</h5>
+          <h6 class="inline float-right text-muted">Posted: ${new Date(
+            card.timestamp.toDate()
+          ).toDateString()}</h6>
+          <form class="form-delete-card inline float-right modal-post-auth" method="post">
+                <input type="hidden" name="docID" value="${card.docID}">
+                <button class="btn btn-outline-danger" style="margin-right: 5px;" type="submit">Delete</button>
+              </form>
+              <form class="form-edit-card inline float-right modal-post-auth" method="post">
+                <input type="hidden" name="docID" value="${card.docID}">
+                <button class="btn btn-outline-success" style="margin-right: 5px;" type="submit">Edit</button>
+              </form>
+        </div>
             <div class="card-body">${card.body}</div>
           </div>`;
 }

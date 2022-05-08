@@ -10,7 +10,7 @@ export function addEventListeners() {
 }
 
 export async function whitepaper_page() {
-  let html = `<h3>
+  let html = `<div style="margin: 10px;"><h3>
   <span style="background-color: #0ac18e">Bitcoin:</span> A
   Peer-to-Peer Electronic
   <span style="background-color: #0ac18e">Cash</span> System
@@ -79,6 +79,8 @@ export async function whitepaper_page() {
   owner and adding these to the end of the coin. A payee can verify
   the signatures to verify the chain of ownership.
 </p>
+<img src="../images/whitepaper/2_1.png" alt="image" class="center light-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
+<img src="../images/whitepaper/2_1_dark.png" alt="image" class="center dark-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
 <p>
   The problem of course is the payee can't verify that one of the
   owners did not double-spend the coin. A common solution is to
@@ -115,6 +117,8 @@ export async function whitepaper_page() {
   forming a chain, with each additional timestamp reinforcing the
   ones before it.
 </p>
+<img src="../images/whitepaper/3_1.png" alt="image" class="center light-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
+<img src="../images/whitepaper/3_1_dark.png" alt="image" class="center dark-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
 <h5>4. Proof-of-Work:</h5>
 <p>
   To implement a distributed timestamp server on a peer-to-peer
@@ -134,6 +138,8 @@ export async function whitepaper_page() {
   chained after it, the work to change the block would include
   redoing all the blocks after it.
 </p>
+<img src="../images/whitepaper/4_1.png" alt="image" class="center light-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
+<img src="../images/whitepaper/4_1_dark.png" alt="image" class="center dark-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
 <p>
   The proof-of-work also solves the problem of determining
   representation in majority decision making. If the majority were
@@ -158,15 +164,15 @@ export async function whitepaper_page() {
 </p>
 <h5>5. Network:</h5>
 <p>
-  The steps to run the network are as follows: 1) New transactions
-  are broadcast to all nodes. 2) Each node collects new transactions
-  into a block. 3) Each node works on finding a difficult
-  proof-of-work for its block. 4) When a node finds a proof-of-work,
-  it broadcasts the block to all nodes. 5) Nodes accept the block
-  only if all transactions in it are valid and not already spent. 6)
-  Nodes express their acceptance of the block by working on creating
-  the next block in the chain, using the hash of the accepted block
-  as the previous hash.
+  The steps to run the network are as follows:
+  <ol>
+    <li>New transactions are broadcast to all nodes.</li>
+    <li>Each node collects new transactions into a block.</li>
+    <li>Each node works on finding a difficult proof-of-work for its block.</li>
+    <li>When a node finds a proof-of-work, it broadcasts the block to all nodes.</li>
+    <li>Nodes accept the block only if all transactions in it are valid and not already spent.</li>
+    <li>Nodes express their acceptance of the block by working on creating the next block in the chain, using the hash of the accepted block as the previous hash.</li>
+  </ol>
 </p>
 <p>
   Nodes always consider the longest chain to be the correct one and
@@ -225,6 +231,8 @@ export async function whitepaper_page() {
   compacted by stubbing off branches of the tree. The interior
   hashes do not need to be stored.
 </p>
+<img src="../images/whitepaper/7_1.png" alt="image" class="center light-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
+<img src="../images/whitepaper/7_1_dark.png" alt="image" class="center dark-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
 <p>
   A block header with no transactions would be about 80 bytes. If we
   suppose blocks are generated every 10 minutes, 80 bytes * 6 * 24 *
@@ -245,6 +253,8 @@ export async function whitepaper_page() {
   has accepted it, and blocks added after it further confirm the
   network has accepted it.
 </p>
+<img src="../images/whitepaper/8_1.png" alt="image" class="center light-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
+<img src="../images/whitepaper/8_1_dark.png" alt="image" class="center dark-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
 <p>
   As such, the verification is reliable as long as honest nodes
   control the network, but is more vulnerable if the network is
@@ -270,6 +280,8 @@ export async function whitepaper_page() {
   the payment, and one returning the change, if any, back to the
   sender.
 </p>
+<img src="../images/whitepaper/9_1.png" alt="image" class="center light-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
+<img src="../images/whitepaper/9_1_dark.png" alt="image" class="center dark-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
 <p>
   It should be noted that fan-out, where a transaction depends on
   several transactions, and those transactions depend on many more,
@@ -290,6 +302,8 @@ export async function whitepaper_page() {
   of individual trades, the "tape", is made public, but without
   telling who the parties were.
 </p>
+<img src="../images/whitepaper/10_1.png" alt="image" class="center light-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
+<img src="../images/whitepaper/10_1_dark.png" alt="image" class="center dark-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
 <p>
   As an additional firewall, a new key pair should be used for each
   transaction to keep them from being linked to a common owner. Some
@@ -324,6 +338,8 @@ export async function whitepaper_page() {
   calculate the probability he ever reaches breakeven, or that an
   attacker ever catches up with the honest chain, as follows [8]:
 </p>
+<img src="../images/whitepaper/11_1.png" alt="image" class="center light-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
+<img src="../images/whitepaper/11_1_dark.png" alt="image" class="center dark-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
 <p>
   Given our assumption that p > q, the probability drops
   exponentially as the number of blocks the attacker has to catch up
@@ -358,21 +374,33 @@ export async function whitepaper_page() {
   attacker's potential progress will be a Poisson distribution with
   expected value:
 </p>
+<img src="../images/whitepaper/11_2.png" alt="image" class="center light-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
+<img src="../images/whitepaper/11_2_dark.png" alt="image" class="center dark-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
 <p>
   To get the probability the attacker could still catch up now, we
   multiply the Poisson density for each amount of progress he could
   have made by the probability he could catch up from that point:
 </p>
+<img src="../images/whitepaper/11_3.png" alt="image" class="center light-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
+<img src="../images/whitepaper/11_3_dark.png" alt="image" class="center dark-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
 <p>
   Rearranging to avoid summing the infinite tail of the
   distribution...
 </p>
+<img src="../images/whitepaper/11_4.png" alt="image" class="center light-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
+<img src="../images/whitepaper/11_4_dark.png" alt="image" class="center dark-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
 <p>Converting to C code...</p>
+<img src="../images/whitepaper/11_5.png" alt="image" class="center light-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
+<img src="../images/whitepaper/11_5_dark.png" alt="image" class="center dark-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
 <p>
   Running some results, we can see the probability drop off
   exponentially with z.
 </p>
+<img src="../images/whitepaper/11_6.png" alt="image" class="center light-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
+<img src="../images/whitepaper/11_6_dark.png" alt="image" class="center dark-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
 <p>Solving for P less than 0.1%...</p>
+<img src="../images/whitepaper/11_7.png" alt="image" class="center light-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
+<img src="../images/whitepaper/11_7_dark.png" alt="image" class="center dark-mode-img" style="max-height: 600px; max-width: 600px; margin-bottom: 1em;">
 <h5>12. Conclusion:</h5>
 <p>
   We have proposed a system for electronic transactions without
@@ -393,9 +421,24 @@ export async function whitepaper_page() {
   by working on extending them and rejecting invalid blocks by
   refusing to work on them. Any needed rules and incentives can be
   enforced with this consensus mechanism.
-</p>`;
+</p>
+<h5>References:</h5>
+<ol>
+  <li>W. Dai, "b-money," http://www.weidai.com/bmoney.txt, 1998.</li>
+  <li>H. Massias, X.S. Avila, and J.-J. Quisquater, "Design of a secure timestamping service with minimal trust requirements," In 20th Symposium on Information Theory in the Benelux, May 1999.</li>
+  <li>S. Haber, W.S. Stornetta, "How to time-stamp a digital document," In Journal of Cryptology, vol 3, no 2, pages 99-111, 1991.</li>
+  <li>D. Bayer, S. Haber, W.S. Stornetta, "Improving the efficiency and reliability of digital time-stamping," In Sequences II: Methods in Communication, Security and Computer Science, pages 329-334, 1993.</li>
+  <li>S. Haber, W.S. Stornetta, "Secure names for bit-strings," In Proceedings of the 4th ACM Conference on Computer and Communications Security, pages 28-35, April 1997.</li>
+  <li>A. Back, "Hashcash - a denial of service counter-measure," http://www.hashcash.org/papers/hashcash.pdf, 2002.</li>
+  <li>R.C. Merkle, "Protocols for public key cryptosystems," In Proc. 1980 Symposium on Security and Privacy, IEEE Computer Society, pages 122-133, April 1980.</li>
+  <li>W. Feller, "An introduction to probability theory and its applications," 1957.</li>  
+</ol>
+</div>`;
 
   Element.content.innerHTML = html;
   Util.scrollToTop();
   Util.hideTwitterFeeds();
+  Util.hideHeader();
+  Util.unActivateLinks();
+  Element.menuWhitepaper.classList.add("active");
 }
