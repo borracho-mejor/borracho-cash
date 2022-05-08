@@ -2,7 +2,6 @@ export const menuHome = document.getElementById("menu-home");
 export const menuAbout = document.getElementById("menu-about");
 export const menuLogin = document.getElementById("menu-login");
 export const menuWhitepaper = document.getElementById("menu-whitepaper");
-export const menuSmartBCH = document.getElementById("menu-smartBCH");
 
 export const mainContent = document.getElementById("main-content");
 export const content = document.getElementById("content");
