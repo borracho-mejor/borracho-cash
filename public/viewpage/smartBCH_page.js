@@ -31,22 +31,22 @@ export async function smartBCH_page() {
   let sidebarHTML = `<div style="height: 100%;">
                       <img class="dark-mode" src="./images/smartBCH_light.png" alt="smartBCH logo" style="width: 100%; padding: 5px; margin: auto;" /><img class="light-mode" src="./images/smartBCH_dark.png" alt="smartBCH logo" style="width: 100%; padding: 5px;" />
                       <div style="max-width: 65rem; padding: 5px; margin: auto; text-align: left;">                  
-                        <h5>Here's a list of smartBCH projects. This will only include projects like DEXs, Launchpads, Staking Platforms, NFT Marketplaces, and tokens with large use-cases (i.e: Celery with its staking platform and SIDX with its governance and managed portfolio). 
-                          I am not currently including tokens without use-cases.
+                        <h5 class="padding-bottom">Here's a list of smartBCH projects. This will only include projects like DEXs, Launchpads, Staking Platforms, NFT Marketplaces, and tokens with large use-cases (i.e: Celery with its staking platform and SIDX with its governance and managed portfolio). 
+                          I am not currently including tokens without use-cases. With smartBCH, WAGMI!
                         </h5>
-                        <p class="text-muted"><b>Disclaimer: Do Your Own Research!</b> Although I give my thoughts on some projects, nothing included here should be interpretted as financial advice in any shape or form.
-                         Please research any project thoroughly before even contemplating investing, and only invest what you are able and willing to lose.</p>
-                        <p>I do my best to add new VALID projects as they become available, but please let me know if I am missing any you think should be listed, including your own. For now, I can be reached best at the <b>Support/Listings Telegram</b> in the footer below.
-                          Please be respectful and patient, WAGMI in the end.
-                        </p>
                         <div class="text-center padding-bottom-large" style="max-width: 65%; margin-left: auto; margin-right: auto;">
                           <button id="button-add-smartBCH" type="button" class="btn btn-block btn-outline-success"><img src="../images/metamask.svg" alt="Metamask Logo" style="max-height: 1.5em;" /> Add smartBCH to MetaMask</button>
                         </div>
+                        <p>
+                          <small class="text-muted"><b>Disclaimer: Do Your Own Research!</b> Although I give my thoughts on some projects, nothing included here should be interpretted as financial advice in any shape or form.
+                            Please research any project thoroughly before even contemplating investing, and only invest what you are able and willing to lose.
+                          </small>
+                        </p>                        
                         <div class="text-center padding-bottom"><h5>Project Count: <span id="project-count"></span></h5></div>
                         <p style="text-align: center;">You can either...</p>
                         <form id="form-search" class="my-2 my-lg-0 form-inline">
                           <input name="searchKeywords" class="form-control mr-sm-2 inline flex-fill" type="search" placeholder="Search" aria-label="Search" />
-                          <button class="btn btn-success my-2 my-sm-0 inline" type="submit">Search</button>
+                          <button class="btn btn-success my-2 my-sm-0 inline center-mobile" type="submit">Search</button>
                         </form>
                         <small style="text-align: center; display: block;">Work in progress, searching is hard... Clear search below.</small>
                         <p class="padding-top" style="text-align: center; margin: 5px;">— OR —</p>
