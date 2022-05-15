@@ -117,7 +117,7 @@ export function addEventListeners() {
       // Update Firestore
       await FirebaseController.updateSBCHProject(p);
 
-      smartBCH_page();
+      // smartBCH_page();
       Util.popUpInfo(
         "Project Updated",
         `${p.name} is updated successfully`,

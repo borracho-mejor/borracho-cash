@@ -510,14 +510,13 @@ async function searchResults(keywords) {
   let searchedProjects = [];
 
   if (keywords.length != 0) {
-    searchedProjects = await FirebaseController.getSBCHProjectSearch(
-      keywords.split(" ")
-    );
+    searchedProjects = await FirebaseController.getSBCHProjectSearch(keywords);
   }
 
   if (searchedProjects.length === 0) {
     newHTML += `<h4 style="text-align:center;">No projects found with that search!</h4>`;
   }
+
   let index = 0;
   searchedProjects.forEach((project) => {
     newHTML += buildProjectCard(project, index);
