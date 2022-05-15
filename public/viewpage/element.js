@@ -18,10 +18,19 @@ export const twitterFeedDark = document.getElementById("twitter-feed-dark");
 
 export const formSignIn = document.getElementById("form-sign-in");
 
+// Pop-up Info
 export const popUpInfoTitle = document.getElementById(
   "modal-pop-up-info-title"
 );
 export const popUpInfoBody = document.getElementById("modal-pop-up-info-body");
+
+// Pop-up loading
+export const popUpLoadTitle = document.getElementById(
+  "modal-pop-up-loading-title"
+);
+export const popUpLoadBody = document.getElementById(
+  "modal-pop-up-loading-body"
+);
 
 // For add project modal
 export const imageTagAddProject = document.getElementById("form-add-image-tag");

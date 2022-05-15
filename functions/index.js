@@ -25,12 +25,12 @@ function isAdmin(email) {
 }
 
 async function getProjectByID(docID, context) {
-  // if (!isAdmin(context.auth.token.email)) {
-  //   throw new functions.https.HttpsError(
-  //     "unauthenticated",
-  //     "Only admin users can invoke this function."
-  //   );
-  // }
+  if (!isAdmin(context.auth.token.email)) {
+    throw new functions.https.HttpsError(
+      "unauthenticated",
+      "Only admin users can invoke this function."
+    );
+  }
   try {
     const doc = await admin
       .firestore()
@@ -214,9 +214,8 @@ async function getSBCHProjectSearch(keywords) {
 
   await index.search(keywords).then(({ hits }) => {
     hits.forEach((hit) => {
-      searchIDs.push(hit.name);
+      searchIDs.push(hit.name); // objectID
     });
   });
-  console.log(searchIDs.length);
   return searchIDs;
 }

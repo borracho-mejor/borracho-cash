@@ -525,6 +525,7 @@ async function searchResults(keywords) {
 
   Element.content.scrollTo(0, 0);
   document.getElementById("project-count").innerHTML = searchedProjects.length;
+
   Element.content.innerHTML = newHTML;
 }
 

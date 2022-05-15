@@ -1,6 +1,7 @@
 import { Card } from "../model/card.js";
 import { SBCHProject } from "../model/sBCHProject.js";
 import * as Constant from "../model/constant.js";
+import * as Util from "../viewpage/util.js";
 import {
   getFirestore,
   collection,
@@ -60,6 +61,7 @@ export async function getSBCHProjectList() {
   const snapshot = await getDocs(q);
   snapshot.forEach((doc) => {
     const project = new SBCHProject(doc.data());
+    project.docID = doc.id;
     projects.push(project);
   });
   return projects;
@@ -70,14 +72,15 @@ const cf_getSBCHProjectSearch = httpsCallable(
   "admin_getSBCHProjectSearch"
 );
 export async function getSBCHProjectSearch(keywords) {
+  Util.popUpLoading();
   let projects = [];
   let result = await cf_getSBCHProjectSearch(keywords);
   result = result.data;
 
-  for (let i = 0; i < result.length; i++) {
+  for (const element of result) {
     const q = await query(
       collection(db, Constant.collectionName.SBCH_PROJECTS),
-      where("name", "==", result[i])
+      where("name", "==", element)
     );
     const snapshot = await getDocs(q);
     snapshot.forEach((doc) => {
@@ -85,6 +88,9 @@ export async function getSBCHProjectSearch(keywords) {
       projects.push(project);
     });
   }
+  setTimeout(function () {
+    $("#loadingoverlay").modal("hide");
+  }, 500);
   return projects;
 }
 
