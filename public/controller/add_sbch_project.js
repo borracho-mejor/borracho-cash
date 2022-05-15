@@ -37,57 +37,14 @@ async function addNewsBCHProject(e) {
   const audit = trimAndParse(e.target.audits.value);
   const bias = e.target.bias.value;
   const description = e.target.description.value;
-  const search_description = (e.target.description.value + " ")
-    .toLowerCase()
-    .split(",")
-    .join("")
-    .split("<b>")
-    .join("")
-    .split("</b>")
-    .join("")
-    .split("</a>")
-    .join("")
-    .split('target="_blank">')
-    .join("")
-    .split("<a href=")
-    .join("")
-    .split(". ")
-    .join(" ")
-    .split('"')
-    .join("")
-    .split(" ");
   const dyor = e.target.dyor.checked;
   const helpful_links = trimAndParse(e.target.links.value);
   const my_thoughts = e.target.twosats.value;
-  const search_my_thoughts = (e.target.twosats.value + " ")
-    .toLowerCase()
-    .split(",")
-    .join("")
-    .split("<b>")
-    .join("")
-    .split("</b>")
-    .join("")
-    .split("</a>")
-    .join("")
-    .split('target="_blank">')
-    .join("")
-    .split("<a href=")
-    .join("")
-    .split(". ")
-    .join(" ")
-    .split('"')
-    .join("")
-    .split(" ");
   const name = e.target.name.value;
   const sort_name = name.toLowerCase();
   const quoted_description = e.target.quoteddescription.value;
   const socials = trimAndParse(e.target.socials.value);
   const type = e.target.type.value.split(",");
-  const lower_type = e.target.type.value
-    .toLowerCase()
-    .split(" ")
-    .join(",")
-    .split(",");
   const site = e.target.site.value;
 
   // Clear error tags before validating again
@@ -100,17 +57,14 @@ async function addNewsBCHProject(e) {
     audit,
     bias,
     description,
-    search_description,
     dyor,
     helpful_links,
     my_thoughts,
-    search_my_thoughts,
     name,
     sort_name,
     quoted_description,
     socials,
     type,
-    lower_type,
     site,
   });
   let lowercase_audits = [];
@@ -120,6 +74,7 @@ async function addNewsBCHProject(e) {
   });
   project.search_audit = lowercase_audits;
   project.search_socials = Array.from(Object.keys(project.socials));
+  project.search_helpful_links = Array.from(Object.keys(project.helpful_links));
   // Check
   const errors = project.validate(imageFile2Upload);
   if (errors) {

@@ -31,57 +31,14 @@ export function addEventListeners() {
       audit: trimAndParse(e.target.audit.value),
       bias: e.target.bias.value,
       description: e.target.description.value,
-      search_description: (e.target.description.value + " ")
-        .toLowerCase()
-        .split(",")
-        .join("")
-        .split("<b>")
-        .join("")
-        .split("</b>")
-        .join("")
-        .split("</a>")
-        .join("")
-        .split('target="_blank">')
-        .join("")
-        .split("<a href=")
-        .join("")
-        .split(". ")
-        .join(" ")
-        .split('"')
-        .join("")
-        .split(" "),
       dyor: e.target.dyor.checked,
       helpful_links: trimAndParse(e.target.links.value),
       my_thoughts: e.target.twosats.value,
-      search_my_thoughts: (e.target.twosats.value + " ")
-        .toLowerCase()
-        .split(",")
-        .join("")
-        .split("<b>")
-        .join("")
-        .split("</b>")
-        .join("")
-        .split("</a>")
-        .join("")
-        .split('target="_blank">')
-        .join("")
-        .split("<a href=")
-        .join("")
-        .split(". ")
-        .join(" ")
-        .split('"')
-        .join("")
-        .split(" "),
       name: e.target.name.value,
       sort_name: e.target.name.value.toLowerCase(),
       quoted_description: e.target.quoteddescription.value,
       socials: trimAndParse(e.target.socials.value),
       type: e.target.type.value.split(","),
-      lower_type: e.target.type.value
-        .toLowerCase()
-        .split(" ")
-        .join(",")
-        .split(","),
       site: e.target.site.value,
     });
     let lowercase_audits = [];
@@ -91,6 +48,7 @@ export function addEventListeners() {
     });
     p.search_audit = lowercase_audits;
     p.search_socials = Array.from(Object.keys(p.socials));
+    p.search_helpful_links = Array.from(Object.keys(p.helpful_links));
     p.docID = e.target.docID.value;
 
     const errorTags = document.getElementsByClassName("error-edit-project");

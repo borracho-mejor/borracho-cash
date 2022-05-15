@@ -194,6 +194,11 @@ export async function smartBCH_page(scrollTop = true) {
   for (const element of deleteButtons) {
     element.addEventListener("submit", async (e) => {
       e.preventDefault();
+      // Confirm Deletion
+      const r = confirm("Are you sure you want to delete this project?");
+      if (!r) {
+        return;
+      }
       const button = e.target.getElementsByTagName("button")[0];
       const label = Util.disableButton(button);
       await Edit.deleteProject(e.target.docID.value, e.target.logoPath.value);
