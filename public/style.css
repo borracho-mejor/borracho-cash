@@ -394,14 +394,21 @@ input[type="checkbox"] {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 .spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px #ddd solid;
-  border-top: 4px #115c39 solid;
+  width: 125px;
+  height: 125px;
+  border: 15px #ddd solid;
+  border-top: 15px #115c39 solid;
   border-radius: 50%;
-  animation: sp-anime 0.8s infinite linear;
+  animation: sp-anime 1s infinite linear;
+}
+.container-div {
+  background-color: var(--color-card-background);
+  text-align: center;
+  border-radius: 5%;
+  padding: 2rem 2rem 1rem 2rem;
 }
 @keyframes sp-anime {
   0% {
