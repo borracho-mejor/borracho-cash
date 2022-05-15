@@ -9,7 +9,7 @@ exports.algoliaIndexes = {
 
 exports.algoliaAPI = {
   appId: "CPZQDLDBJK",
-  apiKey: "6325ab9d8aad8fa56c78119387b69fda",
+  apiKey: "97e1671d4d43b629bfc2330a121e9ff2",
 };
 
 exports.adminEmails = ["brandon@borracho.cash"];
