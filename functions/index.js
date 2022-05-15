@@ -9,6 +9,7 @@ admin.initializeApp({
 });
 
 const Constant = require("./constant.js");
+const algoliasearch = require("algoliasearch");
 
 exports.admin_getProjectByID = functions.https.onCall(getProjectByID);
 exports.admin_updateSBCHProject = functions.https.onCall(updateSBCHProject);
@@ -16,6 +17,8 @@ exports.admin_deleteSBCHProject = functions.https.onCall(deleteSBCHProject);
 exports.admin_getCardByID = functions.https.onCall(getCardByID);
 exports.admin_updateCard = functions.https.onCall(updateCard);
 exports.admin_deleteCard = functions.https.onCall(deleteCard);
+exports.admin_getSBCHProjectSearch =
+  functions.https.onCall(getSBCHProjectSearch);
 
 function isAdmin(email) {
   return Constant.adminEmails.includes(email);
@@ -199,4 +202,20 @@ async function deleteCard(docID, context) {
       "An error occurred in deleteCard."
     );
   }
+}
+
+async function getSBCHProjectSearch(keywords) {
+  let searchIDs = [];
+  const searchClient = algoliasearch(
+    Constant.algoliaAPI.appId,
+    Constant.algoliaAPI.apiKey
+  );
+  const index = searchClient.initIndex(Constant.algoliaIndexes.SBCH_PROJECTS);
+
+  await index.search(keywords).then(({ hits }) => {
+    hits.forEach((hit) => {
+      searchIDs.push(hit.name); // objectID
+    });
+  });
+  return searchIDs;
 }

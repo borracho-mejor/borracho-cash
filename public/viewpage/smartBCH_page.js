@@ -18,8 +18,12 @@ let projects;
 let types;
 let socials;
 
-export async function smartBCH_page() {
-  Util.scrollToTop();
+export async function smartBCH_page(scrollTop = true) {
+  if (scrollTop) {
+    Util.scrollToTop();
+  } else {
+    Element.content.scrollTo(0, 0);
+  }
   Util.hideTwitterFeeds();
   Util.showHeader();
   Util.unActivateLinks();
@@ -45,10 +49,9 @@ export async function smartBCH_page() {
                         <div class="text-center padding-bottom"><h5>Project Count: <span id="project-count"></span></h5></div>
                         <p style="text-align: center;">You can either...</p>
                         <form id="form-search" class="my-2 my-lg-0 form-inline">
-                          <input name="searchKeywords" class="form-control mr-sm-2 inline flex-fill" type="search" placeholder="Search" aria-label="Search" />
+                          <input id="input-search" name="searchKeywords" class="form-control mr-sm-2 inline flex-fill" type="search" placeholder="Search" aria-label="Search" />
                           <button class="btn btn-success my-2 my-sm-0 inline center-mobile" type="submit">Search</button>
                         </form>
-                        <small style="text-align: center; display: block;">Work in progress, searching is hard... Clear search below.</small>
                         <p class="padding-top" style="text-align: center; margin: 5px;">— OR —</p>
                         <p style="text-align: center; margin: 5px;">Use the filters below to filter projects.</p>
                         <div class="text-center padding-bottom-medium">
@@ -190,6 +193,11 @@ export async function smartBCH_page() {
   for (const element of deleteButtons) {
     element.addEventListener("submit", async (e) => {
       e.preventDefault();
+      // Confirm Deletion
+      const r = confirm("Are you sure you want to delete this project?");
+      if (!r) {
+        return;
+      }
       const button = e.target.getElementsByTagName("button")[0];
       const label = Util.disableButton(button);
       await Edit.deleteProject(e.target.docID.value, e.target.logoPath.value);
@@ -412,6 +420,7 @@ function buildSocials(project) {
 }
 
 function filterResults() {
+  document.getElementById("input-search").value = "";
   let filteredProjects = [...projects];
   let newHTML = "";
   // new_listing
@@ -506,18 +515,18 @@ function filterResults() {
 }
 
 async function searchResults(keywords) {
+  clearCheckboxes();
   let newHTML = "";
   let searchedProjects = [];
 
   if (keywords.length != 0) {
-    searchedProjects = await FirebaseController.getSBCHProjectSearch(
-      keywords.split(" ")
-    );
+    searchedProjects = await FirebaseController.getSBCHProjectSearch(keywords);
   }
 
   if (searchedProjects.length === 0) {
     newHTML += `<h4 style="text-align:center;">No projects found with that search!</h4>`;
   }
+
   let index = 0;
   searchedProjects.forEach((project) => {
     newHTML += buildProjectCard(project, index);
@@ -526,11 +535,12 @@ async function searchResults(keywords) {
 
   Element.content.scrollTo(0, 0);
   document.getElementById("project-count").innerHTML = searchedProjects.length;
+
   Element.content.innerHTML = newHTML;
 }
 
 function clearResults() {
-  smartBCH_page();
+  smartBCH_page(false);
 }
 
 // Thanks im_uname#100🍋 for providing this function
@@ -585,5 +595,26 @@ async function addSmartBCHChain() {
         JSON.stringify(switchError)
       );
     }
+  }
+}
+
+function clearCheckboxes() {
+  document.getElementById("checkbox-new").checked = false;
+  document.getElementById("checkbox-audited").checked = false;
+  document.getElementById("checkbox-mysats").checked = false;
+  document.getElementById("checkbox-dyor").checked = false;
+  document.getElementById("checkbox-non-nft").checked = false;
+  document.getElementById("checkbox-non-dyor").checked = false;
+  let typesCheckboxArray = document.getElementsByClassName(
+    "form-check-type-input"
+  );
+  for (const element of typesCheckboxArray) {
+    element.checked = false;
+  }
+  let socialsCheckboxArray = document.getElementsByClassName(
+    "form-check-social-input"
+  );
+  for (const element of socialsCheckboxArray) {
+    element.checked = false;
   }
 }

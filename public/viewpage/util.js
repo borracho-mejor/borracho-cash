@@ -9,6 +9,13 @@ export function popUpInfo(title, body, closeModal) {
   $("#modal-pop-up-info").modal("show");
 }
 
+export function popUpLoading(closeModal) {
+  if (closeModal) {
+    $("#" + closeModal).modal("hide");
+  }
+  $("#loadingoverlay").modal("show");
+}
+
 export function disableButton(button) {
   button.disabled = true;
   const label = button.innerHTML;

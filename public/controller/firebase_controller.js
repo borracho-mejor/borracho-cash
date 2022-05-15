@@ -1,6 +1,7 @@
 import { Card } from "../model/card.js";
 import { SBCHProject } from "../model/sBCHProject.js";
 import * as Constant from "../model/constant.js";
+import * as Util from "../viewpage/util.js";
 import {
   getFirestore,
   collection,
@@ -66,135 +67,31 @@ export async function getSBCHProjectList() {
   return projects;
 }
 
+const cf_getSBCHProjectSearch = httpsCallable(
+  functions,
+  "admin_getSBCHProjectSearch"
+);
 export async function getSBCHProjectSearch(keywords) {
+  Util.popUpLoading();
   let projects = [];
+  let result = await cf_getSBCHProjectSearch(keywords);
+  result = result.data;
 
-  const nameContains = query(
-    collection(db, Constant.collectionName.SBCH_PROJECTS),
-    where("sort_name", "in", keywords)
-  );
-  const nameSnapshot = await getDocs(nameContains);
-
-  const typeContains = query(
-    collection(db, Constant.collectionName.SBCH_PROJECTS),
-    where("lower_type", "array-contains-any", keywords)
-  );
-  const typeSnapshot = await getDocs(typeContains);
-
-  const descriptionContains = query(
-    collection(db, Constant.collectionName.SBCH_PROJECTS),
-    where("search_description", "array-contains-any", keywords)
-  );
-  const descriptionSnapshot = await getDocs(descriptionContains);
-
-  const twoSatsContains = query(
-    collection(db, Constant.collectionName.SBCH_PROJECTS),
-    where("search_my_thoughts", "array-contains-any", keywords)
-  );
-  const twoSatsSnapshot = await getDocs(twoSatsContains);
-
-  const socialsContains = query(
-    collection(db, Constant.collectionName.SBCH_PROJECTS),
-    where("search_socials", "array-contains-any", keywords)
-  );
-  const socialsSnapshot = await getDocs(socialsContains);
-
-  const auditContains = query(
-    collection(db, Constant.collectionName.SBCH_PROJECTS),
-    where("search_audit", "array-contains-any", keywords)
-  );
-  const auditSnapshot = await getDocs(auditContains);
-
-  const [
-    nameQuerySnapshot,
-    typeQuerySnapshot,
-    descriptionQuerySnapshot,
-    twoSatsQuerySnapshot,
-    socialsQuerySnapshot,
-    auditQuerySnapshot,
-  ] = await Promise.all([
-    nameSnapshot,
-    typeSnapshot,
-    descriptionSnapshot,
-    twoSatsSnapshot,
-    socialsSnapshot,
-    auditSnapshot,
-  ]);
-
-  nameQuerySnapshot.forEach((doc) => {
-    const project = new SBCHProject(doc.data());
-    project.docID = doc.id;
-    projects.push(project);
-  });
-
-  typeQuerySnapshot.forEach((doc) => {
-    const project = new SBCHProject(doc.data());
-    project.docID = doc.id;
-    projects.push(project);
-  });
-
-  descriptionQuerySnapshot.forEach((doc) => {
-    const project = new SBCHProject(doc.data());
-    project.docID = doc.id;
-    projects.push(project);
-  });
-
-  twoSatsQuerySnapshot.forEach((doc) => {
-    const project = new SBCHProject(doc.data());
-    project.docID = doc.id;
-    projects.push(project);
-  });
-
-  socialsQuerySnapshot.forEach((doc) => {
-    const project = new SBCHProject(doc.data());
-    project.docID = doc.id;
-    projects.push(project);
-  });
-
-  auditQuerySnapshot.forEach((doc) => {
-    const project = new SBCHProject(doc.data());
-    project.docID = doc.id;
-    projects.push(project);
-  });
-
-  // Filter only unique projects, have to sort objects since they are random and create dupes
-  projects.forEach((project) => {
-    const orderedLinks = Object.keys(project.helpful_links)
-      .sort()
-      .reduce((obj, key) => {
-        obj[key] = project.helpful_links[key];
-        return obj;
-      }, {});
-    project.helpful_links = orderedLinks;
-  });
-  projects.forEach((project) => {
-    const orderedAudits = Object.keys(project.audit)
-      .sort()
-      .reduce((obj, key) => {
-        obj[key] = project.audit[key];
-        return obj;
-      }, {});
-    project.audit = orderedAudits;
-  });
-  projects.forEach((project) => {
-    const orderedSocials = Object.keys(project.socials)
-      .sort()
-      .reduce((obj, key) => {
-        obj[key] = project.socials[key];
-        return obj;
-      }, {});
-    project.socials = orderedSocials;
-  });
-  let unique_projects = projects.filter((value, index) => {
-    const _value = JSON.stringify(value);
-    return (
-      index ===
-      projects.findIndex((p) => {
-        return JSON.stringify(p) === _value;
-      })
+  for (const element of result) {
+    const q = await query(
+      collection(db, Constant.collectionName.SBCH_PROJECTS),
+      where("name", "==", element)
     );
-  });
-  return unique_projects;
+    const snapshot = await getDocs(q);
+    snapshot.forEach((doc) => {
+      const project = new SBCHProject(doc.data());
+      projects.push(project);
+    });
+  }
+  setTimeout(function () {
+    $("#loadingoverlay").modal("hide");
+  }, 500);
+  return projects;
 }
 
 export async function getTypeList(projects) {
