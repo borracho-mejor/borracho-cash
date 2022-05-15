@@ -9,6 +9,7 @@ admin.initializeApp({
 });
 
 const Constant = require("./constant.js");
+const Secrets = require("./secrets.js");
 const algoliasearch = require("algoliasearch");
 
 exports.admin_getProjectByID = functions.https.onCall(getProjectByID);
