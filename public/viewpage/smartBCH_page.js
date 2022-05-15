@@ -21,6 +21,8 @@ let socials;
 export async function smartBCH_page(scrollTop = true) {
   if (scrollTop) {
     Util.scrollToTop();
+  } else {
+    Element.content.scrollTo(0, 0);
   }
   Util.hideTwitterFeeds();
   Util.showHeader();
