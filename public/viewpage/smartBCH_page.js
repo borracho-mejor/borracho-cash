@@ -507,6 +507,7 @@ function filterResults() {
 }
 
 async function searchResults(keywords) {
+  clearCheckboxes();
   let newHTML = "";
   let searchedProjects = [];
 
@@ -586,5 +587,26 @@ async function addSmartBCHChain() {
         JSON.stringify(switchError)
       );
     }
+  }
+}
+
+function clearCheckboxes() {
+  document.getElementById("checkbox-new").checked = false;
+  document.getElementById("checkbox-audited").checked = false;
+  document.getElementById("checkbox-mysats").checked = false;
+  document.getElementById("checkbox-dyor").checked = false;
+  document.getElementById("checkbox-non-nft").checked = false;
+  document.getElementById("checkbox-non-dyor").checked = false;
+  let typesCheckboxArray = document.getElementsByClassName(
+    "form-check-type-input"
+  );
+  for (const element of typesCheckboxArray) {
+    element.checked = false;
+  }
+  let socialsCheckboxArray = document.getElementsByClassName(
+    "form-check-social-input"
+  );
+  for (const element of socialsCheckboxArray) {
+    element.checked = false;
   }
 }
