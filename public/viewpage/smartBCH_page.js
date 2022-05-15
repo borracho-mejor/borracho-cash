@@ -18,8 +18,10 @@ let projects;
 let types;
 let socials;
 
-export async function smartBCH_page() {
-  Util.scrollToTop();
+export async function smartBCH_page(scrollTop = true) {
+  if (scrollTop) {
+    Util.scrollToTop();
+  }
   Util.hideTwitterFeeds();
   Util.showHeader();
   Util.unActivateLinks();
@@ -532,7 +534,7 @@ async function searchResults(keywords) {
 }
 
 function clearResults() {
-  smartBCH_page();
+  smartBCH_page(false);
 }
 
 // Thanks im_uname#100🍋 for providing this function
