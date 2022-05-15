@@ -45,7 +45,7 @@ export async function smartBCH_page() {
                         <div class="text-center padding-bottom"><h5>Project Count: <span id="project-count"></span></h5></div>
                         <p style="text-align: center;">You can either...</p>
                         <form id="form-search" class="my-2 my-lg-0 form-inline">
-                          <input name="searchKeywords" class="form-control mr-sm-2 inline flex-fill" type="search" placeholder="Search" aria-label="Search" />
+                          <input id="input-search" name="searchKeywords" class="form-control mr-sm-2 inline flex-fill" type="search" placeholder="Search" aria-label="Search" />
                           <button class="btn btn-success my-2 my-sm-0 inline center-mobile" type="submit">Search</button>
                         </form>
                         <small style="text-align: center; display: block;">Work in progress, searching is hard... Clear search below.</small>
@@ -412,6 +412,7 @@ function buildSocials(project) {
 }
 
 function filterResults() {
+  document.getElementById("input-search").value = "";
   let filteredProjects = [...projects];
   let newHTML = "";
   // new_listing
