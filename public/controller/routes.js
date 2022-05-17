@@ -8,7 +8,7 @@ export const routePathname = {
   HOME: "/",
   ABOUT: "/about",
   WHITEPAPER: "/whitepaper",
-  SBCH: "/smartBCH",
+  SBCH: "/smartbch",
   LOGIN: "/login",
 };
 
