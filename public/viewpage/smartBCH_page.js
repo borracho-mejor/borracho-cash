@@ -59,7 +59,9 @@ export async function smartBCH_page(scrollTop = true) {
                         <p style="text-align: center;">You can either...</p>
                         <form id="form-search" class="my-2 my-lg-0 form-inline">
                           <input id="input-search" name="searchKeywords" class="form-control mr-sm-2 inline flex-fill" type="search" placeholder="Search" aria-label="Search" />
-                          <button class="btn btn-success my-2 my-sm-0 inline center-mobile" type="submit">Search</button>
+                          <button class="btn btn-success my-2 my-sm-0 inline center-mobile" type="submit">
+                            <span class="material-icons" style="vertical-align: middle;">search</span>
+                          </button>
                         </form>
                         <p class="padding-top" style="text-align: center; margin: 5px;">— OR —</p>
                         <p style="text-align: center; margin: 5px;">Use the filters below to filter projects.</p>
