@@ -38,13 +38,22 @@ export async function smartBCH_page(scrollTop = true) {
                         <h5 class="padding-bottom">Here's a list of smartBCH projects. This will only include projects like DEXs, Launchpads, Staking Platforms, NFT Marketplaces, and tokens with large use-cases (i.e: Celery with its staking platform and SIDX with its governance and managed portfolio). 
                           I am not currently including tokens without use-cases. With smartBCH, WAGMI!
                         </h5>
-                        <div class="text-center padding-bottom-large" style="max-width: 65%; margin-left: auto; margin-right: auto;">
+                        <div class="text-center" style="max-width: 65%; margin-left: auto; margin-right: auto;">
                           <button id="button-add-smartBCH" type="button" class="btn btn-block btn-outline-success"><img src="../images/metamask.svg" alt="Metamask Logo" style="max-height: 1.5em;" /> Add smartBCH to MetaMask</button>
                         </div>
-                        <p>
-                          <small class="text-muted"><b>Disclaimer: Do Your Own Research!</b> Although I give my thoughts on some projects, nothing included here should be interpretted as financial advice in any shape or form.
-                            Please research any project thoroughly before even contemplating investing, and only invest what you are able and willing to lose.
-                          </small>
+                        <p style="vertical-align: middle;">
+                          <div data-toggle="collapse" href="#collapseDisclaimer" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <div class="alert alert-danger" role="alert" style="min-height: 1em; text-align: center; padding: 1px 0;">
+                              <i class="material-icons" style="font-size: 1.5em; vertical-align: middle; float: left; margin-left: 5%;">help_outline</i>
+                                <i>Click here for my disclaimer!</i>
+                              <i class="material-icons" style="font-size: 1.5em; vertical-align: middle; float: right; margin-right: 5%;">help_outline</i>
+                            </div>
+                          </div>
+                          <div class="collapse" id="collapseDisclaimer">
+                            <small class="text-muted"><b>Disclaimer: Do Your Own Research!</b> Although I give my thoughts on some projects, nothing included here should be interpretted as financial advice in any shape or form.
+                              Please research any project thoroughly before even contemplating investing, and only invest what you are able and willing to lose.
+                            </small>
+                          </div>
                         </p>                        
                         <div class="text-center padding-bottom"><h5>Project Count: <span id="project-count"></span></h5></div>
                         <p style="text-align: center;">You can either...</p>
