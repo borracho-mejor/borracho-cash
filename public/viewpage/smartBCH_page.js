@@ -38,9 +38,6 @@ export async function smartBCH_page(scrollTop = true) {
                         <h5 class="padding-bottom">Here's a list of smartBCH projects. This will only include projects like DEXs, Launchpads, Staking Platforms, NFT Marketplaces, and tokens with large use-cases (i.e: Celery with its staking platform and SIDX with its governance and managed portfolio). 
                           I am not currently including tokens without use-cases. With smartBCH, WAGMI!
                         </h5>
-                        <div class="text-center" style="max-width: 65%; margin-left: auto; margin-right: auto;">
-                          <button id="button-add-smartBCH" type="button" class="btn btn-block btn-outline-success"><img src="../images/metamask.svg" alt="Metamask Logo" style="max-height: 1.5em;" /> Add smartBCH to MetaMask</button>
-                        </div>
                         <p style="vertical-align: middle;">
                           <div data-toggle="collapse" href="#collapseDisclaimer" role="button" aria-expanded="false" aria-controls="collapseExample">
                             <div class="alert alert-danger" role="alert" style="min-height: 1em; text-align: center; padding: 1px 0;">
@@ -54,7 +51,10 @@ export async function smartBCH_page(scrollTop = true) {
                               Please research any project thoroughly before even contemplating investing, and only invest what you are able and willing to lose.
                             </small>
                           </div>
-                        </p>                        
+                        </p>
+                        <div class="text-center padding-bottom-large" style="max-width: 65%; margin-left: auto; margin-right: auto;">
+                          <button id="button-add-smartBCH" type="button" class="btn btn-block btn-outline-success"><img src="../images/metamask.svg" alt="Metamask Logo" style="max-height: 1.5em;" /> Add smartBCH to MetaMask</button>
+                        </div>                        
                         <div class="text-center padding-bottom"><h5>Project Count: <span id="project-count"></span></h5></div>
                         <p style="text-align: center;">You can either...</p>
                         <form id="form-search" class="my-2 my-lg-0 form-inline">
