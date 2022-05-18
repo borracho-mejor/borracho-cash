@@ -45,7 +45,7 @@ export async function smartBCH_page(scrollTop = true) {
                           <div data-toggle="collapse" href="#collapseDisclaimer" role="button" aria-expanded="false" aria-controls="collapseExample">
                             <div class="alert alert-danger" role="alert" style="min-height: 1em; text-align: center; padding: 1px 0;">
                               <i class="material-icons" style="font-size: 1.5em; vertical-align: middle; float: left; margin-left: 5%;">help_outline</i>
-                                <i>Click here for my disclaimer!</i>
+                                <i>Click here to read my disclaimer!</i>
                               <i class="material-icons" style="font-size: 1.5em; vertical-align: middle; float: right; margin-right: 5%;">help_outline</i>
                             </div>
                           </div>
