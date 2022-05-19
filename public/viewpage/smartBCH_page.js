@@ -41,7 +41,7 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
                            I am not currently including tokens without use-cases. With smartBCH, WAGMI!
                           </h5>
                           <p style="vertical-align: middle;">
-                            <div data-toggle="collapse" href="#collapseDisclaimer" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            <div data-toggle="collapse" href="#collapseDisclaimer" role="button" aria-expanded="false" aria-controls="collapseDisclaimer">
                               <div class="alert alert-danger" role="alert" style="min-height: 1em; text-align: center; padding: 1px 0;">
                                 <i class="material-icons" style="font-size: 1.5em; vertical-align: middle; float: left; margin-left: 5%;">help_outline</i>
                                   <small>Click here to read my disclaimer!</small>
