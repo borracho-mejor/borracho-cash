@@ -150,6 +150,9 @@ a:hover {
   #content-sidebar {
     margin-bottom: 1.5em;
   }
+  #collapse-button {
+    display: inline;
+  }
 }
 
 @media screen and (min-width: 900px) {
@@ -174,6 +177,9 @@ a:hover {
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+  }
+  #collapse-button {
+    display: none;
   }
 }
 

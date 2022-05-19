@@ -71,7 +71,7 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
                           <div class="text-center padding-bottom-medium">
                             <button id="button-filter" type="button" class="btn btn-success" style="margin-right: 5px; margin-bottom: 5px;">Filter Projects</button>
                             <button id="button-filter-clear" type="button" class="btn btn-danger" style="margin-right: 5px; margin-bottom: 5px;">Clear</button>
-                            <button class="btn btn-outline-success" data-toggle="collapse" href="#collapseSidebar" data-target=".multi-collapse" role="button" aria-expanded="false" aria-controls="collapseSidebar1 collapseSidebar2" style="margin-bottom: 5px;">Collapse Sidebar</button>
+                            <button id="collapse-button" class="btn btn-outline-success" data-toggle="collapse" href="#collapseSidebar" data-target=".multi-collapse" role="button" aria-expanded="false" aria-controls="collapseSidebar1 collapseSidebar2" style="margin-bottom: 5px;">Expand/Collapse Sidebar</button>
                           </div>
                           <div class="collapse show multi-collapse" id="collapseSidebar1" >
                             <div class="alert alert-custom">
