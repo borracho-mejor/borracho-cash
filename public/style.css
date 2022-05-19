@@ -419,3 +419,22 @@ input[type="checkbox"] {
     transform: rotate(359deg);
   }
 }
+
+/* Floating Button */
+.float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 20px;
+  background-color: #115c39;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  display: table;
+  z-index: 1;
+}
+.my-float {
+  margin-top: 22px;
+}
