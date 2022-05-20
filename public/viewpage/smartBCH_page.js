@@ -49,7 +49,7 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
                               </div>
                             </div>
                             <div class="collapse" id="collapseDisclaimer">
-                              <small class="text-muted"><b>Disclaimer: Do Your Own Research!</b> Although I give my thoughts on some projects, nothing included here should be interpretted as financial advice in any shape or form.
+                              <small class="text-muted"><b>Do Your Own Research!</b> Although I give my thoughts on some projects, nothing included here should be interpretted as financial advice in any shape or form.
                                 Please research any project thoroughly before even contemplating investing, and only invest what you are able and willing to lose.
                               </small>
                             </div>
