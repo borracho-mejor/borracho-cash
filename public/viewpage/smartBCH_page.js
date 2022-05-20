@@ -579,7 +579,7 @@ async function searchResults(keywords) {
 }
 
 function clearResults() {
-  if (document.getElementById("collapseSidebar2").classList.contains("show")) {
+  if (document.getElementById("collapseSidebar1").classList.contains("show")) {
     smartBCH_page(false, false);
   } else {
     smartBCH_page(false, true);
