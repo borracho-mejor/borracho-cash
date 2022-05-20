@@ -18,12 +18,13 @@ let projects;
 let types;
 let socials;
 
-export async function smartBCH_page(scrollTop = true) {
-  if (scrollTop) {
-    Util.scrollToTop();
-  } else {
-    Element.content.scrollTo(0, 0);
-  }
+const floatingButtonHTML = "";
+
+// `<i class="float" data-toggle="collapse" href="#collapseSidebar" data-target=".multi-collapse" role="button" aria-expanded="false" aria-controls="collapseSidebar1 collapseSidebar2">
+//                               <span class="material-icons" style="margin: auto; vertical-align: middle; display:table-cell;">unfold_less</span>
+//                             </i>`;
+
+export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
   Util.hideTwitterFeeds();
   Util.showHeader();
   Util.unActivateLinks();
@@ -35,82 +36,99 @@ export async function smartBCH_page(scrollTop = true) {
   let sidebarHTML = `<div style="height: 100%;">
                       <img class="dark-mode" src="./images/smartBCH_light.png" alt="smartBCH logo" style="width: 100%; padding: 5px; margin: auto;" /><img class="light-mode" src="./images/smartBCH_dark.png" alt="smartBCH logo" style="width: 100%; padding: 5px;" />
                       <div style="max-width: 65rem; padding: 5px; margin: auto; text-align: left;">                  
-                        <h5 class="padding-bottom">Here's a list of smartBCH projects. This will only include projects like DEXs, Launchpads, Staking Platforms, NFT Marketplaces, and tokens with large use-cases (i.e: Celery with its staking platform and SIDX with its governance and managed portfolio). 
-                          I am not currently including tokens without use-cases. With smartBCH, WAGMI!
-                        </h5>
-                        <div class="text-center padding-bottom-large" style="max-width: 65%; margin-left: auto; margin-right: auto;">
-                          <button id="button-add-smartBCH" type="button" class="btn btn-block btn-outline-success"><img src="../images/metamask.svg" alt="Metamask Logo" style="max-height: 1.5em;" /> Add smartBCH to MetaMask</button>
-                        </div>
-                        <p>
-                          <small class="text-muted"><b>Disclaimer: Do Your Own Research!</b> Although I give my thoughts on some projects, nothing included here should be interpretted as financial advice in any shape or form.
-                            Please research any project thoroughly before even contemplating investing, and only invest what you are able and willing to lose.
-                          </small>
-                        </p>                        
+                        <div class="collapse show multi-collapse" id="collapseSidebar2" >
+                          <h5 class="padding-bottom">Here's a list of smartBCH projects. This will only include projects like DEXs, Launchpads, Staking Platforms, NFT Marketplaces, and tokens with large use-cases (i.e: Celery with its staking platform and SIDX with its governance and managed portfolio). 
+                           I am not currently including tokens without use-cases. With smartBCH, WAGMI!
+                          </h5>
+                          <p style="vertical-align: middle;">
+                            <div data-toggle="collapse" href="#collapseDisclaimer" role="button" aria-expanded="false" aria-controls="collapseDisclaimer">
+                              <div class="alert alert-danger" role="alert" style="min-height: 1em; text-align: center; padding: 1px 0;">
+                                <i class="material-icons" style="font-size: 1.5em; vertical-align: middle; float: left; margin-left: 5%;">help_outline</i>
+                                  <small>Click here to read my disclaimer!</small>
+                                <i class="material-icons" style="font-size: 1.5em; vertical-align: middle; float: right; margin-right: 5%;">help_outline</i>
+                              </div>
+                            </div>
+                            <div class="collapse" id="collapseDisclaimer">
+                              <small class="text-muted"><b>Do Your Own Research!</b> Although I give my thoughts on some projects, nothing included here should be interpretted as financial advice in any shape or form.
+                                Please research any project thoroughly before even contemplating investing, and only invest what you are able and willing to lose.
+                              </small>
+                            </div>
+                          </p>
+                          <div class="text-center padding-bottom-large" style="max-width: 65%; margin-left: auto; margin-right: auto;">
+                            <button id="button-add-smartBCH" type="button" class="btn btn-block btn-outline-success"><img src="../images/metamask.svg" alt="Metamask Logo" style="max-height: 1.5em;" /> Add smartBCH to MetaMask</button>
+                          </div>    
+                        </div>                 
                         <div class="text-center padding-bottom"><h5>Project Count: <span id="project-count"></span></h5></div>
-                        <p style="text-align: center;">You can either...</p>
-                        <form id="form-search" class="my-2 my-lg-0 form-inline">
-                          <input id="input-search" name="searchKeywords" class="form-control mr-sm-2 inline flex-fill" type="search" placeholder="Search" aria-label="Search" />
-                          <button class="btn btn-success my-2 my-sm-0 inline center-mobile" type="submit">Search</button>
-                        </form>
-                        <p class="padding-top" style="text-align: center; margin: 5px;">— OR —</p>
-                        <p style="text-align: center; margin: 5px;">Use the filters below to filter projects.</p>
-                        <div class="text-center padding-bottom-medium">
-                          <button id="button-filter" type="button" class="btn btn-success" style="margin-right: 5px;">Filter Projects</button>
-                          <button id="button-filter-clear" type="button" class="btn btn-danger">Clear</button>
-                        </div>
-                        <div class="alert alert-custom">
-                          <p class="alert-heading">Quick Filters:</p>
-                          <hr>
-                          <div class="form-check inline padding-right-large">
-                            <input class="form-check-input" type="checkbox" value="" id="checkbox-new">
-                            <label class="form-check-label" for="checkbox-new">
-                              Newly Listed
-                            </label>
+                          <p style="text-align: center;">You can either...</p>
+                          <form id="form-search" class="my-2 my-lg-0 form-inline">
+                            <input id="input-search" name="searchKeywords" class="form-control mr-sm-2 inline flex-fill" type="search" placeholder="Search" aria-label="Search" />
+                            <button class="btn btn-success my-2 my-sm-0 inline center-mobile" type="submit">
+                              <span class="material-icons" style="vertical-align: middle;">search</span>
+                            </button>
+                          </form>
+                          <p class="padding-top" style="text-align: center; margin: 5px;">— OR —</p>
+                          <p style="text-align: center; margin: 5px;">Use the filters below to filter projects.</p>
+                          <div class="text-center padding-bottom-medium">
+                            <button id="button-filter" type="button" class="btn btn-success" style="margin-right: 5px; margin-bottom: 5px;">Filter Projects</button>
+                            <button id="button-filter-clear" type="button" class="btn btn-danger" style="margin-right: 5px; margin-bottom: 5px;">Clear</button>
+                            <button id="collapse-button" class="btn btn-outline-success collapse-btn-text flashing-button" data-toggle="collapse" href="#collapseSidebar" data-target=".multi-collapse" role="button" 
+                              aria-expanded="false" aria-controls="collapseSidebar1 collapseSidebar2" style="margin-bottom: 5px;">Collapse Sidebar</button>
                           </div>
-                          <div class="form-check inline padding-right-large">
-                            <input class="form-check-input" type="checkbox" value="" id="checkbox-audited">
-                            <label class="form-check-label" for="checkbox-audited">
-                              Audited
-                            </label>
+                          <div class="collapse show multi-collapse" id="collapseSidebar1" >
+                            <div class="alert alert-custom">
+                              <p class="alert-heading">Quick Filters:</p>
+                              <hr>
+                            <div class="form-check inline padding-right-large">
+                              <input class="form-check-input" type="checkbox" value="" id="checkbox-new">
+                              <label class="form-check-label" for="checkbox-new">
+                                Newly Listed
+                              </label>
+                            </div>
+                            <div class="form-check inline padding-right-large">
+                              <input class="form-check-input" type="checkbox" value="" id="checkbox-audited">
+                              <label class="form-check-label" for="checkbox-audited">
+                                Audited
+                              </label>
+                            </div>
+                            <div class="form-check inline padding-right-large">
+                              <input class="form-check-input" type="checkbox" value="" id="checkbox-non-dyor">
+                              <label class="form-check-label" for="checkbox-non-dyor">
+                                Non-DYOR
+                              </label>
+                            </div>
+                            <div class="form-check inline padding-right-large">
+                              <input class="form-check-input" type="checkbox" value="" id="checkbox-mysats">
+                              <label class="form-check-label" for="checkbox-mysats">
+                                My Two Sats
+                              </label>
+                            </div>
+                            <div class="form-check inline padding-right-large">
+                              <input class="form-check-input" type="checkbox" value="" id="checkbox-non-nft">
+                              <label class="form-check-label" for="checkbox-non-nft">
+                                Non-NFT Only
+                              </label>
+                            </div>
+                            <div class="form-check inline padding-right-large">
+                              <input class="form-check-input" type="checkbox" value="" id="checkbox-dyor">
+                              <label class="form-check-label" for="checkbox-dyor">
+                                DYOR
+                              </label>
+                            </div>
                           </div>
-                          <div class="form-check inline padding-right-large">
-                            <input class="form-check-input" type="checkbox" value="" id="checkbox-non-dyor">
-                            <label class="form-check-label" for="checkbox-non-dyor">
-                              Non-DYOR
-                            </label>
+                          <div class="alert alert-custom">
+                            <p class="alert-heading">Type(s): (an OR relationship)</p>
+                            <hr>
+                            <div id="type-check-form"></div>
                           </div>
-                          <div class="form-check inline padding-right-large">
-                            <input class="form-check-input" type="checkbox" value="" id="checkbox-mysats">
-                            <label class="form-check-label" for="checkbox-mysats">
-                              My Two Sats
-                            </label>
+                          <div class="alert alert-custom">
+                            <p class="alert-heading">Socials Available: (an AND relationship)</p>
+                            <hr>
+                            <div id="socials-check-form"></div>
                           </div>
-                          <div class="form-check inline padding-right-large">
-                            <input class="form-check-input" type="checkbox" value="" id="checkbox-non-nft">
-                            <label class="form-check-label" for="checkbox-non-nft">
-                              Non-NFT Only
-                            </label>
-                          </div>
-                          <div class="form-check inline padding-right-large">
-                            <input class="form-check-input" type="checkbox" value="" id="checkbox-dyor">
-                            <label class="form-check-label" for="checkbox-dyor">
-                              DYOR
-                            </label>
-                          </div>
-                        </div>
-                        <div class="alert alert-custom">
-                          <p class="alert-heading">Type(s): (an OR relationship)</p>
-                          <hr>
-                          <div id="type-check-form"></div>
-                        </div>
-                        <div class="alert alert-custom">
-                          <p class="alert-heading">Socials Available: (an AND relationship)</p>
-                          <hr>
-                          <div id="socials-check-form"></div>
                         </div>
                       </div>
                     </div>
-                    `;
+                  `;
 
   try {
     projects = await FirebaseController.getSBCHProjectList();
@@ -155,6 +173,8 @@ export async function smartBCH_page(scrollTop = true) {
     return;
   }
 
+  html += floatingButtonHTML;
+
   Element.content.innerHTML = html;
   Element.contentSidebar.innerHTML = sidebarHTML;
   document.getElementById("type-check-form").innerHTML = typeChecksHTML;
@@ -178,6 +198,9 @@ export async function smartBCH_page(scrollTop = true) {
     .addEventListener("click", () => {
       clearResults();
     });
+  document.getElementById("collapse-button").addEventListener("click", () => {
+    collapseSidebar();
+  });
 
   const editButtons = document.getElementsByClassName("form-edit-project");
   for (const element of editButtons) {
@@ -207,6 +230,18 @@ export async function smartBCH_page(scrollTop = true) {
 
   if (Auth.currentUser) {
     Auth.authStateChangeObserver(Auth.currentUser);
+  }
+
+  if (scrollTop) {
+    Util.scrollToTop();
+  } else {
+    Element.content.scrollTo(0, 0);
+  }
+
+  if (isCollapsed) {
+    document.getElementById("collapseSidebar1").classList.remove("show");
+    document.getElementById("collapseSidebar2").classList.remove("show");
+    document.getElementById("collapse-button").innerHTML = "Expand Sidebar";
   }
 }
 
@@ -509,6 +544,8 @@ function filterResults() {
     ++index;
   });
 
+  newHTML += floatingButtonHTML;
+
   Element.content.scrollTo(0, 0);
   document.getElementById("project-count").innerHTML = filteredProjects.length;
   Element.content.innerHTML = newHTML;
@@ -536,11 +573,17 @@ async function searchResults(keywords) {
   Element.content.scrollTo(0, 0);
   document.getElementById("project-count").innerHTML = searchedProjects.length;
 
+  newHTML += floatingButtonHTML;
+
   Element.content.innerHTML = newHTML;
 }
 
 function clearResults() {
-  smartBCH_page(false);
+  if (document.getElementById("collapseSidebar1").classList.contains("show")) {
+    smartBCH_page(false, false);
+  } else {
+    smartBCH_page(false, true);
+  }
 }
 
 // Thanks im_uname#100🍋 for providing this function
@@ -616,5 +659,20 @@ function clearCheckboxes() {
   );
   for (const element of socialsCheckboxArray) {
     element.checked = false;
+  }
+}
+
+function collapseSidebar() {
+  if (
+    document.getElementById("collapseSidebar1").classList.contains("show") &&
+    document.getElementById("collapseSidebar2").classList.contains("show")
+  ) {
+    document.getElementById("collapse-button").innerHTML = "Expand Sidebar";
+    document.getElementById("collapseSidebar1").classList.add("show");
+    document.getElementById("collapseSidebar2").classList.add("show");
+  } else {
+    document.getElementById("collapse-button").innerHTML = "Collapse Sidebar";
+    document.getElementById("collapseSidebar1").classList.remove("show");
+    document.getElementById("collapseSidebar2").classList.remove("show");
   }
 }

@@ -150,6 +150,9 @@ a:hover {
   #content-sidebar {
     margin-bottom: 1.5em;
   }
+  #collapse-button {
+    display: inline;
+  }
 }
 
 @media screen and (min-width: 900px) {
@@ -174,6 +177,9 @@ a:hover {
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+  }
+  #collapse-button {
+    display: none;
   }
 }
 
@@ -418,4 +424,42 @@ input[type="checkbox"] {
   100% {
     transform: rotate(359deg);
   }
+}
+
+/* Floating Button */
+.float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 20px;
+  background-color: #115c39;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  display: table;
+  z-index: 1;
+}
+.my-float {
+  margin-top: 22px;
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 6px #28a745;
+  }
+  33% {
+    box-shadow: 0 0 10px #28a745;
+  }
+  66% {
+    box-shadow: 0 0 6px #28a745;
+  }
+  100% {
+    box-shadow: 0 0 3px #28a745;
+  }
+}
+
+.flashing-button {
+  animation: glowing 750ms infinite;
 }
