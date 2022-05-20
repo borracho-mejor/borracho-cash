@@ -71,7 +71,8 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
                           <div class="text-center padding-bottom-medium">
                             <button id="button-filter" type="button" class="btn btn-success" style="margin-right: 5px; margin-bottom: 5px;">Filter Projects</button>
                             <button id="button-filter-clear" type="button" class="btn btn-danger" style="margin-right: 5px; margin-bottom: 5px;">Clear</button>
-                            <button id="collapse-button" class="btn btn-outline-success" data-toggle="collapse" href="#collapseSidebar" data-target=".multi-collapse" role="button" aria-expanded="false" aria-controls="collapseSidebar1 collapseSidebar2" style="margin-bottom: 5px;">Expand/Collapse Sidebar</button>
+                            <button id="collapse-button" class="btn btn-outline-success collapse-btn-text flashing-button" data-toggle="collapse" href="#collapseSidebar" data-target=".multi-collapse" role="button" 
+                              aria-expanded="false" aria-controls="collapseSidebar1 collapseSidebar2" style="margin-bottom: 5px;">Collapse Sidebar</button>
                           </div>
                           <div class="collapse show multi-collapse" id="collapseSidebar1" >
                             <div class="alert alert-custom">
@@ -197,6 +198,9 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
     .addEventListener("click", () => {
       clearResults();
     });
+  document.getElementById("collapse-button").addEventListener("click", () => {
+    collapseSidebar();
+  });
 
   const editButtons = document.getElementsByClassName("form-edit-project");
   for (const element of editButtons) {
@@ -237,6 +241,7 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
   if (isCollapsed) {
     document.getElementById("collapseSidebar1").classList.remove("show");
     document.getElementById("collapseSidebar2").classList.remove("show");
+    document.getElementById("collapse-button").innerHTML = "Expand Sidebar";
   }
 }
 
@@ -654,5 +659,20 @@ function clearCheckboxes() {
   );
   for (const element of socialsCheckboxArray) {
     element.checked = false;
+  }
+}
+
+function collapseSidebar() {
+  if (
+    document.getElementById("collapseSidebar1").classList.contains("show") &&
+    document.getElementById("collapseSidebar2").classList.contains("show")
+  ) {
+    document.getElementById("collapse-button").innerHTML = "Expand Sidebar";
+    document.getElementById("collapseSidebar1").classList.add("show");
+    document.getElementById("collapseSidebar2").classList.add("show");
+  } else {
+    document.getElementById("collapse-button").innerHTML = "Collapse Sidebar";
+    document.getElementById("collapseSidebar1").classList.remove("show");
+    document.getElementById("collapseSidebar2").classList.remove("show");
   }
 }
