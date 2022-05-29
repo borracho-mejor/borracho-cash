@@ -61,6 +61,11 @@ export async function home_page() {
   for (const element of deleteButtons) {
     element.addEventListener("submit", async (e) => {
       e.preventDefault();
+      // Confirm Deletion
+      const r = confirm("Are you sure you want to delete this card?");
+      if (!r) {
+        return;
+      }
       const button = e.target.getElementsByTagName("button")[0];
       const label = Util.disableButton(button);
       await Edit.deleteCard(e.target.docID.value, "home");
