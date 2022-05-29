@@ -446,6 +446,9 @@ function buildSocials(project) {
     html += `<a href="${project.socials["angel"]}" target="_blank"><img class="light-mode" src="./images/angel_dark.png" alt="Angel logo" style="height: 2em; padding: 5px" /></a>`;
     html += `<a href="${project.socials["angel"]}" target="_blank"><img class="dark-mode" src="./images/angel_light.png" alt="Angel logo" style="height: 2em; padding: 5px" /></a>`;
   }
+  if (project.socials["linktree"]) {
+    html += `<a href="${project.socials["linktree"]}" target="_blank"><img src="./images/linktree.png" alt="Linktree logo" style="height: 2em; padding: 5px" /></a>`;
+  }
   // If no socials we need to add text
   if (html == `<div class="sibling-fade">`) {
     html += `<p>None... 🤷‍♂️</p>`;
