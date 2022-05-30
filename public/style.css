@@ -438,7 +438,7 @@ input[type="checkbox"] {
   border-radius: 50px;
   text-align: center;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
-  display: table;
+  display: none;
   z-index: 1;
 }
 .my-float {

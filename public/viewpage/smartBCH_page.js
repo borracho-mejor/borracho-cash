@@ -18,12 +18,6 @@ let projects;
 let types;
 let socials;
 
-const floatingButtonHTML = "";
-
-// `<i class="float" data-toggle="collapse" href="#collapseSidebar" data-target=".multi-collapse" role="button" aria-expanded="false" aria-controls="collapseSidebar1 collapseSidebar2">
-//                               <span class="material-icons" style="margin: auto; vertical-align: middle; display:table-cell;">unfold_less</span>
-//                             </i>`;
-
 export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
   Util.hideTwitterFeeds();
   Util.showHeader();
@@ -173,10 +167,11 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
     return;
   }
 
-  html += floatingButtonHTML;
+  html += Element.floatingButtonHTML;
 
   Element.content.innerHTML = html;
   Element.contentSidebar.innerHTML = sidebarHTML;
+
   document.getElementById("type-check-form").innerHTML = typeChecksHTML;
   document.getElementById("socials-check-form").innerHTML = socialsChecksHTML;
   document.getElementById("project-count").innerHTML = projects.length;
@@ -200,6 +195,9 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
     });
   document.getElementById("collapse-button").addEventListener("click", () => {
     collapseSidebar();
+  });
+  document.getElementById("floating-button").addEventListener("click", () => {
+    Util.scrollToTop();
   });
 
   const editButtons = document.getElementsByClassName("form-edit-project");
@@ -242,6 +240,36 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
     document.getElementById("collapseSidebar1").classList.remove("show");
     document.getElementById("collapseSidebar2").classList.remove("show");
     document.getElementById("collapse-button").innerHTML = "Expand Sidebar";
+  }
+
+  // When the user scrolls, show the button
+  Element.content.onscroll = function () {
+    scrollFunction();
+  };
+  Element.contentSidebar.onscroll = function () {
+    scrollFunction();
+  };
+  Element.mainContent.onscroll = function () {
+    scrollFunction();
+  };
+  document.body.addEventListener("scroll", function () {
+    scrollFunction();
+  });
+  function scrollFunction() {
+    if (
+      Element.content.scrollTop > 20 ||
+      Element.contentSidebar.scrollTop > 20 ||
+      Element.mainContent.scrollTop > 20 ||
+      document.body.scrollTop > 20 ||
+      document.documentElement.scrollTop > 20
+    ) {
+      document.getElementById("floating-button").style.display = "table";
+      document.getElementById("floating-button-span").style.display =
+        "table-cell";
+    } else {
+      document.getElementById("floating-button").style.display = "none";
+      document.getElementById("floating-button-span").style.display = "none";
+    }
   }
 }
 
