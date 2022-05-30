@@ -18,10 +18,6 @@ let projects;
 let types;
 let socials;
 
-const floatingButtonHTML = `<i id="floating-button" class="float my-float">
-                              <span id="floating-button-span" class="material-icons" style="margin: auto; vertical-align: middle; display:none;">vertical_align_top</span>
-                            </i>`;
-
 export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
   Util.hideTwitterFeeds();
   Util.showHeader();
@@ -171,7 +167,7 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
     return;
   }
 
-  html += floatingButtonHTML;
+  html += Element.floatingButtonHTML;
 
   Element.content.innerHTML = html;
   Element.contentSidebar.innerHTML = sidebarHTML;

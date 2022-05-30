@@ -83,3 +83,7 @@ export const formEditCardError = {
   body: document.getElementById("error-edit-body"),
   page: document.getElementById("error-edit-page"),
 };
+
+export const floatingButtonHTML = `<i id="floating-button" class="float my-float">
+                              <span id="floating-button-span" class="material-icons" style="margin: auto; vertical-align: middle; display:none;">vertical_align_top</span>
+                            </i>`;
