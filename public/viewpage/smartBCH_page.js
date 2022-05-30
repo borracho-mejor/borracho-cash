@@ -575,7 +575,7 @@ function filterResults() {
     ++index;
   });
 
-  newHTML += floatingButtonHTML;
+  newHTML += Element.floatingButtonHTML;
 
   Element.content.scrollTo(0, 0);
   document.getElementById("project-count").innerHTML = filteredProjects.length;
@@ -604,7 +604,7 @@ async function searchResults(keywords) {
   Element.content.scrollTo(0, 0);
   document.getElementById("project-count").innerHTML = searchedProjects.length;
 
-  newHTML += floatingButtonHTML;
+  newHTML += Element.floatingButtonHTML;
 
   Element.content.innerHTML = newHTML;
 }
