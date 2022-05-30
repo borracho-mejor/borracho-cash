@@ -18,11 +18,9 @@ let projects;
 let types;
 let socials;
 
-const floatingButtonHTML = "";
-
-// `<i class="float" data-toggle="collapse" href="#collapseSidebar" data-target=".multi-collapse" role="button" aria-expanded="false" aria-controls="collapseSidebar1 collapseSidebar2">
-//                               <span class="material-icons" style="margin: auto; vertical-align: middle; display:table-cell;">unfold_less</span>
-//                             </i>`;
+const floatingButtonHTML = `<i id="floating-button" class="float my-float">
+                              <span class="material-icons" style="margin: auto; vertical-align: middle; display:table-cell;">vertical_align_top</span>
+                            </i>`;
 
 export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
   Util.hideTwitterFeeds();
@@ -200,6 +198,9 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
     });
   document.getElementById("collapse-button").addEventListener("click", () => {
     collapseSidebar();
+  });
+  document.getElementById("floating-button").addEventListener("click", () => {
+    Util.scrollToTop();
   });
 
   const editButtons = document.getElementsByClassName("form-edit-project");
