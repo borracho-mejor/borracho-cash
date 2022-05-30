@@ -19,7 +19,7 @@ let types;
 let socials;
 
 const floatingButtonHTML = `<i id="floating-button" class="float my-float">
-                              <span class="material-icons" style="margin: auto; vertical-align: middle; display:table-cell;">vertical_align_top</span>
+                              <span id="floating-button-span" class="material-icons" style="margin: auto; vertical-align: middle; display:none;">vertical_align_top</span>
                             </i>`;
 
 export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
@@ -175,6 +175,7 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
 
   Element.content.innerHTML = html;
   Element.contentSidebar.innerHTML = sidebarHTML;
+
   document.getElementById("type-check-form").innerHTML = typeChecksHTML;
   document.getElementById("socials-check-form").innerHTML = socialsChecksHTML;
   document.getElementById("project-count").innerHTML = projects.length;
@@ -243,6 +244,36 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
     document.getElementById("collapseSidebar1").classList.remove("show");
     document.getElementById("collapseSidebar2").classList.remove("show");
     document.getElementById("collapse-button").innerHTML = "Expand Sidebar";
+  }
+
+  // When the user scrolls, show the button
+  Element.content.onscroll = function () {
+    scrollFunction();
+  };
+  Element.contentSidebar.onscroll = function () {
+    scrollFunction();
+  };
+  Element.mainContent.onscroll = function () {
+    scrollFunction();
+  };
+  document.body.addEventListener("scroll", function () {
+    scrollFunction();
+  });
+  function scrollFunction() {
+    if (
+      Element.content.scrollTop > 20 ||
+      Element.contentSidebar.scrollTop > 20 ||
+      Element.mainContent.scrollTop > 20 ||
+      document.body.scrollTop > 20 ||
+      document.documentElement.scrollTop > 20
+    ) {
+      document.getElementById("floating-button").style.display = "table";
+      document.getElementById("floating-button-span").style.display =
+        "table-cell";
+    } else {
+      document.getElementById("floating-button").style.display = "none";
+      document.getElementById("floating-button-span").style.display = "none";
+    }
   }
 }
 
