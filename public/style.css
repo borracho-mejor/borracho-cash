@@ -82,6 +82,10 @@ textarea {
   color: var(--color-text);
   background-color: var(--color-inner-card-background);
 }
+table, th, td {
+  border:1px solid var(--color-text);
+  padding: 0.25rem;
+}
 
 /* textarea:focus,
 input:focus {
@@ -97,6 +101,10 @@ input:after {
 
 del {
   color: var(--color-text);
+}
+
+a {
+  color: green;
 }
 
 a:link {
