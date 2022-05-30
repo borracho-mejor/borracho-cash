@@ -3,7 +3,6 @@ import * as AboutPage from "../viewpage/about_page.js";
 import * as WhitepaperPage from "../viewpage/whitepaper_page.js";
 import * as SBCHPage from "../viewpage/smartBCH_page.js";
 import * as LoginPage from "../viewpage/login_page.js";
-import * as ListingsPage from "../viewpage/listings_page.js";
 
 export const routePathname = {
   HOME: "/",
@@ -11,7 +10,6 @@ export const routePathname = {
   WHITEPAPER: "/whitepaper",
   SBCH: "/smartbch",
   LOGIN: "/login",
-  LISTINGS: "/listings",
 };
 
 export const routes = [
@@ -20,7 +18,6 @@ export const routes = [
   { pathname: routePathname.WHITEPAPER, page: WhitepaperPage.whitepaper_page },
   { pathname: routePathname.SBCH, page: SBCHPage.smartBCH_page },
   { pathname: routePathname.LOGIN, page: LoginPage.login_page },
-  { pathname: routePathname.LISTINGS, page: ListingsPage.listings_page },
 ];
 
 export function routing(pathname, href) {

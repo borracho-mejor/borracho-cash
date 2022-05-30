@@ -2,7 +2,7 @@ import { SBCHRequest } from "../model/sBCHRequest.js";
 import * as Element from "../viewpage/element.js";
 import * as FirebaseController from "../controller/firebase_controller.js";
 import * as Util from "../viewpage/util.js";
-import { listings_page } from "../viewpage/listings_page.js";
+import { login_page } from "../viewpage/login_page.js";
 
 export function addEventListeners() {
   Element.formRequestSBCHProject.addEventListener("submit", async (e) => {
@@ -48,7 +48,7 @@ async function requestSBCHProject(e) {
 
   try {
     await FirebaseController.requestsBCHProject(request.serialize());
-    listings_page();
+    login_page();
     Util.popUpInfo(
       "Success!",
       `${request.name} has been requested!`,
