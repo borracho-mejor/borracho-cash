@@ -580,6 +580,10 @@ function filterResults() {
   Element.content.scrollTo(0, 0);
   document.getElementById("project-count").innerHTML = filteredProjects.length;
   Element.content.innerHTML = newHTML;
+
+  document.getElementById("floating-button").addEventListener("click", () => {
+    Util.scrollToTop();
+  });
 }
 
 async function searchResults(keywords) {
@@ -607,6 +611,10 @@ async function searchResults(keywords) {
   newHTML += Element.floatingButtonHTML;
 
   Element.content.innerHTML = newHTML;
+
+  document.getElementById("floating-button").addEventListener("click", () => {
+    Util.scrollToTop();
+  });
 }
 
 function clearResults() {
