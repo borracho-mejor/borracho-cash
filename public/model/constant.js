@@ -3,6 +3,7 @@ export const DEV = true;
 export const collectionName = {
   CARDS: "cards",
   SBCH_PROJECTS: "sBCH_projects",
+  LISTING_REQUEST: "listing_requests",
 };
 
 export const socialsList = [
