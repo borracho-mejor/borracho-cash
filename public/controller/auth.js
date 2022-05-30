@@ -8,6 +8,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js";
+import * as Util from "../viewpage/util.js";
 
 export let currentUser = null;
 

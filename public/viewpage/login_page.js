@@ -20,9 +20,13 @@ export async function login_page() {
   Util.unActivateLinks();
   Element.menuLogin.classList.add("active");
 
-  let html = `<div>
+  let html = `<div class="button-center">
+                <button class="btn btn-success button-center" data-toggle="modal" data-target="#modal-form-request-sBCH-project" style="margin: 0 auto; display: block;">
+                  Request sBCH Listing
+                </button>
+                <div style="height: 5px;"></div>
                 <button class="btn btn-success modal-pre-auth button-center" data-toggle="modal" data-target="#modal-form-sign-in" style="margin: 0 auto;">
-                    Sign-in
+                    Sign-in (Admin Only)
                 </button>
                 <div class="button-center">
                   <button class="btn btn-success modal-post-auth" style="margin: 0 auto;" data-toggle="modal" data-target="#modal-form-add-card">
