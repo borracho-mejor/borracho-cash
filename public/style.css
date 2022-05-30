@@ -82,6 +82,10 @@ textarea {
   color: var(--color-text);
   background-color: var(--color-inner-card-background);
 }
+table, th, td {
+  border:1px solid var(--color-text);
+  padding: 0.25rem;
+}
 
 /* textarea:focus,
 input:focus {
@@ -97,6 +101,10 @@ input:after {
 
 del {
   color: var(--color-text);
+}
+
+a {
+  color: green;
 }
 
 a:link {
@@ -131,11 +139,11 @@ a:hover {
     max-height: 82vh;
   }
   .twitter-feed {
-    height: 80vh;
+    height: 85vh;
     width: 100%;
   }
   #content {
-    height: 75vh;
+    height: 85vh;
     margin-bottom: 1.5em;
   }
   .center {
@@ -162,7 +170,7 @@ a:hover {
   }
   #main-content {
     height: 100%;
-    max-height: 86%;
+    max-height: 89%;
   }
   #content {
     max-height: 100%;
