@@ -130,6 +130,7 @@
             <li><a id="menu-login" class="nav-link">Admin</a></li>
             <li><a id="menu-whitepaper" class="nav-link">BCH Whitepaper</a></li>
             <li><a id="menu-smartBCH" class="nav-link">smartBCH</a></li>
+            <li><a id="menu-listings" class="nav-link">Listings</a></li>
           </ul>
           <ul class="navbar-nav ml-auto">
             <li>
@@ -526,6 +527,113 @@
                     style="margin-top: 5px"
                   >
                     Add
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: Request sBCH Project -->
+      <div
+        class="modal fade"
+        id="modal-form-request-sBCH-project"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-request-sbch-project-label">
+                Request a New smartBCH Project
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="form-request-sbch-project" method="post">
+                <div>
+                  Project Name: <br />
+                  <input type="text" name="name" style="width: 100%" />
+                  <p id="error-request-name" class="error-request-project"></p>
+                </div>
+                <div>
+                  Project Site: <br />
+                  <input type="text" name="site" style="width: 100%" />
+                  <p id="error-request-site" class="error-request-project"></p>
+                </div>
+                <div>
+                  Project Description: <br />
+                  <textarea name="description" style="width: 100%"></textarea>
+                  <p
+                    id="error-request-description"
+                    class="error-request-project"
+                  ></p>
+                </div>
+                <div>
+                  Quoted Description: <br />
+                  <textarea
+                    name="quoteddescription"
+                    style="width: 100%"
+                  ></textarea>
+                  <p
+                    id="error-request-quoted-description"
+                    class="error-request-project"
+                  ></p>
+                </div>
+                <div>
+                  Type(s):<br />
+                  <textarea name="types" style="width: 100%"></textarea>
+                  <p id="error-request-type" class="error-request-project"></p>
+                </div>
+                <div>
+                  Audits:<br />
+                  <textarea name="audits" style="width: 100%"></textarea>
+                  <p id="error-request-audit" class="error-request-project"></p>
+                </div>
+                <div>
+                  Socials:<br />
+                  <textarea name="socials" style="width: 100%"></textarea>
+                  <p
+                    id="error-request-socials"
+                    class="error-request-project"
+                  ></p>
+                </div>
+                <div>
+                  Helpful Links:<br />
+                  <textarea name="helpfullinks" style="width: 100%"></textarea>
+                  <p id="error-request-links" class="error-request-project"></p>
+                </div>
+                <div>
+                  Link to (high-res) Project Logo:
+                  <input type="text" name="linktologo" style="width: 100%" />
+                  <p id="error-request-logo" class="error-request-project"></p>
+                </div>
+                <div>
+                  Project Owner's Contact
+                  <input type="text" name="contact" style="width: 100%" />
+                  <p
+                    id="error-request-contact"
+                    class="error-request-project"
+                  ></p>
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    class="btn btn-outline-success"
+                    style="margin-top: 5px"
+                  >
+                    Request
                   </button>
                 </div>
               </form>

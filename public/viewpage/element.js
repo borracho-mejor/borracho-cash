@@ -3,6 +3,7 @@ export const menuAbout = document.getElementById("menu-about");
 export const menuLogin = document.getElementById("menu-login");
 export const menuWhitepaper = document.getElementById("menu-whitepaper");
 export const menuSmartBCH = document.getElementById("menu-smartBCH");
+export const menuListings = document.getElementById("menu-listings");
 
 export const mainContent = document.getElementById("main-content");
 export const content = document.getElementById("content");
@@ -61,6 +62,11 @@ export const formEditProjectError = {
   logo: document.getElementById("error-edit-logo"),
   bias: document.getElementById("error-edit-bias"),
 };
+
+// For Request sBCH Project Modal
+export const formRequestSBCHProject = document.getElementById(
+  "form-request-sbch-project"
+);
 
 // For add card modal
 export const formAddCard = document.getElementById("form-add-card");

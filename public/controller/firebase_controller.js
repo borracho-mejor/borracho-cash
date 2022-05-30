@@ -149,6 +149,29 @@ export async function addsBCHProject(project) {
   );
 }
 
+export async function requestsBCHProject(request) {
+  request.timestamp = Timestamp.fromDate(new Date());
+  request.to = ["brandon@borracho.cash"];
+  request.message = {
+    subject: `New sBCH Project Listing Request - ${request.name}`,
+    html: `<p>Name: ${request.name}</p>
+            <p>Contact: ${request.contact}</p>
+            <p>Site: ${request.site}</p>
+            <p>Description: ${request.description}</p>
+            <p>Quoted Description: ${request.quoted_description}</p>
+            <p>Type: ${request.type}</p>
+            <p>Audit: ${request.audit}</p>
+            <p>Socials: ${request.socials}</p>
+            <p>Helpful Links: ${request.helpful_links}</p>
+            <p>Logo: ${request.logo_link}</p>
+            <p>Requested: ${request.timestamp}</p>`,
+  };
+  const docRef = await addDoc(
+    collection(db, Constant.collectionName.LISTING_REQUEST),
+    request
+  );
+}
+
 export async function addCard(card) {
   card.timestamp = Timestamp.fromDate(new Date());
   const docRef = await addDoc(

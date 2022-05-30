@@ -2,7 +2,6 @@ import { SBCHProject } from "../model/sBCHProject.js";
 import * as Element from "../viewpage/element.js";
 import * as FirebaseController from "../controller/firebase_controller.js";
 import * as CloudStorage from "../controller/cloud_storage.js";
-import * as Constant from "../model/constant.js";
 import * as Util from "../viewpage/util.js";
 import { login_page } from "../viewpage/login_page.js";
 
@@ -100,7 +99,7 @@ async function addNewsBCHProject(e) {
     Util.popUpInfo(
       "Failed to Add Project!",
       JSON.stringify(error),
-      "modal-add-product"
+      "modal-form-add-sBCH-project"
     );
   }
 }
