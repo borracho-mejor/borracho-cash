@@ -49,7 +49,7 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
                             </div>
                           </p>
                           <div class="text-center padding-bottom-large" style="max-width: 65%; margin-left: auto; margin-right: auto;">
-                            <button id="button-add-smartBCH" type="button" class="btn btn-block btn-outline-success"><img src="../images/metamask.svg" alt="Metamask Logo" style="max-height: 1.5em;" /> Add smartBCH to MetaMask</button>
+                            <button id="button-add-smartBCH" type="button" class="btn btn-block btn-outline-success"><img src="../images/metamask.png" alt="Metamask Logo" style="max-height: 1.5em;" /> Add smartBCH to MetaMask</button>
                           </div>    
                         </div>                 
                         <div class="text-center padding-bottom"><h5>Project Count: <span id="project-count"></span></h5></div>
