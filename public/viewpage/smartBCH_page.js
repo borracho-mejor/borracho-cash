@@ -19,6 +19,8 @@ let types;
 let socials;
 
 export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
+  Util.popUpLoading("Loading projects...", "");
+
   Util.hideTwitterFeeds();
   Util.showHeader();
   Util.unActivateLinks();
@@ -271,6 +273,9 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
       document.getElementById("floating-button-span").style.display = "none";
     }
   }
+  setTimeout(function () {
+    $("#loadingoverlay").modal("hide");
+  }, 500);
 }
 
 function buildProjectCard(project, index) {

@@ -87,3 +87,11 @@ export const formEditCardError = {
 export const floatingButtonHTML = `<i id="floating-button" class="float my-float">
                               <span id="floating-button-span" class="material-icons" style="margin: auto; vertical-align: middle; display:none;">vertical_align_top</span>
                             </i>`;
+
+// Loading modal
+export const loadingModalHeader = document.getElementById(
+  "modal-loading-header"
+);
+export const loadingModalFooter = document.getElementById(
+  "modal-loading-footer"
+);

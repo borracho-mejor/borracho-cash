@@ -9,10 +9,12 @@ export function popUpInfo(title, body, closeModal) {
   $("#modal-pop-up-info").modal("show");
 }
 
-export function popUpLoading(closeModal) {
+export function popUpLoading(header, footer, closeModal) {
   if (closeModal) {
     $("#" + closeModal).modal("hide");
   }
+  Element.loadingModalHeader.innerHTML = header;
+  Element.loadingModalFooter.innerHTML = footer;
   $("#loadingoverlay").modal("show");
 }
 

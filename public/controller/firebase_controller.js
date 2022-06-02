@@ -72,7 +72,7 @@ const cf_getSBCHProjectSearch = httpsCallable(
   "admin_getSBCHProjectSearch"
 );
 export async function getSBCHProjectSearch(keywords) {
-  Util.popUpLoading();
+  Util.popUpLoading("Searching...", "Slowly...");
   let projects = [];
   let result = await cf_getSBCHProjectSearch(keywords);
   result = result.data;
