@@ -6,6 +6,7 @@ import * as Util from "./util.js";
 import { Timestamp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
 import * as Auth from "../controller/auth.js";
 import * as Edit from "../controller/edit_project.js";
+import { sbch_search_page } from "./sbch_search_page.js";
 
 export function addEventListeners() {
   Element.menuSmartBCH.addEventListener("click", () => {
@@ -14,21 +15,74 @@ export function addEventListeners() {
   });
 }
 
-let projects;
-let types;
-let socials;
-
-export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
+export async function smartBCH_page(routeKeywords) {
   Util.popUpLoading("Loading projects...", "");
 
+  let projects;
+  let typeChecksHTML = "";
+  let socialsChecksHTML = "";
+
+  try {
+    projects = await FirebaseController.getSBCHProjectList();
+  } catch (error) {
+    Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
+    return;
+  }
+  try {
+    let types = await FirebaseController.getTypeList(projects);
+    types.sort();
+    let index = 0;
+    types.forEach((type) => {
+      typeChecksHTML += buildCheckboxesForTypes(type, index);
+      ++index;
+    });
+  } catch (error) {
+    Util.popUpInfo("Error in getProjectTypeList", JSON.stringify(error));
+    return;
+  }
+  try {
+    let socials = await FirebaseController.getSocialsList(projects);
+    socials.sort();
+    let index = 0;
+    socials.forEach((social) => {
+      let capitalSocial = social[0].toUpperCase() + social.substring(1);
+      socialsChecksHTML += buildCheckboxesForSocials(capitalSocial, index);
+      ++index;
+    });
+  } catch (error) {
+    Util.popUpInfo("Error in getProjectSocialsList", JSON.stringify(error));
+    return;
+  }
+  if (routeKeywords) {
+    projects = await FirebaseController.getSBCHProjectSearch(routeKeywords);
+  }
+
+  setTimeout(function () {
+    $("#loadingoverlay").modal("hide");
+  }, 500);
+
+  build_smartBCH_page(
+    projects,
+    typeChecksHTML,
+    socialsChecksHTML,
+    routeKeywords
+  );
+}
+
+export async function build_smartBCH_page(
+  projects,
+  typeChecksHTML,
+  socialsChecksHTML,
+  routeKeywords,
+  scrollTop = true,
+  isCollapsed = false
+) {
   Util.hideTwitterFeeds();
   Util.showHeader();
   Util.unActivateLinks();
   Element.menuSmartBCH.classList.add("active");
 
   let html = "";
-  let typeChecksHTML = "";
-  let socialsChecksHTML = "";
   let sidebarHTML = `<div style="height: 100%;">
                       <img class="dark-mode" src="./images/smartBCH_light.png" alt="smartBCH logo" style="width: 100%; padding: 5px; margin: auto;" /><img class="light-mode" src="./images/smartBCH_dark.png" alt="smartBCH logo" style="width: 100%; padding: 5px;" />
                       <div style="max-width: 65rem; padding: 5px; margin: auto; text-align: left;">                  
@@ -126,47 +180,14 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
                     </div>
                   `;
 
-  try {
-    projects = await FirebaseController.getSBCHProjectList();
-
-    if (projects.length == 0) {
-      html += `<h4 style="text-align:center;">No projects found!</h4>`;
-    }
-
+  if (projects.length == 0) {
+    html += `<h4 style="text-align:center;">No projects found!</h4>`;
+  } else {
     let index = 0;
     projects.forEach((project) => {
       html += buildProjectCard(project, index);
       ++index;
     });
-  } catch (error) {
-    Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
-    return;
-  }
-  try {
-    types = await FirebaseController.getTypeList(projects);
-    types.sort();
-    let index = 0;
-    types.forEach((type) => {
-      typeChecksHTML += buildCheckboxesForTypes(type, index);
-      ++index;
-    });
-  } catch (error) {
-    Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
-    return;
-  }
-
-  try {
-    socials = await FirebaseController.getSocialsList(projects);
-    socials.sort();
-    let index = 0;
-    socials.forEach((social) => {
-      let capitalSocial = social[0].toUpperCase() + social.substring(1);
-      socialsChecksHTML += buildCheckboxesForSocials(capitalSocial, index);
-      ++index;
-    });
-  } catch (error) {
-    Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
-    return;
   }
 
   html += Element.floatingButtonHTML;
@@ -244,6 +265,10 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
     document.getElementById("collapse-button").innerHTML = "Expand Sidebar";
   }
 
+  if (!routeKeywords) {
+    history.pushState(null, null, Routes.routePathname.SBCH);
+  }
+
   // When the user scrolls, show the button
   Element.content.onscroll = function () {
     scrollFunction();
@@ -273,9 +298,6 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
       document.getElementById("floating-button-span").style.display = "none";
     }
   }
-  setTimeout(function () {
-    $("#loadingoverlay").modal("hide");
-  }, 500);
 }
 
 function buildProjectCard(project, index) {
@@ -592,34 +614,7 @@ function filterResults() {
 }
 
 async function searchResults(keywords) {
-  clearCheckboxes();
-  let newHTML = "";
-  let searchedProjects = [];
-
-  if (keywords.length != 0) {
-    searchedProjects = await FirebaseController.getSBCHProjectSearch(keywords);
-  }
-
-  if (searchedProjects.length === 0) {
-    newHTML += `<h4 style="text-align:center;">No projects found with that search!</h4>`;
-  }
-
-  let index = 0;
-  searchedProjects.forEach((project) => {
-    newHTML += buildProjectCard(project, index);
-    ++index;
-  });
-
-  Element.content.scrollTo(0, 0);
-  document.getElementById("project-count").innerHTML = searchedProjects.length;
-
-  newHTML += Element.floatingButtonHTML;
-
-  Element.content.innerHTML = newHTML;
-
-  document.getElementById("floating-button").addEventListener("click", () => {
-    Util.scrollToTop();
-  });
+  sbch_search_page(keywords);
 }
 
 function clearResults() {
