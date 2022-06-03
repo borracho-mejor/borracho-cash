@@ -6,7 +6,6 @@ import * as Util from "./util.js";
 import { Timestamp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
 import * as Auth from "../controller/auth.js";
 import * as Edit from "../controller/edit_project.js";
-import { sbch_search_page } from "./sbch_search_page.js";
 
 export function addEventListeners() {
   Element.menuSmartBCH.addEventListener("click", () => {
@@ -25,6 +24,8 @@ export async function smartBCH_page(
   let projects;
   let typeChecksHTML = "";
   let socialsChecksHTML = "";
+
+  console.log(routeKeywords);
 
   try {
     projects = await FirebaseController.getSBCHProjectList();
@@ -58,7 +59,21 @@ export async function smartBCH_page(
     return;
   }
   if (routeKeywords) {
-    projects = await FirebaseController.getSBCHProjectSearch(routeKeywords);
+    try {
+      projects = await FirebaseController.getSBCHProjectSearch(routeKeywords);
+    } catch (error) {
+      Util.popUpInfo("Error in getSBCHProjectSearch", JSON.stringify(error));
+      return;
+    }
+    const keywordsArray = routeKeywords.toLowerCase().match(/\S+/g);
+    const joinedSearchKeys = keywordsArray.join("+");
+    history.pushState(
+      null,
+      null,
+      Routes.routePathname.SBCH + "#search=" + joinedSearchKeys
+    );
+  } else {
+    history.pushState(null, null, Routes.routePathname.SBCH);
   }
 
   setTimeout(function () {
@@ -272,10 +287,6 @@ export async function build_smartBCH_page(
     document.getElementById("collapseSidebar1").classList.remove("show");
     document.getElementById("collapseSidebar2").classList.remove("show");
     document.getElementById("collapse-button").innerHTML = "Expand Sidebar";
-  }
-
-  if (!routeKeywords) {
-    history.pushState(null, null, Routes.routePathname.SBCH);
   }
 
   // When the user scrolls, show the button
@@ -623,7 +634,7 @@ function filterResults() {
 }
 
 async function searchResults(keywords) {
-  sbch_search_page(keywords);
+  smartBCH_page(keywords);
 }
 
 function clearResults() {
