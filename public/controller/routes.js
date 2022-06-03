@@ -31,7 +31,10 @@ export function routing(pathname, href) {
   let uir;
   if (searchIndex > 0) {
     const len = routePathname.SBCH_SEARCH.length;
-    uir = href.substr(searchIndex + len + 1).split("+");
+    uir = href
+      .substr(searchIndex + len + 1)
+      .split("+")
+      .join(" ");
   }
   const route = routes.find((r) => r.pathname == pathname);
   if (route) {

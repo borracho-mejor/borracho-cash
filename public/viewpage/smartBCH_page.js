@@ -15,7 +15,11 @@ export function addEventListeners() {
   });
 }
 
-export async function smartBCH_page(routeKeywords) {
+export async function smartBCH_page(
+  routeKeywords,
+  scrollTop = true,
+  isCollapsed = false
+) {
   Util.popUpLoading("Loading projects...", "");
 
   let projects;
@@ -65,7 +69,9 @@ export async function smartBCH_page(routeKeywords) {
     projects,
     typeChecksHTML,
     socialsChecksHTML,
-    routeKeywords
+    routeKeywords,
+    scrollTop,
+    isCollapsed
   );
 }
 
@@ -74,8 +80,8 @@ export async function build_smartBCH_page(
   typeChecksHTML,
   socialsChecksHTML,
   routeKeywords,
-  scrollTop = true,
-  isCollapsed = false
+  scrollTop,
+  isCollapsed
 ) {
   Util.hideTwitterFeeds();
   Util.showHeader();
@@ -206,11 +212,14 @@ export async function build_smartBCH_page(
     .addEventListener("click", () => {
       addSmartBCHChain();
     });
+
+  // Searching
   document.getElementById("form-search").addEventListener("submit", (e) => {
     e.preventDefault();
     const keywords = e.target.searchKeywords.value.trim().toLowerCase();
     searchResults(keywords);
   });
+
   document
     .getElementById("button-filter-clear")
     .addEventListener("click", () => {
@@ -619,9 +628,9 @@ async function searchResults(keywords) {
 
 function clearResults() {
   if (document.getElementById("collapseSidebar1").classList.contains("show")) {
-    smartBCH_page(false, false);
+    smartBCH_page("", false, false);
   } else {
-    smartBCH_page(false, true);
+    smartBCH_page("", false, true);
   }
 }
 
