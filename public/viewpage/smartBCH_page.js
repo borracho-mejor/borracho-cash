@@ -220,7 +220,7 @@ export async function build_smartBCH_page(
   document.getElementById("socials-check-form").innerHTML = socialsChecksHTML;
   document.getElementById("project-count").innerHTML = projects.length;
   document.getElementById("button-filter").addEventListener("click", () => {
-    filterResults();
+    filterResults(projects);
   });
   document
     .getElementById("button-add-smartBCH")
@@ -532,7 +532,7 @@ function buildSocials(project) {
   return html;
 }
 
-function filterResults() {
+function filterResults(projects) {
   document.getElementById("input-search").value = "";
   let filteredProjects = [...projects];
   let newHTML = "";
