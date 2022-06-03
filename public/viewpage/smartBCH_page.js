@@ -25,8 +25,6 @@ export async function smartBCH_page(
   let typeChecksHTML = "";
   let socialsChecksHTML = "";
 
-  console.log(routeKeywords);
-
   try {
     projects = await FirebaseController.getSBCHProjectList();
   } catch (error) {
