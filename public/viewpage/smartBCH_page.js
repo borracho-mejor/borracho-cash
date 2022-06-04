@@ -317,7 +317,6 @@ export async function build_smartBCH_page(
 }
 
 function addAdminButtons() {
-  console.log("addAdminButtons()");
   const editButtons = document.getElementsByClassName("form-edit-project");
   for (const element of editButtons) {
     element.addEventListener("submit", async (e) => {
