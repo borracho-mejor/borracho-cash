@@ -723,7 +723,10 @@ async function addSmartBCHChain() {
             {
               chainId: "0x2710",
               chainName: "smartBCH Mainnet",
-              blockExplorerUrls: ["https://www.smartscan.cash/"],
+              blockExplorerUrls: [
+                "https://sonar.cash",
+                "https://www.smartscan.cash/",
+              ],
               rpcUrls: [
                 "https://smartbch.greyh.at",
                 "https://smartbch.fountainhead.cash/mainnet",
