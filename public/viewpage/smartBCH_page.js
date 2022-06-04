@@ -251,7 +251,7 @@ export async function build_smartBCH_page(
     clearResults();
   }
 
-  if (filterArray) {
+  if (filterArray && filterArray.length > 0) {
     filterArray.forEach((filter) => {
       document.getElementById(`checkbox-${decodeURI(filter)}`).checked = true;
     });
@@ -288,6 +288,35 @@ export async function build_smartBCH_page(
     }
   }
 
+  if (scrollTop) {
+    Util.scrollToTop();
+  } else {
+    Element.content.scrollTo(0, 0);
+  }
+
+  if (isCollapsed) {
+    document.getElementById("collapseSidebar1").classList.remove("show");
+    document.getElementById("collapseSidebar2").classList.remove("show");
+    document.getElementById("collapse-button").innerHTML = "Expand Sidebar";
+  }
+
+  // Change placeholder when routed search
+  if (
+    routeKeywords &&
+    routeKeywords != "search=" &&
+    !routeKeywords.startsWith("filter=")
+  ) {
+    document.getElementById("input-search").value = routeKeywords;
+  }
+
+  if (Auth.currentUser) {
+    Auth.authStateChangeObserver(Auth.currentUser);
+  }
+
+  addAdminButtons();
+}
+
+function addAdminButtons() {
   const editButtons = document.getElementsByClassName("form-edit-project");
   for (const element of editButtons) {
     element.addEventListener("submit", async (e) => {
@@ -312,31 +341,6 @@ export async function build_smartBCH_page(
       await Edit.deleteProject(e.target.docID.value, e.target.logoPath.value);
       Util.enableButton(button, label);
     });
-  }
-
-  if (scrollTop) {
-    Util.scrollToTop();
-  } else {
-    Element.content.scrollTo(0, 0);
-  }
-
-  if (isCollapsed) {
-    document.getElementById("collapseSidebar1").classList.remove("show");
-    document.getElementById("collapseSidebar2").classList.remove("show");
-    document.getElementById("collapse-button").innerHTML = "Expand Sidebar";
-  }
-
-  // Change placeholder when routed search
-  if (
-    routeKeywords &&
-    routeKeywords != "search=" &&
-    !routeKeywords.startsWith("filter=")
-  ) {
-    document.getElementById("input-search").value = routeKeywords;
-  }
-
-  if (Auth.currentUser) {
-    Auth.authStateChangeObserver(Auth.currentUser);
   }
 }
 
@@ -552,7 +556,16 @@ function buildSocials(project) {
   return html;
 }
 
-function filterResults(projects) {
+async function filterResults(projects) {
+  Util.popUpLoading("Loading projects...", "");
+
+  try {
+    projects = await FirebaseController.getSBCHProjectList();
+  } catch (error) {
+    Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
+    return;
+  }
+
   let routeArray = [];
 
   document.getElementById("input-search").value = "";
@@ -665,6 +678,12 @@ function filterResults(projects) {
   document.getElementById("project-count").innerHTML = filteredProjects.length;
   Element.content.innerHTML = newHTML;
 
+  if (Auth.currentUser) {
+    Auth.authStateChangeObserver(Auth.currentUser);
+  }
+
+  addAdminButtons();
+
   document.getElementById("floating-button").addEventListener("click", () => {
     Util.scrollToTop();
   });
@@ -677,6 +696,10 @@ function filterResults(projects) {
       Routes.routePathname.SBCH + "#filter=" + joinedFilterKeys
     );
   }
+
+  setTimeout(function () {
+    $("#loadingoverlay").modal("hide");
+  }, 500);
 }
 
 async function searchResults(keywords) {
