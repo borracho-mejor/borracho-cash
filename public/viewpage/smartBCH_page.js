@@ -220,7 +220,7 @@ export async function build_smartBCH_page(
   document.getElementById("socials-check-form").innerHTML = socialsChecksHTML;
   document.getElementById("project-count").innerHTML = projects.length;
   document.getElementById("button-filter").addEventListener("click", () => {
-    filterResults(projects);
+    filterResults();
   });
   document
     .getElementById("button-add-smartBCH")
@@ -255,7 +255,7 @@ export async function build_smartBCH_page(
     filterArray.forEach((filter) => {
       document.getElementById(`checkbox-${decodeURI(filter)}`).checked = true;
     });
-    filterResults(projects);
+    filterResults();
   }
 
   // When the user scrolls, show the button
@@ -556,7 +556,7 @@ function buildSocials(project) {
   return html;
 }
 
-async function filterResults(projects) {
+async function filterResults() {
   Util.popUpLoading("Loading projects...", "");
 
   try {
