@@ -247,44 +247,6 @@ export async function build_smartBCH_page(
     Util.scrollToTop();
   });
 
-  const editButtons = document.getElementsByClassName("form-edit-project");
-  for (const element of editButtons) {
-    element.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const button = e.target.getElementsByTagName("button")[0];
-      const label = Util.disableButton(button);
-      await Edit.editProject(e.target.docID.value);
-      Util.enableButton(button, label);
-    });
-  }
-  const deleteButtons = document.getElementsByClassName("form-delete-project");
-  for (const element of deleteButtons) {
-    element.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      // Confirm Deletion
-      const r = confirm("Are you sure you want to delete this project?");
-      if (!r) {
-        return;
-      }
-      const button = e.target.getElementsByTagName("button")[0];
-      const label = Util.disableButton(button);
-      await Edit.deleteProject(e.target.docID.value, e.target.logoPath.value);
-      Util.enableButton(button, label);
-    });
-  }
-
-  if (scrollTop) {
-    Util.scrollToTop();
-  } else {
-    Element.content.scrollTo(0, 0);
-  }
-
-  if (isCollapsed) {
-    document.getElementById("collapseSidebar1").classList.remove("show");
-    document.getElementById("collapseSidebar2").classList.remove("show");
-    document.getElementById("collapse-button").innerHTML = "Expand Sidebar";
-  }
-
   if (routeKeywords == "search=") {
     clearResults();
   }
@@ -324,6 +286,44 @@ export async function build_smartBCH_page(
       document.getElementById("floating-button").style.display = "none";
       document.getElementById("floating-button-span").style.display = "none";
     }
+  }
+
+  const editButtons = document.getElementsByClassName("form-edit-project");
+  for (const element of editButtons) {
+    element.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const button = e.target.getElementsByTagName("button")[0];
+      const label = Util.disableButton(button);
+      await Edit.editProject(e.target.docID.value);
+      Util.enableButton(button, label);
+    });
+  }
+  const deleteButtons = document.getElementsByClassName("form-delete-project");
+  for (const element of deleteButtons) {
+    element.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      // Confirm Deletion
+      const r = confirm("Are you sure you want to delete this project?");
+      if (!r) {
+        return;
+      }
+      const button = e.target.getElementsByTagName("button")[0];
+      const label = Util.disableButton(button);
+      await Edit.deleteProject(e.target.docID.value, e.target.logoPath.value);
+      Util.enableButton(button, label);
+    });
+  }
+
+  if (scrollTop) {
+    Util.scrollToTop();
+  } else {
+    Element.content.scrollTo(0, 0);
+  }
+
+  if (isCollapsed) {
+    document.getElementById("collapseSidebar1").classList.remove("show");
+    document.getElementById("collapseSidebar2").classList.remove("show");
+    document.getElementById("collapse-button").innerHTML = "Expand Sidebar";
   }
 
   // Change placeholder when routed search
