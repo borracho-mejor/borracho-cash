@@ -285,15 +285,6 @@ export async function build_smartBCH_page(
     document.getElementById("collapse-button").innerHTML = "Expand Sidebar";
   }
 
-  // Change placeholder when routed search
-  if (
-    routeKeywords &&
-    routeKeywords != "search=" &&
-    !routeKeywords.startsWith("filter=")
-  ) {
-    document.getElementById("input-search").value = routeKeywords;
-  }
-
   if (routeKeywords == "search=") {
     clearResults();
   }
@@ -333,6 +324,15 @@ export async function build_smartBCH_page(
       document.getElementById("floating-button").style.display = "none";
       document.getElementById("floating-button-span").style.display = "none";
     }
+  }
+
+  // Change placeholder when routed search
+  if (
+    routeKeywords &&
+    routeKeywords != "search=" &&
+    !routeKeywords.startsWith("filter=")
+  ) {
+    document.getElementById("input-search").value = routeKeywords;
   }
 
   if (Auth.currentUser) {
