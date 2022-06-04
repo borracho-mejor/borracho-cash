@@ -1,6 +1,5 @@
 import * as Routes from "../controller/routes.js";
 import * as Element from "./element.js";
-import * as Constant from "../model/constant.js";
 import * as FirebaseController from "../controller/firebase_controller.js";
 import * as Util from "./util.js";
 import * as Auth from "../controller/auth.js";
@@ -39,7 +38,7 @@ export async function build_home_page(cards) {
 
   let index = 0;
   cards.forEach((card) => {
-    html += buildCard(card, index);
+    html += buildCard(card);
     ++index;
   });
 
@@ -72,7 +71,7 @@ export async function build_home_page(cards) {
       }
       const button = e.target.getElementsByTagName("button")[0];
       const label = Util.disableButton(button);
-      await Edit.deleteCard(e.target.docID.value, "home");
+      await Edit.deleteCard(e.target.docID.value);
       Util.enableButton(button, label);
     });
   }
@@ -111,7 +110,7 @@ export async function build_home_page(cards) {
   });
 }
 
-function buildCard(card, index) {
+function buildCard(card) {
   let pinnedTag = "";
   if (card.isPinned) {
     pinnedTag = `<img class="dark-mode" src="./images/pin_light.png" alt="Pinned" style="height: 1em; padding-right: 5px"/>

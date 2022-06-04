@@ -1,11 +1,10 @@
 import * as FirebaseController from "./firebase_controller.js";
-import * as Constant from "../model/constant.js";
 import * as Util from "../viewpage/util.js";
 import * as Element from "../viewpage/element.js";
 import { SBCHProject } from "../model/sBCHProject.js";
 import { Card } from "../model/card.js";
 import * as CloudStorage from "./cloud_storage.js";
-import { trimAndParse, trimStrings } from "./add_sbch_project.js";
+import { trimAndParse } from "./add_sbch_project.js";
 import { home_page } from "../viewpage/home_page.js";
 import { smartBCH_page } from "../viewpage/smartBCH_page.js";
 
@@ -193,7 +192,7 @@ export async function editCard(docID) {
   $("#modal-form-edit-card").modal("show");
 }
 
-export async function deleteCard(docID, page) {
+export async function deleteCard(docID) {
   try {
     await FirebaseController.deleteCard(docID);
 
