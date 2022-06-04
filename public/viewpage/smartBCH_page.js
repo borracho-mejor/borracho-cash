@@ -15,6 +15,7 @@ export function addEventListeners() {
 }
 
 let projects = [];
+let filterArray = [];
 let typeChecksHTML = "";
 let socialsChecksHTML = "";
 
@@ -32,7 +33,7 @@ export async function smartBCH_page(
     return;
   }
   try {
-    let types = await FirebaseController.getTypeList(projects);
+    const types = await FirebaseController.getTypeList(projects);
     types.sort();
     let index = 0;
     types.forEach((type) => {
@@ -72,8 +73,14 @@ export async function smartBCH_page(
         null,
         Routes.routePathname.SBCH + "#search=" + joinedSearchKeys
       );
-    } else if (routeKeywords.startsWith("filter=")) {
-      //Todo
+    } else if (
+      routeKeywords.startsWith("filter=") &&
+      routeKeywords != "filter="
+    ) {
+      routeKeywords = routeKeywords.substring(7);
+      filterArray = routeKeywords.split(" ");
+    } else {
+      history.pushState(null, null, Routes.routePathname.SBCH);
     }
   } else {
     history.pushState(null, null, Routes.routePathname.SBCH);
@@ -282,8 +289,24 @@ export async function build_smartBCH_page(
     document.getElementById("collapse-button").innerHTML = "Expand Sidebar";
   }
 
-  if (routeKeywords && routeKeywords != "search=") {
+  // Change placeholder when routed search
+  if (
+    routeKeywords &&
+    routeKeywords != "search=" &&
+    !routeKeywords.startsWith("filter=")
+  ) {
     document.getElementById("input-search").value = routeKeywords;
+  }
+
+  if (routeKeywords == "search=") {
+    clearResults();
+  }
+
+  if (filterArray) {
+    filterArray.forEach((filter) => {
+      document.getElementById(`checkbox-${decodeURI(filter)}`).checked = true;
+    });
+    filterResults(projects);
   }
 
   // When the user scrolls, show the button
@@ -452,8 +475,8 @@ function buildProjectCard(project, index) {
 
 function buildCheckboxesForTypes(label, index) {
   return `<div class="form-check-type inline padding-right-large">
-            <input class="form-check-type-input" type="checkbox" value="" id="checkbox-type-${label}">
-            <label class="form-check-type-label" for="checkbox-type-${label}">
+            <input class="form-check-type-input" type="checkbox" value="" id="checkbox-${label.toLowerCase()}">
+            <label class="form-check-type-label" for="checkbox-${label.toLowerCase()}">
               ${label}
             </label>
           </div>`;
@@ -461,8 +484,8 @@ function buildCheckboxesForTypes(label, index) {
 
 function buildCheckboxesForSocials(label, index) {
   return `<div class="form-check-social inline padding-right-large">
-            <input class="form-check-social-input" type="checkbox" value="" id="checkbox-social-${label}">
-            <label class="form-check-social-label" for="checkbox-social-${label}">
+            <input class="form-check-social-input" type="checkbox" value="" id="checkbox-${label.toLowerCase()}">
+            <label class="form-check-social-label" for="checkbox-${label.toLowerCase()}">
               ${label}
             </label>
           </div>`;
@@ -530,11 +553,15 @@ function buildSocials(project) {
 }
 
 function filterResults(projects) {
+  let routeArray = [];
+
   document.getElementById("input-search").value = "";
+
   let filteredProjects = [...projects];
   let newHTML = "";
   // new_listing
   if (document.getElementById("checkbox-new").checked) {
+    routeArray.push("new");
     const date = Timestamp.fromDate(new Date());
     filteredProjects = filteredProjects.filter(function (project) {
       return (
@@ -545,24 +572,28 @@ function filterResults(projects) {
   }
   // audit
   if (document.getElementById("checkbox-audited").checked) {
+    routeArray.push("audited");
     filteredProjects = filteredProjects.filter(function (project) {
       return Object.keys(project.audit).length != 0;
     });
   }
   // two sats
   if (document.getElementById("checkbox-mysats").checked) {
+    routeArray.push("mysats");
     filteredProjects = filteredProjects.filter(function (project) {
       return project.my_thoughts != "";
     });
   }
   // DYOR
   if (document.getElementById("checkbox-dyor").checked) {
+    routeArray.push("dyor");
     filteredProjects = filteredProjects.filter(function (project) {
       return project.dyor;
     });
   }
   // non-NFT
   if (document.getElementById("checkbox-non-nft").checked) {
+    routeArray.push("non-nft");
     filteredProjects = filteredProjects.filter(function (project) {
       if (project.type.length === 1) {
         return !project.type.includes("NFT Collection");
@@ -573,6 +604,7 @@ function filterResults(projects) {
   }
   // non-DYOR
   if (document.getElementById("checkbox-non-dyor").checked) {
+    routeArray.push("non-dyor");
     filteredProjects = filteredProjects.filter(function (project) {
       return !project.dyor;
     });
@@ -591,6 +623,10 @@ function filterResults(projects) {
     filteredProjects = filteredProjects.filter(function (project) {
       return project.type.some((val) => typesArray.indexOf(val) != -1);
     });
+    typesArray.forEach((val) => {
+      val = val.toLowerCase();
+      routeArray.push(val);
+    });
   }
   // socials
   let socialsCheckboxArray = document.getElementsByClassName(
@@ -607,6 +643,10 @@ function filterResults(projects) {
       return socialsArray.every((element) => {
         return Object.keys(project.socials).includes(element);
       });
+    });
+    socialsArray.forEach((val) => {
+      val = val.toLowerCase();
+      routeArray.push(val);
     });
   }
 
@@ -628,13 +668,33 @@ function filterResults(projects) {
   document.getElementById("floating-button").addEventListener("click", () => {
     Util.scrollToTop();
   });
+
+  if (routeArray.length != 0) {
+    const joinedFilterKeys = routeArray.join("+");
+    history.pushState(
+      null,
+      null,
+      Routes.routePathname.SBCH + "#filter=" + joinedFilterKeys
+    );
+  }
 }
 
 async function searchResults(keywords) {
-  smartBCH_page("search=" + keywords);
+  if (keywords === "") {
+    Element.content.innerHTML = `<h4 style="text-align:center;">Please enter some search terms and try that search again!</h4> ${Element.floatingButtonHTML}`;
+    document.getElementById("floating-button").addEventListener("click", () => {
+      Util.scrollToTop();
+    });
+  } else {
+    smartBCH_page("search=" + keywords);
+  }
 }
 
 function clearResults() {
+  projects = [];
+  filterArray = [];
+  typeChecksHTML = "";
+  socialsChecksHTML = "";
   if (document.getElementById("collapseSidebar1").classList.contains("show")) {
     smartBCH_page("", false, false);
   } else {
