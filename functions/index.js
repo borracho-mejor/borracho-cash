@@ -142,12 +142,11 @@ async function getCardByID(docID, context) {
       .doc(docID)
       .get();
     if (doc.exists) {
-      const { body, header, isPinned, page, timestamp } = doc.data();
+      const { body, header, isPinned, timestamp } = doc.data();
       const c = {
         body,
         header,
         isPinned,
-        page,
         timestamp,
       };
       c.docID = doc.id;
