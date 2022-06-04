@@ -20,7 +20,10 @@ export async function login_page() {
   Util.unActivateLinks();
   Element.menuLogin.classList.add("active");
 
-  let html = `<div class="button-center">
+  let html = `<h4 style="text-align:center;">Request listings below!</h4>
+              <h5 style="text-align:center;">This will be fleshed out more in the coming weeks so project creators can easily request new listings or updates to existing listings. We can all help each other help each other.</h5>
+              <div style="height: 15px;"></div>
+              <div class="button-center">
                 <button class="btn btn-success button-center" data-toggle="modal" data-target="#modal-form-request-sBCH-project" style="margin: 0 auto; display: block;">
                   Request sBCH Listing
                 </button>
