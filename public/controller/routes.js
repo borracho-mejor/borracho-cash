@@ -26,7 +26,7 @@ export function routing(pathname, href) {
   if (searchIndex > 0) {
     const len = routePathname.SBCH.length;
     uir = href
-      .substr(searchIndex + len + 8)
+      .substr(searchIndex + len + 1)
       .split("+")
       .join(" ");
   }

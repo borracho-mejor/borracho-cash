@@ -14,16 +14,16 @@ export function addEventListeners() {
   });
 }
 
+let projects = [];
+let typeChecksHTML = "";
+let socialsChecksHTML = "";
+
 export async function smartBCH_page(
   routeKeywords,
   scrollTop = true,
   isCollapsed = false
 ) {
   Util.popUpLoading("Loading projects...", "");
-
-  let projects;
-  let typeChecksHTML = "";
-  let socialsChecksHTML = "";
 
   try {
     projects = await FirebaseController.getSBCHProjectList();
@@ -57,19 +57,25 @@ export async function smartBCH_page(
     return;
   }
   if (routeKeywords) {
-    try {
-      projects = await FirebaseController.getSBCHProjectSearch(routeKeywords);
-    } catch (error) {
-      Util.popUpInfo("Error in getSBCHProjectSearch", JSON.stringify(error));
-      return;
+    if (routeKeywords.startsWith("search=") && routeKeywords != "search=") {
+      routeKeywords = routeKeywords.substring(7);
+      console.log(routeKeywords);
+      try {
+        projects = await FirebaseController.getSBCHProjectSearch(routeKeywords);
+      } catch (error) {
+        Util.popUpInfo("Error in getSBCHProjectSearch", JSON.stringify(error));
+        return;
+      }
+      const keywordsArray = routeKeywords.toLowerCase().match(/\S+/g);
+      const joinedSearchKeys = keywordsArray.join("+");
+      history.pushState(
+        null,
+        null,
+        Routes.routePathname.SBCH + "#search=" + joinedSearchKeys
+      );
+    } else if (routeKeywords.startsWith("filter=")) {
+      //Todo
     }
-    const keywordsArray = routeKeywords.toLowerCase().match(/\S+/g);
-    const joinedSearchKeys = keywordsArray.join("+");
-    history.pushState(
-      null,
-      null,
-      Routes.routePathname.SBCH + "#search=" + joinedSearchKeys
-    );
   } else {
     history.pushState(null, null, Routes.routePathname.SBCH);
   }
@@ -78,20 +84,10 @@ export async function smartBCH_page(
     $("#loadingoverlay").modal("hide");
   }, 500);
 
-  build_smartBCH_page(
-    projects,
-    typeChecksHTML,
-    socialsChecksHTML,
-    routeKeywords,
-    scrollTop,
-    isCollapsed
-  );
+  build_smartBCH_page(routeKeywords, scrollTop, isCollapsed);
 }
 
 export async function build_smartBCH_page(
-  projects,
-  typeChecksHTML,
-  socialsChecksHTML,
   routeKeywords,
   scrollTop,
   isCollapsed
@@ -285,6 +281,10 @@ export async function build_smartBCH_page(
     document.getElementById("collapseSidebar1").classList.remove("show");
     document.getElementById("collapseSidebar2").classList.remove("show");
     document.getElementById("collapse-button").innerHTML = "Expand Sidebar";
+  }
+
+  if (routeKeywords && routeKeywords != "search=") {
+    document.getElementById("input-search").value = routeKeywords;
   }
 
   // When the user scrolls, show the button
@@ -632,7 +632,7 @@ function filterResults(projects) {
 }
 
 async function searchResults(keywords) {
-  smartBCH_page(keywords);
+  smartBCH_page("search=" + keywords);
 }
 
 function clearResults() {
