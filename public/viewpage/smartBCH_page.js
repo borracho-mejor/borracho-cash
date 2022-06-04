@@ -59,7 +59,6 @@ export async function smartBCH_page(
   if (routeKeywords) {
     if (routeKeywords.startsWith("search=") && routeKeywords != "search=") {
       routeKeywords = routeKeywords.substring(7);
-      console.log(routeKeywords);
       try {
         projects = await FirebaseController.getSBCHProjectSearch(routeKeywords);
       } catch (error) {
