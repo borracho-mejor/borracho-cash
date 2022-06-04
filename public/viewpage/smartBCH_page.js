@@ -273,10 +273,6 @@ export async function build_smartBCH_page(
     });
   }
 
-  if (Auth.currentUser) {
-    Auth.authStateChangeObserver(Auth.currentUser);
-  }
-
   if (scrollTop) {
     Util.scrollToTop();
   } else {
@@ -337,6 +333,10 @@ export async function build_smartBCH_page(
       document.getElementById("floating-button").style.display = "none";
       document.getElementById("floating-button-span").style.display = "none";
     }
+  }
+
+  if (Auth.currentUser) {
+    Auth.authStateChangeObserver(Auth.currentUser);
   }
 }
 
