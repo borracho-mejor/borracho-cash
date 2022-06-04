@@ -8,8 +8,8 @@ export const routePathname = {
   HOME: "/",
   ABOUT: "/about",
   WHITEPAPER: "/whitepaper",
-  SBCH: "/smartbch",
   LOGIN: "/login",
+  SBCH: "/smartbch",
 };
 
 export const routes = [
@@ -21,7 +21,15 @@ export const routes = [
 ];
 
 export function routing(pathname, href) {
+  const searchIndex = href.indexOf(routePathname.SBCH);
   let uir;
+  if (searchIndex > 0) {
+    const len = routePathname.SBCH.length;
+    uir = href
+      .substr(searchIndex + len + 1)
+      .split("+")
+      .join(" ");
+  }
   const route = routes.find((r) => r.pathname == pathname);
   if (route) {
     route.page(uir);

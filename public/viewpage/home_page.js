@@ -13,9 +13,18 @@ export function addEventListeners() {
   });
 }
 
-let cards;
-
 export async function home_page() {
+  let cards;
+  try {
+    cards = await FirebaseController.getHomeCardList();
+  } catch (error) {
+    Util.popUpInfo("Error in getHomeCardList", JSON.stringify(error));
+    return;
+  }
+  build_home_page(cards);
+}
+
+export async function build_home_page(cards) {
   Util.scrollToTop();
   Util.showTwitterFeeds();
   Util.hideHeader();
@@ -24,22 +33,15 @@ export async function home_page() {
 
   let html = "";
 
-  try {
-    cards = await FirebaseController.getHomeCardList();
-
-    if (cards.length == 0) {
-      html += `<h4 style="text-align:center;">No cards found!</h4>`;
-    }
-
-    let index = 0;
-    cards.forEach((card) => {
-      html += buildCard(card, index);
-      ++index;
-    });
-  } catch (error) {
-    Util.popUpInfo("Error in getHomeCardList", JSON.stringify(error));
-    return;
+  if (cards.length == 0) {
+    html += `<h4 style="text-align:center;">No cards found!</h4>`;
   }
+
+  let index = 0;
+  cards.forEach((card) => {
+    html += buildCard(card, index);
+    ++index;
+  });
 
   html += Element.floatingButtonHTML;
 

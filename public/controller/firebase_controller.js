@@ -85,6 +85,7 @@ export async function getSBCHProjectSearch(keywords) {
     const snapshot = await getDocs(q);
     snapshot.forEach((doc) => {
       const project = new SBCHProject(doc.data());
+      project.docID = doc.id;
       projects.push(project);
     });
   }

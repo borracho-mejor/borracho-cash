@@ -14,21 +14,89 @@ export function addEventListeners() {
   });
 }
 
-let projects;
-let types;
-let socials;
+let projects = [];
+let typeChecksHTML = "";
+let socialsChecksHTML = "";
 
-export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
+export async function smartBCH_page(
+  routeKeywords,
+  scrollTop = true,
+  isCollapsed = false
+) {
   Util.popUpLoading("Loading projects...", "");
 
+  try {
+    projects = await FirebaseController.getSBCHProjectList();
+  } catch (error) {
+    Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
+    return;
+  }
+  try {
+    let types = await FirebaseController.getTypeList(projects);
+    types.sort();
+    let index = 0;
+    types.forEach((type) => {
+      typeChecksHTML += buildCheckboxesForTypes(type, index);
+      ++index;
+    });
+  } catch (error) {
+    Util.popUpInfo("Error in getProjectTypeList", JSON.stringify(error));
+    return;
+  }
+  try {
+    let socials = await FirebaseController.getSocialsList(projects);
+    socials.sort();
+    let index = 0;
+    socials.forEach((social) => {
+      let capitalSocial = social[0].toUpperCase() + social.substring(1);
+      socialsChecksHTML += buildCheckboxesForSocials(capitalSocial, index);
+      ++index;
+    });
+  } catch (error) {
+    Util.popUpInfo("Error in getProjectSocialsList", JSON.stringify(error));
+    return;
+  }
+  if (routeKeywords) {
+    if (routeKeywords.startsWith("search=") && routeKeywords != "search=") {
+      routeKeywords = routeKeywords.substring(7);
+      try {
+        projects = await FirebaseController.getSBCHProjectSearch(routeKeywords);
+      } catch (error) {
+        Util.popUpInfo("Error in getSBCHProjectSearch", JSON.stringify(error));
+        return;
+      }
+      const keywordsArray = routeKeywords.toLowerCase().match(/\S+/g);
+      const joinedSearchKeys = keywordsArray.join("+");
+      history.pushState(
+        null,
+        null,
+        Routes.routePathname.SBCH + "#search=" + joinedSearchKeys
+      );
+    } else if (routeKeywords.startsWith("filter=")) {
+      //Todo
+    }
+  } else {
+    history.pushState(null, null, Routes.routePathname.SBCH);
+  }
+
+  setTimeout(function () {
+    $("#loadingoverlay").modal("hide");
+  }, 500);
+
+  build_smartBCH_page(routeKeywords, scrollTop, isCollapsed);
+}
+
+export async function build_smartBCH_page(
+  routeKeywords,
+  scrollTop,
+  isCollapsed
+) {
   Util.hideTwitterFeeds();
   Util.showHeader();
   Util.unActivateLinks();
   Element.menuSmartBCH.classList.add("active");
 
   let html = "";
-  let typeChecksHTML = "";
-  let socialsChecksHTML = "";
   let sidebarHTML = `<div style="height: 100%;">
                       <img class="dark-mode" src="./images/smartBCH_light.png" alt="smartBCH logo" style="width: 100%; padding: 5px; margin: auto;" /><img class="light-mode" src="./images/smartBCH_dark.png" alt="smartBCH logo" style="width: 100%; padding: 5px;" />
                       <div style="max-width: 65rem; padding: 5px; margin: auto; text-align: left;">                  
@@ -126,47 +194,14 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
                     </div>
                   `;
 
-  try {
-    projects = await FirebaseController.getSBCHProjectList();
-
-    if (projects.length == 0) {
-      html += `<h4 style="text-align:center;">No projects found!</h4>`;
-    }
-
+  if (projects.length == 0) {
+    html += `<h4 style="text-align:center;">No projects found!</h4>`;
+  } else {
     let index = 0;
     projects.forEach((project) => {
       html += buildProjectCard(project, index);
       ++index;
     });
-  } catch (error) {
-    Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
-    return;
-  }
-  try {
-    types = await FirebaseController.getTypeList(projects);
-    types.sort();
-    let index = 0;
-    types.forEach((type) => {
-      typeChecksHTML += buildCheckboxesForTypes(type, index);
-      ++index;
-    });
-  } catch (error) {
-    Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
-    return;
-  }
-
-  try {
-    socials = await FirebaseController.getSocialsList(projects);
-    socials.sort();
-    let index = 0;
-    socials.forEach((social) => {
-      let capitalSocial = social[0].toUpperCase() + social.substring(1);
-      socialsChecksHTML += buildCheckboxesForSocials(capitalSocial, index);
-      ++index;
-    });
-  } catch (error) {
-    Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
-    return;
   }
 
   html += Element.floatingButtonHTML;
@@ -178,18 +213,21 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
   document.getElementById("socials-check-form").innerHTML = socialsChecksHTML;
   document.getElementById("project-count").innerHTML = projects.length;
   document.getElementById("button-filter").addEventListener("click", () => {
-    filterResults();
+    filterResults(projects);
   });
   document
     .getElementById("button-add-smartBCH")
     .addEventListener("click", () => {
       addSmartBCHChain();
     });
+
+  // Searching
   document.getElementById("form-search").addEventListener("submit", (e) => {
     e.preventDefault();
     const keywords = e.target.searchKeywords.value.trim().toLowerCase();
     searchResults(keywords);
   });
+
   document
     .getElementById("button-filter-clear")
     .addEventListener("click", () => {
@@ -244,6 +282,10 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
     document.getElementById("collapse-button").innerHTML = "Expand Sidebar";
   }
 
+  if (routeKeywords && routeKeywords != "search=") {
+    document.getElementById("input-search").value = routeKeywords;
+  }
+
   // When the user scrolls, show the button
   Element.content.onscroll = function () {
     scrollFunction();
@@ -273,9 +315,6 @@ export async function smartBCH_page(scrollTop = true, isCollapsed = false) {
       document.getElementById("floating-button-span").style.display = "none";
     }
   }
-  setTimeout(function () {
-    $("#loadingoverlay").modal("hide");
-  }, 500);
 }
 
 function buildProjectCard(project, index) {
@@ -490,7 +529,7 @@ function buildSocials(project) {
   return html;
 }
 
-function filterResults() {
+function filterResults(projects) {
   document.getElementById("input-search").value = "";
   let filteredProjects = [...projects];
   let newHTML = "";
@@ -592,41 +631,14 @@ function filterResults() {
 }
 
 async function searchResults(keywords) {
-  clearCheckboxes();
-  let newHTML = "";
-  let searchedProjects = [];
-
-  if (keywords.length != 0) {
-    searchedProjects = await FirebaseController.getSBCHProjectSearch(keywords);
-  }
-
-  if (searchedProjects.length === 0) {
-    newHTML += `<h4 style="text-align:center;">No projects found with that search!</h4>`;
-  }
-
-  let index = 0;
-  searchedProjects.forEach((project) => {
-    newHTML += buildProjectCard(project, index);
-    ++index;
-  });
-
-  Element.content.scrollTo(0, 0);
-  document.getElementById("project-count").innerHTML = searchedProjects.length;
-
-  newHTML += Element.floatingButtonHTML;
-
-  Element.content.innerHTML = newHTML;
-
-  document.getElementById("floating-button").addEventListener("click", () => {
-    Util.scrollToTop();
-  });
+  smartBCH_page("search=" + keywords);
 }
 
 function clearResults() {
   if (document.getElementById("collapseSidebar1").classList.contains("show")) {
-    smartBCH_page(false, false);
+    smartBCH_page("", false, false);
   } else {
-    smartBCH_page(false, true);
+    smartBCH_page("", false, true);
   }
 }
 
