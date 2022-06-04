@@ -3,7 +3,6 @@ export class Card {
     this.header = data.header;
     this.body = data.body;
     this.isPinned = data.isPinned;
-    this.page = data.page;
     this.timestamp = data.timestamp;
   }
 
@@ -12,7 +11,6 @@ export class Card {
       header: this.header,
       body: this.body,
       isPinned: this.isPinned,
-      page: this.page,
       timestamp: this.timestamp,
     };
   }
@@ -26,9 +24,6 @@ export class Card {
       r.body = this.body;
     }
     r.isPinned = this.isPinned;
-    if (this.page) {
-      r.page = this.page;
-    }
     if (this.timestamp) {
       r.timestamp = this.timestamp;
     }

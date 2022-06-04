@@ -1,5 +1,4 @@
 export const menuHome = document.getElementById("menu-home");
-export const menuAbout = document.getElementById("menu-about");
 export const menuLogin = document.getElementById("menu-login");
 export const menuWhitepaper = document.getElementById("menu-whitepaper");
 export const menuSmartBCH = document.getElementById("menu-smartBCH");
@@ -73,7 +72,6 @@ export const formAddCard = document.getElementById("form-add-card");
 export const formAddCardError = {
   header: document.getElementById("error-add-header"),
   body: document.getElementById("error-add-body"),
-  page: document.getElementById("error-add-page"),
 };
 
 // For edit card modal
@@ -81,7 +79,6 @@ export const formEditCard = document.getElementById("form-edit-card");
 export const formEditCardError = {
   header: document.getElementById("error-edit-header"),
   body: document.getElementById("error-edit-body"),
-  page: document.getElementById("error-edit-page"),
 };
 
 export const floatingButtonHTML = `<i id="floating-button" class="float my-float">

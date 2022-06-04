@@ -1,7 +1,6 @@
 import { Card } from "../model/card.js";
 import * as Element from "../viewpage/element.js";
 import * as FirebaseController from "../controller/firebase_controller.js";
-import * as Constant from "../model/constant.js";
 import * as Util from "../viewpage/util.js";
 
 export function addEventListeners() {
@@ -18,7 +17,6 @@ async function addNewCard(e) {
   const header = e.target.header.value;
   const body = e.target.body.value;
   const isPinned = e.target.isPinned.checked;
-  const page = e.target.page.value;
   const timestamp = Date.now();
 
   // Clear error tags before validating again
@@ -31,7 +29,6 @@ async function addNewCard(e) {
     header,
     body,
     isPinned,
-    page,
     timestamp,
   });
   // Check
@@ -45,9 +42,6 @@ async function addNewCard(e) {
     }
     if (errors.isPinned) {
       Element.formAddCardError.isPinned.innerHTML = errors.isPinned;
-    }
-    if (errors.page) {
-      Element.formAddCardError.page.innerHTML = errors.page;
     }
     return;
   }

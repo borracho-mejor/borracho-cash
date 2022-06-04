@@ -1,13 +1,11 @@
 import * as FirebaseController from "./firebase_controller.js";
-import * as Constant from "../model/constant.js";
 import * as Util from "../viewpage/util.js";
 import * as Element from "../viewpage/element.js";
 import { SBCHProject } from "../model/sBCHProject.js";
 import { Card } from "../model/card.js";
 import * as CloudStorage from "./cloud_storage.js";
-import { trimAndParse, trimStrings } from "./add_sbch_project.js";
+import { trimAndParse } from "./add_sbch_project.js";
 import { home_page } from "../viewpage/home_page.js";
-import { about_page } from "../viewpage/about_page.js";
 import { smartBCH_page } from "../viewpage/smartBCH_page.js";
 
 let imageFile2Upload;
@@ -96,7 +94,6 @@ export function addEventListeners() {
     const c = new Card({
       body: e.target.body.value,
       header: e.target.header.value,
-      page: e.target.page.value,
       isPinned: e.target.isPinned.checked,
     });
 
@@ -111,12 +108,8 @@ export function addEventListeners() {
       // Update Firestore
       await FirebaseController.updateCard(c);
 
-      if (c.page === "home") {
-        home_page();
-      }
-      if (c.page === "about") {
-        about_page();
-      }
+      home_page();
+
       Util.popUpInfo(
         "Card Updated",
         `${c.header} is updated successfully`,
@@ -194,22 +187,17 @@ export async function editCard(docID) {
   Element.formEditCard.docID.value = card.docID;
   Element.formEditCard.body.value = card.body;
   Element.formEditCard.header.value = card.header;
-  Element.formEditCard.page.value = card.page;
   Element.formEditCard.isPinned.checked = card.isPinned;
 
   $("#modal-form-edit-card").modal("show");
 }
 
-export async function deleteCard(docID, page) {
+export async function deleteCard(docID) {
   try {
     await FirebaseController.deleteCard(docID);
 
-    if (page === "home") {
-      home_page();
-    }
-    if (page === "about") {
-      about_page();
-    }
+    home_page();
+
     Util.popUpInfo("Deleted Card", `${docID} has sucessfully been deleted.`);
   } catch (error) {
     Util.popUpInfo("Error with Deletion", JSON.stringify(error));
