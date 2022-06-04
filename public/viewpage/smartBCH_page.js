@@ -476,8 +476,8 @@ function buildProjectCard(project, index) {
 
 function buildCheckboxesForTypes(label, index) {
   return `<div class="form-check-type inline padding-right-large">
-            <input class="form-check-type-input" type="checkbox" value="" id="checkbox-${label}">
-            <label class="form-check-type-label" for="checkbox-type-${label}">
+            <input class="form-check-type-input" type="checkbox" value="" id="checkbox-${label.toLowerCase()}">
+            <label class="form-check-type-label" for="checkbox-${label.toLowerCase()}">
               ${label}
             </label>
           </div>`;
@@ -485,8 +485,8 @@ function buildCheckboxesForTypes(label, index) {
 
 function buildCheckboxesForSocials(label, index) {
   return `<div class="form-check-social inline padding-right-large">
-            <input class="form-check-social-input" type="checkbox" value="" id="checkbox-${label}">
-            <label class="form-check-social-label" for="checkbox-social-${label}">
+            <input class="form-check-social-input" type="checkbox" value="" id="checkbox-${label.toLowerCase()}">
+            <label class="form-check-social-label" for="checkbox-${label.toLowerCase()}">
               ${label}
             </label>
           </div>`;
@@ -625,6 +625,7 @@ function filterResults(projects) {
       return project.type.some((val) => typesArray.indexOf(val) != -1);
     });
     typesArray.forEach((val) => {
+      val = val.toLowerCase();
       routeArray.push(val);
     });
   }
@@ -645,6 +646,7 @@ function filterResults(projects) {
       });
     });
     socialsArray.forEach((val) => {
+      val = val.toLowerCase();
       routeArray.push(val);
     });
   }
