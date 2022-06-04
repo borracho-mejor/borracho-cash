@@ -79,7 +79,6 @@ export async function smartBCH_page(
     ) {
       routeKeywords = routeKeywords.substring(7);
       filterArray = routeKeywords.split(" ");
-      console.log(filterArray);
     } else {
       history.pushState(null, null, Routes.routePathname.SBCH);
     }
@@ -682,7 +681,7 @@ function filterResults(projects) {
 
 async function searchResults(keywords) {
   if (keywords === "") {
-    Element.content.innerHTML = `<h4 style="text-align:center;">Please enter some search terms and try that search again!</h4> + ${Element.floatingButtonHTML}`;
+    Element.content.innerHTML = `<h4 style="text-align:center;">Please enter some search terms and try that search again!</h4> ${Element.floatingButtonHTML}`;
     document.getElementById("floating-button").addEventListener("click", () => {
       Util.scrollToTop();
     });
