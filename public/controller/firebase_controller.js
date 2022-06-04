@@ -87,22 +87,14 @@ export async function getSBCHProjectSearch(keywords) {
       projects.push(project);
     });
   }
-  // Sort by name
   projects.sort(function (a, b) {
-    var nameA = a.sort_name;
-    var nameB = b.sort_name;
-    if (nameA < nameB) return -1;
-    if (nameA > nameB) return 1;
-    return 0;
+    if (a.bias === b.bias) {
+      // Name is only important when biases are the same
+      return b.name - a.name;
+    }
+    return a.bias > b.bias ? 1 : -1;
   });
-  // then sort by bias
-  projects.sort(function (a, b) {
-    var biasA = a.bias;
-    var biasB = b.bias;
-    if (biasA < biasB) return -1;
-    if (biasA > biasB) return 1;
-    return 0;
-  });
+
   setTimeout(function () {
     $("#loadingoverlay").modal("hide");
   }, 500);
