@@ -26,6 +26,9 @@ export async function smartBCH_page(
 ) {
   Util.popUpLoading("Loading projects...", "");
 
+  typeChecksHTML = "";
+  socialsChecksHTML = "";
+
   try {
     projects = await FirebaseController.getSBCHProjectList();
   } catch (error) {
