@@ -235,7 +235,13 @@ export async function build_smartBCH_page(
   document.getElementById("form-search").addEventListener("submit", (e) => {
     e.preventDefault();
     const keywords = e.target.searchKeywords.value.trim().toLowerCase();
-    searchResults(keywords);
+    if (
+      document.getElementById("collapseSidebar1").classList.contains("show")
+    ) {
+      searchResults(keywords, false, false);
+    } else {
+      searchResults(keywords, false, true);
+    }
   });
 
   document
@@ -705,14 +711,14 @@ async function filterResults() {
   }, 500);
 }
 
-async function searchResults(keywords) {
+async function searchResults(keywords, scrollTop, isCollapsed) {
   if (keywords === "") {
     Element.content.innerHTML = `<h4 style="text-align:center;">Please enter some search terms and try that search again!</h4> ${Element.floatingButtonHTML}`;
     document.getElementById("floating-button").addEventListener("click", () => {
       Util.scrollToTop();
     });
   } else {
-    smartBCH_page("search=" + keywords);
+    smartBCH_page(`search=${keywords}`, scrollTop, isCollapsed);
   }
 }
 
