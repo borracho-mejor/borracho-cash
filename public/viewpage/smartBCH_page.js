@@ -432,7 +432,10 @@ function buildProjectCard(project, index) {
               } target="_blank"><h4 class="inline padding-left-medium padding-right ignore-hyper-color" style="vertical-align: middle;">${
     project.name
   }</h4></a><h6 class="inline" style="vertical-align: middle;">${listingTag}${auditTag}${dyorTag}</h6></div>
-              <div class="inline padding-right-medium padding-top-medium float-right"><h6 class="text-muted">${typesText}</h6></div>
+              <div class="inline padding-right-medium padding-top-medium float-right">
+                <h6 class="text-muted inline">${typesText}</h6>
+                <i class="material-icons-outlined inline padding-left" style="font-size: 1.75em; vertical-align: -0.25em;">share</i>
+              </div>
             </div>
             <div class="card-body flex-container">
               <div class="mr-3" style="flex: 10%; text-align: center;">
