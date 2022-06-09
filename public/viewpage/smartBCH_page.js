@@ -318,6 +318,16 @@ export async function build_smartBCH_page(
     document.getElementById("input-search").value = routeKeywords;
   }
 
+  // Share buttons
+  const shareButtons = document.getElementsByClassName("form-share-project");
+  for (const element of shareButtons) {
+    element.addEventListener("submit", (e) => {
+      e.preventDefault();
+      console.log("click");
+      shareProject(e.target.docID.value);
+    });
+  }
+
   if (Auth.currentUser) {
     Auth.authStateChangeObserver(Auth.currentUser);
   }
@@ -434,7 +444,10 @@ function buildProjectCard(project, index) {
   }</h4></a><h6 class="inline" style="vertical-align: middle;">${listingTag}${auditTag}${dyorTag}</h6></div>
               <div class="inline padding-right-medium padding-top-medium float-right">
                 <h6 class="text-muted inline">${typesText}</h6>
-                <i class="material-icons-outlined inline padding-left" style="font-size: 1.75em; vertical-align: -0.25em;">share</i>
+                <form class="form-share-project inline" method="post">
+                  <input type="hidden" name="docID" value="${project.docID}">
+                  <i class="material-icons-outlined padding-left" style="font-size: 1.75em; vertical-align: -0.25em;" type="submit">share</i>
+                </form>
               </div>
             </div>
             <div class="card-body flex-container">
@@ -472,20 +485,18 @@ function buildProjectCard(project, index) {
                   <p>${new Date(project.timestamp.toDate()).toDateString()}</p>
                 </div>
                 <form class="form-delete-project inline float-right modal-post-auth" method="post">
-                <input type="hidden" name="docID" value="${project.docID}">
-                <input type="hidden" name="logoPath" value="${
-                  project.logo_path
-                }">
-                <button class="btn btn-outline-danger" style="margin-left: 5px;" type="submit">Delete</button>
-              </form>
-              <form class="form-edit-project inline float-right modal-post-auth" method="post">
-                <input type="hidden" name="docID" value="${project.docID}">
-                <button class="btn btn-outline-success" style="margin-left: 5px;" type="submit">Edit</button>
-              </form>
+                  <input type="hidden" name="docID" value="${project.docID}">
+                  <input type="hidden" name="logoPath" value="${
+                    project.logo_path
+                  }">
+                  <button class="btn btn-outline-danger" style="margin-left: 5px;" type="submit">Delete</button>
+                </form>
+                <form class="form-edit-project inline float-right modal-post-auth" method="post">
+                  <input type="hidden" name="docID" value="${project.docID}">
+                  <button class="btn btn-outline-success" style="margin-left: 5px;" type="submit">Edit</button>
+                </form>
               </div>
-              
             </div>
-            
           </div>`;
 }
 
@@ -829,4 +840,8 @@ function collapseSidebar() {
     document.getElementById("collapseSidebar1").classList.remove("show");
     document.getElementById("collapseSidebar2").classList.remove("show");
   }
+}
+
+function shareProject(docID) {
+  console.log(docID);
 }
