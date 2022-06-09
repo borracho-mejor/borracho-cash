@@ -446,7 +446,7 @@ function buildProjectCard(project, index) {
                 <h6 class="text-muted inline">${typesText}</h6>
                 <form class="form-share-project inline" method="post">
                   <input type="hidden" name="docID" value="${project.docID}">
-                  <i class="material-icons-outlined padding-left" style="font-size: 1.75em; vertical-align: -0.25em;" type="submit">share</i>
+                  <button class="material-icons-outlined padding-left button-clear" style="font-size: 1.75em; vertical-align: -0.25em;" type="submit">share</button>
                 </form>
               </div>
             </div>
@@ -842,6 +842,6 @@ function collapseSidebar() {
   }
 }
 
-function shareProject(docID) {
-  console.log(docID);
+function shareProject(idOfProject) {
+  console.log(idOfProject);
 }

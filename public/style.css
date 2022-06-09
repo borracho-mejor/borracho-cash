@@ -346,6 +346,18 @@ input[type="checkbox"] {
   transform: translate(-50%, -50%); */
 }
 
+/* Clear Button */
+.button-clear {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  color: var(--color-text);
+}
+.button-clear:focus {
+  border: none;
+  outline: none;
+}
+
 /* Shaking effects */
 .shaking-image {
   transform: translate(0px, 0px);
