@@ -13,6 +13,7 @@ const Secrets = require("./secrets.js");
 const algoliasearch = require("algoliasearch");
 
 exports.admin_getProjectByID = functions.https.onCall(getProjectByID);
+// exports.admin_getProjectByName = functions.https.onCall(getProjectByName);
 exports.admin_updateSBCHProject = functions.https.onCall(updateSBCHProject);
 exports.admin_deleteSBCHProject = functions.https.onCall(deleteSBCHProject);
 exports.admin_getCardByID = functions.https.onCall(getCardByID);
@@ -85,6 +86,67 @@ async function getProjectByID(docID, context) {
     );
   }
 }
+
+// async function getProjectByName(projectName, context) {
+//   // if (!isAdmin(context.auth.token.email)) {
+//   //   throw new functions.https.HttpsError(
+//   //     "unauthenticated",
+//   //     "Only admin users can invoke this function."
+//   //   );
+//   // }
+//   try {
+//     const doc = await admin
+//       .firestore()
+//       .collection(Constant.collectionName.SBCHPROJECTS)
+//       .where("sort_name", "==", projectName)
+//       .get();
+//     if (doc.exists) {
+//       const {
+//         name,
+//         description,
+//         audit,
+//         bias,
+//         dyor,
+//         helpful_links,
+//         logo_path,
+//         socials,
+//         type,
+//         my_thoughts,
+//         quoted_description,
+//         timestamp,
+//         site,
+//         imageName,
+//         imageURL,
+//       } = doc.data();
+//       const p = {
+//         name,
+//         description,
+//         audit,
+//         bias,
+//         dyor,
+//         helpful_links,
+//         logo_path,
+//         socials,
+//         type,
+//         my_thoughts,
+//         quoted_description,
+//         timestamp,
+//         site,
+//         imageName,
+//         imageURL,
+//       };
+//       p.docID = doc.id;
+//       return p;
+//     } else {
+//       return null;
+//     }
+//   } catch (error) {
+//     throw new functions.https.HttpsError(
+//       "internal",
+//       "An error occurred in getProjectByName."
+//     );
+//   }
+// }
 
 async function updateSBCHProject(projectInfo, context) {
   if (!isAdmin(context.auth.token.email)) {

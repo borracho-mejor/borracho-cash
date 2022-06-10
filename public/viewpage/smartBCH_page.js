@@ -6,6 +6,7 @@ import * as Util from "./util.js";
 import { Timestamp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
 import * as Auth from "../controller/auth.js";
 import * as Edit from "../controller/edit_project.js";
+import { SBCHProject } from "../model/sBCHProject.js";
 
 export function addEventListeners() {
   Element.menuSmartBCH.addEventListener("click", () => {
@@ -28,6 +29,7 @@ export async function smartBCH_page(
 
   typeChecksHTML = "";
   socialsChecksHTML = "";
+  let specificProject;
 
   try {
     projects = await FirebaseController.getSBCHProjectList();
@@ -82,6 +84,15 @@ export async function smartBCH_page(
     ) {
       routeKeywords = routeKeywords.substring(7);
       filterArray = routeKeywords.split(" ");
+    } else if (
+      routeKeywords.startsWith("project=") &&
+      routeKeywords != "project="
+    ) {
+      // getSBCHProjectByName (decoded)
+      routeKeywords = routeKeywords.substring(8);
+      specificProject = await FirebaseController.getProjectByName(
+        decodeURI(routeKeywords)
+      );
     } else {
       history.pushState(null, null, Routes.routePathname.SBCH);
     }
@@ -93,11 +104,12 @@ export async function smartBCH_page(
     $("#loadingoverlay").modal("hide");
   }, 500);
 
-  build_smartBCH_page(routeKeywords, scrollTop, isCollapsed);
+  build_smartBCH_page(routeKeywords, specificProject, scrollTop, isCollapsed);
 }
 
 export async function build_smartBCH_page(
   routeKeywords,
+  specificProject,
   scrollTop,
   isCollapsed
 ) {
@@ -105,6 +117,7 @@ export async function build_smartBCH_page(
   Util.showHeader();
   Util.unActivateLinks();
   Element.menuSmartBCH.classList.add("active");
+  $("#modal-pop-up-info").modal("hide");
 
   let html = "";
   let sidebarHTML = `<div style="height: 100%;">
@@ -206,6 +219,13 @@ export async function build_smartBCH_page(
 
   if (projects.length == 0) {
     html += `<h4 style="text-align:center;">No projects found!</h4>`;
+  } else if (specificProject) {
+    html += `<h5 class="d-inline-block" style="text-align:center;">This is a specific project that was shared from the <a href="https://borracho.cash/smartbch" target="_blank">borracho.cash/smartbch</a> listings. 
+              After checking it out feel free to use the <button id="button-clear-all" type="button" class="btn btn-danger btn-sm py-0" style="font-size: 0.75rem;">Clear</button> button in the left sidebar (or header on mobile) to see 
+              a list off all projects. You can also use the <i style="color: #28a745;">search bar</i> to search for a variety of project names, types, 
+              socials, developers, or basically anything that is displayed on each project's card. Finally, check out the filters 
+              to find a specifc project type, a list of projects with certain social channels, or a variety of quick filters such as audited or newly listed projects.</h5>`;
+    html += buildProjectCard(specificProject);
   } else {
     let index = 0;
     projects.forEach((project) => {
@@ -223,7 +243,7 @@ export async function build_smartBCH_page(
   document.getElementById("socials-check-form").innerHTML = socialsChecksHTML;
   document.getElementById("project-count").innerHTML = projects.length;
   document.getElementById("button-filter").addEventListener("click", () => {
-    filterResults();
+    filterResults(specificProject);
   });
   document
     .getElementById("button-add-smartBCH")
@@ -264,7 +284,7 @@ export async function build_smartBCH_page(
     filterArray.forEach((filter) => {
       document.getElementById(`checkbox-${decodeURI(filter)}`).checked = true;
     });
-    filterResults();
+    filterResults(specificProject);
   }
 
   // When the user scrolls, show the button
@@ -313,19 +333,18 @@ export async function build_smartBCH_page(
   if (
     routeKeywords &&
     routeKeywords != "search=" &&
-    !routeKeywords.startsWith("filter=")
+    !routeKeywords.startsWith("filter=") &&
+    !specificProject
   ) {
     document.getElementById("input-search").value = routeKeywords;
   }
 
-  // Share buttons
-  const shareButtons = document.getElementsByClassName("form-share-project");
-  for (const element of shareButtons) {
-    element.addEventListener("submit", (e) => {
-      e.preventDefault();
-      console.log("click");
-      shareProject(e.target.docID.value);
-    });
+  if (specificProject) {
+    document
+      .getElementById("button-clear-all")
+      .addEventListener("click", () => {
+        clearResults();
+      });
   }
 
   if (Auth.currentUser) {
@@ -333,6 +352,7 @@ export async function build_smartBCH_page(
   }
 
   addAdminButtons();
+  addShareButtons(specificProject);
 }
 
 function addAdminButtons() {
@@ -359,6 +379,20 @@ function addAdminButtons() {
       const label = Util.disableButton(button);
       await Edit.deleteProject(e.target.docID.value, e.target.logoPath.value);
       Util.enableButton(button, label);
+    });
+  }
+}
+
+function addShareButtons(specificProject) {
+  // Share buttons
+  const shareButtons = document.getElementsByClassName("form-share-project");
+  for (const element of shareButtons) {
+    if (specificProject) {
+      element.style.display = "none";
+    }
+    element.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      await shareProject(e.target.docID.value);
     });
   }
 }
@@ -579,7 +613,7 @@ function buildSocials(project) {
   return html;
 }
 
-async function filterResults() {
+async function filterResults(specificProject) {
   Util.popUpLoading("Loading projects...", "");
 
   try {
@@ -706,6 +740,7 @@ async function filterResults() {
   }
 
   addAdminButtons();
+  addShareButtons(specificProject);
 
   document.getElementById("floating-button").addEventListener("click", () => {
     Util.scrollToTop();
@@ -842,6 +877,13 @@ function collapseSidebar() {
   }
 }
 
-function shareProject(idOfProject) {
-  console.log(idOfProject);
+async function shareProject(idOfProject) {
+  const project = await FirebaseController.getProjectByID(idOfProject);
+  const url = `http://localhost:5000${
+    Routes.routePathname.SBCH
+  }#project=${encodeURI(project.name.toLowerCase())}`;
+  Util.popUpInfo(
+    `Share ${project.name} with someone!`,
+    `<a class="breakable" href=${url}>Navigate to ${project.name} <br /> ${url}</a>`
+  );
 }
