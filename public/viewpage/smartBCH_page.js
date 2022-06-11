@@ -878,12 +878,67 @@ function collapseSidebar() {
 }
 
 async function shareProject(idOfProject) {
+  Util.popUpLoading("One sec...", "");
   const project = await FirebaseController.getProjectByID(idOfProject);
   const url = `http://localhost:5000${
     Routes.routePathname.SBCH
   }#project=${encodeURI(project.name.toLowerCase())}`;
   Util.popUpInfo(
     `Share ${project.name} with someone!`,
-    `<a class="breakable" href=${url}>Navigate to ${project.name} <br /> ${url}</a>`
+    `<div style="align-items: center; text-align: center;">
+        <div class="inline padding-right-large" style="max-width: 85%; text-align: left;">
+          <a href=${url}>Link to ${project.name}'s page</a>
+          <p class="breakable" style="text-align: left;"><small>${url}</small></p>
+        </div>
+        <div class="inline" style="text-align: center;">
+          <button id="share-button" class="material-icons-outlined button-clear" style="font-size: 2rem;">content_copy</button> <br />
+          <small>Copy</small>
+      </div>`,
+    "modal-pop-up-info"
+  );
+  setTimeout(function () {
+    $("#loadingoverlay").modal("hide");
+  }, 100);
+  document.getElementById("share-button").addEventListener("click", () => {
+    copyTextToClipboard(url);
+  });
+}
+
+function fallbackCopyTextToClipboard(text) {
+  var textArea = document.createElement("textarea");
+  textArea.value = text;
+
+  // Avoid scrolling to bottom
+  textArea.style.top = "0";
+  textArea.style.left = "0";
+  textArea.style.position = "fixed";
+
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+
+  try {
+    var successful = document.execCommand("copy");
+    var msg = successful ? "successful" : "unsuccessful";
+    console.log("Fallback: Copying text command was " + msg);
+  } catch (err) {
+    console.error("Fallback: Oops, unable to copy", err);
+  }
+
+  document.body.removeChild(textArea);
+}
+
+function copyTextToClipboard(text) {
+  if (!navigator.clipboard) {
+    fallbackCopyTextToClipboard(text);
+    return;
+  }
+  navigator.clipboard.writeText(text).then(
+    function () {
+      console.log("Async: Copying to clipboard was successful!");
+    },
+    function (err) {
+      console.error("Async: Could not copy text: ", err);
+    }
   );
 }
