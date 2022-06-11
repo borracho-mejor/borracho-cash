@@ -93,6 +93,7 @@ export async function smartBCH_page(
       specificProject = await FirebaseController.getProjectByName(
         decodeURI(routeKeywords)
       );
+      isCollapsed = true;
     } else {
       history.pushState(null, null, Routes.routePathname.SBCH);
     }
@@ -159,9 +160,9 @@ export async function build_smartBCH_page(
                             <button id="button-filter" type="button" class="btn btn-success" style="margin-right: 5px; margin-bottom: 5px;">Filter Projects</button>
                             <button id="button-filter-clear" type="button" class="btn btn-danger" style="margin-right: 5px; margin-bottom: 5px;">Clear</button>
                             <button id="collapse-button" class="btn btn-outline-success collapse-btn-text flashing-button" data-toggle="collapse" href="#collapseSidebar" data-target=".multi-collapse" role="button" 
-                              aria-expanded="false" aria-controls="collapseSidebar1 collapseSidebar2" style="margin-bottom: 5px;">Collapse Sidebar</button>
+                              aria-expanded="false" aria-controls="collapseSidebar1 collapseSidebar2" style="margin-bottom: 5px;">Expand Sidebar</button>
                           </div>
-                          <div class="collapse show multi-collapse" id="collapseSidebar1" >
+                          <div class="collapse multi-collapse" id="collapseSidebar1" >
                             <div class="alert alert-custom">
                               <p class="alert-heading">Quick Filters:</p>
                               <hr>
@@ -241,7 +242,11 @@ export async function build_smartBCH_page(
 
   document.getElementById("type-check-form").innerHTML = typeChecksHTML;
   document.getElementById("socials-check-form").innerHTML = socialsChecksHTML;
-  document.getElementById("project-count").innerHTML = projects.length;
+  if (!specificProject) {
+    document.getElementById("project-count").innerHTML = projects.length;
+  } else {
+    document.getElementById("project-count").innerHTML = 1;
+  }
   document.getElementById("button-filter").addEventListener("click", () => {
     filterResults(specificProject);
   });
@@ -349,6 +354,12 @@ export async function build_smartBCH_page(
 
   if (Auth.currentUser) {
     Auth.authStateChangeObserver(Auth.currentUser);
+  }
+
+  const collapseButton = document.getElementById("collapse-button");
+  if (window.getComputedStyle(collapseButton).display === "none") {
+    document.getElementById("collapseSidebar1").classList.add("show");
+    document.getElementById("collapseSidebar2").classList.add("show");
   }
 
   addAdminButtons();
