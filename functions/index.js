@@ -26,12 +26,6 @@ function isAdmin(email) {
 }
 
 async function getProjectByID(docID, context) {
-  // if (!isAdmin(context.auth.token.email)) {
-  //   throw new functions.https.HttpsError(
-  //     "unauthenticated",
-  //     "Only admin users can invoke this function."
-  //   );
-  // }
   try {
     const doc = await admin
       .firestore()
