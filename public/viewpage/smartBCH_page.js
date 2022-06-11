@@ -885,15 +885,17 @@ async function shareProject(idOfProject) {
   }#project=${encodeURI(project.name.toLowerCase())}`;
   Util.popUpInfo(
     `Share ${project.name} with someone!`,
-    `<div style="align-items: center; text-align: center;">
-        <div class="inline padding-right-large" style="max-width: 85%; text-align: left;">
-          <a href=${url}>Link to ${project.name}'s page</a>
-          <p class="breakable" style="text-align: left;"><small>${url}</small></p>
-        </div>
-        <div class="inline" style="text-align: center;">
-          <button id="share-button" class="material-icons-outlined button-clear" style="font-size: 2rem;">content_copy</button> <br />
-          <small>Copy</small>
-      </div>`,
+    `<a href=${url}>Link to ${project.name}'s page</a>
+      <table width="100%" style="border: none;">
+        <tr>
+          <td  style="border: none;">
+            <input type="text" name="urlText" class="inline" style="width: 100%" value="${url}" />
+          </td>
+          <td width="1rem" style="border: none;">
+            <button id="share-button" class="material-icons-outlined button-clear inline" style="vertical-align: middle;">content_copy</button>
+          </td>
+        </tr>
+      </table>`,
     "modal-pop-up-info"
   );
   setTimeout(function () {
