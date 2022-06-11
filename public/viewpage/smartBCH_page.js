@@ -889,7 +889,7 @@ async function shareProject(idOfProject) {
       <table width="100%" style="border: none;">
         <tr>
           <td  style="border: none;">
-            <input type="text" name="urlText" class="inline" style="width: 100%" value="${url}" />
+            <input readonly type="text" name="urlText" class="inline" style="width: 100%" value="${url}" />
           </td>
           <td width="1rem" style="border: none;">
             <button id="share-button" class="material-icons-outlined button-clear inline" style="vertical-align: middle;" data-toggle="popover" data-placement="top" data-content="Copied!">content_copy</button>
