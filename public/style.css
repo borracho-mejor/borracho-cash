@@ -123,6 +123,14 @@ a:hover {
   color: var(--color-text);
 }
 
+.popover .arrow:after {
+  border-top-color: var(--color-background);
+}
+.popover-body {
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
 @media screen and (max-width: 900px) {
   /* Mobile */
   body {

@@ -892,7 +892,7 @@ async function shareProject(idOfProject) {
             <input type="text" name="urlText" class="inline" style="width: 100%" value="${url}" />
           </td>
           <td width="1rem" style="border: none;">
-            <button id="share-button" class="material-icons-outlined button-clear inline" style="vertical-align: middle;">content_copy</button>
+            <button id="share-button" class="material-icons-outlined button-clear inline" style="vertical-align: middle;" data-toggle="popover" data-placement="top" data-content="Copied!">content_copy</button>
           </td>
         </tr>
       </table>`,
@@ -903,6 +903,9 @@ async function shareProject(idOfProject) {
   }, 100);
   document.getElementById("share-button").addEventListener("click", () => {
     copyTextToClipboard(url);
+    setTimeout(function () {
+      $("#share-button").popover("hide");
+    }, 1000);
   });
 }
 
@@ -921,10 +924,15 @@ function fallbackCopyTextToClipboard(text) {
 
   try {
     var successful = document.execCommand("copy");
-    var msg = successful ? "successful" : "unsuccessful";
-    console.log("Fallback: Copying text command was " + msg);
+    if (msg === "successful") {
+      $("#share-button").popover("show");
+    }
   } catch (err) {
-    console.error("Fallback: Oops, unable to copy", err);
+    Util.popUpInfo(
+      "Error in fallbackCopyTextToClipboard",
+      JSON.stringify(err),
+      "modal-pop-up-info"
+    );
   }
 
   document.body.removeChild(textArea);
@@ -937,10 +945,14 @@ function copyTextToClipboard(text) {
   }
   navigator.clipboard.writeText(text).then(
     function () {
-      console.log("Async: Copying to clipboard was successful!");
+      $("#share-button").popover("show");
     },
     function (err) {
-      console.error("Async: Could not copy text: ", err);
+      Util.popUpInfo(
+        "Error in copyTextToClipboard",
+        JSON.stringify(err),
+        "modal-pop-up-info"
+      );
     }
   );
 }
