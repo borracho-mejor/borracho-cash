@@ -123,6 +123,14 @@ a:hover {
   color: var(--color-text);
 }
 
+.popover .arrow:after {
+  border-top-color: var(--color-background);
+}
+.popover-body {
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
 @media screen and (max-width: 900px) {
   /* Mobile */
   body {
@@ -344,6 +352,18 @@ input[type="checkbox"] {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); */
+}
+
+/* Clear Button */
+.button-clear {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  color: var(--color-text);
+}
+.button-clear:focus {
+  border: none;
+  outline: none;
 }
 
 /* Shaking effects */

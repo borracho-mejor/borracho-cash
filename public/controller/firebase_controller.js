@@ -194,6 +194,21 @@ export async function getProjectByID(docID) {
   }
 }
 
+export async function getProjectByName(name) {
+  let project;
+  const q = query(
+    collection(db, Constant.collectionName.SBCH_PROJECTS),
+    where("sort_name", "==", name)
+  );
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    project = new SBCHProject(doc.data());
+    project.docID = doc.id;
+  });
+  return project;
+}
+
 const cf_updateSBCHProject = httpsCallable(
   functions,
   "admin_updateSBCHProject"
