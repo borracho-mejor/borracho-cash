@@ -880,7 +880,7 @@ function collapseSidebar() {
 async function shareProject(idOfProject) {
   Util.popUpLoading("One sec...", "");
   const project = await FirebaseController.getProjectByID(idOfProject);
-  const url = `http://localhost:5000${
+  const url = `https://borracho.cash${
     Routes.routePathname.SBCH
   }#project=${encodeURI(project.name.toLowerCase())}`;
   Util.popUpInfo(
