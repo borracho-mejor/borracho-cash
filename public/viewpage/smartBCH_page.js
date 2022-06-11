@@ -885,7 +885,7 @@ async function shareProject(idOfProject) {
   }#project=${encodeURI(project.name.toLowerCase())}`;
   Util.popUpInfo(
     `Share ${project.name} with someone!`,
-    `<a href=${url}>Link to ${project.name}'s page</a>
+    `<a href=${url}>Click to view ${project.name}'s page</a>
       <table width="100%" style="border: none;">
         <tr>
           <td  style="border: none;">
