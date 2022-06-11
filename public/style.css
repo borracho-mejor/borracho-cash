@@ -197,6 +197,19 @@ a:hover {
   #collapse-button {
     display: none;
   }
+  /* New Scroll Bars */
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
+  *::-webkit-scrollbar-track {
+    background-color: var(--color-inner-card-background);
+    border-radius: 100px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: #115c39;
+    border-radius: 100px;
+    background-clip: padding-box;
+  }
 }
 
 .footer-content {
