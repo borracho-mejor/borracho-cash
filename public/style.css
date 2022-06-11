@@ -104,19 +104,19 @@ del {
 }
 
 a {
-  color: green;
+  color: #28a745;
 }
 
 a:link {
-  color: green;
+  color: #28a745;
 }
 
 a:visited {
-  color: green;
+  color: #28a745;
 }
 
 a:hover {
-  color: green;
+  color: #28a745;
 }
 
 .ignore-hyper-color {
@@ -206,7 +206,16 @@ a:hover {
     border-radius: 100px;
   }
   *::-webkit-scrollbar-thumb {
-    background: #115c39;
+    background: #28a745;
+    border-radius: 100px;
+    background-clip: padding-box;
+  }
+  #twitter-widget-holder-scrollbar-track {
+    background-color: var(--color-inner-card-background);
+    border-radius: 100px;
+    }
+  #twitter-widget-holder-scrollbar-thumb { 
+    background: #28a745;
     border-radius: 100px;
     background-clip: padding-box;
   }
@@ -474,7 +483,7 @@ input[type="checkbox"] {
   height: 60px;
   bottom: 40px;
   right: 20px;
-  background-color: #115c39;
+  background-color: #28a745;
   color: #fff;
   border-radius: 50px;
   text-align: center;
