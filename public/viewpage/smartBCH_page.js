@@ -220,19 +220,32 @@ export async function build_smartBCH_page(
 
   if (projects.length == 0) {
     html += `<h4 style="text-align:center;">No projects found!</h4>`;
-  } else if (specificProject) {
-    html += `<div class="card mb-3 mr-1"><div class="card-body"><h5 style="text-align:center;">This is a specific project that was shared from the <a href="https://borracho.cash/smartbch" target="_blank">borracho.cash/smartbch</a> listings. 
+  } else {
+    if (specificProject) {
+      html += `<div class="card mb-3 mr-1"><div class="card-body"><h5 style="text-align:left;">This is a specific project that was shared from the <a href="https://borracho.cash/smartbch" target="_blank">borracho.cash/smartbch</a> listings. 
               After checking it out feel free to use the <button id="button-clear-all" type="button" class="btn btn-danger btn-sm py-0" style="font-size: 0.75rem;">Clear</button> button in the left sidebar (or header on mobile) to see 
               a list off all projects. You can also use the <i style="color: #28a745;">search bar</i> to search for a variety of project names, types, 
               socials, developers, or basically anything that is displayed on each project's card. Finally, check out the filters 
               to find a specifc project type, a list of projects with certain social channels, or a variety of quick filters such as audited or newly listed projects.</h5></div></div>`;
-    html += buildProjectCard(specificProject);
-  } else {
-    let index = 0;
-    projects.forEach((project) => {
-      html += buildProjectCard(project, index);
-      ++index;
-    });
+      html += buildProjectCard(specificProject);
+    } else if (routeKeywords) {
+      html += `<div class="card mb-3 mr-1"><div class="card-body"><h5 style="text-align:left;">This is a specific search from the <a href="https://borracho.cash/smartbch" target="_blank">borracho.cash/smartbch</a> listings. 
+                After checking it out feel free to use the <button id="button-clear-all" type="button" class="btn btn-danger btn-sm py-0" style="font-size: 0.75rem;">Clear</button> button in the left sidebar (or header on mobile) to see 
+                a list off all projects. You can also use the <i style="color: #28a745;">search bar</i> to search for a variety of project names, types, 
+                socials, developers, or basically anything that is displayed on each project's card. Finally, check out the filters 
+                to find a specifc project type, a list of projects with certain social channels, or a variety of quick filters such as audited or newly listed projects.</h5></div></div>`;
+      let index = 0;
+      projects.forEach((project) => {
+        html += buildProjectCard(project, index);
+        ++index;
+      });
+    } else {
+      let index = 0;
+      projects.forEach((project) => {
+        html += buildProjectCard(project, index);
+        ++index;
+      });
+    }
   }
 
   html += Element.floatingButtonHTML;
@@ -281,6 +294,7 @@ export async function build_smartBCH_page(
     Util.scrollToTop();
   });
 
+  // Clear empty search
   if (routeKeywords == "search=") {
     clearResults();
   }
@@ -290,6 +304,8 @@ export async function build_smartBCH_page(
       document.getElementById(`checkbox-${decodeURI(filter)}`).checked = true;
     });
     filterResults(specificProject);
+  } else {
+    clearCheckboxes();
   }
 
   // When the user scrolls, show the button
@@ -344,14 +360,6 @@ export async function build_smartBCH_page(
     document.getElementById("input-search").value = routeKeywords;
   }
 
-  if (specificProject) {
-    document
-      .getElementById("button-clear-all")
-      .addEventListener("click", () => {
-        clearResults();
-      });
-  }
-
   if (Auth.currentUser) {
     Auth.authStateChangeObserver(Auth.currentUser);
   }
@@ -364,6 +372,14 @@ export async function build_smartBCH_page(
 
   addAdminButtons();
   addShareButtons(specificProject);
+
+  if (document.getElementById("button-clear-all")) {
+    document
+      .getElementById("button-clear-all")
+      .addEventListener("click", () => {
+        clearResults();
+      });
+  }
 }
 
 function addAdminButtons() {
@@ -733,18 +749,32 @@ async function filterResults(specificProject) {
 
   if (filteredProjects.length === 0) {
     newHTML += `<h4 style="text-align:center;">No projects found with that filter!</h4>`;
+  } else {
+    newHTML += `<div class="card mb-3 mr-1"><div class="card-body"><h5 style="text-align:left;">This is a specific filter from the <a href="https://borracho.cash/smartbch" target="_blank">borracho.cash/smartbch</a> listings. 
+                After checking it out feel free to use the <button id="button-clear-all" type="button" class="btn btn-danger btn-sm py-0" style="font-size: 0.75rem;">Clear</button> button in the left sidebar (or header on mobile) to see 
+                a list off all projects. You can also use the <i style="color: #28a745;">search bar</i> to search for a variety of project names, types, 
+                socials, developers, or basically anything that is displayed on each project's card. Finally, check out the filters 
+                to find a specifc project type, a list of projects with certain social channels, or a variety of quick filters such as audited or newly listed projects.</h5></div></div>`;
+    let index = 0;
+    filteredProjects.forEach((project) => {
+      newHTML += buildProjectCard(project, index);
+      ++index;
+    });
   }
-  let index = 0;
-  filteredProjects.forEach((project) => {
-    newHTML += buildProjectCard(project, index);
-    ++index;
-  });
 
   newHTML += Element.floatingButtonHTML;
 
   Element.content.scrollTo(0, 0);
   document.getElementById("project-count").innerHTML = filteredProjects.length;
   Element.content.innerHTML = newHTML;
+
+  if (document.getElementById("button-clear-all")) {
+    document
+      .getElementById("button-clear-all")
+      .addEventListener("click", () => {
+        clearResults();
+      });
+  }
 
   if (Auth.currentUser) {
     Auth.authStateChangeObserver(Auth.currentUser);
