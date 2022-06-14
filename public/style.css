@@ -30,6 +30,8 @@ body {
   --dark-mode: inline-block;
   --dark-mode-img: block;
   --border-color: #272d30;
+  --green-elements-color: #07a159;
+  --green-elements-shadow: rgba(7, 161, 89, 0.5);
 }
 
 .lightmode {
@@ -43,6 +45,8 @@ body {
   --dark-mode: none;
   --dark-mode-img: none;
   --border-color: lightgrey;
+  --green-elements-color: #07a159;
+  --green-elements-shadow: rgba(7, 161, 89, 0.5);
 }
 
 body {
@@ -104,19 +108,19 @@ del {
 }
 
 a {
-  color: green;
+  color: var(--green-elements-color);
 }
 
 a:link {
-  color: green;
+  color: var(--green-elements-color);
 }
 
 a:visited {
-  color: green;
+  color: var(--green-elements-color);
 }
 
 a:hover {
-  color: green;
+  color: var(--green-elements-color);
 }
 
 .ignore-hyper-color {
@@ -196,6 +200,19 @@ a:hover {
   }
   #collapse-button {
     display: none;
+  }
+  /* New Scroll Bars */
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
+  *::-webkit-scrollbar-track {
+    background-color: var(--color-inner-card-background);
+    border-radius: 100px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: var(--green-elements-color);
+    border-radius: 100px;
+    background-clip: padding-box;
   }
 }
 
@@ -454,6 +471,68 @@ input[type="checkbox"] {
   }
 }
 
+.btn-success {
+  background-color: var(--green-elements-color);
+  border-color: var(--green-elements-color);
+}
+.btn-success:hover {
+  background-color: var(--green-elements-color);
+  border-color: var(--green-elements-color);
+}
+.btn-success:focus,
+.btn-success.focus {
+  background-color: var(--green-elements-color);
+  border-color: var(--green-elements-color);
+  box-shadow: 0 0 0 .2rem var(--green-elements-shadow);
+}
+.btn-success:disabled {
+  background-color: var(--green-elements-color);
+  border-color: var(--green-elements-color);
+}
+.btn-success:not(:disabled):not(.disabled):active,
+.btn-success:not(:disabled):not(.disabled).active,
+.show>.btn-success.dropdown-toggle {
+  background-color: var(--green-elements-color);
+  border-color: var(--green-elements-color);
+}
+.btn-success:not(:disabled):not(.disabled):active:focus,
+.btn-success:not(:disabled):not(.disabled).active:focus,
+.show>.btn-success.dropdown-toggle:focus {
+  background-color: var(--green-elements-color);
+  border-color: var(--green-elements-color);
+  box-shadow: 0 0 0 .2rem var(--green-elements-shadow);
+}
+.btn-outline-success {
+  color: var(--green-elements-color);
+  border-color: var(--green-elements-color);
+}
+.btn-outline-success:hover {
+  color: #ffffff;
+  background-color: var(--green-elements-color);
+  border-color: var(--green-elements-color);
+}
+.btn-outline-success:focus,
+.btn-outline-success.focus {
+  box-shadow: 0 0 0 .2rem var(--green-elements-color);
+}
+.btn-outline-success.disabled,
+.btn-outline-success:disabled {
+  color: var(--green-elements-color);
+  background-color: transparent
+}
+.btn-outline-success:not(:disabled):not(.disabled):active,
+.btn-outline-success:not(:disabled):not(.disabled).active,
+.show>.btn-outline-success.dropdown-toggle {
+  color: #ffffff;
+  background-color: var(--green-elements-color);
+  border-color: var(--green-elements-color);
+}
+.btn-outline-success:not(:disabled):not(.disabled):active:focus,
+.btn-outline-success:not(:disabled):not(.disabled).active:focus,
+.show>.btn-outline-success.dropdown-toggle:focus {
+  box-shadow: 0 0 0 .2rem var(--green-elements-shadow);
+}
+
 /* Floating Button */
 .float {
   position: fixed;
@@ -461,7 +540,7 @@ input[type="checkbox"] {
   height: 60px;
   bottom: 40px;
   right: 20px;
-  background-color: #115c39;
+  background-color: var(--green-elements-color);
   color: #fff;
   border-radius: 50px;
   text-align: center;
@@ -469,22 +548,25 @@ input[type="checkbox"] {
   display: none;
   z-index: 1;
 }
+.float:hover{
+  box-shadow: 0 0 0 .2rem var(--green-elements-shadow);
+}
 .my-float {
   margin-top: 22px;
 }
 
 @keyframes glowing {
   0% {
-    box-shadow: 0 0 6px #28a745;
+    box-shadow: 0 0 6px var(--green-elements-color);
   }
   33% {
-    box-shadow: 0 0 10px #28a745;
+    box-shadow: 0 0 10px var(--green-elements-color);
   }
   66% {
-    box-shadow: 0 0 6px #28a745;
+    box-shadow: 0 0 6px var(--green-elements-color);
   }
   100% {
-    box-shadow: 0 0 3px #28a745;
+    box-shadow: 0 0 3px var(--green-elements-color);
   }
 }
 
