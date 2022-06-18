@@ -670,6 +670,8 @@ async function filterResults(specificProject) {
         Constant.NEW_LISTING_TIME
       );
     });
+    // sort by timestamp
+    filteredProjects.sort((a, b) => (a.timestamp < b.timestamp ? 1 : -1));
   }
   // audit
   if (document.getElementById("checkbox-audited").checked) {
