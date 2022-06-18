@@ -92,3 +92,6 @@ export const loadingModalHeader = document.getElementById(
 export const loadingModalFooter = document.getElementById(
   "modal-loading-footer"
 );
+
+// Donations modal
+export const donationsBody = document.getElementById("donations-body");
