@@ -632,6 +632,10 @@ function buildSocials(project) {
   if (project.socials["linktree"]) {
     html += `<a href="${project.socials["linktree"]}" target="_blank"><img src="./images/linktree.png" alt="Linktree logo" style="height: 2em; padding: 5px" /></a>`;
   }
+  if (project.socials["tiktok"]) {
+    html += `<a href="${project.socials["tiktok"]}" target="_blank"><img class="light-mode" src="./images/tik-tok-dark.png" alt="TikTok logo" style="height: 2em; padding: 5px" /></a>`;
+    html += `<a href="${project.socials["tiktok"]}" target="_blank"><img class="dark-mode" src="./images/tik-tok-light.png" alt="TikTok logo" style="height: 2em; padding: 5px" /></a>`;
+  }
   // If no socials we need to add text
   if (html == `<div class="sibling-fade">`) {
     html += `<p>None... 🤷‍♂️</p>`;
