@@ -446,7 +446,7 @@ function addShareButtons(specificProject) {
     }
     element.addEventListener("submit", async (e) => {
       e.preventDefault();
-      await shareProject(e.target.docID.value);
+      await shareProject(e.target.name.value);
     });
   }
 }
@@ -533,7 +533,7 @@ function buildProjectCard(project, index) {
               <div class="inline padding-right-medium padding-top-medium float-right">
                 <h6 class="text-muted inline">${typesText}</h6>
                 <form class="form-share-project inline" method="post">
-                  <input type="hidden" name="docID" value="${project.docID}">
+                  <input type="hidden" name="name" value="${project.name}">
                   <button class="material-icons-outlined padding-left button-clear" style="font-size: 1.75em; vertical-align: -0.25em;" type="submit">share</button>
                 </form>
               </div>
@@ -965,15 +965,14 @@ function collapseSidebar() {
   }
 }
 
-async function shareProject(idOfProject) {
-  Util.popUpLoading("One sec...", "");
-  const project = await FirebaseController.getProjectByID(idOfProject);
+async function shareProject(name) {
+  // Util.popUpLoading("One sec...", "");
   const url = `https://borracho.cash${
     Routes.routePathname.SBCH
-  }#project=${encodeURI(project.name.toLowerCase())}`;
+  }#project=${encodeURI(name.toLowerCase())}`;
   Util.popUpInfo(
-    `Share ${project.name} with someone!`,
-    `<a href=${url}>Click to view ${project.name}'s page</a>
+    `Share ${name} with someone!`,
+    `<a href=${url}>Click to view ${name}'s page</a>
       <table width="100%" style="border: none;">
         <tr>
           <td  style="border: none;">
@@ -986,9 +985,9 @@ async function shareProject(idOfProject) {
       </table>`,
     "modal-pop-up-info"
   );
-  setTimeout(function () {
-    $("#loadingoverlay").modal("hide");
-  }, 100);
+  // setTimeout(function () {
+  //   $("#loadingoverlay").modal("hide");
+  // }, 100);
   document.getElementById("share-button").addEventListener("click", () => {
     copyTextToClipboard(url);
     setTimeout(function () {
