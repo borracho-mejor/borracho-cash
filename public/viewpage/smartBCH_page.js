@@ -19,7 +19,7 @@ let projects = [];
 let filterArray = [];
 let typeChecksHTML = "";
 let socialsChecksHTML = "";
-let copyButtonHTML = `<button id="share-button" class="material-icons-outlined button-clear inline" style="vertical-align: middle;" data-toggle="popover" data-placement="top" data-content="URL Copied!">content_copy</button>`;
+let copyButtonHTML = `<button id="copy-button" class="material-icons-outlined button-clear inline" style="vertical-align: middle;" data-toggle="popover" data-placement="top" data-content="URL Copied!">content_copy</button>`;
 
 export async function smartBCH_page(
   routeKeywords,
@@ -271,11 +271,11 @@ export async function build_smartBCH_page(
   Element.contentSidebar.innerHTML = sidebarHTML;
 
   // if searched/specific
-  if (document.getElementById("share-button")) {
-    document.getElementById("share-button").addEventListener("click", () => {
-      copyTextToClipboard(window.location.href);
+  if (document.getElementById("copy-button")) {
+    document.getElementById("copy-button").addEventListener("click", () => {
+      copyTextToClipboard(window.location.href, "copy-button");
       setTimeout(function () {
-        $("#share-button").popover("hide");
+        $("#copy-button").popover("hide");
       }, 1000);
     });
   }
@@ -330,6 +330,7 @@ export async function build_smartBCH_page(
     filterArray.forEach((filter) => {
       document.getElementById(`checkbox-${decodeURI(filter)}`).checked = true;
     });
+    specificProject = null;
     filterResults(specificProject);
   } else {
     clearCheckboxes();
@@ -804,12 +805,11 @@ async function filterResults(specificProject) {
   document.getElementById("project-count").innerHTML = filteredProjects.length;
   Element.content.innerHTML = newHTML;
 
-  // if filtered
-  if (document.getElementById("share-button")) {
-    document.getElementById("share-button").addEventListener("click", () => {
-      copyTextToClipboard(window.location.href);
+  if (document.getElementById("copy-button")) {
+    document.getElementById("copy-button").addEventListener("click", () => {
+      copyTextToClipboard(window.location.href, "copy-button");
       setTimeout(function () {
-        $("#share-button").popover("hide");
+        $("#copy-button").popover("hide");
       }, 1000);
     });
   }
@@ -989,14 +989,14 @@ async function shareProject(name) {
   //   $("#loadingoverlay").modal("hide");
   // }, 100);
   document.getElementById("share-button").addEventListener("click", () => {
-    copyTextToClipboard(url);
+    copyTextToClipboard(url, "share-button");
     setTimeout(function () {
       $("#share-button").popover("hide");
     }, 1000);
   });
 }
 
-function fallbackCopyTextToClipboard(text) {
+function fallbackCopyTextToClipboard(text, button) {
   var textArea = document.createElement("textarea");
   textArea.value = text;
 
@@ -1012,7 +1012,7 @@ function fallbackCopyTextToClipboard(text) {
   try {
     var successful = document.execCommand("copy");
     if (msg === "successful") {
-      $("#share-button").popover("show");
+      $(`#${button}`).popover("show");
     }
   } catch (err) {
     Util.popUpInfo(
@@ -1025,14 +1025,14 @@ function fallbackCopyTextToClipboard(text) {
   document.body.removeChild(textArea);
 }
 
-function copyTextToClipboard(text) {
+function copyTextToClipboard(text, button) {
   if (!navigator.clipboard) {
-    fallbackCopyTextToClipboard(text);
+    fallbackCopyTextToClipboard(text, button);
     return;
   }
   navigator.clipboard.writeText(text).then(
     function () {
-      $("#share-button").popover("show");
+      $(`#${button}`).popover("show");
     },
     function (err) {
       Util.popUpInfo(
