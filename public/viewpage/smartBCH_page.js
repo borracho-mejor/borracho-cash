@@ -836,6 +836,7 @@ async function filterResults(specificProject) {
 }
 
 async function searchResults(keywords, scrollTop, isCollapsed) {
+  clearCheckboxes();
   if (keywords === "") {
     Element.content.innerHTML = `<h4 style="text-align:center;">Please enter some search terms and try that search again!</h4> ${Element.floatingButtonHTML}`;
     document.getElementById("floating-button").addEventListener("click", () => {
