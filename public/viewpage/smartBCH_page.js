@@ -28,6 +28,8 @@ export async function smartBCH_page(
 ) {
   Util.popUpLoading("Loading projects...", "");
 
+  projects = [];
+  filterArray = [];
   typeChecksHTML = "";
   socialsChecksHTML = "";
   let specificProject;
@@ -85,6 +87,11 @@ export async function smartBCH_page(
     ) {
       routeKeywords = routeKeywords.substring(7);
       filterArray = routeKeywords.split(" ");
+      history.pushState(
+        null,
+        null,
+        Routes.routePathname.SBCH + "#filter=" + routeKeywords
+      );
     } else if (
       routeKeywords.startsWith("project=") &&
       routeKeywords != "project="
@@ -95,6 +102,11 @@ export async function smartBCH_page(
         decodeURI(routeKeywords)
       );
       isCollapsed = true;
+      history.pushState(
+        null,
+        null,
+        Routes.routePathname.SBCH + "#project=" + routeKeywords
+      );
     } else {
       history.pushState(null, null, Routes.routePathname.SBCH);
     }
@@ -369,7 +381,7 @@ export async function build_smartBCH_page(
   if (
     routeKeywords &&
     routeKeywords != "search=" &&
-    !routeKeywords.startsWith("filter=") &&
+    filterArray.length == 0 &&
     !specificProject
   ) {
     document.getElementById("input-search").value = routeKeywords;
