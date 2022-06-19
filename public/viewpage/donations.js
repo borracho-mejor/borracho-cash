@@ -29,6 +29,7 @@ const donationsText = `<h5>
                             bitcoincash:qqlw4yggvgfc24pv8vzpv4svx35rtf3txvdeahpzml<br />
                             smartbch:0x7256a81B2c936B00c5b19415722a65E77d52a468
                         </p>
+    <!-- Spending -->
                         <h5>Spending</h5>
                         <table style="width: 100%">
                             <tr>
@@ -63,6 +64,7 @@ const donationsText = `<h5>
                             </tr>
                         </table>
                         <div style="height: 1rem"></div>
+    <!-- Donations -->
                         <h5>Donations/Income</h5>
                         <table style="width: 100%">
                             <tr>
@@ -102,6 +104,7 @@ const donationsText = `<h5>
                             </tr>
                         </table>
                         <div style="height: 1rem"></div>
+    <!-- Delta -->
                         <h5>Cost Delta</h5>
                         <table style="width: 100%">
                             <tr>
