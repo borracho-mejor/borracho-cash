@@ -26,4 +26,4 @@ export const storageFolderName = {
   SBCH_LOGOS: "sBCH_logos/",
 };
 
-export const NEW_LISTING_TIME = 21;
+export const NEW_LISTING_TIME = 30;
