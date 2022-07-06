@@ -864,6 +864,8 @@ function clearResults() {
   filterArray = [];
   typeChecksHTML = "";
   socialsChecksHTML = "";
+  $("#copy-button").popover("hide");
+  $("#share-button").popover("hide");
   if (document.getElementById("collapseSidebar1").classList.contains("show")) {
     smartBCH_page("", false, false);
   } else {

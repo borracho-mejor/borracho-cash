@@ -58,9 +58,14 @@ const donationsText = `<h5>
                                 <td>$9.16</td>
                             </tr>
                             <tr>
+                                <td>June 2022 DB/Hosting</td>
+                                <td>0.00058360 &#x20BF;</td>
+                                <td>$0.06</td>
+                            </tr>
+                            <tr>
                                 <th>Total:</th>
-                                <th>0.12208679 &#x20BF;</th>
-                                <th>$45.92</th>
+                                <th>0.12267039 &#x20BF;</th>
+                                <th>$45.98</th>
                             </tr>
                         </table>
                         <div style="height: 1rem"></div>
@@ -112,7 +117,7 @@ const donationsText = `<h5>
                                 <th>USD Amount</th>
                             </tr>
                             <tr>
-                                <td>0.09292233 &#x20BF;</th>
-                                <td>$38.67</th>
+                                <td>0.09350593 &#x20BF;</th>
+                                <td>$38.73</th>
                             </tr>
                         </table>`;
