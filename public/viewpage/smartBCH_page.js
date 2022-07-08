@@ -544,13 +544,13 @@ function buildProjectCard(project, index) {
 
   return `
           <div class="card mb-2 mr-1">
-            <div class="card-header" style="padding: 10px;">
-              <div class="inline"><a href=${
+            <div class="card-header p-1" style="vertical-align: middle;">
+              <div class="inline pt-2" style="vertical-align: middle;"><a href=${
                 project.site
-              } target="_blank"><h4 class="inline padding-left-medium padding-right ignore-hyper-color" style="vertical-align: middle;">${
+              } target="_blank"><h4 class="inline px-2 ignore-hyper-color" style="vertical-align: middle;">${
     project.name
   }</h4></a><h6 class="inline" style="vertical-align: middle;">${listingTag}${dyorTag}${auditTag}</h6></div>
-              <div class="inline padding-right-medium padding-top-medium float-right">
+              <div class="inline padding-right-medium pt-2 float-right">
                 <h6 class="text-muted inline">${typesText}</h6>
                 <form class="form-share-project inline" method="post">
                   <input type="hidden" name="name" value="${project.name}">
