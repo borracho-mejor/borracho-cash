@@ -38,6 +38,7 @@ export function addEventListeners() {
       socials: trimAndParse(e.target.socials.value),
       type: e.target.type.value.split(","),
       site: e.target.site.value,
+      special_warning: e.target.specialwarning.value,
     });
     let lowercase_audits = [];
     let search_audit_array = Array.from(Object.keys(p.audit));
@@ -86,6 +87,7 @@ export function addEventListeners() {
 
     Util.enableButton(button, label);
   });
+
   Element.formEditCard.addEventListener("submit", async (e) => {
     e.preventDefault();
     const button = e.target.getElementsByTagName("button")[0];
@@ -152,6 +154,7 @@ export async function editProject(docID) {
   Element.formEditProject.socials.value = JSON.stringify(project.socials);
   Element.formEditProject.type.value = project.type;
   Element.formEditProject.site.value = project.site;
+  Element.formEditProject.specialwarning.value = project.special_warning;
   Element.formEditImageTag.src = project.logo_path;
 
   // Set imageFile2Upload to null since it is a global variable

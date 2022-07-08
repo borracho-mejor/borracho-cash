@@ -215,6 +215,12 @@ export async function build_smartBCH_page(
                                 DYOR
                               </label>
                             </div>
+                            <div class="form-check inline padding-right-large">
+                              <input class="form-check-input" type="checkbox" value="" id="checkbox-warning">
+                              <label class="form-check-label" for="checkbox-warning">
+                              <span style="color: #dc3545;"><strong>Special Warnings</strong></span>
+                              </label>
+                            </div>
                           </div>
                           <div class="alert alert-custom">
                             <p class="alert-heading">Type(s): (an OR relationship)</p>
@@ -237,7 +243,7 @@ export async function build_smartBCH_page(
     if (specificProject) {
       html += `<div class="card mb-3 mr-1"><div class="card-body"><h5 style="text-align:left;">This is a specific project that was shared from the <a href="https://borracho.cash/smartbch" target="_blank">borracho.cash/smartbch</a> listings. 
               After checking it out feel free to use the <button id="button-clear-all" type="button" class="btn btn-danger btn-sm py-0" style="font-size: 0.75rem;">Clear</button> button in the left sidebar (or header on mobile) to see 
-              a list off all projects. You can also use the <i style="color: #28a745;">search bar</i> to search for a variety of project names, types, 
+              a list off all projects. You can also use the <i style="color: #07a159;">search bar</i> to search for a variety of project names, types, 
               socials, developers, or basically anything that is displayed on each project's card. Finally, check out the filters 
               to find a specifc project type, a list of projects with certain social channels, or a variety of quick filters such as audited or newly listed projects.</h5>
               <small class="text-muted float-right">Share this page: ${copyButtonHTML}</small>
@@ -246,7 +252,7 @@ export async function build_smartBCH_page(
     } else if (routeKeywords) {
       html += `<div class="card mb-3 mr-1"><div class="card-body"><h5 style="text-align:left;">This is a specific search from the <a href="https://borracho.cash/smartbch" target="_blank">borracho.cash/smartbch</a> listings. 
                 After checking it out feel free to use the <button id="button-clear-all" type="button" class="btn btn-danger btn-sm py-0" style="font-size: 0.75rem;">Clear</button> button in the left sidebar (or header on mobile) to see 
-                a list off all projects. You can also use the <i style="color: #28a745;">search bar</i> to search for a variety of project names, types, 
+                a list off all projects. You can also use the <i style="color: #07a159;">search bar</i> to search for a variety of project names, types, 
                 socials, developers, or basically anything that is displayed on each project's card. Finally, check out the filters 
                 to find a specifc project type, a list of projects with certain social channels, or a variety of quick filters such as audited or newly listed projects.</h5>
                 <small class="text-muted float-right">Share this page: ${copyButtonHTML}</small>
@@ -523,15 +529,28 @@ function buildProjectCard(project, index) {
   }
   let socialsHTML = buildSocials(project);
 
+  let specialWarningText = "";
+  if (project.special_warning) {
+    specialWarningText = `<div class="m-2 py-1 px-1 badge badge-danger flashing-warning" style="text-align: center; align-items: center; font-size: 1.25rem; display: flex; justify-content: space-around;" role="alert">
+                            <i class="material-icons-outlined" style="vertical-align: middle;">warning</i>
+                            <i class="material-icons-outlined" style="vertical-align: middle;">warning</i>
+                            <i class="material-icons-outlined" style="vertical-align: middle;">warning</i>
+                            <div>${project.special_warning.toUpperCase()}</div>
+                            <i class="material-icons-outlined" style="vertical-align: middle;">warning</i>
+                            <i class="material-icons-outlined" style="vertical-align: middle;">warning</i>
+                            <i class="material-icons-outlined" style="vertical-align: middle;">warning</i>
+                          </div>`;
+  }
+
   return `
-          <div class="card mb-3 mr-1">
-            <div class="card-header" style="padding: 10px;">
-              <div class="inline"><a href=${
+          <div class="card mb-2 mr-1">
+            <div class="card-header p-1" style="vertical-align: middle;">
+              <div class="inline pt-2" style="vertical-align: middle;"><a href=${
                 project.site
-              } target="_blank"><h4 class="inline padding-left-medium padding-right ignore-hyper-color" style="vertical-align: middle;">${
+              } target="_blank"><h4 class="inline px-2 ignore-hyper-color" style="vertical-align: middle;">${
     project.name
-  }</h4></a><h6 class="inline" style="vertical-align: middle;">${listingTag}${auditTag}${dyorTag}</h6></div>
-              <div class="inline padding-right-medium padding-top-medium float-right">
+  }</h4></a><h6 class="inline" style="vertical-align: middle;">${listingTag}${dyorTag}${auditTag}</h6></div>
+              <div class="inline padding-right-medium pt-2 float-right">
                 <h6 class="text-muted inline">${typesText}</h6>
                 <form class="form-share-project inline" method="post">
                   <input type="hidden" name="name" value="${project.name}">
@@ -539,8 +558,9 @@ function buildProjectCard(project, index) {
                 </form>
               </div>
             </div>
-            <div class="card-body flex-container">
-              <div class="mr-3" style="flex: 10%; text-align: center;">
+            ${specialWarningText}
+            <div class="py-2 card-body flex-container">
+              <div class="pb-1 mr-3" style="flex: 10%; text-align: center;">
                 <span class="vertical-center-helper"></span><a href=${
                   project.site
                 } target="_blank"><img class="shaking-image" src="${
@@ -741,6 +761,13 @@ async function filterResults(specificProject) {
       return !project.dyor;
     });
   }
+  // special warning
+  if (document.getElementById("checkbox-warning").checked) {
+    routeArray.push("warning");
+    filteredProjects = filteredProjects.filter(function (project) {
+      return project.special_warning && project.special_warning != "";
+    });
+  }
   // project type
   let typesCheckboxArray = document.getElementsByClassName(
     "form-check-type-input"
@@ -787,7 +814,7 @@ async function filterResults(specificProject) {
   } else {
     newHTML += `<div class="card mb-3 mr-1"><div class="card-body"><h5 style="text-align:left;">This is a specific filter from the <a href="https://borracho.cash/smartbch" target="_blank">borracho.cash/smartbch</a> listings. 
                 After checking it out feel free to use the <button id="button-clear-all" type="button" class="btn btn-danger btn-sm py-0" style="font-size: 0.75rem;">Clear</button> button in the left sidebar (or header on mobile) to see 
-                a list off all projects. You can also use the <i style="color: #28a745;">search bar</i> to search for a variety of project names, types, 
+                a list off all projects. You can also use the <i style="color: #07a159;">search bar</i> to search for a variety of project names, types, 
                 socials, developers, or basically anything that is displayed on each project's card. Finally, check out the filters 
                 to find a specifc project type, a list of projects with certain social channels, or a variety of quick filters such as audited or newly listed projects.</h5>
                 <small class="text-muted float-right">Share this page: ${copyButtonHTML}</small>

@@ -17,6 +17,7 @@ export class SBCHProject {
     this.quoted_description = data.quoted_description;
     this.timestamp = data.timestamp;
     this.site = data.site;
+    this.special_warning = data.special_warning;
   }
 
   serialize() {
@@ -38,6 +39,7 @@ export class SBCHProject {
       quoted_description: this.quoted_description,
       timestamp: this.timestamp,
       site: this.site,
+      special_warning: this.special_warning,
     };
   }
 
@@ -92,6 +94,7 @@ export class SBCHProject {
     if (this.site) {
       r.site = this.site;
     }
+    r.special_warning = this.special_warning;
     return r;
   }
 
