@@ -531,7 +531,7 @@ function buildProjectCard(project, index) {
 
   let specialWarningText = "";
   if (project.special_warning) {
-    specialWarningText = `<div class="m-2 py-1 px-1 badge badge-danger flashing-warning" style="text-align: center; align-items: center; font-size: 1.25rem; display: flex; justify-content: space-around;" role="alert">
+    specialWarningText = `testing<div class="m-2 py-1 px-1 badge badge-danger flashing-warning" style="text-align: center; align-items: center; font-size: 1.25rem; display: flex; justify-content: space-around;" role="alert">
                             <i class="material-icons-outlined" style="vertical-align: middle;">warning</i>
                             <i class="material-icons-outlined" style="vertical-align: middle;">warning</i>
                             <i class="material-icons-outlined" style="vertical-align: middle;">warning</i>
