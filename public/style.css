@@ -349,7 +349,7 @@ a:hover {
 }
 
 input[type="checkbox"] {
-  accent-color: green;
+  accent-color: var(--green-elements-color);
 }
 
 .modal-pre-auth {
@@ -555,7 +555,7 @@ input[type="checkbox"] {
   margin-top: 22px;
 }
 
-@keyframes glowing {
+@keyframes glowing-button {
   0% {
     box-shadow: 0 0 6px var(--green-elements-color);
   }
@@ -571,5 +571,24 @@ input[type="checkbox"] {
 }
 
 .flashing-button {
-  animation: glowing 750ms infinite;
+  animation: glowing-button 750ms infinite;
+}
+
+@keyframes glowing-warning {
+  0% {
+    box-shadow: 0 0 8px #dc3545;
+  }
+  33% {
+    box-shadow: 0 0 14px #dc3545;
+  }
+  66% {
+    box-shadow: 0 0 8px #dc3545;
+  }
+  100% {
+    box-shadow: 0 0 4px #dc3545;
+  }
+}
+
+.flashing-warning {
+  animation: glowing-warning 750ms infinite;
 }

@@ -47,6 +47,7 @@ async function getProjectByID(docID, context) {
         quoted_description,
         timestamp,
         site,
+        special_warning,
         imageName,
         imageURL,
       } = doc.data();
@@ -64,6 +65,7 @@ async function getProjectByID(docID, context) {
         quoted_description,
         timestamp,
         site,
+        special_warning,
         imageName,
         imageURL,
       };
