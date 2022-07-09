@@ -141,7 +141,7 @@ export async function build_smartBCH_page(
                           <i class="material-icons-outlined" style="font-size: 1.5em; display: inline-block; justify-content: center; align-items: center;">warning</i>
                         </div>
                         <div>
-                          Most high liquidty bridges and on/off ramps are currently offline due to the recent <a href="https://borracho.cash/smartbch#project=conflex%20f.k.a.%20coinflex"><strong style="color: white;">Conflex drama</strong></a>, please DYOR before investing.
+                          Most high liquidty bridges and on/off ramps are currently offline due to the recent <a style="color: white;" href="https://borracho.cash/smartbch#project=conflex%20f.k.a.%20coinflex"><strong>Conflex drama</strong></a>, please DYOR before investing.
                         </div>
                         <div class="px-3 flex-container" style="flex: 10%; text-align: center; vertical-align: middle; flex-direction: column; justify-content: center;">
                           <i class="material-icons-outlined" style="font-size: 1.5em; display: inline-block; justify-content: center; align-items: center;">warning</i>
