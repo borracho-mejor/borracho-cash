@@ -136,7 +136,18 @@ export async function build_smartBCH_page(
   let html = "";
   let sidebarHTML = `<div style="height: 100%;">
                       <img class="dark-mode" src="./images/smartBCH_light.png" alt="smartBCH logo" style="width: 100%; padding: 5px; margin: auto;" /><img class="light-mode" src="./images/smartBCH_dark.png" alt="smartBCH logo" style="width: 100%; padding: 5px;" />
-                      <div style="max-width: 65rem; padding: 5px; margin: auto; text-align: left;">                  
+                      <div class="mx-2 mt-3 flashing-warning alert alert-danger flex-container" role="alert" style="background-color: #dc3545; color: white; border: none; min-height: 1em; text-align: center; padding: 1px 0;">
+                        <div class="px-3 flex-container" style="flex: 10%; text-align: center; vertical-align: middle; flex-direction: column; justify-content: center;">
+                          <i class="material-icons-outlined" style="font-size: 1.5em; display: inline-block; justify-content: center; align-items: center;">warning</i>
+                        </div>
+                        <div>
+                          Most high liquidty bridges and on/off ramps are currently offline due to the recent <a href="https://borracho.cash/smartbch#project=conflex%20f.k.a.%20coinflex"><strong style="color: white;">Conflex drama</strong></a>, please DYOR before investing.
+                        </div>
+                        <div class="px-3 flex-container" style="flex: 10%; text-align: center; vertical-align: middle; flex-direction: column; justify-content: center;">
+                          <i class="material-icons-outlined" style="font-size: 1.5em; display: inline-block; justify-content: center; align-items: center;">warning</i>
+                        </div>
+                      </div>
+                      <div class="p-2" style="max-width: 65rem; margin: auto; text-align: left;">                  
                         <div class="collapse show multi-collapse" id="collapseSidebar2" >
                           <h5 class="padding-bottom">Here's a list of smartBCH projects. This will only include projects like DEXs, Launchpads, Staking Platforms, NFT Marketplaces, and tokens with large use-cases (i.e: Celery with its staking platform and SIDX with its governance and managed portfolio). 
                            I am not currently including tokens without use-cases. With smartBCH, WAGMI!
