@@ -163,14 +163,18 @@ export async function build_smartBCH_page(
                           <p style="text-align: center;">You can either...</p>
                           <form id="form-search" class="my-2 my-lg-0 form-inline">
                             <input id="input-search" name="searchKeywords" class="form-control mr-sm-2 inline flex-fill" type="search" placeholder="Search" aria-label="Search" />
-                            <button class="btn btn-success my-2 my-sm-0 inline center-mobile" type="submit">
+                            <button class="btn btn-success my-2 my-sm-0 inline center-mobile" type="submit" style="position: relative;">
+                              <div id="search-notification-badge" class="notification-badge" role="status"></div>
                               <span class="material-icons" style="vertical-align: middle;">search</span>
                             </button>
                           </form>
                           <p class="padding-top" style="text-align: center; margin: 5px;">— OR —</p>
                           <p style="text-align: center; margin: 5px;">Use the filters below to filter projects.</p>
                           <div class="text-center padding-bottom-medium">
-                            <button id="button-filter" type="button" class="btn btn-success" style="margin-right: 5px; margin-bottom: 5px;">Filter Projects</button>
+                            <button id="button-filter" type="button" class="btn btn-success" style="position: relative; margin-right: 8px; margin-bottom: 5px;">
+                              <div id="filter-notification-badge" class="notification-badge" role="status"></div>
+                              Filter Projects
+                            </button>
                             <button id="button-filter-clear" type="button" class="btn btn-danger" style="margin-right: 5px; margin-bottom: 5px;">Clear</button>
                             <button id="collapse-button" class="btn btn-outline-success collapse-btn-text flashing-button" data-toggle="collapse" href="#collapseSidebar" data-target=".multi-collapse" role="button" 
                               aria-expanded="false" aria-controls="collapseSidebar1 collapseSidebar2" style="margin-bottom: 5px;">Expand Sidebar</button>
@@ -286,6 +290,16 @@ export async function build_smartBCH_page(
     });
   }
 
+  // Notification badges
+  const filterNotificationBadge = document.getElementById(
+    "filter-notification-badge"
+  );
+  filterNotificationBadge.style.display = "none";
+  const searchNotificationBadge = document.getElementById(
+    "search-notification-badge"
+  );
+  searchNotificationBadge.style.display = "none";
+
   document.getElementById("type-check-form").innerHTML = typeChecksHTML;
   document.getElementById("socials-check-form").innerHTML = socialsChecksHTML;
   if (!specificProject) {
@@ -294,7 +308,11 @@ export async function build_smartBCH_page(
     document.getElementById("project-count").innerHTML = 1;
   }
   document.getElementById("button-filter").addEventListener("click", () => {
-    filterResults(specificProject);
+    filterResults(
+      specificProject,
+      filterNotificationBadge,
+      searchNotificationBadge
+    );
   });
   document
     .getElementById("button-add-smartBCH")
@@ -337,7 +355,11 @@ export async function build_smartBCH_page(
       document.getElementById(`checkbox-${decodeURI(filter)}`).checked = true;
     });
     specificProject = null;
-    filterResults(specificProject);
+    filterResults(
+      specificProject,
+      filterNotificationBadge,
+      searchNotificationBadge
+    );
   } else {
     clearCheckboxes();
   }
@@ -392,6 +414,7 @@ export async function build_smartBCH_page(
     !specificProject
   ) {
     document.getElementById("input-search").value = routeKeywords;
+    searchNotificationBadge.style.display = "flex";
   }
 
   if (Auth.currentUser) {
@@ -544,13 +567,13 @@ function buildProjectCard(project, index) {
 
   return `
           <div class="card mb-2 mr-1">
-            <div class="card-header p-1" style="vertical-align: middle;">
-              <div class="inline pt-2" style="vertical-align: middle;"><a href=${
+            <div class="card-header px-2 py-2" style="vertical-align: middle;">
+              <div class="p-0 inline" style="vertical-align: middle;"><a href=${
                 project.site
               } target="_blank"><h4 class="inline px-2 ignore-hyper-color" style="vertical-align: middle;">${
     project.name
   }</h4></a><h6 class="inline" style="vertical-align: middle;">${listingTag}${dyorTag}${auditTag}</h6></div>
-              <div class="inline padding-right-medium pt-2 float-right">
+              <div class="inline pr-2 float-right" style="vertical-align: middle;">
                 <h6 class="text-muted inline">${typesText}</h6>
                 <form class="form-share-project inline" method="post">
                   <input type="hidden" name="name" value="${project.name}">
@@ -560,7 +583,7 @@ function buildProjectCard(project, index) {
             </div>
             ${specialWarningText}
             <div class="py-2 card-body flex-container">
-              <div class="pb-1 mr-3" style="flex: 10%; text-align: center;">
+              <div class="mr-3 pb-2" style="flex: 10%; text-align: center;">
                 <span class="vertical-center-helper"></span><a href=${
                   project.site
                 } target="_blank"><img class="shaking-image" src="${
@@ -568,42 +591,46 @@ function buildProjectCard(project, index) {
   }" alt="Project logo" style="max-height: 8rem; max-width: 100%; padding: 5px;" /></a>
               </div>
               <div style="flex: 75%">
-                <div class="alert alert-custom">
-                  <h6 class="alert-heading">Description:</h6>
-                  <hr>
-                  <p>${descriptionText}</p>
-                  <p class="text-muted">"${quoteText}"</p>
+                <div class="px-3 py-2 mb-2 alert alert-custom">
+                  <h6 class="py-1 m-0 alert-heading" style="vertical-align: middle;">Description:</h6>
+                  <hr class="my-2" />
+                  <p class="mb-3">${descriptionText}</p>
+                  <p class="mb-2 text-muted">"${quoteText}"</p>
                 </div>
-                <div class="alert alert-custom">
-                  <h6 class="alert-heading inline">My two sats:</h6>
-                  <hr>
-                  <p class="mb-0">${myThoughtsText}</p>
+                <div class="px-3 py-2 mb-2 alert alert-custom">
+                  <h6 class="py-1 m-0 alert-heading" style="vertical-align: middle;">My two sats:</h6>
+                  <hr class="my-2" />
+                  <p class="mb-2">${myThoughtsText}</p>
                 </div>
               </div>
-              <div style="flex: 15%; text-align: right; height 100%; margin: 5px;">
-                <div class="padding-bottom">
-                  <h5>Socials:</h5>
-                  <p>${socialsHTML}</p>
+              <div class="ml-2 pb-2 flex-container" style="flex: 15%; text-align: right; height 100%; margin: 5px; flex-direction: column; justify-content: space-between">
+                <div class="pb-1">
+                  <h5 class="m-1">Socials:</h5>
+                  ${socialsHTML}
                 </div>
-                <div class="padding-bottom">
-                  <h5>Helpful Links:</h5>
-                  <p>${helpfulLinksText}</p>
+                <div class="pb-1">
+                  <h5 class="m-1">Helpful Links:</h5>
+                  <p class="m-1">${helpfulLinksText}</p>
                 </div>
-                <div class="padding-bottom">
-                  <h5>Added:</h5>
-                  <p>${new Date(project.timestamp.toDate()).toDateString()}</p>
+                <div class="pb-1">
+                  <h5 class="m-1">Added:</h5>
+                  <p class="m-1">${new Date(
+                    project.timestamp.toDate()
+                  ).toDateString()}</p>
                 </div>
-                <form class="form-delete-project inline float-right modal-post-auth" method="post">
-                  <input type="hidden" name="docID" value="${project.docID}">
-                  <input type="hidden" name="logoPath" value="${
-                    project.logo_path
-                  }">
-                  <button class="btn btn-outline-danger" style="margin-left: 5px;" type="submit">Delete</button>
-                </form>
-                <form class="form-edit-project inline float-right modal-post-auth" method="post">
-                  <input type="hidden" name="docID" value="${project.docID}">
-                  <button class="btn btn-outline-success" style="margin-left: 5px;" type="submit">Edit</button>
-                </form>
+                <div class="pb-1">
+                  <form class="form-delete-project inline float-right modal-post-auth" method="post">
+                    <input type="hidden" name="docID" value="${project.docID}">
+                    <input type="hidden" name="logoPath" value="${
+                      project.logo_path
+                    }">
+                    <button class="btn btn-outline-danger" style="margin-left: 5px;" type="submit">Delete</button>
+                  </form>
+                  <form class="form-edit-project inline float-right modal-post-auth" method="post">
+                    <input type="hidden" name="docID" value="${project.docID}">
+                    <button class="btn btn-outline-success" style="margin-left: 5px;" type="submit">Edit</button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>`;
@@ -628,7 +655,7 @@ function buildCheckboxesForSocials(label, index) {
 }
 
 function buildSocials(project) {
-  let html = `<div class="sibling-fade">`;
+  let html = `<div class="m-1 sibling-fade">`;
   if (project.socials["telegram"]) {
     html += `<a href="${project.socials["telegram"]}" target="_blank"><img src="./images/telegram.png" alt="Telegram logo" style="height: 2em; padding: 5px" /></a>`;
   }
@@ -686,15 +713,21 @@ function buildSocials(project) {
     html += `<a href="${project.socials["tiktok"]}" target="_blank"><img class="dark-mode" src="./images/tik-tok-light.png" alt="TikTok logo" style="height: 2em; padding: 5px" /></a>`;
   }
   // If no socials we need to add text
-  if (html == `<div class="sibling-fade">`) {
-    html += `<p>None... 🤷‍♂️</p>`;
+  if (html == `<div class="m-1 sibling-fade">`) {
+    html += `<p>None...🤷‍♂️</p>`;
   }
   html += "</div>";
   return html;
 }
 
-async function filterResults(specificProject) {
+async function filterResults(
+  specificProject,
+  filterNotificationBadge,
+  searchNotificationBadge
+) {
   Util.popUpLoading("Loading projects...", "");
+
+  let filterCount = 0;
 
   try {
     projects = await FirebaseController.getSBCHProjectList();
@@ -712,6 +745,7 @@ async function filterResults(specificProject) {
   // new_listing
   if (document.getElementById("checkbox-new").checked) {
     routeArray.push("new");
+    filterCount++;
     const date = Timestamp.fromDate(new Date());
     filteredProjects = filteredProjects.filter(function (project) {
       return (
@@ -725,6 +759,7 @@ async function filterResults(specificProject) {
   // audit
   if (document.getElementById("checkbox-audited").checked) {
     routeArray.push("audited");
+    filterCount++;
     filteredProjects = filteredProjects.filter(function (project) {
       return Object.keys(project.audit).length != 0;
     });
@@ -732,6 +767,7 @@ async function filterResults(specificProject) {
   // two sats
   if (document.getElementById("checkbox-mysats").checked) {
     routeArray.push("mysats");
+    filterCount++;
     filteredProjects = filteredProjects.filter(function (project) {
       return project.my_thoughts != "";
     });
@@ -739,6 +775,7 @@ async function filterResults(specificProject) {
   // DYOR
   if (document.getElementById("checkbox-dyor").checked) {
     routeArray.push("dyor");
+    filterCount++;
     filteredProjects = filteredProjects.filter(function (project) {
       return project.dyor;
     });
@@ -746,6 +783,7 @@ async function filterResults(specificProject) {
   // non-NFT
   if (document.getElementById("checkbox-non-nft").checked) {
     routeArray.push("non-nft");
+    filterCount++;
     filteredProjects = filteredProjects.filter(function (project) {
       if (project.type.length === 1) {
         return !project.type.includes("NFT Collection");
@@ -757,6 +795,7 @@ async function filterResults(specificProject) {
   // non-DYOR
   if (document.getElementById("checkbox-non-dyor").checked) {
     routeArray.push("non-dyor");
+    filterCount++;
     filteredProjects = filteredProjects.filter(function (project) {
       return !project.dyor;
     });
@@ -764,6 +803,7 @@ async function filterResults(specificProject) {
   // special warning
   if (document.getElementById("checkbox-warning").checked) {
     routeArray.push("warning");
+    filterCount++;
     filteredProjects = filteredProjects.filter(function (project) {
       return project.special_warning && project.special_warning != "";
     });
@@ -785,6 +825,7 @@ async function filterResults(specificProject) {
     typesArray.forEach((val) => {
       val = val.toLowerCase();
       routeArray.push(val);
+      filterCount++;
     });
   }
   // socials
@@ -806,6 +847,7 @@ async function filterResults(specificProject) {
     socialsArray.forEach((val) => {
       val = val.toLowerCase();
       routeArray.push(val);
+      filterCount++;
     });
   }
 
@@ -831,6 +873,10 @@ async function filterResults(specificProject) {
   Element.content.scrollTo(0, 0);
   document.getElementById("project-count").innerHTML = filteredProjects.length;
   Element.content.innerHTML = newHTML;
+
+  filterNotificationBadge.style.display = "flex";
+  filterNotificationBadge.innerHTML = filterCount;
+  searchNotificationBadge.style.display = "none";
 
   if (document.getElementById("copy-button")) {
     document.getElementById("copy-button").addEventListener("click", () => {

@@ -117,10 +117,12 @@ function buildCard(card) {
                   <img class="light-mode" src="./images/pin.png" alt="Pinned" style="height: 1em; padding-right: 5px"/>`;
   }
   return `
-          <div class="card mb-3 mr-1">
-          <div class="card-header">
-            <h5 class="inline">${pinnedTag}${card.header}</h5>
-            <h6 class="inline float-right text-muted">Posted: ${new Date(
+          <div class="card mb-2 mr-1">
+          <div class="card-header px-2 py-2" style="vertical-align: middle;">
+            <h5 class="inline my-2 px-2" style="vertical-align: middle;">${pinnedTag}${
+    card.header
+  }</h5>
+            <h6 class="my-2 inline float-right text-muted" style="vertical-align: middle;">Posted: ${new Date(
               card.timestamp.toDate()
             ).toDateString()}</h6>
             <form class="form-delete-card inline float-right modal-post-auth" method="post">
@@ -132,6 +134,6 @@ function buildCard(card) {
             <button class="btn btn-outline-success" style="margin-right: 5px;" type="submit">Edit</button>
           </form>
         </div>
-            <div class="card-body">${card.body}</div>
+            <div class="py-2 px-3 card-body">${card.body}</div>
           </div>`;
 }
