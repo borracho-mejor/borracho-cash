@@ -46,6 +46,7 @@ async function addNewsBCHProject(e) {
   const type = e.target.type.value.split(",");
   const site = e.target.site.value;
   const special_warning = e.target.specialwarning.value;
+  const upcoming = e.target.upcoming.checked;
 
   // Clear error tags before validating again
   const errorTags = document.getElementsByClassName("error-add-project");
@@ -67,6 +68,7 @@ async function addNewsBCHProject(e) {
     type,
     site,
     special_warning,
+    upcoming,
   });
   let lowercase_audits = [];
   let search_audit_array = Array.from(Object.keys(project.audit));

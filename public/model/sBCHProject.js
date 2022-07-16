@@ -18,6 +18,7 @@ export class SBCHProject {
     this.timestamp = data.timestamp;
     this.site = data.site;
     this.special_warning = data.special_warning;
+    this.upcoming = data.upcoming;
   }
 
   serialize() {
@@ -40,6 +41,7 @@ export class SBCHProject {
       timestamp: this.timestamp,
       site: this.site,
       special_warning: this.special_warning,
+      upcoming: this.upcoming,
     };
   }
 
@@ -95,6 +97,8 @@ export class SBCHProject {
       r.site = this.site;
     }
     r.special_warning = this.special_warning;
+    r.upcoming = this.upcoming;
+
     return r;
   }
 

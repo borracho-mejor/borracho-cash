@@ -207,9 +207,9 @@ export async function build_smartBCH_page(
                               </label>
                             </div>
                             <div class="form-check inline padding-right-large">
-                              <input class="form-check-input" type="checkbox" value="" id="checkbox-non-dyor">
-                              <label class="form-check-label" for="checkbox-non-dyor">
-                                Non-DYOR
+                              <input class="form-check-input" type="checkbox" value="" id="checkbox-upcoming">
+                              <label class="form-check-label" for="checkbox-upcoming">
+                                Upcoming
                               </label>
                             </div>
                             <div class="form-check inline padding-right-large">
@@ -219,15 +219,27 @@ export async function build_smartBCH_page(
                               </label>
                             </div>
                             <div class="form-check inline padding-right-large">
+                              <input class="form-check-input" type="checkbox" value="" id="checkbox-dyor">
+                              <label class="form-check-label" for="checkbox-dyor">
+                                DYOR
+                              </label>
+                            </div>
+                            <div class="form-check inline padding-right-large">
+                              <input class="form-check-input" type="checkbox" value="" id="checkbox-non-dyor">
+                              <label class="form-check-label" for="checkbox-non-dyor">
+                                Non-DYOR
+                              </label>
+                            </div>
+                            <div class="form-check inline padding-right-large">
                               <input class="form-check-input" type="checkbox" value="" id="checkbox-non-nft">
                               <label class="form-check-label" for="checkbox-non-nft">
                                 Non-NFT Only
                               </label>
                             </div>
                             <div class="form-check inline padding-right-large">
-                              <input class="form-check-input" type="checkbox" value="" id="checkbox-dyor">
-                              <label class="form-check-label" for="checkbox-dyor">
-                                DYOR
+                              <input class="form-check-input" type="checkbox" value="" id="checkbox-non-upcoming">
+                              <label class="form-check-label" for="checkbox-non-upcoming">
+                                Non-Upcoming
                               </label>
                             </div>
                             <div class="form-check inline padding-right-large">
@@ -497,6 +509,10 @@ function buildProjectCard(project, index) {
   if (project.dyor) {
     dyorTag += `<div class="inline padding-left"><span class="badge badge-danger">!!--DYOR--!!</span></div>`;
   }
+  let upcomingTag = "";
+  if (project.upcoming) {
+    upcomingTag += `<div class="inline padding-left"><span class="dark-mode badge badge-light">Upcoming/Planned</span><span class="light-mode badge badge-dark">Upcoming/Planned</span></div>`;
+  }
   let auditTag = "";
   if (Object.keys(project.audit).length === 0) {
     // auditTag += `<div class="inline padding-left"><span class="badge badge-warning">No Audit</span></div>`;
@@ -583,7 +599,7 @@ function buildProjectCard(project, index) {
                 project.site
               } target="_blank"><h4 class="inline px-2 ignore-hyper-color" style="vertical-align: middle;">${
     project.name
-  }</h4></a><h6 class="inline" style="vertical-align: middle;">${listingTag}${dyorTag}${auditTag}</h6></div>
+  }</h4></a><h6 class="inline" style="vertical-align: middle;">${listingTag}${upcomingTag}${dyorTag}${auditTag}</h6></div>
               <div class="inline pr-2 float-right" style="vertical-align: middle;">
                 <h6 class="text-muted inline">${typesText}</h6>
                 <form class="form-share-project inline" method="post">
@@ -823,6 +839,22 @@ async function filterResults(
     filterCount++;
     filteredProjects = filteredProjects.filter(function (project) {
       return project.special_warning && project.special_warning != "";
+    });
+  }
+  // Upcoming
+  if (document.getElementById("checkbox-upcoming").checked) {
+    routeArray.push("upcoming");
+    filterCount++;
+    filteredProjects = filteredProjects.filter(function (project) {
+      return project.upcoming;
+    });
+  }
+  // non-Upcoming
+  if (document.getElementById("checkbox-non-upcoming").checked) {
+    routeArray.push("non-upcoming");
+    filterCount++;
+    filteredProjects = filteredProjects.filter(function (project) {
+      return !project.upcoming;
     });
   }
   // project type
