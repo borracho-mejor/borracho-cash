@@ -39,6 +39,7 @@ export function addEventListeners() {
       type: e.target.type.value.split(","),
       site: e.target.site.value,
       special_warning: e.target.specialwarning.value,
+      upcoming: e.target.upcoming.checked,
     });
     let lowercase_audits = [];
     let search_audit_array = Array.from(Object.keys(p.audit));
@@ -147,6 +148,7 @@ export async function editProject(docID) {
   Element.formEditProject.bias.value = project.bias;
   Element.formEditProject.description.value = project.description;
   Element.formEditProject.dyor.checked = project.dyor;
+  Element.formEditProject.upcoming.checked = project.upcoming;
   Element.formEditProject.links.value = JSON.stringify(project.helpful_links);
   Element.formEditProject.twosats.value = project.my_thoughts;
   Element.formEditProject.name.value = project.name;
