@@ -53,6 +53,7 @@ export async function getSBCHProjectList() {
   let projects = [];
   const q = query(
     collection(db, Constant.collectionName.SBCH_PROJECTS),
+    where("status", "in", ["active"]),
     orderBy("bias", "asc"),
     orderBy("sort_name", "asc")
   );

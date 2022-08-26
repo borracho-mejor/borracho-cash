@@ -19,6 +19,7 @@ export class SBCHProject {
     this.site = data.site;
     this.special_warning = data.special_warning;
     this.upcoming = data.upcoming;
+    this.status = data.status;
   }
 
   serialize() {
@@ -42,6 +43,7 @@ export class SBCHProject {
       site: this.site,
       special_warning: this.special_warning,
       upcoming: this.upcoming,
+      status: this.status,
     };
   }
 
@@ -98,6 +100,7 @@ export class SBCHProject {
     }
     r.special_warning = this.special_warning;
     r.upcoming = this.upcoming;
+    r.status = this.status;
 
     return r;
   }

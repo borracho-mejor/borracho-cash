@@ -40,6 +40,7 @@ export function addEventListeners() {
       site: e.target.site.value,
       special_warning: e.target.specialwarning.value,
       upcoming: e.target.upcoming.checked,
+      status: e.target.rugged.checked ? "rugged" : "active",
     });
     let lowercase_audits = [];
     let search_audit_array = Array.from(Object.keys(p.audit));
@@ -158,6 +159,8 @@ export async function editProject(docID) {
   Element.formEditProject.site.value = project.site;
   Element.formEditProject.specialwarning.value = project.special_warning;
   Element.formEditImageTag.src = project.logo_path;
+  Element.formEditProject.upcoming.checked =
+    project.rugged == "rugged" ? true : false;
 
   // Set imageFile2Upload to null since it is a global variable
   imageFile2Upload = null;
