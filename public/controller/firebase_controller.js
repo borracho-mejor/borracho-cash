@@ -79,6 +79,7 @@ export async function getSBCHProjectSearch(keywords) {
   for (const element of result) {
     const q = await query(
       collection(db, Constant.collectionName.SBCH_PROJECTS),
+      where("status", "in", ["active"]),
       where("name", "==", element)
     );
     const snapshot = await getDocs(q);
