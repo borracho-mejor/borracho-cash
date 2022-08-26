@@ -159,7 +159,7 @@ export async function editProject(docID) {
   Element.formEditProject.site.value = project.site;
   Element.formEditProject.specialwarning.value = project.special_warning;
   Element.formEditImageTag.src = project.logo_path;
-  Element.formEditProject.upcoming.checked =
+  Element.formEditProject.rugged.checked =
     project.rugged == "rugged" ? true : false;
 
   // Set imageFile2Upload to null since it is a global variable
