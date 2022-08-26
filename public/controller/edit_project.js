@@ -76,7 +76,10 @@ export function addEventListeners() {
       // Update Firestore
       await FirebaseController.updateSBCHProject(p);
 
-      smartBCH_page();
+      // split url to path arguements and pass to reload
+      const pathArray = window.location.href.split("#");
+      smartBCH_page(pathArray[1]);
+
       Util.popUpInfo(
         "Project Updated",
         `${p.name} is updated successfully`,
