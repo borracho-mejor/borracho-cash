@@ -63,9 +63,14 @@ const donationsText = `<h5>
                                 <td>$0.06</td>
                             </tr>
                             <tr>
+                                <td>July 2022 DB/Hosting</td>
+                                <td>0.00042866 &#x20BF;</td>
+                                <td>$0.06</td>
+                            </tr>
+                            <tr>
                                 <th>Total:</th>
-                                <th>0.12267039 &#x20BF;</th>
-                                <th>$45.98</th>
+                                <th>0.12309905 &#x20BF;</th>
+                                <th>$46.04</th>
                             </tr>
                         </table>
                         <div style="height: 1rem"></div>
@@ -103,9 +108,19 @@ const donationsText = `<h5>
                                 <td>$0.92</td>
                             </tr>
                             <tr>
+                                <td>Anon (???)</td>
+                                <td>0.00100000 &#x20BF;</td>
+                                <td>$0.11</td>
+                            </tr>
+                            <tr>
+                                <td>Anon (???)</td>
+                                <td>0.00100000 &#x20BF;</td>
+                                <td>$0.11</td>
+                            </tr>
+                            <tr>
                                 <th>Total:</th>
-                                <th>0.02916446 &#x20BF;</th>
-                                <th>$7.25</th>
+                                <th>0.03116446 &#x20BF;</th>
+                                <th>$7.47</th>
                             </tr>
                         </table>
                         <div style="height: 1rem"></div>
@@ -117,7 +132,7 @@ const donationsText = `<h5>
                                 <th>USD Amount</th>
                             </tr>
                             <tr>
-                                <td>0.09350593 &#x20BF;</th>
-                                <td>$38.73</th>
+                                <td><span style="color: #dc3545;">- 0.09193459 &#x20BF;</span></th>
+                                <td><span style="color: #dc3545;">- $38.57</span></th>
                             </tr>
                         </table>`;
