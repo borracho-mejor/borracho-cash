@@ -40,6 +40,10 @@ export async function login_page() {
                       Add sBCH Project
                   </button>
                   <div style="height: 5px;"></div>
+                  <button class="btn btn-success modal-post-auth" style="margin: 0 auto;" data-toggle="modal" data-target="#modal-form-add-donation">
+                      Add Donation/Spending
+                  </button>
+                  <div style="height: 5px;"></div>
                   <button id="button-sign-out" class="btn btn-danger modal-post-auth" style="margin-bottom: 10px; margin: 0 auto;">
                      Sign out
                   </button>

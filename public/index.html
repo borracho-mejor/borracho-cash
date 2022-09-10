@@ -854,6 +854,92 @@
         </div>
       </div>
 
+      <!-- Modal: Add Donation -->
+      <div
+        class="modal fade"
+        id="modal-form-add-donation"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-add-donation-label">
+                Add a New Donation or Expenditure
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="form-add-donation" method="post">
+                <div>
+                  Donation or Expediture Title: <br />
+                  <input type="text" name="title" style="width: 100%" />
+                  <p
+                    id="error-add-title"
+                    class="error-add-donation"
+                    style="color: #dc3545"
+                  ></p>
+                </div>
+                <div>
+                  BCH Amount: <br />
+                  <input type="text" name="bchAmount" style="width: 100%" />
+                  <p
+                    id="error-add-bch-amount"
+                    class="error-add-donation"
+                    style="color: #dc3545"
+                  ></p>
+                </div>
+                <div>
+                  USD Amount: <br />
+                  <input type="text" name="usdAmount" style="width: 100%" />
+                  <p
+                    id="error-add-usd-amount"
+                    class="error-add-donation"
+                    style="color: #dc3545"
+                  ></p>
+                </div>
+                <div class="form-check inline">
+                  <input type="checkbox" name="isDonation" />
+                  <label class="form-check-isDonation" for="isDonation"
+                    >Donation</label
+                  >
+                </div>
+                <div class="form-check inline">
+                  <input type="checkbox" name="isSpending" />
+                  <label class="form-check-isSpending" for="isSpending"
+                    >Spending</label
+                  >
+                </div>
+                <p
+                  id="error-add-isDonation"
+                  class="error-add-donation"
+                  style="color: #dc3545"
+                ></p>
+                <div>
+                  <button
+                    type="submit"
+                    class="btn btn-outline-success"
+                    style="margin-top: 5px"
+                  >
+                    Add
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div
         id="main-content"
         class="flex-container wrapper"
@@ -950,7 +1036,11 @@
           </div>
           <p class="inline">
             —&nbsp&nbsp
-            <a class="inline" data-toggle="modal" data-target="#modal-donations"
+            <a
+              id="footer-donations"
+              class="inline"
+              data-toggle="modal"
+              data-target="#modal-donations"
               >Donations/Spending</a
             >
             ✌️💚🚀

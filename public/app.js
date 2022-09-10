@@ -25,6 +25,7 @@ import * as Auth from "./controller/auth.js";
 import * as AddsBCHProject from "./controller/add_sbch_project.js";
 import * as RequestsBCHProject from "./controller/request_sbch_project.js";
 import * as AddCard from "./controller/add_card.js";
+import * as AddDonation from "./controller/add_donation.js";
 import * as EditProject from "./controller/edit_project.js";
 import * as Donations from "./viewpage/donations.js";
 
@@ -36,5 +37,6 @@ Auth.addEventListeners();
 AddsBCHProject.addEventListeners();
 RequestsBCHProject.addEventListeners();
 AddCard.addEventListeners();
+AddDonation.addEventListeners();
 EditProject.addEventListeners();
 Donations.addEventListeners();

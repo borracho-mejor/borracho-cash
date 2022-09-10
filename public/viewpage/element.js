@@ -4,6 +4,15 @@ export const menuWhitepaper = document.getElementById("menu-whitepaper");
 export const menuSmartBCH = document.getElementById("menu-smartBCH");
 export const menuListings = document.getElementById("menu-listings");
 
+export const footerDonations = document.getElementById("footer-donations");
+export const formAddDonation = document.getElementById("form-add-donation");
+export const formAddDonationError = {
+  title: document.getElementById("error-add-title"),
+  donation: document.getElementById("error-add-isDonation"),
+  usdAmount: document.getElementById("error-add-usd-amount"),
+  bchAmount: document.getElementById("error-add-bch-amount"),
+};
+
 export const mainContent = document.getElementById("main-content");
 export const content = document.getElementById("content");
 export const contentSidebar = document.getElementById("content-sidebar");

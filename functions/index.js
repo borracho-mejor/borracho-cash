@@ -11,6 +11,7 @@ admin.initializeApp({
 const Constant = require("./constant.js");
 const Secrets = require("./secrets.js");
 const algoliasearch = require("algoliasearch");
+const CoinGecko = require("coingecko-api");
 
 exports.admin_getProjectByID = functions.https.onCall(getProjectByID);
 exports.admin_updateSBCHProject = functions.https.onCall(updateSBCHProject);
@@ -20,6 +21,7 @@ exports.admin_updateCard = functions.https.onCall(updateCard);
 exports.admin_deleteCard = functions.https.onCall(deleteCard);
 exports.admin_getSBCHProjectSearch =
   functions.https.onCall(getSBCHProjectSearch);
+exports.cloud_getBCHPrice = functions.https.onCall(getBCHPrice);
 
 function isAdmin(email) {
   return Constant.adminEmails.includes(email);
@@ -216,4 +218,14 @@ async function getSBCHProjectSearch(keywords) {
     });
   });
   return searchIDs;
+}
+
+async function getBCHPrice() {
+  const CoinGecko = require("coingecko-api");
+  const CoinGeckoClient = new CoinGecko();
+  let data = await CoinGeckoClient.simple.price({
+    ids: "bitcoin-cash",
+    vs_currencies: "usd",
+  });
+  return data.data["bitcoin-cash"].usd;
 }
