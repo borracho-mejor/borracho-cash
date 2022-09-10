@@ -9,6 +9,8 @@ export function addEventListeners() {
 }
 
 export async function donations_info() {
+  Util.popUpLoading("Loading spending...", "");
+
   let donationsText = "";
 
   donationsText += `<h5>
@@ -133,6 +135,10 @@ export async function donations_info() {
     // show none
     donationsText += `<p>No Delta to calculate.</p>`;
   }
+
+  setTimeout(function () {
+    $("#loadingoverlay").modal("hide");
+  }, 500);
 
   Element.donationsBody.innerHTML = donationsText;
 }
