@@ -2,6 +2,7 @@ import { Donation } from "../model/donation.js";
 import * as Element from "../viewpage/element.js";
 import * as FirebaseController from "./firebase_controller.js";
 import * as Util from "../viewpage/util.js";
+import * as BCHInfo from "./bch_info.js";
 
 export function addEventListeners() {
   Element.formAddDonation.addEventListener("submit", async (e) => {
@@ -15,10 +16,12 @@ export function addEventListeners() {
 
 async function addNewDonation(e) {
   let usdAmount, bchAmount;
-  const bchPrice = await FirebaseController.getBCHPrice();
 
   // update navbar price bc why not?
-  Element.bchPriceSpan.innerHTML = bchData.price.toFixed(2);
+  BCHInfo.makeBCHNavbarBox();
+
+  const bchInfo = await FirebaseController.getBCHPrice();
+  const bchPrice = bchInfo.price;
 
   const title = e.target.title.value;
   if (e.target.usdAmount.value && !e.target.bchAmount.value) {
@@ -27,7 +30,6 @@ async function addNewDonation(e) {
   } else if (!e.target.usdAmount.value && e.target.bchAmount.value) {
     bchAmount = parseFloat(e.target.bchAmount.value);
     usdAmount = bchAmount * bchPrice;
-    console.log(typeof bchPrice);
   } else {
     usdAmount = parseFloat(e.target.usdAmount.value);
     bchAmount = parseFloat(e.target.bchAmount.value);

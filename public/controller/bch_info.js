@@ -3,7 +3,6 @@ import * as FirebaseController from "./firebase_controller.js";
 
 export async function makeBCHNavbarBox() {
   const bchData = await FirebaseController.getBCHPrice();
-  console.log(bchData);
 
   let twentyFourHourTag = "";
   if (bchData.twentyFourHourChange < 0) {
