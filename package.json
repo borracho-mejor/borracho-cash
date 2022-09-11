@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "coingecko-api": "^1.0.10",
     "firebase-functions": "^3.21.1",
     "jquery": "^3.6.0",
     "web3": "^1.7.3"

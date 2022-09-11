@@ -114,15 +114,32 @@
   </head>
   <body>
     <div class="box">
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand mb-0" href="/" style="padding-right: 10px"
+      <nav
+        class="navbar navbar-expand-xl navbar-dark"
+        style="padding: 0.5rem 0; display: flex; align-items: center"
+      >
+        <a
+          class="navbar-brand mb-0"
+          href="/"
+          style="
+            padding: 0;
+            margin: 0 0.5rem;
+            vertical-align: middle;
+            display: flex;
+            align-items: center;
+          "
           ><img
             class="d-inline-block align-bottom"
             src="./images/borracho_logo_white.png"
-            style="height: 3.5rem; margin-right: 15px"
+            style="height: 4.75rem; margin: 0 0.5rem; padding: 0"
             alt="Borracho logo"
           />
-          <h2 class="d-inline-block">Borracho.cash</h2></a
+          <h2
+            class="d-inline-block"
+            style="margin: 0 0.5rem; padding: 0; align-items: center"
+          >
+            Borracho.cash
+          </h2></a
         >
         <button
           class="navbar-toggler"
@@ -143,15 +160,20 @@
             <li><a id="menu-smartBCH" class="nav-link">smartBCH</a></li>
           </ul>
           <ul class="navbar-nav ml-auto">
-            <li>
+            <li
+              id="menu-BCHInfo-Box"
+              class="nav-item active nav-box-container"
+              style="margin: 0 0.5rem"
+            ></li>
+            <!-- <li>
               <a
                 class="nav-link ml-auto inline"
                 href="https://whybitcoincash.com/"
                 target="_blank"
                 ><h5>Visit: whybitcoincash.com</h5></a
               >
-            </li>
-            <li>
+            </li> -->
+            <li style="margin: 0 1.5rem; display: flex; align-items: center">
               <input
                 id="button-light-mode"
                 type="image"
@@ -854,6 +876,92 @@
         </div>
       </div>
 
+      <!-- Modal: Add Donation -->
+      <div
+        class="modal fade"
+        id="modal-form-add-donation"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-add-donation-label">
+                Add a New Donation or Expenditure
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="form-add-donation" method="post">
+                <div>
+                  Donation or Expediture Title: <br />
+                  <input type="text" name="title" style="width: 100%" />
+                  <p
+                    id="error-add-title"
+                    class="error-add-donation"
+                    style="color: #dc3545"
+                  ></p>
+                </div>
+                <div>
+                  BCH Amount: <br />
+                  <input type="text" name="bchAmount" style="width: 100%" />
+                  <p
+                    id="error-add-bch-amount"
+                    class="error-add-donation"
+                    style="color: #dc3545"
+                  ></p>
+                </div>
+                <div>
+                  USD Amount: <br />
+                  <input type="text" name="usdAmount" style="width: 100%" />
+                  <p
+                    id="error-add-usd-amount"
+                    class="error-add-donation"
+                    style="color: #dc3545"
+                  ></p>
+                </div>
+                <div class="form-check inline">
+                  <input type="checkbox" name="isDonation" />
+                  <label class="form-check-isDonation" for="isDonation"
+                    >Donation</label
+                  >
+                </div>
+                <div class="form-check inline">
+                  <input type="checkbox" name="isSpending" />
+                  <label class="form-check-isSpending" for="isSpending"
+                    >Spending</label
+                  >
+                </div>
+                <p
+                  id="error-add-isDonation"
+                  class="error-add-donation"
+                  style="color: #dc3545"
+                ></p>
+                <div>
+                  <button
+                    type="submit"
+                    class="btn btn-outline-success"
+                    style="margin-top: 5px"
+                  >
+                    Add
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div
         id="main-content"
         class="flex-container wrapper"
@@ -950,7 +1058,11 @@
           </div>
           <p class="inline">
             —&nbsp&nbsp
-            <a class="inline" data-toggle="modal" data-target="#modal-donations"
+            <a
+              id="footer-donations"
+              class="inline"
+              data-toggle="modal"
+              data-target="#modal-donations"
               >Donations/Spending</a
             >
             ✌️💚🚀

@@ -1,6 +1,10 @@
 // The Cloud Functions for Firebase SDK to create Cloud Functions and set up triggers.
 const functions = require("firebase-functions");
 
+// CoinGecko API
+const CoinGecko = require("coingecko-api");
+const CoinGeckoClient = new CoinGecko();
+
 // The Firebase Admin SDK to access Firestore.
 const admin = require("firebase-admin");
 const serviceAccount = require("./account_key.json");
@@ -20,6 +24,7 @@ exports.admin_updateCard = functions.https.onCall(updateCard);
 exports.admin_deleteCard = functions.https.onCall(deleteCard);
 exports.admin_getSBCHProjectSearch =
   functions.https.onCall(getSBCHProjectSearch);
+exports.cloud_getBCHPrice = functions.https.onCall(getBCHPrice);
 
 function isAdmin(email) {
   return Constant.adminEmails.includes(email);
@@ -216,4 +221,30 @@ async function getSBCHProjectSearch(keywords) {
     });
   });
   return searchIDs;
+}
+
+async function getBCHPrice() {
+  let data = await CoinGeckoClient.simple.price({
+    ids: "bitcoin-cash",
+    vs_currencies: "usd",
+  });
+
+  let object = await getBCHInfo();
+  object["price"] = data.data["bitcoin-cash"].usd;
+
+  return object;
+}
+
+async function getBCHInfo() {
+  let data = await CoinGeckoClient.coins.fetch("bitcoin-cash");
+  let object = {};
+  object["marketcapRank"] = data.data.market_cap_rank;
+  object["twentyFourHourChange"] =
+    data.data.market_data.price_change_percentage_24h;
+  object["sevenDayChange"] = data.data.market_data.price_change_percentage_7d;
+  object["thirtyDayChange"] = data.data.market_data.price_change_percentage_30d;
+  object["priceInBTC"] = data.data.market_data.current_price.btc;
+  object["changeInBTCPrice24h"] =
+    data.data.market_data.price_change_percentage_24h_in_currency.btc;
+  return object;
 }

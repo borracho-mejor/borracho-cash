@@ -1,5 +1,6 @@
 import { Card } from "../model/card.js";
 import { SBCHProject } from "../model/sBCHProject.js";
+import { Donation } from "../model/donation.js";
 import * as Constant from "../model/constant.js";
 import * as Util from "../viewpage/util.js";
 import {
@@ -64,6 +65,46 @@ export async function getSBCHProjectList() {
     projects.push(project);
   });
   return projects;
+}
+
+export async function getSpendingList() {
+  let spendings = [];
+  const q = query(
+    collection(db, Constant.collectionName.DONATIONS),
+    where("type", "in", ["spending"]),
+    orderBy("timestamp", "asc")
+  );
+  const snapshot = await getDocs(q);
+  snapshot.forEach((doc) => {
+    const spending = new Donation(doc.data());
+    spending.docID = doc.id;
+    spendings.push(spending);
+  });
+  return spendings;
+}
+
+export async function getDonationsList() {
+  let donations = [];
+  const q = query(
+    collection(db, Constant.collectionName.DONATIONS),
+    where("type", "in", ["donation"]),
+    orderBy("timestamp", "asc")
+  );
+  const snapshot = await getDocs(q);
+  snapshot.forEach((doc) => {
+    const donation = new Donation(doc.data());
+    donation.docID = doc.id;
+    donations.push(donation);
+  });
+  return donations;
+}
+
+export async function addDonation(donation) {
+  donation.timestamp = Timestamp.fromDate(new Date());
+  const docRef = await addDoc(
+    collection(db, Constant.collectionName.DONATIONS),
+    donation
+  );
 }
 
 const cf_getSBCHProjectSearch = httpsCallable(
@@ -253,4 +294,10 @@ export async function updateCard(card) {
 const cf_deleteCard = httpsCallable(functions, "admin_deleteCard");
 export async function deleteCard(docID) {
   await cf_deleteCard(docID);
+}
+
+const cf_getBCHPrice = httpsCallable(functions, "cloud_getBCHPrice");
+export async function getBCHPrice() {
+  const result = await cf_getBCHPrice();
+  return result.data;
 }

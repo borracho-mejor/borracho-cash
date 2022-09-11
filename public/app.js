@@ -1,5 +1,8 @@
 import * as Routes from "./controller/routes.js";
 import * as LightMode from "./controller/lightmode.js";
+import * as FirebaseController from "./controller/firebase_controller.js";
+import * as Element from "./viewpage/element.js";
+import * as BCHInfo from "./controller/bch_info.js";
 
 window.onload = () => {
   const pathname = window.location.pathname;
@@ -17,6 +20,9 @@ window.addEventListener("popstate", (e) => {
 // Enable light mode selection
 LightMode.mode();
 
+// Get BCH Info for NavBar
+BCHInfo.makeBCHNavbarBox();
+
 import * as HomePage from "./viewpage/home_page.js";
 import * as LoginPage from "./viewpage/login_page.js";
 import * as WhitepaperPage from "./viewpage/whitepaper_page.js";
@@ -25,6 +31,7 @@ import * as Auth from "./controller/auth.js";
 import * as AddsBCHProject from "./controller/add_sbch_project.js";
 import * as RequestsBCHProject from "./controller/request_sbch_project.js";
 import * as AddCard from "./controller/add_card.js";
+import * as AddDonation from "./controller/add_donation.js";
 import * as EditProject from "./controller/edit_project.js";
 import * as Donations from "./viewpage/donations.js";
 
@@ -36,5 +43,6 @@ Auth.addEventListeners();
 AddsBCHProject.addEventListeners();
 RequestsBCHProject.addEventListeners();
 AddCard.addEventListeners();
+AddDonation.addEventListeners();
 EditProject.addEventListeners();
 Donations.addEventListeners();
