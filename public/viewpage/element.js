@@ -104,3 +104,7 @@ export const loadingModalFooter = document.getElementById(
 
 // Donations modal
 export const donationsBody = document.getElementById("donations-body");
+
+// BCH Price
+export const bchPriceSpan = document.getElementById("navbar-bch-price");
+export const bchInfoBox = document.getElementById("menu-BCHInfo-Box");

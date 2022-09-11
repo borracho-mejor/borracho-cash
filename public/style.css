@@ -137,7 +137,7 @@ a:hover {
   background-color: var(--color-background);
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1199px) {
   /* Mobile */
   body {
     height: auto;
@@ -177,7 +177,7 @@ a:hover {
   }
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 1200px) {
   /* Not mobile */
   .flex-container {
     display: flex;
@@ -215,6 +215,10 @@ a:hover {
     background: var(--green-elements-color);
     border-radius: 100px;
     background-clip: padding-box;
+  }
+  .nav-box-container{
+    margin-right: 3rem;
+    box-shadow: 2px 5px 4px #1e2225;
   }
 }
 
@@ -377,6 +381,18 @@ input[type="checkbox"] {
 .button-clear:focus {
   border: none;
   outline: none;
+}
+
+.nav-box-container{
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  /* moved below to non-mobile section and shadows */
+  /* margin-right: 1rem; */
+  background-color: var(--green-elements-color);
+}
+
+.nav-box-item {
+  color: #ffffff !important;
 }
 
 /* Shaking effects */

@@ -16,6 +16,10 @@ export function addEventListeners() {
 async function addNewDonation(e) {
   let usdAmount, bchAmount;
   const bchPrice = await FirebaseController.getBCHPrice();
+
+  // update navbar price bc why not?
+  Element.bchPriceSpan.innerHTML = bchData.price.toFixed(2);
+
   const title = e.target.title.value;
   if (e.target.usdAmount.value && !e.target.bchAmount.value) {
     usdAmount = parseFloat(e.target.usdAmount.value);

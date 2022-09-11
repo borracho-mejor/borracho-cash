@@ -1,5 +1,8 @@
 import * as Routes from "./controller/routes.js";
 import * as LightMode from "./controller/lightmode.js";
+import * as FirebaseController from "./controller/firebase_controller.js";
+import * as Element from "./viewpage/element.js";
+import * as BCHInfo from "./controller/bch_info.js";
 
 window.onload = () => {
   const pathname = window.location.pathname;
@@ -16,6 +19,9 @@ window.addEventListener("popstate", (e) => {
 
 // Enable light mode selection
 LightMode.mode();
+
+// Get BCH Info for NavBar
+BCHInfo.makeBCHNavbarBox();
 
 import * as HomePage from "./viewpage/home_page.js";
 import * as LoginPage from "./viewpage/login_page.js";

@@ -5,6 +5,9 @@ import * as FirebaseController from "../controller/firebase_controller.js";
 export function addEventListeners() {
   Element.footerDonations.addEventListener("click", async () => {
     await donations_info();
+    $("#modal-donations").on("hidden.bs.modal", function (e) {
+      $("#loadingoverlay").modal("hide");
+    });
   });
 }
 
@@ -64,7 +67,12 @@ export async function donations_info() {
       totalBCHSpending += spending.bchAmount;
       totalUSDSpending += spending.usdAmount;
     });
-    donationsText += `</table><div style="height: 1rem"></div>`;
+    donationsText += `<tr>
+                        <th>Total Spending</th>
+                        <th>${totalBCHSpending.toFixed(8)} &#x20BF;</th>
+                        <th>$ ${totalUSDSpending.toFixed(2)}</th>
+                      </tr>
+                    </table><div style="height: 1rem"></div>`;
   } else {
     // show none
     donationsText += `<p>No spending found!</p>`;
@@ -95,7 +103,12 @@ export async function donations_info() {
       totalBCHDonations += donation.bchAmount;
       totalUSDDonations += donation.usdAmount;
     });
-    donationsText += `</table><div style="height: 1rem"></div>`;
+    donationsText += `<tr>
+                        <th>Total Donations</th>
+                        <th>${totalBCHDonations.toFixed(8)} &#x20BF;</th>
+                        <th>$ ${totalUSDDonations.toFixed(2)}</th>
+                      </tr>
+                    </table><div style="height: 1rem"></div>`;
   } else {
     // show none
     donationsText += `<p>No donations found!</p>`;
@@ -121,7 +134,7 @@ export async function donations_info() {
                             <td>${bchDelta.toFixed(8)} &#x20BF;</th>`;
     }
     if (usdDelta < 0.0) {
-      donationsText += `<td><span style="color: #dc3545;">$${usdDelta.toFixed(
+      donationsText += `<td><span style="color: #dc3545;">$ ${usdDelta.toFixed(
         2
       )}</span></th>
                           </tr>
@@ -136,17 +149,17 @@ export async function donations_info() {
     donationsText += `<p>No Delta to calculate.</p>`;
   }
 
-  setTimeout(function () {
-    $("#loadingoverlay").modal("hide");
-  }, 500);
-
   Element.donationsBody.innerHTML = donationsText;
+
+  // setTimeout(function () {
+  //   $("#loadingoverlay").modal("hide");
+  // }, 500);
 }
 
 function buildDonationsRow(item, index) {
   return `<tr>
             <td>${item.title}</td>
             <td>${item.bchAmount.toFixed(8)} &#x20BF;</td>
-            <td>$${item.usdAmount.toFixed(2)}</td>
+            <td>$ ${item.usdAmount.toFixed(2)}</td>
           </tr>`;
 }
