@@ -17,11 +17,7 @@ export function addEventListeners() {
 async function addNewDonation(e) {
   let usdAmount, bchAmount;
 
-  // update navbar price bc why not?
-  BCHInfo.makeBCHNavbarBox();
-
-  const bchInfo = await FirebaseController.getBCHPrice();
-  const bchPrice = bchInfo.price;
+  const bchPrice = await BCHInfo.makeBCHNavbarBox();
 
   const title = e.target.title.value;
   if (e.target.usdAmount.value && !e.target.bchAmount.value) {

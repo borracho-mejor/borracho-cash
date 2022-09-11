@@ -232,8 +232,6 @@ async function getBCHPrice() {
   let object = await getBCHInfo();
   object["price"] = data.data["bitcoin-cash"].usd;
 
-  console.log(object);
-
   return object;
 }
 

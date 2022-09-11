@@ -54,8 +54,12 @@ export async function makeBCHNavbarBox() {
                       <th  style="padding: 0; margin: 0; border: none;"colspan="1000">Bitcoin Cash</th>
                     </tr>
                     <tr style="padding: 0; margin: 0; border: none;">
-                      <td style="padding: 0 0.5rem; margin: 0; border: none; font-size:75%; background-color: #038047;">${bchData.marketcapRank}</td>
-                      <td style="padding: 0 0.5rem; margin: 0; border: none; font-size:75%; background-color: #038047;">$${bchData.price}</td>
+                      <td style="padding: 0 0.5rem; margin: 0; border: none; font-size:75%; background-color: #038047;">${
+                        bchData.marketcapRank
+                      }</td>
+                      <td style="padding: 0 0.5rem; margin: 0; border: none; font-size:75%; background-color: #038047;">$${bchData.price.toFixed(
+                        2
+                      )}</td>
                       <td style="padding: 0 0.25rem; margin: 0; border: none; font-size:85%; background-color: #026035;">${twentyFourHourTag}</td>
                       <td style="padding: 0 0.25rem; margin: 0; border: none; font-size:85%; background-color: #026035;">${sevenDayTag}</td>
                       <td style="padding: 0 0.25rem; margin: 0; border: none; font-size:85%; background-color: #026035;">${thirtyDayTag}</td>
@@ -74,4 +78,6 @@ export async function makeBCHNavbarBox() {
              `;
 
   Element.bchInfoBox.innerHTML = html;
+
+  return bchData.price;
 }

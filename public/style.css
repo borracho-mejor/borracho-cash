@@ -217,7 +217,7 @@ a:hover {
     background-clip: padding-box;
   }
   .nav-box-container{
-    margin-right: 3rem;
+    /* margin-right: 3rem; */
     box-shadow: 2px 5px 4px #1e2225;
   }
 }
