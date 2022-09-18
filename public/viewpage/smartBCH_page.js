@@ -1015,7 +1015,7 @@ async function addSmartBCHChain() {
           params: [
             {
               chainId: "0x2710",
-              chainName: "smartBCH Mainnet",
+              chainName: "SmartBCH Mainnet",
               blockExplorerUrls: [
                 "https://sonar.cash",
                 "https://www.smartscan.cash/",
