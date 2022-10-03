@@ -35,10 +35,10 @@ body {
 }
 
 .lightmode {
-  --color-background: #f7f7f7;
+  --color-background: #ededed;
   --color-text: rgba(0, 0, 0, 0.87);
-  --color-card-background: #ffffff;
-  --color-inner-card-background: #f7f7f7;
+  --color-card-background: #f5f5f5;
+  --color-inner-card-background: #ededed;
   --color-nav-bar: #115c39;
   --light-mode: inline-block;
   --light-mode-img: block;
