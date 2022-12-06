@@ -693,6 +693,9 @@ function buildSocials(project) {
     html += `<a href="${project.socials["github"]}" target="_blank"><img class="light-mode" src="./images/github_dark.png" alt="Github logo" style="height: 2em; padding: 5px" /></a>`;
     html += `<a href="${project.socials["github"]}" target="_blank"><img class="dark-mode" src="./images/github_light.png" alt="Github logo" style="height: 2em; padding: 5px" /></a>`;
   }
+  if (project.socials["cashrain"]) {
+    html += `<a href="${project.socials["cashrain"]}" target="_blank"><img src="./images/cashrain.png" alt="CashRain logo" style="height: 2em; padding: 5px" /></a>`;
+  }
   if (project.socials["read"]) {
     html += `<a href="${project.socials["read"]}" target="_blank"><img class="light-mode" src="./images/read_dark.png" alt="Read logo" style="height: 2em; padding: 5px" /></a>`;
     html += `<a href="${project.socials["read"]}" target="_blank"><img class="dark-mode" src="./images/read_light.png" alt="Read logo" style="height: 2em; padding: 5px" /></a>`;
