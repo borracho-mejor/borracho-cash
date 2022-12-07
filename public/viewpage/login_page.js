@@ -20,12 +20,29 @@ export async function login_page() {
   Util.unActivateLinks();
   Element.menuLogin.classList.add("active");
 
+  const projectList = await FirebaseController.getSBCHProjectList();
+  let selectInput = Element.projectDropdownSelect;
+  for (let i = selectInput.options.length - 1; i >= 0; i--) {
+    selectInput.options[i] = null;
+  }
+  selectInput.options[selectInput.options.length] = new Option("", "");
+  projectList.forEach((project) => {
+    selectInput.options[selectInput.options.length] = new Option(
+      `${project.name}`,
+      project.name
+    );
+  });
+
   let html = `<h4 style="text-align:center;">Request listings below!</h4>
               <h5 style="text-align:center;">This will be fleshed out more in the coming weeks so project creators can easily request new listings or updates to existing listings. We can all help each other help each other.</h5>
               <div style="height: 15px;"></div>
               <div class="button-center">
                 <button class="btn btn-success button-center" data-toggle="modal" data-target="#modal-form-request-sBCH-project" style="margin: 0 auto; display: block;">
                   Request sBCH Listing
+                </button>
+                <div style="height: 5px;"></div>
+                <button class="btn btn-success button-center" data-toggle="modal" data-target="#modal-form-request-update-sBCH-project" data-whatever="@mdo" style="margin: 0 auto; display: block;">
+                  Update sBCH Listing
                 </button>
                 <div style="height: 5px;"></div>
                 <button class="btn btn-success modal-pre-auth button-center" data-toggle="modal" data-target="#modal-form-sign-in" style="margin: 0 auto;">

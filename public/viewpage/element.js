@@ -76,6 +76,19 @@ export const formRequestSBCHProject = document.getElementById(
   "form-request-sbch-project"
 );
 
+// For Request Update to sBCH Project Modal
+export const formRequestUpdateSBCHProject = document.getElementById(
+  "form-request-update-sbch-project"
+);
+export const projectDropdownSelect = document.getElementById(
+  "project-dropdown-select"
+);
+export const formUpdateProjectError = {
+  name: document.getElementById("error-request-update-name"),
+  update: document.getElementById("error-request-update-update"),
+  contact: document.getElementById("error-request-update-contact"),
+};
+
 // For add card modal
 export const formAddCard = document.getElementById("form-add-card");
 export const formAddCardError = {

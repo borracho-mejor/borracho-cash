@@ -105,6 +105,16 @@ input:after {
   background-color: var(--color-inner-card-background);
 }
 
+select,
+select:hover,
+select:focus,
+select:focus-visible,
+select:focus-within,
+select:active {
+  color: var(--color-text);
+  background-color: var(--color-inner-card-background);
+}
+
 del {
   color: var(--color-text);
 }
