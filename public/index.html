@@ -728,6 +728,82 @@
         </div>
       </div>
 
+      <!-- Modal: Request Update to sBCH Project -->
+      <div
+        class="modal fade"
+        id="modal-form-request-update-sBCH-project"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5
+                class="modal-title"
+                id="modal-request-update-sbch-project-label"
+              >
+                Request to Update a smartBCH Project
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="form-request-update-sbch-project" method="post">
+                <div>
+                  Project Name: <br />
+                  <select
+                    id="project-dropdown-select"
+                    name="name"
+                    style="width: 100%"
+                  ></select>
+                  <p
+                    id="error-request-update-name"
+                    class="error-request-update-project"
+                    style="color: red"
+                  ></p>
+                </div>
+                <div>
+                  What do we need to update? <br />
+                  <textarea name="update" style="width: 100%"></textarea>
+                  <p
+                    id="error-request-update-update"
+                    class="error-request-update-project"
+                    style="color: red"
+                  ></p>
+                </div>
+                <div>
+                  Contact (Email/Telegram/Twitter)
+                  <input type="text" name="contact" style="width: 100%" />
+                  <p
+                    id="error-request-update-contact"
+                    class="error-request-update-project"
+                    style="color: red"
+                  ></p>
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    class="btn btn-outline-success"
+                    style="margin-top: 5px"
+                  >
+                    Request Update
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Modal: Edit sBCH Project -->
       <div
         class="modal fade"
