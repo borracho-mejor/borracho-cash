@@ -101,6 +101,10 @@ input:after {
   background-color: var(--color-inner-card-background);
 }
 
+a.bch-box {
+  text-decoration: none;
+}
+
 select,
 select:hover,
 select:focus,
