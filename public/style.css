@@ -6,10 +6,6 @@ body {
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
-  /* overflow-y: hidden; */
-}
-
-body {
   font-family: "Trebuchet MS", sans-serif;
 }
 
@@ -105,6 +101,10 @@ input:after {
   background-color: var(--color-inner-card-background);
 }
 
+a.bch-box {
+  text-decoration: none;
+}
+
 select,
 select:hover,
 select:focus,
@@ -157,6 +157,9 @@ a.nav-link {
     height: auto;
     width: 100vw;
   }
+  a.nav-link {
+    padding-left: 0.5rem !important;
+  }
   .footer {
     border-top: 2px solid grey;
     position: absolute;
@@ -186,6 +189,9 @@ a.nav-link {
   #content-sidebar {
     margin-bottom: 1.5em;
   }
+  input.mode {
+    margin: 0.5rem 0 !important;
+  }
   #collapse-button {
     display: inline;
   }
@@ -213,6 +219,9 @@ a.nav-link {
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+  }
+  input.mode {
+    margin: 0 1.5rem !important;
   }
   #collapse-button {
     display: none;

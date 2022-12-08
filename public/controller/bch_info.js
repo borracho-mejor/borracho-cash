@@ -48,7 +48,7 @@ export async function makeBCHNavbarBox() {
     )}</span>`;
   }
 
-  let html = `<a href="https://www.coingecko.com/coins/bitcoin-cash" target="_blank_"><table class="nav-box-item" style="width: 100%; text-align: center; border: none; border-collapse: collapse;">
+  let html = `<a href="https://www.coingecko.com/coins/bitcoin-cash" target="_blank_" class="bch-box"><table class="nav-box-item" style="width: 100%; text-align: center; border: none; border-collapse: collapse;">
                   <tbody style="padding: 0; margin: 0; border: none;">
                     <tr style="padding: 0; margin: 0; border: none;">
                       <th  style="padding: 0; margin: 0; border: none;"colspan="1000">Bitcoin Cash</th>
