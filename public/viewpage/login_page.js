@@ -45,6 +45,10 @@ export async function login_page() {
                   Update sBCH Listing
                 </button>
                 <div style="height: 5px;"></div>
+                <button class="btn btn-danger button-center" data-toggle="modal" data-target="#modal-form-bug-report" data-whatever="@mdo" style="margin: 0 auto; display: block;">
+                  Submit Bug Report
+                </button>
+                <div style="height: 5px;"></div>
                 <button class="btn btn-success modal-pre-auth button-center" data-toggle="modal" data-target="#modal-form-sign-in" style="margin: 0 auto;">
                     Sign-in (Admin Only)
                 </button>

@@ -804,6 +804,66 @@
         </div>
       </div>
 
+      <!-- Modal: Bug Report -->
+      <div
+        class="modal fade"
+        id="modal-form-bug-report"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-bug-report">
+                Submit a Bug Report
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="form-bug-report" method="post">
+                <div>
+                  What would you like to report? <br />
+                  <textarea name="text" style="width: 100%"></textarea>
+                  <p
+                    id="error-bug-report-text"
+                    class="error-bug-report"
+                    style="color: red"
+                  ></p>
+                </div>
+                <div>
+                  Contact (Email/Telegram/Twitter)
+                  <input type="text" name="contact" style="width: 100%" />
+                  <p
+                    id="error-bug-report-contact"
+                    class="error-bug-report"
+                    style="color: red"
+                  ></p>
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    class="btn btn-outline-success"
+                    style="margin-top: 5px"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Modal: Edit sBCH Project -->
       <div
         class="modal fade"

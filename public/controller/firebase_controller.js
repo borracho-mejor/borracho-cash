@@ -219,6 +219,20 @@ export async function requestUpdatesBCHProject(request) {
   );
 }
 
+export async function submitBugReport(report) {
+  report.timestamp = Timestamp.fromDate(new Date());
+  report.to = ["brandon@borracho.cash"];
+  report.message = {
+    subject: `New Bug Report - ${report.timestamp.seconds}`,
+    html: `<p>Text: ${report.text}</p>
+    <p>Contact: ${report.contact}</p>`,
+  };
+  const docRef = await addDoc(
+    collection(db, Constant.collectionName.LISTING_REQUEST),
+    report
+  );
+}
+
 export async function addCard(card) {
   card.timestamp = Timestamp.fromDate(new Date());
   const docRef = await addDoc(
