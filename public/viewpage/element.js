@@ -89,6 +89,13 @@ export const formUpdateProjectError = {
   contact: document.getElementById("error-request-update-contact"),
 };
 
+// For Bug Report Modal
+export const formBugReport = document.getElementById("form-bug-report");
+export const formBugReportError = {
+  text: document.getElementById("error-bug-report-text"),
+  contact: document.getElementById("error-bug-report-contact"),
+};
+
 // For add card modal
 export const formAddCard = document.getElementById("form-add-card");
 export const formAddCardError = {
