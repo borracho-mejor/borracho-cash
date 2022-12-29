@@ -70,9 +70,14 @@ export async function cashTokens_page(
       // Needs work...
       routeKeywords = routeKeywords.substring(7);
       try {
-        projects = await FirebaseController.getSBCHProjectSearch(routeKeywords);
+        projects = await FirebaseController.getCashTokensProjectSearch(
+          routeKeywords
+        );
       } catch (error) {
-        Util.popUpInfo("Error in getSBCHProjectSearch", JSON.stringify(error));
+        Util.popUpInfo(
+          "Error in getCashTokensProjectSearch",
+          JSON.stringify(error)
+        );
         return;
       }
       const keywordsArray = routeKeywords.toLowerCase().match(/\S+/g);
@@ -80,7 +85,7 @@ export async function cashTokens_page(
       history.pushState(
         null,
         null,
-        Routes.routePathname.SBCH + "#search=" + joinedSearchKeys
+        Routes.routePathname.CASHTOKENS + "#search=" + joinedSearchKeys
       );
     } else if (
       routeKeywords.startsWith("filter=") &&
@@ -739,7 +744,7 @@ async function filterResults(
   let filterCount = 0;
 
   try {
-    projects = await FirebaseController.getSBCHProjectList();
+    projects = await FirebaseController.getCashTokensProjectList();
   } catch (error) {
     Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
     return;

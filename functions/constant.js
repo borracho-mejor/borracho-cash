@@ -1,10 +1,10 @@
 exports.collectionName = {
-  SBCHPROJECTS: "sBCH_projects",
+  PROJECTS: "projects",
   CARDS: "cards",
 };
 
 exports.algoliaIndexes = {
-  SBCH_PROJECTS: "SBCH_projects",
+  PROJECTS: "projects",
 };
 
 exports.algoliaAPI = {

@@ -126,20 +126,51 @@ export async function addDonation(donation) {
   );
 }
 
-const cf_getSBCHProjectSearch = httpsCallable(
-  functions,
-  "admin_getSBCHProjectSearch"
-);
+const cf_getProjectSearch = httpsCallable(functions, "admin_getProjectSearch");
 export async function getSBCHProjectSearch(keywords) {
   Util.popUpLoading("Searching...", "Slowly...");
   let projects = [];
-  let result = await cf_getSBCHProjectSearch(keywords);
+  let result = await cf_getProjectSearch(keywords);
   result = result.data;
 
   for (const element of result) {
     const q = await query(
       collection(db, Constant.collectionName.PROJECTS),
       where("status", "in", ["active"]),
+      where("chain", "array-contains", "smartbch"),
+      where("name", "==", element)
+    );
+    const snapshot = await getDocs(q);
+    snapshot.forEach((doc) => {
+      const project = new Project(doc.data());
+      project.docID = doc.id;
+      projects.push(project);
+    });
+  }
+  projects.sort(function (a, b) {
+    if (a.bias === b.bias) {
+      // Name is only important when biases are the same
+      return b.name - a.name;
+    }
+    return a.bias > b.bias ? 1 : -1;
+  });
+
+  setTimeout(function () {
+    $("#loadingoverlay").modal("hide");
+  }, 500);
+  return projects;
+}
+export async function getCashTokensProjectSearch(keywords) {
+  Util.popUpLoading("Searching...", "Slowly...");
+  let projects = [];
+  let result = await cf_getProjectSearch(keywords);
+  result = result.data;
+
+  for (const element of result) {
+    const q = await query(
+      collection(db, Constant.collectionName.PROJECTS),
+      where("status", "in", ["active"]),
+      where("chain", "array-contains", "cashtokens"),
       where("name", "==", element)
     );
     const snapshot = await getDocs(q);
