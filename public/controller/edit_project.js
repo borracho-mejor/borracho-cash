@@ -1,7 +1,7 @@
 import * as FirebaseController from "./firebase_controller.js";
 import * as Util from "../viewpage/util.js";
 import * as Element from "../viewpage/element.js";
-import { SBCHProject } from "../model/sBCHProject.js";
+import { Project } from "../model/Project.js";
 import { Card } from "../model/card.js";
 import * as CloudStorage from "./cloud_storage.js";
 import { trimAndParse } from "./add_sbch_project.js";
@@ -25,7 +25,7 @@ export function addEventListeners() {
     const button = e.target.getElementsByTagName("button")[0];
     const label = Util.disableButton(button);
 
-    const p = new SBCHProject({
+    const p = new Project({
       audit: trimAndParse(e.target.audit.value),
       bias: e.target.bias.value,
       description: e.target.description.value,

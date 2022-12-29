@@ -1,4 +1,4 @@
-import { SBCHProject } from "../model/sBCHProject.js";
+import { Project } from "../model/Project.js";
 import * as Element from "../viewpage/element.js";
 import * as FirebaseController from "../controller/firebase_controller.js";
 import * as CloudStorage from "../controller/cloud_storage.js";
@@ -55,7 +55,7 @@ async function addNewsBCHProject(e) {
     errorTags[i].innerHTML = "";
   }
 
-  const project = new SBCHProject({
+  const project = new Project({
     audit,
     bias,
     description,

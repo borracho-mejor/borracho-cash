@@ -1,4 +1,4 @@
-export class SBCHProject {
+export class Project {
   constructor(data) {
     this.name = data.name;
     this.sort_name = data.sort_name;

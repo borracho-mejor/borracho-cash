@@ -1,5 +1,5 @@
 import { Card } from "../model/card.js";
-import { SBCHProject } from "../model/sBCHProject.js";
+import { Project } from "../model/Project.js";
 import { Donation } from "../model/donation.js";
 import * as Constant from "../model/constant.js";
 import * as Util from "../viewpage/util.js";
@@ -53,14 +53,33 @@ export async function getHomeCardList() {
 export async function getSBCHProjectList() {
   let projects = [];
   const q = query(
-    collection(db, Constant.collectionName.SBCH_PROJECTS),
+    collection(db, Constant.collectionName.PROJECTS),
+    where("chain", "array-contains", "smartbch"),
     where("status", "in", ["active"]),
     orderBy("bias", "asc"),
     orderBy("sort_name", "asc")
   );
   const snapshot = await getDocs(q);
   snapshot.forEach((doc) => {
-    const project = new SBCHProject(doc.data());
+    const project = new Project(doc.data());
+    project.docID = doc.id;
+    projects.push(project);
+  });
+  return projects;
+}
+
+export async function getCashTokensProjectList() {
+  let projects = [];
+  const q = query(
+    collection(db, Constant.collectionName.PROJECTS),
+    where("chain", "array-contains", "cashtokens"),
+    where("status", "in", ["active"]),
+    orderBy("bias", "asc"),
+    orderBy("sort_name", "asc")
+  );
+  const snapshot = await getDocs(q);
+  snapshot.forEach((doc) => {
+    const project = new Project(doc.data());
     project.docID = doc.id;
     projects.push(project);
   });
@@ -119,13 +138,13 @@ export async function getSBCHProjectSearch(keywords) {
 
   for (const element of result) {
     const q = await query(
-      collection(db, Constant.collectionName.SBCH_PROJECTS),
+      collection(db, Constant.collectionName.PROJECTS),
       where("status", "in", ["active"]),
       where("name", "==", element)
     );
     const snapshot = await getDocs(q);
     snapshot.forEach((doc) => {
-      const project = new SBCHProject(doc.data());
+      const project = new Project(doc.data());
       project.docID = doc.id;
       projects.push(project);
     });
@@ -176,7 +195,7 @@ export async function getSocialsList(projects) {
 export async function addsBCHProject(project) {
   project.timestamp = Timestamp.fromDate(new Date());
   const docRef = await addDoc(
-    collection(db, Constant.collectionName.SBCH_PROJECTS),
+    collection(db, Constant.collectionName.PROJECTS),
     project
   );
 }
@@ -258,7 +277,7 @@ const cf_getProjectByID = httpsCallable(functions, "admin_getProjectByID");
 export async function getProjectByID(docID) {
   const result = await cf_getProjectByID(docID);
   if (result.data) {
-    const project = new SBCHProject(result.data);
+    const project = new Project(result.data);
     project.docID = result.data.docID;
     return project;
   } else {
@@ -269,13 +288,13 @@ export async function getProjectByID(docID) {
 export async function getProjectByName(name) {
   let project;
   const q = query(
-    collection(db, Constant.collectionName.SBCH_PROJECTS),
+    collection(db, Constant.collectionName.PROJECTS),
     where("sort_name", "==", name)
   );
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
-    project = new SBCHProject(doc.data());
+    project = new Project(doc.data());
     project.docID = doc.id;
   });
   return project;

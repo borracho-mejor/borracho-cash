@@ -36,6 +36,7 @@ import * as AddCard from "./controller/add_card.js";
 import * as AddDonation from "./controller/add_donation.js";
 import * as EditProject from "./controller/edit_project.js";
 import * as Donations from "./viewpage/donations.js";
+import * as CashTokensPage from "./viewpage/cashTokens_page.js";
 
 HomePage.addEventListeners();
 LoginPage.addEventListeners();
@@ -50,3 +51,4 @@ AddCard.addEventListeners();
 AddDonation.addEventListeners();
 EditProject.addEventListeners();
 Donations.addEventListeners();
+CashTokensPage.addEventListeners();

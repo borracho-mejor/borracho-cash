@@ -3,6 +3,7 @@ export const menuLogin = document.getElementById("menu-login");
 export const menuWhitepaper = document.getElementById("menu-whitepaper");
 export const menuSmartBCH = document.getElementById("menu-smartBCH");
 export const menuListings = document.getElementById("menu-listings");
+export const menuCashTokens = document.getElementById("menu-cashTokens");
 
 export const footerDonations = document.getElementById("footer-donations");
 export const formAddDonation = document.getElementById("form-add-donation");
