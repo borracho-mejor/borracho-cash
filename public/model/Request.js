@@ -1,4 +1,4 @@
-export class SBCHRequest {
+export class Request {
   constructor(data) {
     this.name = data.name;
     this.description = data.description;
@@ -11,6 +11,7 @@ export class SBCHRequest {
     this.timestamp = data.timestamp;
     this.site = data.site;
     this.contact = data.contact;
+    this.chain = data.chain;
   }
 
   serialize() {
@@ -26,6 +27,7 @@ export class SBCHRequest {
       timestamp: this.timestamp,
       site: this.site,
       contact: this.contact,
+      chain: this.chain,
     };
   }
 

@@ -37,8 +37,8 @@ export async function login_page() {
               <h5 style="text-align:center;">This will be fleshed out more in the coming weeks so project creators can easily request new listings or updates to existing listings. We can all help each other help each other.</h5>
               <div style="height: 15px;"></div>
               <div class="button-center">
-                <button class="btn btn-success button-center" data-toggle="modal" data-target="#modal-form-request-sBCH-project" style="margin: 0 auto; display: block;">
-                  Request sBCH Listing
+                <button class="btn btn-success button-center" data-toggle="modal" data-target="#modal-form-request-project" style="margin: 0 auto; display: block;">
+                  Request Listing
                 </button>
                 <div style="height: 5px;"></div>
                 <button class="btn btn-success button-center" data-toggle="modal" data-target="#modal-form-request-update-sBCH-project" data-whatever="@mdo" style="margin: 0 auto; display: block;">

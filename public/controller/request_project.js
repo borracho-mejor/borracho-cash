@@ -1,21 +1,20 @@
-import { SBCHRequest } from "../model/sBCHRequest.js";
+import { Request } from "../model/Request.js";
 import * as Element from "../viewpage/element.js";
-import * as FirebaseController from "../controller/firebase_controller.js";
+import * as FirebaseController from "./firebase_controller.js";
 import * as Util from "../viewpage/util.js";
 import { login_page } from "../viewpage/login_page.js";
 
 export function addEventListeners() {
-  Element.formRequestSBCHProject.addEventListener("submit", async (e) => {
+  Element.formRequestProject.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const button =
-      Element.formRequestSBCHProject.getElementsByTagName("button")[0];
+    const button = Element.formRequestProject.getElementsByTagName("button")[0];
     const origLabel = Util.disableButton(button);
-    await requestSBCHProject(e);
+    await requestProject(e);
     Util.enableButton(button, origLabel);
   });
 }
 
-async function requestSBCHProject(e) {
+async function requestProject(e) {
   const name = e.target.name.value;
   const site = e.target.site.value;
   const description = e.target.description.value;
@@ -26,6 +25,7 @@ async function requestSBCHProject(e) {
   const helpful_links = e.target.helpfullinks.value;
   const logo_link = e.target.linktologo.value;
   const contact = e.target.contact.value;
+  const chain = e.target.chain.value;
 
   // Clear error tags before validating again
   const errorTags = document.getElementsByClassName("error-request-project");
@@ -33,7 +33,7 @@ async function requestSBCHProject(e) {
     errorTags[i].innerHTML = "";
   }
 
-  const request = new SBCHRequest({
+  const request = new Request({
     name,
     site,
     description,
@@ -44,22 +44,23 @@ async function requestSBCHProject(e) {
     helpful_links,
     logo_link,
     contact,
+    chain,
   });
 
   try {
-    await FirebaseController.requestsBCHProject(request.serialize());
+    await FirebaseController.requestProject(request.serialize());
     login_page();
     Util.popUpInfo(
       "Success!",
       `${request.name} has been requested!`,
-      "modal-form-request-sBCH-project"
+      "modal-form-request-project"
     );
     e.target.reset();
   } catch (error) {
     Util.popUpInfo(
       "Failed to Request Project!",
       JSON.stringify(error),
-      "modal-form-request-sBCH-project"
+      "modal-form-request-project"
     );
   }
 }

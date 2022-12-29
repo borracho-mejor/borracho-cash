@@ -231,12 +231,13 @@ export async function addsBCHProject(project) {
   );
 }
 
-export async function requestsBCHProject(request) {
+export async function requestProject(request) {
   request.timestamp = Timestamp.fromDate(new Date());
   request.to = ["brandon@borracho.cash"];
   request.message = {
     subject: `New sBCH Project Listing Request - ${request.name}`,
     html: `<p>Name: ${request.name}</p>
+            <p>Blockchain: ${request.chain}</p>
             <p>Contact: ${request.contact}</p>
             <p>Site: ${request.site}</p>
             <p>Description: ${request.description}</p>

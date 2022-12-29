@@ -73,8 +73,8 @@ export const formEditProjectError = {
 };
 
 // For Request sBCH Project Modal
-export const formRequestSBCHProject = document.getElementById(
-  "form-request-sbch-project"
+export const formRequestProject = document.getElementById(
+  "form-request-project"
 );
 
 // For Request Update to sBCH Project Modal

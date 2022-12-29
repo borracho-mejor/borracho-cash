@@ -174,7 +174,9 @@
                 <a id="menu-smartBCH" class="dropdown-item nav-link"
                   >smartBCH</a
                 >
-                <a id="menu-cashTokens" class="dropdown-item nav-link">Cash Tokens</a>
+                <a id="menu-cashTokens" class="dropdown-item nav-link"
+                  >Cash Tokens</a
+                >
               </div>
             </li>
           </ul>
@@ -643,7 +645,7 @@
       <!-- Modal: Request sBCH Project -->
       <div
         class="modal fade"
-        id="modal-form-request-sBCH-project"
+        id="modal-form-request-project"
         data-backdrop="static"
         data-keyboard="false"
         tabindex="-1"
@@ -653,7 +655,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="modal-request-sbch-project-label">
+              <h5 class="modal-title" id="modal-request-project-label">
                 Request a New smartBCH Project
               </h5>
               <button
@@ -666,11 +668,16 @@
               </button>
             </div>
             <div class="modal-body">
-              <form id="form-request-sbch-project" method="post">
+              <form id="form-request-project" method="post">
                 <div>
                   Project Name: <br />
                   <input type="text" name="name" style="width: 100%" />
                   <p id="error-request-name" class="error-request-project"></p>
+                </div>
+                <div>
+                  Blockchain: <br />
+                  <input type="text" name="chain" style="width: 100%" />
+                  <p id="error-request-chain" class="error-request-project"></p>
                 </div>
                 <div>
                   Project Site: <br />
