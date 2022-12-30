@@ -861,7 +861,11 @@ async function filterResults(
   }
 
   if (filteredProjects.length === 0) {
-    newHTML += `<h4 style="text-align:center;">No projects found with that filter!</h4>`;
+    if (filterCount > 1) {
+      newHTML += `<h4 style="text-align:center;">No projects found with those ${filterCount} filters!</h4>`;
+    } else {
+      newHTML += `<h4 style="text-align:center;">No projects found with that filter!</h4>`;
+    }
   } else {
     newHTML += `<div class="card mb-3 mr-1"><div class="card-body"><h5 style="text-align:left;">This is a specific filter from the <a href="https://borracho.cash${Routes.routePathname.CASHTOKENS}" target="_blank">borracho.cash${Routes.routePathname.CASHTOKENS}</a> listings. 
                 After checking it out feel free to use the <button id="button-clear-all" type="button" class="btn btn-danger btn-sm py-0" style="font-size: 0.75rem;">Clear</button> button in the left sidebar (or header on mobile) to see 
