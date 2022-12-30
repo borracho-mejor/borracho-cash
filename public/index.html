@@ -757,7 +757,7 @@
       <!-- Modal: Request Update to sBCH Project -->
       <div
         class="modal fade"
-        id="modal-form-request-update-sBCH-project"
+        id="modal-form-request-update-project"
         data-backdrop="static"
         data-keyboard="false"
         tabindex="-1"
@@ -767,10 +767,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5
-                class="modal-title"
-                id="modal-request-update-sbch-project-label"
-              >
+              <h5 class="modal-title" id="modal-request-update-project-label">
                 Request to Update a smartBCH Project
               </h5>
               <button
@@ -783,7 +780,25 @@
               </button>
             </div>
             <div class="modal-body">
-              <form id="form-request-update-sbch-project" method="post">
+              <form id="form-request-update-project" method="post">
+                <div>
+                  Project Blockchain: <br />
+                  <select
+                    id="blockchain-dropdown-select"
+                    name="chain"
+                    style="width: 100%"
+                  >
+                    <option value=""></option>
+                    <option value="bch">BCH</option>
+                    <option value="smartbch">smartBCH</option>
+                    <option value="cashtokens">Cash Tokens</option>
+                  </select>
+                  <p
+                    id="error-request-update-chain"
+                    class="error-request-update-project"
+                    style="color: red"
+                  ></p>
+                </div>
                 <div>
                   Project Name: <br />
                   <select

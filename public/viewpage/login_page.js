@@ -11,6 +11,50 @@ export function addEventListeners() {
     history.pushState(null, null, Routes.routePathname.LOGIN);
     login_page();
   });
+  Element.chainDropdownSelect.addEventListener("change", async () => {
+    let projectList;
+    let selectInput = Element.projectDropdownSelect;
+    for (let i = selectInput.options.length - 1; i >= 0; i--) {
+      selectInput.options[i] = null;
+    }
+    if (
+      Element.chainDropdownSelect.options[
+        Element.chainDropdownSelect.selectedIndex
+      ].value == "bch"
+    ) {
+      console.log("BCH");
+      projectList = {};
+    } else if (
+      Element.chainDropdownSelect.options[
+        Element.chainDropdownSelect.selectedIndex
+      ].value == "smartbch"
+    ) {
+      console.log("smartBCH");
+      projectList = await FirebaseController.getSBCHProjectList();
+    } else if (
+      Element.chainDropdownSelect.options[
+        Element.chainDropdownSelect.selectedIndex
+      ].value == "cashtokens"
+    ) {
+      console.log("Cash Tokens");
+      projectList = await FirebaseController.getCashTokensProjectList();
+    } else {
+      console.log(
+        Element.chainDropdownSelect.options[
+          Element.chainDropdownSelect.selectedIndex
+        ].value
+      );
+      projectList = {};
+    }
+    selectInput.options[selectInput.options.length] = new Option("", "");
+    console.log(projectList);
+    projectList.forEach((project) => {
+      selectInput.options[selectInput.options.length] = new Option(
+        `${project.name}`,
+        project.name
+      );
+    });
+  });
 }
 
 export async function login_page() {
@@ -20,18 +64,11 @@ export async function login_page() {
   Util.unActivateLinks();
   Element.menuLogin.classList.add("active");
 
-  const projectList = await FirebaseController.getSBCHProjectList();
   let selectInput = Element.projectDropdownSelect;
   for (let i = selectInput.options.length - 1; i >= 0; i--) {
     selectInput.options[i] = null;
   }
   selectInput.options[selectInput.options.length] = new Option("", "");
-  projectList.forEach((project) => {
-    selectInput.options[selectInput.options.length] = new Option(
-      `${project.name}`,
-      project.name
-    );
-  });
 
   let html = `<h4 style="text-align:center;">Request listings below!</h4>
               <h5 style="text-align:center;">This will be fleshed out more in the coming weeks so project creators can easily request new listings or updates to existing listings. We can all help each other help each other.</h5>
@@ -41,8 +78,8 @@ export async function login_page() {
                   Request Listing
                 </button>
                 <div style="height: 5px;"></div>
-                <button class="btn btn-success button-center" data-toggle="modal" data-target="#modal-form-request-update-sBCH-project" data-whatever="@mdo" style="margin: 0 auto; display: block;">
-                  Update sBCH Listing
+                <button class="btn btn-success button-center" data-toggle="modal" data-target="#modal-form-request-update-project" data-whatever="@mdo" style="margin: 0 auto; display: block;">
+                  Update Listing
                 </button>
                 <div style="height: 5px;"></div>
                 <button class="btn btn-danger button-center" data-toggle="modal" data-target="#modal-form-bug-report" data-whatever="@mdo" style="margin: 0 auto; display: block;">

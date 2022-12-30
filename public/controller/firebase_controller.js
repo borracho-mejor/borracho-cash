@@ -255,12 +255,13 @@ export async function requestProject(request) {
   );
 }
 
-export async function requestUpdatesBCHProject(request) {
+export async function requestUpdateProject(request) {
   request.timestamp = Timestamp.fromDate(new Date());
   request.to = ["brandon@borracho.cash"];
   request.message = {
     subject: `New sBCH Project Update Request - ${request.name}`,
-    html: `<p>Name: ${request.name}</p>
+    html: `<p>Chain: ${request.chain}</p>
+    <p>Name: ${request.name}</p>
     <p>Update: ${request.update}</p>
     <p>Contact: ${request.contact}</p>`,
   };

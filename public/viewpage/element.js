@@ -79,12 +79,16 @@ export const formRequestProject = document.getElementById(
 
 // For Request Update to sBCH Project Modal
 export const formRequestUpdateSBCHProject = document.getElementById(
-  "form-request-update-sbch-project"
+  "form-request-update-project"
+);
+export const chainDropdownSelect = document.getElementById(
+  "blockchain-dropdown-select"
 );
 export const projectDropdownSelect = document.getElementById(
   "project-dropdown-select"
 );
 export const formUpdateProjectError = {
+  chain: document.getElementById("error-request-update-chain"),
   name: document.getElementById("error-request-update-name"),
   update: document.getElementById("error-request-update-update"),
   contact: document.getElementById("error-request-update-contact"),

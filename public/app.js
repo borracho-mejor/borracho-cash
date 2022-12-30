@@ -30,7 +30,7 @@ import * as SBCHPage from "./viewpage/smartBCH_page.js";
 import * as Auth from "./controller/auth.js";
 import * as AddsBCHProject from "./controller/add_sbch_project.js";
 import * as RequestProject from "./controller/request_project.js";
-import * as RequestUpdatesBCHProject from "./controller/update_sbch_project.js";
+import * as RequestUpdatesBCHProject from "./controller/update_project.js";
 import * as SubmitBugReport from "./controller/submit_bug_report.js";
 import * as AddCard from "./controller/add_card.js";
 import * as AddDonation from "./controller/add_donation.js";
