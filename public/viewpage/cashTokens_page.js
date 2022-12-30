@@ -140,12 +140,12 @@ export async function build_cashTokens_page(
   $("#modal-pop-up-info").modal("hide");
 
   let html = "";
-  let sidebarHTML = `<div style="height: 100%;">
+  let sidebarHTML = `<div style="height: 100%; overflow-y: scroll;">
                       <img class="dark-mode" src="./images/cashtokens_light.png" alt="Cash Tokens logo" style="width: 100%; padding: 5px; margin: auto;" /><img class="light-mode" src="./images/cashtokens_dark.png" alt="Cash Tokens logo" style="width: 100%; padding: 5px;" />
                       <div class="p-2" style="max-width: 65rem; margin: auto; text-align: left;">                  
                         <div class="collapse show multi-collapse" id="collapseSidebar2" >
                           <h5 class="padding-bottom">
-                            Here's a list of projects on Cash Tokens. Curabitur ac ipsum in nulla rutrum auctor quis at odio. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque molestie diam sed arcu dictum volutpat.
+                            Here's a list of projects on CashTokens. CashTokens is a new proposal for Bitcoin Cash that will open up Ethereum-style smart contracts directly on a scalable, robust UTXO blockchain. This is an exciting, new frontier in the cryptocurrency ecosystem, buckle up!
                           </h5>
                           <p style="vertical-align: middle;">
                             <div data-toggle="collapse" href="#collapseDisclaimer" role="button" aria-expanded="false" aria-controls="collapseDisclaimer">
