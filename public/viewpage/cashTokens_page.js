@@ -135,6 +135,7 @@ export async function build_cashTokens_page(
   Util.hideTwitterFeeds();
   Util.showHeader();
   Util.unActivateLinks();
+  Element.menuNavbarDropdown.classList.add("active");
   Element.menuCashTokens.classList.add("active");
   $("#modal-pop-up-info").modal("hide");
 

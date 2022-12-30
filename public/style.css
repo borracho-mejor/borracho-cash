@@ -88,9 +88,13 @@ nav {
   background-color: var(--green-elements-color);
 }
 
+.dropdown-item.disabled{
+  color: rgba(122.5, 124, 125, 0.87) !important;
+}
+
 .dropdown-item:hover{
   background-color: var(--color-background);
-  color: var(--color-nav-bar)
+  color: var(--green-elements-color) !important;
 }
 
 input[type="text"],

@@ -130,6 +130,7 @@ export async function build_smartBCH_page(
   Util.hideTwitterFeeds();
   Util.showHeader();
   Util.unActivateLinks();
+  Element.menuNavbarDropdown.classList.add("active");
   Element.menuSmartBCH.classList.add("active");
   $("#modal-pop-up-info").modal("hide");
 
