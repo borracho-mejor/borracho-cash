@@ -223,7 +223,7 @@ export async function getSocialsList(projects) {
   return socials;
 }
 
-export async function addsBCHProject(project) {
+export async function addProject(project) {
   project.timestamp = Timestamp.fromDate(new Date());
   const docRef = await addDoc(
     collection(db, Constant.collectionName.PROJECTS),

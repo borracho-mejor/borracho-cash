@@ -4,7 +4,7 @@ import * as Element from "../viewpage/element.js";
 import { Project } from "../model/Project.js";
 import { Card } from "../model/card.js";
 import * as CloudStorage from "./cloud_storage.js";
-import { trimAndParse } from "./add_sbch_project.js";
+import { trimAndParse } from "./add_project.js";
 import { home_page } from "../viewpage/home_page.js";
 import { smartBCH_page } from "../viewpage/smartBCH_page.js";
 

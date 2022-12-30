@@ -1,5 +1,6 @@
 export class Project {
   constructor(data) {
+    this.chain = data.chain;
     this.name = data.name;
     this.sort_name = data.sort_name;
     this.description = data.description;
@@ -24,6 +25,7 @@ export class Project {
 
   serialize() {
     return {
+      chain: this.chain,
       name: this.name,
       sort_name: this.sort_name,
       description: this.description,
@@ -49,6 +51,9 @@ export class Project {
 
   serializeForUpdate() {
     const r = {};
+    if (this.chain) {
+      r.chain = this.chain;
+    }
     if (this.name) {
       r.name = this.name;
     }
@@ -108,6 +113,9 @@ export class Project {
   validate() {
     // To do
     const errors = {};
+    if (!this.chain || this.chain.length == 0) {
+      errors.chain = "Please select a blockchain.";
+    }
     if (Object.keys(errors).length == 0) {
       return null;
     } else return errors;

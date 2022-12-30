@@ -46,6 +46,7 @@ export const popUpLoadBody = document.getElementById(
 export const imageTagAddProject = document.getElementById("form-add-image-tag");
 export const formAddProject = document.getElementById("form-add-sbch-project");
 export const formAddProjectError = {
+  chain: document.getElementById("error-add-chain"),
   name: document.getElementById("error-add-name"),
   description: document.getElementById("error-add-description"),
   twosats: document.getElementById("error-add-two-sats"),
