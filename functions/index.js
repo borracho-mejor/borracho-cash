@@ -22,8 +22,7 @@ exports.admin_deleteSBCHProject = functions.https.onCall(deleteSBCHProject);
 exports.admin_getCardByID = functions.https.onCall(getCardByID);
 exports.admin_updateCard = functions.https.onCall(updateCard);
 exports.admin_deleteCard = functions.https.onCall(deleteCard);
-exports.admin_getSBCHProjectSearch =
-  functions.https.onCall(getSBCHProjectSearch);
+exports.admin_getProjectSearch = functions.https.onCall(getProjectSearch);
 exports.cloud_getBCHPrice = functions.https.onCall(getBCHPrice);
 
 function isAdmin(email) {
@@ -34,11 +33,12 @@ async function getProjectByID(docID, context) {
   try {
     const doc = await admin
       .firestore()
-      .collection(Constant.collectionName.SBCHPROJECTS)
+      .collection(Constant.collectionName.PROJECTS)
       .doc(docID)
       .get();
     if (doc.exists) {
       const {
+        chain,
         name,
         description,
         audit,
@@ -58,6 +58,7 @@ async function getProjectByID(docID, context) {
         imageURL,
       } = doc.data();
       const p = {
+        chain,
         name,
         description,
         audit,
@@ -99,7 +100,7 @@ async function updateSBCHProject(projectInfo, context) {
   try {
     await admin
       .firestore()
-      .collection(Constant.collectionName.SBCHPROJECTS)
+      .collection(Constant.collectionName.PROJECTS)
       .doc(projectInfo.docID)
       .update(projectInfo.data);
   } catch (error) {
@@ -120,7 +121,7 @@ async function deleteSBCHProject(docID, context) {
   try {
     await admin
       .firestore()
-      .collection(Constant.collectionName.SBCHPROJECTS)
+      .collection(Constant.collectionName.PROJECTS)
       .doc(docID)
       .delete();
   } catch (error) {
@@ -207,13 +208,13 @@ async function deleteCard(docID, context) {
   }
 }
 
-async function getSBCHProjectSearch(keywords) {
+async function getProjectSearch(keywords) {
   let searchIDs = [];
   const searchClient = algoliasearch(
     Constant.algoliaAPI.appId,
     Constant.algoliaAPI.apiKey
   );
-  const index = searchClient.initIndex(Constant.algoliaIndexes.SBCH_PROJECTS);
+  const index = searchClient.initIndex(Constant.algoliaIndexes.PROJECTS);
 
   await index.search(keywords).then(({ hits }) => {
     hits.forEach((hit) => {

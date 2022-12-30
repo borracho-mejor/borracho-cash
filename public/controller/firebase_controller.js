@@ -1,5 +1,5 @@
 import { Card } from "../model/card.js";
-import { SBCHProject } from "../model/sBCHProject.js";
+import { Project } from "../model/Project.js";
 import { Donation } from "../model/donation.js";
 import * as Constant from "../model/constant.js";
 import * as Util from "../viewpage/util.js";
@@ -53,14 +53,33 @@ export async function getHomeCardList() {
 export async function getSBCHProjectList() {
   let projects = [];
   const q = query(
-    collection(db, Constant.collectionName.SBCH_PROJECTS),
+    collection(db, Constant.collectionName.PROJECTS),
+    where("chain", "array-contains", "smartbch"),
     where("status", "in", ["active"]),
     orderBy("bias", "asc"),
     orderBy("sort_name", "asc")
   );
   const snapshot = await getDocs(q);
   snapshot.forEach((doc) => {
-    const project = new SBCHProject(doc.data());
+    const project = new Project(doc.data());
+    project.docID = doc.id;
+    projects.push(project);
+  });
+  return projects;
+}
+
+export async function getCashTokensProjectList() {
+  let projects = [];
+  const q = query(
+    collection(db, Constant.collectionName.PROJECTS),
+    where("chain", "array-contains", "cashtokens"),
+    where("status", "in", ["active"]),
+    orderBy("bias", "asc"),
+    orderBy("sort_name", "asc")
+  );
+  const snapshot = await getDocs(q);
+  snapshot.forEach((doc) => {
+    const project = new Project(doc.data());
     project.docID = doc.id;
     projects.push(project);
   });
@@ -107,25 +126,56 @@ export async function addDonation(donation) {
   );
 }
 
-const cf_getSBCHProjectSearch = httpsCallable(
-  functions,
-  "admin_getSBCHProjectSearch"
-);
+const cf_getProjectSearch = httpsCallable(functions, "admin_getProjectSearch");
 export async function getSBCHProjectSearch(keywords) {
   Util.popUpLoading("Searching...", "Slowly...");
   let projects = [];
-  let result = await cf_getSBCHProjectSearch(keywords);
+  let result = await cf_getProjectSearch(keywords);
   result = result.data;
 
   for (const element of result) {
     const q = await query(
-      collection(db, Constant.collectionName.SBCH_PROJECTS),
+      collection(db, Constant.collectionName.PROJECTS),
       where("status", "in", ["active"]),
+      where("chain", "array-contains", "smartbch"),
       where("name", "==", element)
     );
     const snapshot = await getDocs(q);
     snapshot.forEach((doc) => {
-      const project = new SBCHProject(doc.data());
+      const project = new Project(doc.data());
+      project.docID = doc.id;
+      projects.push(project);
+    });
+  }
+  projects.sort(function (a, b) {
+    if (a.bias === b.bias) {
+      // Name is only important when biases are the same
+      return b.name - a.name;
+    }
+    return a.bias > b.bias ? 1 : -1;
+  });
+
+  setTimeout(function () {
+    $("#loadingoverlay").modal("hide");
+  }, 500);
+  return projects;
+}
+export async function getCashTokensProjectSearch(keywords) {
+  Util.popUpLoading("Searching...", "Slowly...");
+  let projects = [];
+  let result = await cf_getProjectSearch(keywords);
+  result = result.data;
+
+  for (const element of result) {
+    const q = await query(
+      collection(db, Constant.collectionName.PROJECTS),
+      where("status", "in", ["active"]),
+      where("chain", "array-contains", "cashtokens"),
+      where("name", "==", element)
+    );
+    const snapshot = await getDocs(q);
+    snapshot.forEach((doc) => {
+      const project = new Project(doc.data());
       project.docID = doc.id;
       projects.push(project);
     });
@@ -173,20 +223,21 @@ export async function getSocialsList(projects) {
   return socials;
 }
 
-export async function addsBCHProject(project) {
+export async function addProject(project) {
   project.timestamp = Timestamp.fromDate(new Date());
   const docRef = await addDoc(
-    collection(db, Constant.collectionName.SBCH_PROJECTS),
+    collection(db, Constant.collectionName.PROJECTS),
     project
   );
 }
 
-export async function requestsBCHProject(request) {
+export async function requestProject(request) {
   request.timestamp = Timestamp.fromDate(new Date());
   request.to = ["brandon@borracho.cash"];
   request.message = {
     subject: `New sBCH Project Listing Request - ${request.name}`,
     html: `<p>Name: ${request.name}</p>
+            <p>Blockchain: ${request.chain}</p>
             <p>Contact: ${request.contact}</p>
             <p>Site: ${request.site}</p>
             <p>Description: ${request.description}</p>
@@ -204,12 +255,13 @@ export async function requestsBCHProject(request) {
   );
 }
 
-export async function requestUpdatesBCHProject(request) {
+export async function requestUpdateProject(request) {
   request.timestamp = Timestamp.fromDate(new Date());
   request.to = ["brandon@borracho.cash"];
   request.message = {
     subject: `New sBCH Project Update Request - ${request.name}`,
-    html: `<p>Name: ${request.name}</p>
+    html: `<p>Chain: ${request.chain}</p>
+    <p>Name: ${request.name}</p>
     <p>Update: ${request.update}</p>
     <p>Contact: ${request.contact}</p>`,
   };
@@ -258,7 +310,7 @@ const cf_getProjectByID = httpsCallable(functions, "admin_getProjectByID");
 export async function getProjectByID(docID) {
   const result = await cf_getProjectByID(docID);
   if (result.data) {
-    const project = new SBCHProject(result.data);
+    const project = new Project(result.data);
     project.docID = result.data.docID;
     return project;
   } else {
@@ -269,13 +321,13 @@ export async function getProjectByID(docID) {
 export async function getProjectByName(name) {
   let project;
   const q = query(
-    collection(db, Constant.collectionName.SBCH_PROJECTS),
+    collection(db, Constant.collectionName.PROJECTS),
     where("sort_name", "==", name)
   );
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
-    project = new SBCHProject(doc.data());
+    project = new Project(doc.data());
     project.docID = doc.id;
   });
   return project;

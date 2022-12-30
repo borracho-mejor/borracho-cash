@@ -3,6 +3,8 @@ export const menuLogin = document.getElementById("menu-login");
 export const menuWhitepaper = document.getElementById("menu-whitepaper");
 export const menuSmartBCH = document.getElementById("menu-smartBCH");
 export const menuListings = document.getElementById("menu-listings");
+export const menuCashTokens = document.getElementById("menu-cashTokens");
+export const menuNavbarDropdown = document.getElementById("navbarDropdown");
 
 export const footerDonations = document.getElementById("footer-donations");
 export const formAddDonation = document.getElementById("form-add-donation");
@@ -45,6 +47,7 @@ export const popUpLoadBody = document.getElementById(
 export const imageTagAddProject = document.getElementById("form-add-image-tag");
 export const formAddProject = document.getElementById("form-add-sbch-project");
 export const formAddProjectError = {
+  chain: document.getElementById("error-add-chain"),
   name: document.getElementById("error-add-name"),
   description: document.getElementById("error-add-description"),
   twosats: document.getElementById("error-add-two-sats"),
@@ -71,19 +74,23 @@ export const formEditProjectError = {
   bias: document.getElementById("error-edit-bias"),
 };
 
-// For Request sBCH Project Modal
-export const formRequestSBCHProject = document.getElementById(
-  "form-request-sbch-project"
+// For Request Project Modal
+export const formRequestProject = document.getElementById(
+  "form-request-project"
 );
 
-// For Request Update to sBCH Project Modal
+// For Request Update to Project Modal
 export const formRequestUpdateSBCHProject = document.getElementById(
-  "form-request-update-sbch-project"
+  "form-request-update-project"
+);
+export const chainDropdownSelect = document.getElementById(
+  "blockchain-dropdown-select"
 );
 export const projectDropdownSelect = document.getElementById(
   "project-dropdown-select"
 );
 export const formUpdateProjectError = {
+  chain: document.getElementById("error-request-update-chain"),
   name: document.getElementById("error-request-update-name"),
   update: document.getElementById("error-request-update-update"),
   contact: document.getElementById("error-request-update-contact"),

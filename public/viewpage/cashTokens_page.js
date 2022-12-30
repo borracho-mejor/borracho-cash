@@ -6,12 +6,11 @@ import * as Util from "./util.js";
 import { Timestamp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
 import * as Auth from "../controller/auth.js";
 import * as Edit from "../controller/edit_project.js";
-import { Project } from "../model/Project.js";
 
 export function addEventListeners() {
-  Element.menuSmartBCH.addEventListener("click", () => {
-    history.pushState(null, null, Routes.routePathname.SBCH);
-    smartBCH_page();
+  Element.menuCashTokens.addEventListener("click", () => {
+    history.pushState(null, null, Routes.routePathname.CASHTOKENS);
+    cashTokens_page();
   });
 }
 
@@ -21,7 +20,7 @@ let typeChecksHTML = "";
 let socialsChecksHTML = "";
 let copyButtonHTML = `<button id="copy-button" class="material-icons-outlined button-clear inline" style="vertical-align: middle;" data-toggle="popover" data-placement="top" data-content="URL Copied!">content_copy</button>`;
 
-export async function smartBCH_page(
+export async function cashTokens_page(
   routeKeywords,
   scrollTop = true,
   isCollapsed = false
@@ -35,9 +34,9 @@ export async function smartBCH_page(
   let specificProject;
 
   try {
-    projects = await FirebaseController.getSBCHProjectList();
+    projects = await FirebaseController.getCashTokensProjectList();
   } catch (error) {
-    Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
+    Util.popUpInfo("Error in getCashTokenProjectList", JSON.stringify(error));
     return;
   }
   try {
@@ -67,11 +66,17 @@ export async function smartBCH_page(
   }
   if (routeKeywords) {
     if (routeKeywords.startsWith("search=") && routeKeywords != "search=") {
+      // Needs work...
       routeKeywords = routeKeywords.substring(7);
       try {
-        projects = await FirebaseController.getSBCHProjectSearch(routeKeywords);
+        projects = await FirebaseController.getCashTokensProjectSearch(
+          routeKeywords
+        );
       } catch (error) {
-        Util.popUpInfo("Error in getSBCHProjectSearch", JSON.stringify(error));
+        Util.popUpInfo(
+          "Error in getCashTokensProjectSearch",
+          JSON.stringify(error)
+        );
         return;
       }
       const keywordsArray = routeKeywords.toLowerCase().match(/\S+/g);
@@ -79,7 +84,7 @@ export async function smartBCH_page(
       history.pushState(
         null,
         null,
-        Routes.routePathname.SBCH + "#search=" + joinedSearchKeys
+        Routes.routePathname.CASHTOKENS + "#search=" + joinedSearchKeys
       );
     } else if (
       routeKeywords.startsWith("filter=") &&
@@ -90,13 +95,13 @@ export async function smartBCH_page(
       history.pushState(
         null,
         null,
-        Routes.routePathname.SBCH + "#filter=" + routeKeywords
+        Routes.routePathname.CASHTOKENS + "#filter=" + routeKeywords
       );
     } else if (
       routeKeywords.startsWith("project=") &&
       routeKeywords != "project="
     ) {
-      // getSBCHProjectByName (decoded)
+      // getCashTokensProjectByName (decoded)
       routeKeywords = routeKeywords.substring(8);
       specificProject = await FirebaseController.getProjectByName(
         decodeURI(routeKeywords)
@@ -105,23 +110,23 @@ export async function smartBCH_page(
       history.pushState(
         null,
         null,
-        Routes.routePathname.SBCH + "#project=" + routeKeywords
+        Routes.routePathname.CASHTOKENS + "#project=" + routeKeywords
       );
     } else {
-      history.pushState(null, null, Routes.routePathname.SBCH);
+      history.pushState(null, null, Routes.routePathname.CASHTOKENS);
     }
   } else {
-    history.pushState(null, null, Routes.routePathname.SBCH);
+    history.pushState(null, null, Routes.routePathname.CASHTOKENS);
   }
 
   setTimeout(function () {
     $("#loadingoverlay").modal("hide");
   }, 500);
 
-  build_smartBCH_page(routeKeywords, specificProject, scrollTop, isCollapsed);
+  build_cashTokens_page(routeKeywords, specificProject, scrollTop, isCollapsed);
 }
 
-export async function build_smartBCH_page(
+export async function build_cashTokens_page(
   routeKeywords,
   specificProject,
   scrollTop,
@@ -131,27 +136,16 @@ export async function build_smartBCH_page(
   Util.showHeader();
   Util.unActivateLinks();
   Element.menuNavbarDropdown.classList.add("active");
-  Element.menuSmartBCH.classList.add("active");
+  Element.menuCashTokens.classList.add("active");
   $("#modal-pop-up-info").modal("hide");
 
   let html = "";
-  let sidebarHTML = `<div style="height: 100%;">
-                      <img class="dark-mode" src="./images/smartBCH_light.png" alt="smartBCH logo" style="width: 100%; padding: 5px; margin: auto;" /><img class="light-mode" src="./images/smartBCH_dark.png" alt="smartBCH logo" style="width: 100%; padding: 5px;" />
-                      <div class="mx-2 mt-3 flashing-warning alert alert-danger flex-container" role="alert" style="background-color: #dc3545; color: white; border: none; min-height: 1em; text-align: center; padding: 1px 0;">
-                        <div class="px-3 flex-container" style="flex: 10%; text-align: center; vertical-align: middle; flex-direction: column; justify-content: center;">
-                          <i class="material-icons-outlined" style="font-size: 1.5em; display: inline-block; justify-content: center; align-items: center;">warning</i>
-                        </div>
-                        <div>
-                          <a style="color: white;" href="https://borracho.cash/smartbch#project=conflex%20f.k.a.%20coinflex"><strong>Mark Lamb and Conflex</strong></a> really fucked us. Most high liquidty bridges and on/off ramps are currently offline, please DYOR before investing.
-                        </div>
-                        <div class="px-3 flex-container" style="flex: 10%; text-align: center; vertical-align: middle; flex-direction: column; justify-content: center;">
-                          <i class="material-icons-outlined" style="font-size: 1.5em; display: inline-block; justify-content: center; align-items: center;">warning</i>
-                        </div>
-                      </div>
+  let sidebarHTML = `<div style="height: 100%; overflow-y: scroll;">
+                      <img class="dark-mode" src="./images/cashtokens_light.png" alt="Cash Tokens logo" style="width: 100%; padding: 5px; margin: auto;" /><img class="light-mode" src="./images/cashtokens_dark.png" alt="Cash Tokens logo" style="width: 100%; padding: 5px;" />
                       <div class="p-2" style="max-width: 65rem; margin: auto; text-align: left;">                  
                         <div class="collapse show multi-collapse" id="collapseSidebar2" >
-                          <h5 class="padding-bottom">Here's a list of smartBCH projects. This will only include projects like DEXs, Launchpads, Staking Platforms, NFT Marketplaces, and tokens with large use-cases (i.e: Celery with its staking platform and SIDX with its governance and managed portfolio). 
-                           I am not currently including tokens without use-cases. With smartBCH, WAGMI!
+                          <h5 class="padding-bottom">
+                            Here's a list of projects on CashTokens. CashTokens is a new proposal for Bitcoin Cash that will open up Ethereum-style smart contracts directly on a scalable, robust UTXO blockchain. This is an exciting, new frontier in the cryptocurrency ecosystem, buckle up!
                           </h5>
                           <p style="vertical-align: middle;">
                             <div data-toggle="collapse" href="#collapseDisclaimer" role="button" aria-expanded="false" aria-controls="collapseDisclaimer">
@@ -168,7 +162,6 @@ export async function build_smartBCH_page(
                             </div>
                           </p>
                           <div class="text-center padding-bottom-large" style="max-width: 65%; margin-left: auto; margin-right: auto;">
-                            <button id="button-add-smartBCH" type="button" class="btn btn-block btn-outline-success"><img src="../images/metamask.png" alt="Metamask Logo" style="max-height: 1.5em;" /> Add smartBCH to MetaMask</button>
                           </div>    
                         </div>                 
                         <div class="text-center padding-bottom"><h5>Project Count: <span id="project-count"></span></h5></div>
@@ -232,21 +225,9 @@ export async function build_smartBCH_page(
                               </label>
                             </div>
                             <div class="form-check inline padding-right-large">
-                              <input class="form-check-input" type="checkbox" value="" id="checkbox-non-nft">
-                              <label class="form-check-label" for="checkbox-non-nft">
-                                Non-NFT Only
-                              </label>
-                            </div>
-                            <div class="form-check inline padding-right-large">
                               <input class="form-check-input" type="checkbox" value="" id="checkbox-non-upcoming">
                               <label class="form-check-label" for="checkbox-non-upcoming">
                                 Non-Upcoming
-                              </label>
-                            </div>
-                            <div class="form-check inline padding-right-large">
-                              <input class="form-check-input" type="checkbox" value="" id="checkbox-warning">
-                              <label class="form-check-label" for="checkbox-warning">
-                              <span style="color: #dc3545;"><strong>Special Warnings</strong></span>
                               </label>
                             </div>
                           </div>
@@ -338,11 +319,6 @@ export async function build_smartBCH_page(
       searchNotificationBadge
     );
   });
-  document
-    .getElementById("button-add-smartBCH")
-    .addEventListener("click", () => {
-      addSmartBCHChain();
-    });
 
   // Searching
   document.getElementById("form-search").addEventListener("submit", (e) => {
@@ -767,7 +743,7 @@ async function filterResults(
   let filterCount = 0;
 
   try {
-    projects = await FirebaseController.getSBCHProjectList();
+    projects = await FirebaseController.getCashTokensProjectList();
   } catch (error) {
     Util.popUpInfo("Error in getHomeProjectList", JSON.stringify(error));
     return;
@@ -817,32 +793,12 @@ async function filterResults(
       return project.dyor;
     });
   }
-  // non-NFT
-  if (document.getElementById("checkbox-non-nft").checked) {
-    routeArray.push("non-nft");
-    filterCount++;
-    filteredProjects = filteredProjects.filter(function (project) {
-      if (project.type.length === 1) {
-        return !project.type.includes("NFT Collection");
-      } else {
-        return project.type;
-      }
-    });
-  }
   // non-DYOR
   if (document.getElementById("checkbox-non-dyor").checked) {
     routeArray.push("non-dyor");
     filterCount++;
     filteredProjects = filteredProjects.filter(function (project) {
       return !project.dyor;
-    });
-  }
-  // special warning
-  if (document.getElementById("checkbox-warning").checked) {
-    routeArray.push("warning");
-    filterCount++;
-    filteredProjects = filteredProjects.filter(function (project) {
-      return project.special_warning && project.special_warning != "";
     });
   }
   // Upcoming
@@ -911,7 +867,7 @@ async function filterResults(
       newHTML += `<h4 style="text-align:center;">No projects found with that filter!</h4>`;
     }
   } else {
-    newHTML += `<div class="card mb-3 mr-1"><div class="card-body"><h5 style="text-align:left;">This is a specific filter from the <a href="https://borracho.cash/smartbch" target="_blank">borracho.cash/smartbch</a> listings. 
+    newHTML += `<div class="card mb-3 mr-1"><div class="card-body"><h5 style="text-align:left;">This is a specific filter from the <a href="https://borracho.cash${Routes.routePathname.CASHTOKENS}" target="_blank">borracho.cash${Routes.routePathname.CASHTOKENS}</a> listings. 
                 After checking it out feel free to use the <button id="button-clear-all" type="button" class="btn btn-danger btn-sm py-0" style="font-size: 0.75rem;">Clear</button> button in the left sidebar (or header on mobile) to see 
                 a list off all projects. You can also use the <i style="color: #07a159;">search bar</i> to search for a variety of project names, types, 
                 socials, developers, or basically anything that is displayed on each project's card. Finally, check out the filters 
@@ -968,7 +924,7 @@ async function filterResults(
     history.pushState(
       null,
       null,
-      Routes.routePathname.SBCH + "#filter=" + joinedFilterKeys
+      Routes.routePathname.CASHTOKENS + "#filter=" + joinedFilterKeys
     );
   }
 
@@ -985,7 +941,7 @@ async function searchResults(keywords, scrollTop, isCollapsed) {
       Util.scrollToTop();
     });
   } else {
-    smartBCH_page(`search=${keywords}`, scrollTop, isCollapsed);
+    cashTokens_page(`search=${keywords}`, scrollTop, isCollapsed);
   }
 }
 
@@ -997,67 +953,9 @@ function clearResults() {
   $("#copy-button").popover("hide");
   $("#share-button").popover("hide");
   if (document.getElementById("collapseSidebar1").classList.contains("show")) {
-    smartBCH_page("", false, false);
+    cashTokens_page("", false, false);
   } else {
-    smartBCH_page("", false, true);
-  }
-}
-
-// Thanks im_uname#100🍋 for providing this function
-async function addSmartBCHChain() {
-  try {
-    await window.ethereum.request({
-      method: "wallet_switchEthereumChain",
-      params: [{ chainId: "0x2710" }],
-    });
-    Util.popUpInfo(
-      "smartBCH already added!",
-      "Silly, smartBCH has already been added. Get on over to Mistswap/Tangoswap and start trading for low fees on a fast EVM!"
-    );
-  } catch (switchError) {
-    // This error code indicates that the chain has not been added to MetaMask.
-    if (switchError.code === 4902) {
-      try {
-        await window.ethereum.request({
-          method: "wallet_addEthereumChain",
-          params: [
-            {
-              chainId: "0x2710",
-              chainName: "SmartBCH Mainnet",
-              blockExplorerUrls: [
-                "https://sonar.cash",
-                "https://www.smartscan.cash/",
-              ],
-              rpcUrls: [
-                "https://smartbch.greyh.at",
-                "https://smartbch.fountainhead.cash/mainnet",
-                "https://rpc.uatvo.com",
-              ],
-              nativeCurrency: {
-                name: "BCH",
-                symbol: "BCH",
-                decimals: 18,
-              },
-            },
-          ],
-        });
-        Util.popUpInfo(
-          "smartBCH added to wallet!",
-          "Go to Mistswap/Tangoswap and start trading for low fees on a fast EVM!"
-        );
-      } catch (addError) {
-        Util.popUpInfo(
-          "Error adding smartBCH! (addError)",
-          JSON.stringify(addError)
-        );
-      }
-    }
-    if (switchError.code != 4902) {
-      Util.popUpInfo(
-        "Error adding smartBCH! (switchError)",
-        JSON.stringify(switchError)
-      );
-    }
+    cashTokens_page("", false, true);
   }
 }
 
@@ -1066,7 +964,6 @@ function clearCheckboxes() {
   document.getElementById("checkbox-audited").checked = false;
   document.getElementById("checkbox-mysats").checked = false;
   document.getElementById("checkbox-dyor").checked = false;
-  document.getElementById("checkbox-non-nft").checked = false;
   document.getElementById("checkbox-non-dyor").checked = false;
   let typesCheckboxArray = document.getElementsByClassName(
     "form-check-type-input"
@@ -1100,7 +997,7 @@ function collapseSidebar() {
 async function shareProject(name) {
   // Util.popUpLoading("One sec...", "");
   const url = `https://borracho.cash${
-    Routes.routePathname.SBCH
+    Routes.routePathname.CASHTOKENS
   }#project=${encodeURI(name.toLowerCase())}`;
   Util.popUpInfo(
     `Share ${name} with someone!`,

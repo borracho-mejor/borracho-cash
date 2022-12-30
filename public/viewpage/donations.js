@@ -37,7 +37,7 @@ export async function donations_info() {
                             style="max-width: 40%; margin: 1em"
                         />
                     </div>
-                    <p>
+                    <p style="word-wrap: break-word;">
                         bitcoincash:qqlw4yggvgfc24pv8vzpv4svx35rtf3txvdeahpzml<br />
                         smartbch:0x7256a81B2c936B00c5b19415722a65E77d52a468
                     </p>`;

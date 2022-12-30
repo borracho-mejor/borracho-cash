@@ -76,6 +76,27 @@ nav {
   background-color: var(--color-inner-card-background);
 }
 
+.dropdown-menu{
+  background-color: var(--color-card-background);
+}
+
+.dropdown-item{
+  color: var(--color-text) !important;
+}
+
+.dropdown-item.active{
+  background-color: var(--green-elements-color);
+}
+
+.dropdown-item.disabled{
+  color: rgba(122.5, 124, 125, 0.87) !important;
+}
+
+.dropdown-item:hover{
+  background-color: var(--color-background);
+  color: var(--green-elements-color) !important;
+}
+
 input[type="text"],
 input[type="email"],
 input[type="password"],

@@ -1,5 +1,6 @@
-export class SBCHUpdate {
+export class Update {
   constructor(data) {
+    this.chain = data.chain;
     this.name = data.name;
     this.update = data.update;
     this.contact = data.contact;
@@ -7,6 +8,7 @@ export class SBCHUpdate {
 
   serialize() {
     return {
+      chain: this.chain,
       name: this.name,
       update: this.update,
       contact: this.contact,
@@ -15,6 +17,9 @@ export class SBCHUpdate {
 
   validate() {
     const errors = {};
+    if (!this.chain || this.chain.length == 0) {
+      errors.chain = "Please select a blockchain.";
+    }
     if (!this.name || this.name.length == 0) {
       errors.name = "Please select a project.";
     }

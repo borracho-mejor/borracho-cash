@@ -155,9 +155,30 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <ul class="navbar-nav mr-auto">
             <li><a id="menu-home" class="nav-link active">Home</a></li>
-            <li><a id="menu-login" class="nav-link">Listings</a></li>
+            <li><a id="menu-login" class="nav-link">Contact</a></li>
             <li><a id="menu-whitepaper" class="nav-link">BCH Whitepaper</a></li>
-            <li><a id="menu-smartBCH" class="nav-link">smartBCH</a></li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Projects
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item nav-link disabled">BCH (In Progress)</a>
+                <a id="menu-smartBCH" class="dropdown-item nav-link"
+                  >smartBCH</a
+                >
+                <a id="menu-cashTokens" class="dropdown-item nav-link"
+                  >Cash Tokens</a
+                >
+              </div>
+            </li>
           </ul>
           <ul class="navbar-nav ml-auto">
             <li
@@ -483,6 +504,26 @@
             <div class="modal-body">
               <form id="form-add-sbch-project" method="post">
                 <div>
+                  <p>Blockchain:</p>
+                  <div class="form-check inline">
+                    <input type="checkbox" name="bch" />
+                    <label class="form-check-label" for="bch">BCH</label>
+                  </div>
+                  <div class="form-check inline">
+                    <input type="checkbox" name="smartbch" />
+                    <label class="form-check-label" for="smartbch"
+                      >smartBCH</label
+                    >
+                  </div>
+                  <div class="form-check inline">
+                    <input type="checkbox" name="cashtokens" />
+                    <label class="form-check-label" for="cashtokens"
+                      >Cash Tokens</label
+                    >
+                  </div>
+                  <p id="error-add-chain" class="error-add-project"></p>
+                </div>
+                <div>
                   Project Name: <br />
                   <input type="text" name="name" style="width: 100%" />
                   <p id="error-add-name" class="error-add-project"></p>
@@ -624,7 +665,7 @@
       <!-- Modal: Request sBCH Project -->
       <div
         class="modal fade"
-        id="modal-form-request-sBCH-project"
+        id="modal-form-request-project"
         data-backdrop="static"
         data-keyboard="false"
         tabindex="-1"
@@ -634,7 +675,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="modal-request-sbch-project-label">
+              <h5 class="modal-title" id="modal-request-project-label">
                 Request a New smartBCH Project
               </h5>
               <button
@@ -647,11 +688,16 @@
               </button>
             </div>
             <div class="modal-body">
-              <form id="form-request-sbch-project" method="post">
+              <form id="form-request-project" method="post">
                 <div>
                   Project Name: <br />
                   <input type="text" name="name" style="width: 100%" />
                   <p id="error-request-name" class="error-request-project"></p>
+                </div>
+                <div>
+                  Blockchain: <br />
+                  <input type="text" name="chain" style="width: 100%" />
+                  <p id="error-request-chain" class="error-request-project"></p>
                 </div>
                 <div>
                   Project Site: <br />
@@ -731,7 +777,7 @@
       <!-- Modal: Request Update to sBCH Project -->
       <div
         class="modal fade"
-        id="modal-form-request-update-sBCH-project"
+        id="modal-form-request-update-project"
         data-backdrop="static"
         data-keyboard="false"
         tabindex="-1"
@@ -741,10 +787,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5
-                class="modal-title"
-                id="modal-request-update-sbch-project-label"
-              >
+              <h5 class="modal-title" id="modal-request-update-project-label">
                 Request to Update a smartBCH Project
               </h5>
               <button
@@ -757,7 +800,25 @@
               </button>
             </div>
             <div class="modal-body">
-              <form id="form-request-update-sbch-project" method="post">
+              <form id="form-request-update-project" method="post">
+                <div>
+                  Project Blockchain: <br />
+                  <select
+                    id="blockchain-dropdown-select"
+                    name="chain"
+                    style="width: 100%"
+                  >
+                    <option value=""></option>
+                    <option value="bch">BCH</option>
+                    <option value="smartbch">smartBCH</option>
+                    <option value="cashtokens">Cash Tokens</option>
+                  </select>
+                  <p
+                    id="error-request-update-chain"
+                    class="error-request-update-project"
+                    style="color: red"
+                  ></p>
+                </div>
                 <div>
                   Project Name: <br />
                   <select
@@ -893,6 +954,26 @@
               <form id="form-edit-sbch-project" method="post">
                 <input type="hidden" name="docID" />
                 <input type="hidden" name="imageName" />
+                <div>
+                  <p>Blockchain:</p>
+                  <div class="form-check inline">
+                    <input type="checkbox" name="bch" />
+                    <label class="form-check-label" for="bch">BCH</label>
+                  </div>
+                  <div class="form-check inline">
+                    <input type="checkbox" name="smartbch" />
+                    <label class="form-check-label" for="smartbch"
+                      >smartBCH</label
+                    >
+                  </div>
+                  <div class="form-check inline">
+                    <input type="checkbox" name="cashtokens" />
+                    <label class="form-check-label" for="cashtokens"
+                      >Cash Tokens</label
+                    >
+                  </div>
+                  <p id="error-edit-chain" class="error-edit-project"></p>
+                </div>
                 <div>
                   Project Name: <br />
                   <input type="text" name="name" style="width: 100%" />
