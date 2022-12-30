@@ -92,7 +92,6 @@ async function addNewProject(e) {
   project.search_socials = Array.from(Object.keys(project.socials));
   project.search_helpful_links = Array.from(Object.keys(project.helpful_links));
   // Check
-  console.log(project);
   const errors = project.validate(imageFile2Upload);
   if (errors) {
     if (errors.name) {

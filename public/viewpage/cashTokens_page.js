@@ -65,7 +65,6 @@ export async function cashTokens_page(
     return;
   }
   if (routeKeywords) {
-    console.log(routeKeywords);
     if (routeKeywords.startsWith("search=") && routeKeywords != "search=") {
       // Needs work...
       routeKeywords = routeKeywords.substring(7);
@@ -107,7 +106,6 @@ export async function cashTokens_page(
       specificProject = await FirebaseController.getProjectByName(
         decodeURI(routeKeywords)
       );
-      console.log(specificProject);
       isCollapsed = true;
       history.pushState(
         null,

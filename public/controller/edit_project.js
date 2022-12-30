@@ -98,7 +98,7 @@ export function addEventListeners() {
       } else if (pathArray.includes("cashtokens")) {
         cashTokens_page(pathArray[pathArray.length - 1]);
       } else {
-        console.log("ERROR");
+        // Should never be a possibility...
       }
 
       Util.popUpInfo(
@@ -185,7 +185,6 @@ export async function editProject(docID) {
   Element.formEditImageTag.src = project.logo_path;
   Element.formEditProject.rugged.checked =
     project.rugged == "rugged" ? true : false;
-  console.log(project);
   Element.formEditProject.bch.checked = project.chain.includes("bch");
   Element.formEditProject.smartbch.checked = project.chain.includes("smartbch");
   Element.formEditProject.cashtokens.checked =

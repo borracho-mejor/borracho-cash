@@ -22,32 +22,24 @@ export function addEventListeners() {
         Element.chainDropdownSelect.selectedIndex
       ].value == "bch"
     ) {
-      console.log("BCH");
-      projectList = {};
+      projectList = [];
     } else if (
       Element.chainDropdownSelect.options[
         Element.chainDropdownSelect.selectedIndex
       ].value == "smartbch"
     ) {
-      console.log("smartBCH");
       projectList = await FirebaseController.getSBCHProjectList();
     } else if (
       Element.chainDropdownSelect.options[
         Element.chainDropdownSelect.selectedIndex
       ].value == "cashtokens"
     ) {
-      console.log("Cash Tokens");
       projectList = await FirebaseController.getCashTokensProjectList();
     } else {
-      console.log(
-        Element.chainDropdownSelect.options[
-          Element.chainDropdownSelect.selectedIndex
-        ].value
-      );
-      projectList = {};
+      // Nothing selected
+      projectList = [];
     }
     selectInput.options[selectInput.options.length] = new Option("", "");
-    console.log(projectList);
     projectList.forEach((project) => {
       selectInput.options[selectInput.options.length] = new Option(
         `${project.name}`,
