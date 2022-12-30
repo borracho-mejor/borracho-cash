@@ -38,6 +38,7 @@ async function getProjectByID(docID, context) {
       .get();
     if (doc.exists) {
       const {
+        chain,
         name,
         description,
         audit,
@@ -57,6 +58,7 @@ async function getProjectByID(docID, context) {
         imageURL,
       } = doc.data();
       const p = {
+        chain,
         name,
         description,
         audit,

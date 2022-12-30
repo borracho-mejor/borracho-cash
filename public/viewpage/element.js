@@ -73,12 +73,12 @@ export const formEditProjectError = {
   bias: document.getElementById("error-edit-bias"),
 };
 
-// For Request sBCH Project Modal
+// For Request Project Modal
 export const formRequestProject = document.getElementById(
   "form-request-project"
 );
 
-// For Request Update to sBCH Project Modal
+// For Request Update to Project Modal
 export const formRequestUpdateSBCHProject = document.getElementById(
   "form-request-update-project"
 );

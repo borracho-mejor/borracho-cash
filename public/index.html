@@ -955,6 +955,26 @@
                 <input type="hidden" name="docID" />
                 <input type="hidden" name="imageName" />
                 <div>
+                  <p>Blockchain:</p>
+                  <div class="form-check inline">
+                    <input type="checkbox" name="bch" />
+                    <label class="form-check-label" for="bch">BCH</label>
+                  </div>
+                  <div class="form-check inline">
+                    <input type="checkbox" name="smartbch" />
+                    <label class="form-check-label" for="smartbch"
+                      >smartBCH</label
+                    >
+                  </div>
+                  <div class="form-check inline">
+                    <input type="checkbox" name="cashtokens" />
+                    <label class="form-check-label" for="cashtokens"
+                      >Cash Tokens</label
+                    >
+                  </div>
+                  <p id="error-edit-chain" class="error-edit-project"></p>
+                </div>
+                <div>
                   Project Name: <br />
                   <input type="text" name="name" style="width: 100%" />
                   <p id="error-edit-name" class="error-edit-project"></p>

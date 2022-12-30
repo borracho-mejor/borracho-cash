@@ -7,6 +7,7 @@ import * as CloudStorage from "./cloud_storage.js";
 import { trimAndParse } from "./add_project.js";
 import { home_page } from "../viewpage/home_page.js";
 import { smartBCH_page } from "../viewpage/smartBCH_page.js";
+import { cashTokens_page } from "../viewpage/cashTokens_page.js";
 
 let imageFile2Upload;
 
@@ -25,7 +26,19 @@ export function addEventListeners() {
     const button = e.target.getElementsByTagName("button")[0];
     const label = Util.disableButton(button);
 
+    let chain = [];
+    if (e.target.bch.checked) {
+      chain.push("bch");
+    }
+    if (e.target.smartbch.checked) {
+      chain.push("smartbch");
+    }
+    if (e.target.cashtokens.checked) {
+      chain.push("cashtokens");
+    }
+
     const p = new Project({
+      chain: chain,
       audit: trimAndParse(e.target.audit.value),
       bias: e.target.bias.value,
       description: e.target.description.value,
@@ -77,8 +90,16 @@ export function addEventListeners() {
       await FirebaseController.updateSBCHProject(p);
 
       // split url to path arguements and pass to reload
-      const pathArray = window.location.href.split("#");
-      smartBCH_page(pathArray[1]);
+      const pathArray = window.location.href.split("/").join("#").split("#");
+      if (pathArray.includes("bch")) {
+        console.log("Need to finish...");
+      } else if (pathArray.includes("smartbch")) {
+        smartBCH_page(pathArray[pathArray.length - 1]);
+      } else if (pathArray.includes("cashtokens")) {
+        cashTokens_page(pathArray[pathArray.length - 1]);
+      } else {
+        console.log("ERROR");
+      }
 
       Util.popUpInfo(
         "Project Updated",
@@ -164,6 +185,11 @@ export async function editProject(docID) {
   Element.formEditImageTag.src = project.logo_path;
   Element.formEditProject.rugged.checked =
     project.rugged == "rugged" ? true : false;
+  console.log(project);
+  Element.formEditProject.bch.checked = project.chain.includes("bch");
+  Element.formEditProject.smartbch.checked = project.chain.includes("smartbch");
+  Element.formEditProject.cashtokens.checked =
+    project.chain.includes("cashtokens");
 
   // Set imageFile2Upload to null since it is a global variable
   imageFile2Upload = null;
