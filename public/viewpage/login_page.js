@@ -87,7 +87,7 @@ export async function login_page() {
                   </button>
                   <div style="height: 5px;"></div>
                   <button class="btn btn-success modal-post-auth" style="margin: 0 auto;" data-toggle="modal" data-target="#modal-form-add-sBCH-project">
-                      Add sBCH Project
+                      Add Project
                   </button>
                   <div style="height: 5px;"></div>
                   <button class="btn btn-success modal-post-auth" style="margin: 0 auto;" data-toggle="modal" data-target="#modal-form-add-donation">
