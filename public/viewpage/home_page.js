@@ -13,6 +13,7 @@ export function addEventListeners() {
 }
 
 export async function home_page() {
+  Util.popUpLoading("Loading...", "");
   let cards;
   try {
     cards = await FirebaseController.getHomeCardList();
@@ -21,6 +22,10 @@ export async function home_page() {
     return;
   }
   build_home_page(cards);
+  // End loading modal
+  setTimeout(function () {
+    $("#loadingoverlay").modal("hide");
+  }, 500);
 }
 
 export async function build_home_page(cards) {

@@ -16,9 +16,8 @@ export function addEventListeners() {
 }
 
 export async function acceptingBCH_page() {
-  Util.popUpLoading("Loading...", "");
-
   $("#modal-pop-up-info").modal("hide");
+  Util.popUpLoading("Loading...", "");
 
   let html = await FirebaseController.getAcceptingBCHMarkdown();
 
