@@ -382,3 +382,12 @@ export async function getBCHPrice() {
   const result = await cf_getBCHPrice();
   return result.data;
 }
+
+const cf_getAcceptingBCHMarkdown = httpsCallable(
+  functions,
+  "cloud_getAcceptingBCHMarkdown"
+);
+export async function getAcceptingBCHMarkdown() {
+  const result = await cf_getAcceptingBCHMarkdown();
+  return result.data;
+}
