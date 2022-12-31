@@ -271,11 +271,12 @@ async function getAcceptingBCHMarkdown() {
     );
     const data = await response.json();
     // The contents of the markdown file are stored in the "content" property of the response
+    //  Need to convert from base64 to utf-8
     const markdown = Buffer.from(data.content, "base64").toString("utf8");
     const converter = new showdown.Converter();
-    const html = converter.makeHtml(markdown);
-    // add target="_blank" to each link
-    const modifiedHtml = html.replace(/<a(.+?)>/g, '<a target="_blank"$1>');
-    return modifiedHtml;
+    const html = converter
+      .makeHtml(markdown)
+      .replace(/<a(.+?)>/g, '<a target="_blank"$1>'); // add target="_blank" to each link
+    return html;
   })();
 }
