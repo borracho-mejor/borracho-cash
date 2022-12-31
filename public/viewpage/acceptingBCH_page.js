@@ -19,7 +19,14 @@ export async function acceptingBCH_page() {
   $("#modal-pop-up-info").modal("hide");
   Util.popUpLoading("Loading...", "");
 
-  let html = await FirebaseController.getAcceptingBCHMarkdown();
+  let html = "";
+
+  try {
+    html = await FirebaseController.getAcceptingBCHMarkdown();
+  } catch (error) {
+    Util.popUpInfo("Error in getAcceptingBCHMarkdown", JSON.stringify(error));
+    return;
+  }
 
   html += `<div class="alert alert-success" role="alert">This content is dynamically displayed from the <a class="alert-link" href="https://github.com/BitcoinCash1/Projects-BCH-Donations" target="_blank">BitcoinCash1/Projects-BCH-Donations</a> Github repo. Please consider submitting a pull request if you know of additional projects accepting Bitcoin Cash (BCH) donations, or let one of the contributors know and we'd be happy to do so on your behalf. Let's help each other help each other.</div>`;
 
