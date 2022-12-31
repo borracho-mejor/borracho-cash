@@ -1,3 +1,6 @@
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
+
 // The Cloud Functions for Firebase SDK to create Cloud Functions and set up triggers.
 const functions = require("firebase-functions");
 
@@ -12,6 +15,9 @@ admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
 
+// Load the showdown library (reading and displaying markdown files)
+const showdown = require("showdown");
+
 const Constant = require("./constant.js");
 const Secrets = require("./secrets.js");
 const algoliasearch = require("algoliasearch");
@@ -24,6 +30,9 @@ exports.admin_updateCard = functions.https.onCall(updateCard);
 exports.admin_deleteCard = functions.https.onCall(deleteCard);
 exports.admin_getProjectSearch = functions.https.onCall(getProjectSearch);
 exports.cloud_getBCHPrice = functions.https.onCall(getBCHPrice);
+exports.cloud_getAcceptingBCHMarkdown = functions.https.onCall(
+  getAcceptingBCHMarkdown
+);
 
 function isAdmin(email) {
   return Constant.adminEmails.includes(email);
@@ -248,4 +257,33 @@ async function getBCHInfo() {
   object["changeInBTCPrice24h"] =
     data.data.market_data.price_change_percentage_24h_in_currency.btc;
   return object;
+}
+
+async function getAcceptingBCHMarkdown() {
+  return (async () => {
+    const response = await fetch(
+      "https://api.github.com/repos/BitcoinCash1/Projects-BCH-Donations/contents/README.md",
+      {
+        headers: {
+          Authorization: `${Secrets.gitHubAPI.apiKey}`,
+        },
+      }
+    );
+    const data = await response.json();
+    // The contents of the markdown file are stored in the "content" property of the response
+    //  Need to convert from base64 to utf-8
+    const markdown = Buffer.from(data.content, "base64").toString("utf8");
+    const converter = new showdown.Converter();
+    const html = converter
+      .makeHtml(markdown)
+      .replace(/<a(.+?)>/g, '<a target="_blank"$1>'); // add target="_blank" to each link
+    return html;
+  })();
+}
+
+function sleep(ms) {
+  const start = Date.now();
+  while (Date.now() - start < ms) {
+    // do nothing
+  }
 }

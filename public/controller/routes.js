@@ -3,6 +3,7 @@ import * as WhitepaperPage from "../viewpage/whitepaper_page.js";
 import * as SBCHPage from "../viewpage/smartBCH_page.js";
 import * as LoginPage from "../viewpage/login_page.js";
 import * as CashTokensPage from "../viewpage/cashTokens_page.js";
+import * as AcceptingBCHPage from "../viewpage/acceptingBCH_page.js";
 
 export const routePathname = {
   HOME: "/",
@@ -10,6 +11,7 @@ export const routePathname = {
   LOGIN: "/login",
   SBCH: "/smartbch",
   CASHTOKENS: "/cashtokens",
+  ACCEPTINGBCH: "/donate-bch",
 };
 
 export const routes = [
@@ -18,6 +20,10 @@ export const routes = [
   { pathname: routePathname.SBCH, page: SBCHPage.smartBCH_page },
   { pathname: routePathname.LOGIN, page: LoginPage.login_page },
   { pathname: routePathname.CASHTOKENS, page: CashTokensPage.cashTokens_page },
+  {
+    pathname: routePathname.ACCEPTINGBCH,
+    page: AcceptingBCHPage.acceptingBCH_page,
+  },
 ];
 
 export function routing(pathname, href) {

@@ -37,6 +37,7 @@ import * as AddDonation from "./controller/add_donation.js";
 import * as EditProject from "./controller/edit_project.js";
 import * as Donations from "./viewpage/donations.js";
 import * as CashTokensPage from "./viewpage/cashTokens_page.js";
+import * as AcceptingBCHPage from "./viewpage/acceptingBCH_page.js";
 
 HomePage.addEventListeners();
 LoginPage.addEventListeners();
@@ -52,3 +53,4 @@ AddDonation.addEventListeners();
 EditProject.addEventListeners();
 Donations.addEventListeners();
 CashTokensPage.addEventListeners();
+AcceptingBCHPage.addEventListeners();

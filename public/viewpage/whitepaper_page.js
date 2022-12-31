@@ -10,6 +10,7 @@ export function addEventListeners() {
 }
 
 export async function whitepaper_page() {
+  Util.popUpLoading("Loading...", "");
   let html = `<div style="margin: 10px;"><h3>
   <span style="background-color: #0ac18e">Bitcoin:</span> A
   Peer-to-Peer Electronic
@@ -476,4 +477,8 @@ export async function whitepaper_page() {
   document.getElementById("floating-button").addEventListener("click", () => {
     Util.scrollToTop();
   });
+  // End loading modal
+  setTimeout(function () {
+    $("#loadingoverlay").modal("hide");
+  }, 500);
 }
