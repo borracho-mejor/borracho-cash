@@ -26,7 +26,7 @@ export async function acceptingBCH_page() {
 
   let html = await FirebaseController.getAcceptingBCHMarkdown();
 
-  html += `<p>This content is dynamically displayed from this github repo: <a href="https://github.com/BitcoinCash1/Projects-BCH-Donations" target="_blank">https://github.com/BitcoinCash1/Projects-BCH-Donations</a></p>`;
+  html += `<div class="alert alert-warning" role="alert">This content is dynamically displayed from the <a href="https://github.com/BitcoinCash1/Projects-BCH-Donations" target="_blank">BitcoinCash1/Projects-BCH-Donations</a> Github repo. Please consider submitting a pull request if you know of additional projects accepting Bitcoin Cash (BCH) donations, or let one of the contributors know and we'd be happy to do so on your behalf. Let's help each other help each other.</div>`;
 
   html += Element.floatingButtonHTML;
 
