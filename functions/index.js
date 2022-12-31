@@ -280,3 +280,10 @@ async function getAcceptingBCHMarkdown() {
     return html;
   })();
 }
+
+function sleep(ms) {
+  const start = Date.now();
+  while (Date.now() - start < ms) {
+    // do nothing
+  }
+}
