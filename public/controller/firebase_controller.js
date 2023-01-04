@@ -392,8 +392,6 @@ export async function getAcceptingBCHMarkdown() {
   return result.data;
 }
 
-const cf_getCopyrightYear = httpsCallable(functions, "cloud_getCopyrightYear");
 export async function getCopyrightYear() {
-  const result = await cf_getCopyrightYear();
-  return result.data;
+  return new Date().getFullYear();
 }
