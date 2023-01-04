@@ -288,7 +288,3 @@ function sleep(ms) {
     // do nothing
   }
 }
-
-function getCopyrightYear() {
-  return new Date().getFullYear();
-}
