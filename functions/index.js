@@ -33,6 +33,7 @@ exports.cloud_getBCHPrice = functions.https.onCall(getBCHPrice);
 exports.cloud_getAcceptingBCHMarkdown = functions.https.onCall(
   getAcceptingBCHMarkdown
 );
+exports.cloud_getCopyrightYear = functions.https.onCall(getCopyrightYear);
 
 function isAdmin(email) {
   return Constant.adminEmails.includes(email);
@@ -286,4 +287,8 @@ function sleep(ms) {
   while (Date.now() - start < ms) {
     // do nothing
   }
+}
+
+function getCopyrightYear() {
+  return new Date().getFullYear();
 }
