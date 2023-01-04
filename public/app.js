@@ -23,6 +23,8 @@ LightMode.mode();
 // Get BCH Info for NavBar
 BCHInfo.makeBCHNavbarBox();
 
+Element.copyrightYear.innerHTML = await FirebaseController.getCopyrightYear();
+
 import * as HomePage from "./viewpage/home_page.js";
 import * as LoginPage from "./viewpage/login_page.js";
 import * as WhitepaperPage from "./viewpage/whitepaper_page.js";

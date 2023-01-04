@@ -136,3 +136,6 @@ export const donationsBody = document.getElementById("donations-body");
 // BCH Price
 export const bchPriceSpan = document.getElementById("navbar-bch-price");
 export const bchInfoBox = document.getElementById("menu-BCHInfo-Box");
+
+// Copyright
+export const copyrightYear = document.getElementById("copyrightYear");
