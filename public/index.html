@@ -5,6 +5,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
     import { getFunctions } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-functions.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-analytics.js";
+    import { getPerformance } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-performance.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,6 +25,7 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     export const functions = getFunctions(app);
+    const perf = getPerformance(app);
   </script>
 
   <script type="module" src="app.js"></script>
