@@ -666,3 +666,17 @@ input[type="checkbox"] {
   font-size: 0.8em;
   color: white;
 }
+
+.spinner-border {
+  width: 2rem;
+  height: 2rem;
+  border: 0.2rem solid rgba(245, 248, 250, 0.87);
+  border-top: 0.2rem solid var(--color-nav-bar);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
