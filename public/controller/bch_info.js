@@ -64,6 +64,9 @@ export async function makeBCHNavbarBox() {
                       <td style="padding: 0 0.25rem; margin: 0; border: none; font-size:85%; background-color: #026035;">${sevenDayTag}</td>
                       <td style="padding: 0 0.25rem; margin: 0; border: none; font-size:85%; background-color: #026035;">${thirtyDayTag}</td>
                       <td style="padding: 0 0.5rem; margin: 0; border: none; font-size:85%; background-color: #038047;">${btcTag}</td>
+                      <td style="padding: 0 0.5rem; margin: 0; border: none; font-size:75%; background-color: #026035;">${(
+                        bchData.dominance * 100
+                      ).toFixed(1)}%</td>
                     </tr>
                     <tr style="padding: 0; margin: 0; border: none; font-size:65%;">
                       <td style="padding: 0; margin: 0; border: none; background-color: #038047;">Rank</td>
@@ -72,6 +75,7 @@ export async function makeBCHNavbarBox() {
                       <td style="padding: 0; margin: 0; border: none; background-color: #026035;">7d</td>
                       <td style="padding: 0; margin: 0; border: none; background-color: #026035;">30d</td>
                       <td style="padding: 0; margin: 0; border: none; background-color: #038047;">BTC/BCH</td>
+                      <td style="padding: 0 0.25rem; margin: 0; border: none; background-color: #026035;">Dominance</td>
                     </tr>
                   </tbody>
               </table></a>

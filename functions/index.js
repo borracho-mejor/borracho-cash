@@ -256,6 +256,11 @@ async function getBCHInfo() {
   object["priceInBTC"] = data.data.market_data.current_price.btc;
   object["changeInBTCPrice24h"] =
     data.data.market_data.price_change_percentage_24h_in_currency.btc;
+  // Get dominance
+  object["marketCap"] = data.data.market_data.market_cap.usd;
+  let market_data = await CoinGeckoClient.global();
+  object["totalMarketCap"] = market_data.data.data.total_market_cap.usd;
+  object["dominance"] = object["marketCap"] / object["totalMarketCap"];
   return object;
 }
 
