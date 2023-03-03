@@ -23,9 +23,9 @@ export async function donations_info() {
                         respective wallet until they are needed for site or developments
                         costs.
                     </h5>
-                    <div class="dark-mode donation-qr" style="text-align: center;">
+                    <div class="dark-mode" style="text-align: center;">
                           <qr-code
-                            class="inline"
+                            class="inline donation-qr"
                             style="max-width:49%;"
                             contents="bitcoincash:qqlw4yggvgfc24pv8vzpv4svx35rtf3txvdeahpzml"
                             module-color="rgba(245, 248, 250, 0.87)"
@@ -36,7 +36,7 @@ export async function donations_info() {
                             <img src="./images/bitcoin-cash-circle.svg" slot="icon" />
                           </qr-code>
                           <qr-code
-                            class="inline"
+                            class="inline donation-qr"
                             style="max-width:49%;"
                             contents="0x7256a81B2c936B00c5b19415722a65E77d52a468"
                             module-color="rgba(245, 248, 250, 0.87)"
@@ -47,9 +47,9 @@ export async function donations_info() {
                             <img src="./images/smartBCH-LOGO-no-text.svg" slot="icon" />
                           </qr-code>
                     </div>
-                    <div class="light-mode donation-qr" style="text-align: center">
+                    <div class="light-mode" style="text-align: center">
                           <qr-code
-                            class="inline"
+                            class="inline donation-qr"
                             style="max-width:49%;"
                             contents="bitcoincash:qqlw4yggvgfc24pv8vzpv4svx35rtf3txvdeahpzml"
                             module-color="rgba(0, 0, 0, 0.87)"
@@ -60,7 +60,7 @@ export async function donations_info() {
                             <img src="./images/bitcoin-cash-circle.svg" slot="icon" />
                           </qr-code>
                           <qr-code
-                            class="inline"
+                            class="inline donation-qr"
                             style="max-width:49%;"
                             contents="0x7256a81B2c936B00c5b19415722a65E77d52a468"
                             module-color="rgba(0, 0, 0, 0.87)"
@@ -185,14 +185,12 @@ export async function donations_info() {
 
   Element.donationsBody.innerHTML = donationsText;
 
-  // const qrs = document.getElementsByClassName("donation-qr");
-  // for (const div of qrs) {
-  //   div.addEventListener("mouseover", () => {
-  //     for (const child of div.children) {
-  //       child.animateQRCode("RadialRipple");
-  //     }
-  //   });
-  // }
+  const qrs = document.getElementsByClassName("donation-qr");
+  for (const qr of qrs) {
+    qr.addEventListener("click", () => {
+      qr.animateQRCode("RadialRipple");
+    });
+  }
 
   // setTimeout(function () {
   //   $("#loadingoverlay").modal("hide");
