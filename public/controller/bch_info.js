@@ -66,7 +66,7 @@ export async function makeBCHNavbarBox() {
                       <td style="padding: 0 0.5rem; margin: 0; border: none; font-size:85%; background-color: #038047;">${btcTag}</td>
                       <td style="padding: 0 0.5rem; margin: 0; border: none; font-size:75%; background-color: #026035;">${(
                         bchData.dominance * 100
-                      ).toFixed(1)}%</td>
+                      ).toFixed(3)}%</td>
                     </tr>
                     <tr style="padding: 0; margin: 0; border: none; font-size:65%;">
                       <td style="padding: 0; margin: 0; border: none; background-color: #038047;">Rank</td>
