@@ -28,3 +28,9 @@ export const storageFolderName = {
 };
 
 export const NEW_LISTING_TIME = 60;
+
+export const BCHDonationAddress =
+  "bitcoincash:qqlw4yggvgfc24pv8vzpv4svx35rtf3txvdeahpzml";
+
+export const smartBCHDonationAddress =
+  "0x7256a81B2c936B00c5b19415722a65E77d52a468";

@@ -1,6 +1,7 @@
 import * as Element from "./element.js";
 import * as Util from "./util.js";
 import * as FirebaseController from "../controller/firebase_controller.js";
+import * as Constant from "../model/constant.js";
 
 export function addEventListeners() {
   Element.footerDonations.addEventListener("click", async () => {
@@ -27,7 +28,7 @@ export async function donations_info() {
                           <qr-code
                             class="inline donation-qr"
                             style="max-width:49%;"
-                            contents="bitcoincash:qqlw4yggvgfc24pv8vzpv4svx35rtf3txvdeahpzml"
+                            contents=${Constant.BCHDonationAddress}
                             module-color="rgba(245, 248, 250, 0.87)"
                             position-ring-color="rgba(245, 248, 250, 0.87)"
                             position-center-color="rgba(245, 248, 250, 0.87)"
@@ -38,7 +39,7 @@ export async function donations_info() {
                           <qr-code
                             class="inline donation-qr"
                             style="max-width:49%;"
-                            contents="0x7256a81B2c936B00c5b19415722a65E77d52a468"
+                            contents=${Constant.smartBCHDonationAddress}
                             module-color="rgba(245, 248, 250, 0.87)"
                             position-ring-color="rgba(245, 248, 250, 0.87)"
                             position-center-color="rgba(245, 248, 250, 0.87)"
@@ -51,7 +52,7 @@ export async function donations_info() {
                           <qr-code
                             class="inline donation-qr"
                             style="max-width:49%;"
-                            contents="bitcoincash:qqlw4yggvgfc24pv8vzpv4svx35rtf3txvdeahpzml"
+                            contents=${Constant.BCHDonationAddress}
                             module-color="rgba(0, 0, 0, 0.87)"
                             position-ring-color="rgba(0, 0, 0, 0.87)"
                             position-center-color="rgba(0, 0, 0, 0.87)"
@@ -62,7 +63,7 @@ export async function donations_info() {
                           <qr-code
                             class="inline donation-qr"
                             style="max-width:49%;"
-                            contents="0x7256a81B2c936B00c5b19415722a65E77d52a468"
+                            contents=${Constant.smartBCHDonationAddress}
                             module-color="rgba(0, 0, 0, 0.87)"
                             position-ring-color="rgba(0, 0, 0, 0.87)"
                             position-center-color="rgba(0, 0, 0, 0.87)"
@@ -71,9 +72,9 @@ export async function donations_info() {
                             <img src="./images/smartBCH-LOGO-no-text.svg" slot="icon" />
                           </qr-code>
                     </div>
-                    <p style="word-wrap: break-word;">
-                        bitcoincash:qqlw4yggvgfc24pv8vzpv4svx35rtf3txvdeahpzml<br />
-                        smartbch:0x7256a81B2c936B00c5b19415722a65E77d52a468
+                    <p style="word-wrap: break-word; font-size: 0.85rem;">
+                        <b>mainchain</b>: ${Constant.BCHDonationAddress}<br />
+                        <b>smartBCH</b>: ${Constant.smartBCHDonationAddress}
                     </p>`;
 
   let spending = "";
