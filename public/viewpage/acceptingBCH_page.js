@@ -34,7 +34,6 @@ export async function acceptingBCH_page() {
 
   Element.content.innerHTML = html;
   Util.scrollToTop();
-  Util.hideTwitterFeeds();
   Util.hideHeader();
   Util.unActivateLinks();
   Element.menuNavbarDropdown.classList.add("active");

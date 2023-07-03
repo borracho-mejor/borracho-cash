@@ -132,7 +132,6 @@ export async function build_cashTokens_page(
   scrollTop,
   isCollapsed
 ) {
-  Util.hideTwitterFeeds();
   Util.showHeader();
   Util.unActivateLinks();
   Element.menuNavbarDropdown.classList.add("active");

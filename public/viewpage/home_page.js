@@ -30,7 +30,6 @@ export async function home_page() {
 
 export async function build_home_page(cards) {
   Util.scrollToTop();
-  Util.showTwitterFeeds();
   Util.hideHeader();
   Util.unActivateLinks();
   Element.menuHome.classList.add("active");

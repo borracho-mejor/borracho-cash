@@ -440,7 +440,6 @@ export async function whitepaper_page() {
 
   Element.content.innerHTML = html;
   Util.scrollToTop();
-  Util.hideTwitterFeeds();
   Util.hideHeader();
   Util.unActivateLinks();
   Element.menuWhitepaper.classList.add("active");
