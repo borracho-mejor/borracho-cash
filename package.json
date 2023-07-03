@@ -6,6 +6,6 @@
     "web3": "^1.7.3"
   },
   "devDependencies": {
-    "first-input-delay": "^0.1.3"
+    "knip": "^2.14.3"
   }
 }

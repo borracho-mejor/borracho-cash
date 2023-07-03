@@ -16,7 +16,6 @@
   "dependencies": {
     "algoliasearch": "^4.13.0",
     "coingecko-api": "^1.0.10",
-    "cors": "^2.8.5",
     "firebase-admin": "^11.4.1",
     "firebase-functions": "^4.2.1",
     "node-fetch": "^3.3.0",
@@ -25,7 +24,7 @@
   "devDependencies": {
     "eslint": "^8.9.0",
     "eslint-config-google": "^0.14.0",
-    "firebase-functions-test": "^0.2.0"
+    "knip": "^2.14.3"
   },
   "private": true
 }
