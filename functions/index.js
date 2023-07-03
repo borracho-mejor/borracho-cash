@@ -220,8 +220,8 @@ async function deleteCard(docID, context) {
 async function getProjectSearch(keywords) {
   let searchIDs = [];
   const searchClient = algoliasearch(
-    Constant.algoliaAPI.appId,
-    Constant.algoliaAPI.apiKey
+    Secrets.algoliaAPI.appId,
+    Secrets.algoliaAPI.apiKey
   );
   const index = searchClient.initIndex(Constant.algoliaIndexes.PROJECTS);
 
