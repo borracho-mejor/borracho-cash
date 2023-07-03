@@ -51,7 +51,6 @@ export function addEventListeners() {
 
 export async function login_page() {
   Util.scrollToTop();
-  Util.hideTwitterFeeds();
   Util.hideHeader();
   Util.unActivateLinks();
   Element.menuLogin.classList.add("active");

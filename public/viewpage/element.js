@@ -25,9 +25,6 @@ export const buttonLightMode = document.getElementById("button-light-mode");
 
 export const buttonSignOut = document.getElementById("button-sign-out");
 
-export const twitterFeedLight = document.getElementById("twitter-feed-light");
-export const twitterFeedDark = document.getElementById("twitter-feed-dark");
-
 export const formSignIn = document.getElementById("form-sign-in");
 
 // Pop-up Info

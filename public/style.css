@@ -206,11 +206,6 @@ a.nav-link {
     max-height: 82vh;
   }
 
-  .twitter-feed {
-    height: 85vh;
-    width: 100%;
-  }
-
   #content {
     height: 85vh;
     margin-bottom: 1.5em;
@@ -316,10 +311,6 @@ a.nav-link {
 #content {
   flex: 1;
   max-height: 100%;
-}
-
-.twitter-feed {
-  flex: 0 1 450px;
 }
 
 .flex-child:first-child {
