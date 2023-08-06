@@ -725,6 +725,9 @@ function buildSocials(project) {
   if (project.socials["gitlab"]) {
     html += `<a href="${project.socials["gitlab"]}" target="_blank"><img src="./images/gitlab.png" alt="Gitlab logo" style="height: 2em; padding: 5px" /></a>`;
   }
+  if (project.socials["vimeo"]) {
+    html += `<a href="${project.socials["vimeo"]}" target="_blank"><img src="./images/vimeo.png" alt="Vimeo logo" style="height: 2em; padding: 5px" /></a>`;
+  }
   // If no socials we need to add text
   if (html == `<div class="m-1 sibling-fade">`) {
     html += `<p>None...🤷‍♂️</p>`;
