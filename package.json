@@ -3,7 +3,7 @@
     "coingecko-api": "^1.0.10",
     "firebase-functions": "^3.21.1",
     "jquery": "^3.6.0",
-    "web3": "^1.7.3"
+    "web3": "^4.0.3"
   },
   "devDependencies": {
     "knip": "^2.14.3"
