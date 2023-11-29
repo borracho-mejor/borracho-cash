@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
+    import { getFunctions } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-functions.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyAzJTplGTpnIWf7lCu1ItUiyjfCxRtn-oo",
+      authDomain: "borracho-cash.firebaseapp.com",
+      projectId: "borracho-cash",
+      storageBucket: "borracho-cash.appspot.com",
+      messagingSenderId: "1039134592060",
+      appId: "1:1039134592060:web:4da238df66ba33bc624739",
+      measurementId: "G-ZDBH87B99W",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    export const functions = getFunctions(app);
+  </script>
+
+  <script type="module" src="app.js"></script>
+
+  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  <script
+    src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- App -->
+  <script type="module" src="app.js"></script>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Google Icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- OG Tags -->
+    <meta property="og:title" content="Borracho.cash/smartbch" />
+    <meta
+      property="og:description"
+      content="A helpful collection of smartBCH projects with a simple, intuitive UI/UX. The site aims to be helpful for both newcomers and established investors alike."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.borracho.cash/smartbch" />
+    <meta
+      property="og:image"
+      content="https://www.borracho.cash/images/borracho_logo_black_square.png"
+    />
+
+    <!-- Searching -->
+    <meta
+      name="description"
+      content="Borracho dot cash is a help site for smartBCH BCH BitcoinCash Bitcoin Cash. Easily find any project on the blockchain."
+    />
+
+    <!-- Umami analytics -->
+    <script
+      async
+      src="https://umami.borracho.cash/script.js"
+      data-website-id="839b7d4f-3594-4e38-b204-9745cf6daaaf"
+    ></script>
+
+    <!-- For @bitjson's qr-code -->
+    <script src="https://unpkg.com/@bitjson/qr-code@1.0.2/dist/qr-code.js"></script>
+
+    <title>borracho.cash</title>
+    <link rel="icon" type="image/x-icon" href="/images/borracho_b_green.png" />
+  </head>
+  <body>
+    <div class="box">
+      <nav
+        class="navbar navbar-expand-xl navbar-dark"
+        style="padding: 0.5rem 0; display: flex; align-items: center"
+      >
+        <a
+          class="navbar-brand mb-0"
+          href="/"
+          style="
+            padding: 0;
+            margin: 0 0.5rem;
+            vertical-align: middle;
+            display: flex;
+            align-items: center;
+          "
+          ><img
+            class="d-inline-block align-bottom"
+            src="./images/borracho_logo_white.png"
+            style="height: 4.75rem; margin: 0 0.5rem; padding: 0"
+            alt="Borracho logo"
+          />
+          <h2
+            class="d-inline-block"
+            style="margin: 0 0.5rem; padding: 0; align-items: center"
+          >
+            Borracho.cash
+          </h2></a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <ul class="navbar-nav mr-auto">
+            <li><a id="menu-home" class="nav-link active">Home</a></li>
+            <li><a id="menu-login" class="nav-link">Contact</a></li>
+            <li><a id="menu-whitepaper" class="nav-link">BCH Whitepaper</a></li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Projects
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item nav-link disabled"
+                  >Mainchain BCH (In Progress)</a
+                >
+                <a id="menu-smartBCH" class="dropdown-item nav-link"
+                  >smartBCH</a
+                >
+                <a id="menu-cashTokens" class="dropdown-item nav-link"
+                  >CashTokens</a
+                >
+                <div class="dropdown-divider"></div>
+                <a id="menu-acceptingBCH" class="dropdown-item nav-link"
+                  >Projects Accepting BCH</a
+                >
+              </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li
+              id="menu-BCHInfo-Box"
+              class="nav-item active nav-box-container"
+              style="margin: 0 0.5rem"
+            >
+              <div id="loading-spinner" class="">
+                <h5
+                  class="inline"
+                  style="margin-right: 3rem; color: rgba(245, 248, 250, 0.87)"
+                >
+                  Loading BCH Data...
+                </h5>
+                <div class="spinner-border ml-auto inline" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            </li>
+            <!-- <li>
+              <a
+                class="nav-link ml-auto inline"
+                href="https://whybitcoincash.com/"
+                target="_blank"
+                ><h5>Visit: whybitcoincash.com</h5></a
+              >
+            </li> -->
+            <li style="margin: 0 0.5rem; display: flex; align-items: center">
+              <input
+                id="button-light-mode"
+                type="image"
+                class="dark-mode mode"
+                src="./images/sun.png"
+                style="height: 2.5em; padding: 5px"
+                alt="light mode sun"
+              />
+              <input
+                id="button-dark-mode"
+                type="image"
+                class="light-mode mode"
+                src="./images/moon.png"
+                style="height: 2.5em; padding: 5px"
+                alt="dark mode moon"
+              />
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Modal: Sign-in-->
+      <div
+        class="modal fade"
+        id="modal-form-sign-in"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-form-sign-in-label">
+                Sign-in, please!
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="form-sign-in" method="post">
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="email address"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="password"
+                  />
+                </div>
+                <div>
+                  <button type="submit" class="btn btn-outline-success">
+                    Sign-in
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: Pop-up Info Box -->
+      <div
+        class="modal fade"
+        id="modal-pop-up-info"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+        style="max-height: 95%"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-pop-up-info-title"></h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="modal-pop-up-info-body"></div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: Donations -->
+      <div
+        class="modal fade"
+        id="modal-donations"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+        style="max-height: 95%"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Donations and Spending</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div id="donations-body" class="modal-body">
+              <!-- Information in donations.js -->
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: Loading Overlay -->
+      <div id="loadingoverlay">
+        <div class="cv-spinner">
+          <div class="container-div">
+            <div class="spinner"></div>
+            <div id="modal-loading-header" style="margin-top: 15px"></div>
+            <div id="modal-loading-footer"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: Add Card -->
+      <div
+        class="modal fade"
+        id="modal-form-add-card"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-add-card-label">
+                Add a New Card
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="form-add-card" method="post">
+                <div>
+                  Card Header: <br />
+                  <input type="text" name="header" style="width: 100%" />
+                  <p id="error-add-header" class="error-add-card"></p>
+                </div>
+                <div>
+                  Card Body: <br />
+                  <textarea name="body" style="width: 100%"></textarea>
+                  <p id="error-add-body" class="error-add-card"></p>
+                </div>
+                <div class="form-check inline">
+                  <input type="checkbox" name="isPinned" />
+                  <label class="form-check-isPinned" for="isPinned"
+                    >isPinned</label
+                  >
+                  <p id="error-add-isPinned" class="error-add-card"></p>
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    class="btn btn-outline-success"
+                    style="margin-top: 5px"
+                  >
+                    Add
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: Edit Card -->
+      <div
+        class="modal fade"
+        id="modal-form-edit-card"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-edit-card-label">
+                Edit a Card
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="form-edit-card" method="post">
+                <input type="hidden" name="docID" />
+                <div>
+                  Card Header: <br />
+                  <input type="text" name="header" style="width: 100%" />
+                  <p id="error-edit-header" class="error-edit-card"></p>
+                </div>
+                <div>
+                  Card Body: <br />
+                  <textarea name="body" style="width: 100%"></textarea>
+                  <p id="error-edit-body" class="error-edit-card"></p>
+                </div>
+                <div class="form-check inline">
+                  <input type="checkbox" name="isPinned" />
+                  <label class="form-check-isPinned" for="isPinned"
+                    >isPinned</label
+                  >
+                  <p id="error-edit-isPinned" class="error-edit-card"></p>
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    class="btn btn-outline-success"
+                    style="margin-top: 5px"
+                  >
+                    Update
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: Add sBCH Project -->
+      <div
+        class="modal fade"
+        id="modal-form-add-sBCH-project"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-add-sbch-project-label">
+                Add a New smartBCH Project
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="form-add-sbch-project" method="post">
+                <div>
+                  <p>Blockchain:</p>
+                  <div class="form-check inline">
+                    <input type="checkbox" name="bch" />
+                    <label class="form-check-label" for="bch">BCH</label>
+                  </div>
+                  <div class="form-check inline">
+                    <input type="checkbox" name="smartbch" />
+                    <label class="form-check-label" for="smartbch"
+                      >smartBCH</label
+                    >
+                  </div>
+                  <div class="form-check inline">
+                    <input type="checkbox" name="cashtokens" />
+                    <label class="form-check-label" for="cashtokens"
+                      >Cash Tokens</label
+                    >
+                  </div>
+                  <p id="error-add-chain" class="error-add-project"></p>
+                </div>
+                <div>
+                  Project Name: <br />
+                  <input type="text" name="name" style="width: 100%" />
+                  <p id="error-add-name" class="error-add-project"></p>
+                </div>
+                <div>
+                  Project Site: <br />
+                  <input type="text" name="site" style="width: 100%" />
+                  <p id="error-add-site" class="error-add-project"></p>
+                </div>
+                <div>
+                  Special Warning: <br />
+                  <input
+                    type="text"
+                    name="specialwarning"
+                    style="width: 100%"
+                  />
+                  <p
+                    id="error-add-special-warning"
+                    class="error-add-project"
+                  ></p>
+                </div>
+                <div>
+                  Project Description: <br />
+                  <textarea name="description" style="width: 100%"></textarea>
+                  <p id="error-add-description" class="error-add-project"></p>
+                </div>
+                <div>
+                  Quoted Description: <br />
+                  <textarea
+                    name="quoteddescription"
+                    style="width: 100%"
+                  ></textarea>
+                  <p
+                    id="error-add-quoted-description"
+                    class="error-add-project"
+                  ></p>
+                </div>
+                <div>
+                  Type(s): (Enter Array)<br />
+                  <input
+                    type="text"
+                    name="type"
+                    value="type1,type2"
+                    style="width: 100%"
+                  />
+                  <p id="error-add-type" class="error-add-project"></p>
+                </div>
+                <div>
+                  My 2 Sats: <br />
+                  <textarea name="twosats" style="width: 100%"></textarea>
+                  <p id="error-add-two-sats" class="error-add-project"></p>
+                </div>
+                <div>
+                  Audits: ({} If None)<br />
+                  <input
+                    type="text"
+                    name="audits"
+                    value='{"":"","":"","":"","":"","":"","":"","":""}'
+                    style="width: 100%"
+                  />
+                  <p id="error-add-audit" class="error-add-project"></p>
+                </div>
+                <div>
+                  Socials: ({} If None)<br />
+                  <input
+                    type="text"
+                    name="socials"
+                    value='{"":"","":"","":"","":"","":"","":"","":""}'
+                    style="width: 100%"
+                  />
+                  <p id="error-add-socials" class="error-add-project"></p>
+                </div>
+                <div>
+                  Helpful Links: ({} If None)<br />
+                  <input
+                    type="text"
+                    name="links"
+                    value='{"":"","":"","":"","":"","":"","":"","":""}'
+                    style="width: 100%"
+                  />
+                  <p id="error-add-links" class="error-add-project"></p>
+                </div>
+                <div class="form-check inline">
+                  <input type="checkbox" name="dyor" />
+                  <label class="form-check-label" for="dyor">DYOR?</label>
+                  <p id="error-add-dyor" class="error-add-project"></p>
+                </div>
+                <div class="form-check inline">
+                  <input type="checkbox" name="upcoming" />
+                  <label class="form-check-label" for="upcoming"
+                    >Upcoming?</label
+                  >
+                  <p id="error-add-upcoming" class="error-add-project"></p>
+                </div>
+                <div class="form-check inline">
+                  <input type="checkbox" name="rugged" />
+                  <label class="form-check-label" for="rugged">Rugged?</label>
+                  <p id="error-add-rugged" class="error-add-project"></p>
+                </div>
+                <div>
+                  Bias: <br />
+                  <input
+                    type="text"
+                    name="bias"
+                    value="z"
+                    style="width: 100%"
+                  />
+                  <p id="error-add-bias" class="error-add-project"></p>
+                </div>
+                <div>
+                  Project Logo:
+                  <img
+                    id="form-add-image-tag"
+                    style="display: block"
+                    alt="Project logo"
+                  />
+                  <p id="error-add-logo" class="error-add-project"></p>
+                  <input
+                    id="form-add-image-button"
+                    type="file"
+                    value="Upload"
+                  />
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    class="btn btn-outline-success"
+                    style="margin-top: 5px"
+                  >
+                    Add
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: Request sBCH Project -->
+      <div
+        class="modal fade"
+        id="modal-form-request-project"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-request-project-label">
+                Request a New smartBCH Project
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="form-request-project" method="post">
+                <div>
+                  Project Name: <br />
+                  <input type="text" name="name" style="width: 100%" />
+                  <p id="error-request-name" class="error-request-project"></p>
+                </div>
+                <div>
+                  Blockchain: <br />
+                  <input type="text" name="chain" style="width: 100%" />
+                  <p id="error-request-chain" class="error-request-project"></p>
+                </div>
+                <div>
+                  Project Site: <br />
+                  <input type="text" name="site" style="width: 100%" />
+                  <p id="error-request-site" class="error-request-project"></p>
+                </div>
+                <div>
+                  Project Description: <br />
+                  <textarea name="description" style="width: 100%"></textarea>
+                  <p
+                    id="error-request-description"
+                    class="error-request-project"
+                  ></p>
+                </div>
+                <div>
+                  Quoted Description: <br />
+                  <textarea
+                    name="quoteddescription"
+                    style="width: 100%"
+                  ></textarea>
+                  <p
+                    id="error-request-quoted-description"
+                    class="error-request-project"
+                  ></p>
+                </div>
+                <div>
+                  Type(s):<br />
+                  <textarea name="types" style="width: 100%"></textarea>
+                  <p id="error-request-type" class="error-request-project"></p>
+                </div>
+                <div>
+                  Audits:<br />
+                  <textarea name="audits" style="width: 100%"></textarea>
+                  <p id="error-request-audit" class="error-request-project"></p>
+                </div>
+                <div>
+                  Socials:<br />
+                  <textarea name="socials" style="width: 100%"></textarea>
+                  <p
+                    id="error-request-socials"
+                    class="error-request-project"
+                  ></p>
+                </div>
+                <div>
+                  Helpful Links:<br />
+                  <textarea name="helpfullinks" style="width: 100%"></textarea>
+                  <p id="error-request-links" class="error-request-project"></p>
+                </div>
+                <div>
+                  Link to (high-res) Project Logo:
+                  <input type="text" name="linktologo" style="width: 100%" />
+                  <p id="error-request-logo" class="error-request-project"></p>
+                </div>
+                <div>
+                  Project Owner's Contact
+                  <input type="text" name="contact" style="width: 100%" />
+                  <p
+                    id="error-request-contact"
+                    class="error-request-project"
+                  ></p>
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    class="btn btn-outline-success"
+                    style="margin-top: 5px"
+                  >
+                    Request
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: Request Update to sBCH Project -->
+      <div
+        class="modal fade"
+        id="modal-form-request-update-project"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-request-update-project-label">
+                Request to Update a smartBCH Project
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="form-request-update-project" method="post">
+                <div>
+                  Project Blockchain: <br />
+                  <select
+                    id="blockchain-dropdown-select"
+                    name="chain"
+                    style="width: 100%"
+                  >
+                    <option value=""></option>
+                    <option value="bch">BCH</option>
+                    <option value="smartbch">smartBCH</option>
+                    <option value="cashtokens">Cash Tokens</option>
+                  </select>
+                  <p
+                    id="error-request-update-chain"
+                    class="error-request-update-project"
+                    style="color: red"
+                  ></p>
+                </div>
+                <div>
+                  Project Name: <br />
+                  <select
+                    id="project-dropdown-select"
+                    name="name"
+                    style="width: 100%"
+                  ></select>
+                  <p
+                    id="error-request-update-name"
+                    class="error-request-update-project"
+                    style="color: red"
+                  ></p>
+                </div>
+                <div>
+                  What do we need to update? <br />
+                  <textarea name="update" style="width: 100%"></textarea>
+                  <p
+                    id="error-request-update-update"
+                    class="error-request-update-project"
+                    style="color: red"
+                  ></p>
+                </div>
+                <div>
+                  Contact (Email/Telegram/Twitter)
+                  <input type="text" name="contact" style="width: 100%" />
+                  <p
+                    id="error-request-update-contact"
+                    class="error-request-update-project"
+                    style="color: red"
+                  ></p>
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    class="btn btn-outline-success"
+                    style="margin-top: 5px"
+                  >
+                    Request Update
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: Bug Report -->
+      <div
+        class="modal fade"
+        id="modal-form-bug-report"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-bug-report">
+                Submit a Bug Report
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="form-bug-report" method="post">
+                <div>
+                  What would you like to report? <br />
+                  <textarea name="text" style="width: 100%"></textarea>
+                  <p
+                    id="error-bug-report-text"
+                    class="error-bug-report"
+                    style="color: red"
+                  ></p>
+                </div>
+                <div>
+                  Contact (Email/Telegram/Twitter)
+                  <input type="text" name="contact" style="width: 100%" />
+                  <p
+                    id="error-bug-report-contact"
+                    class="error-bug-report"
+                    style="color: red"
+                  ></p>
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    class="btn btn-outline-success"
+                    style="margin-top: 5px"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: Edit sBCH Project -->
+      <div
+        class="modal fade"
+        id="modal-form-edit-sBCH-project"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-edit-sbch-project-label">
+                Edit a smartBCH Project
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="form-edit-sbch-project" method="post">
+                <input type="hidden" name="docID" />
+                <input type="hidden" name="imageName" />
+                <div>
+                  <p>Blockchain:</p>
+                  <div class="form-check inline">
+                    <input type="checkbox" name="bch" />
+                    <label class="form-check-label" for="bch">BCH</label>
+                  </div>
+                  <div class="form-check inline">
+                    <input type="checkbox" name="smartbch" />
+                    <label class="form-check-label" for="smartbch"
+                      >smartBCH</label
+                    >
+                  </div>
+                  <div class="form-check inline">
+                    <input type="checkbox" name="cashtokens" />
+                    <label class="form-check-label" for="cashtokens"
+                      >Cash Tokens</label
+                    >
+                  </div>
+                  <p id="error-edit-chain" class="error-edit-project"></p>
+                </div>
+                <div>
+                  Project Name: <br />
+                  <input type="text" name="name" style="width: 100%" />
+                  <p id="error-edit-name" class="error-edit-project"></p>
+                </div>
+                <div>
+                  Project Site: <br />
+                  <input type="text" name="site" style="width: 100%" />
+                  <p id="error-edit-site" class="error-edit-project"></p>
+                </div>
+                <div>
+                  Special Warning: <br />
+                  <input
+                    type="text"
+                    name="specialwarning"
+                    style="width: 100%"
+                  />
+                  <p
+                    id="error-edit-special-warning"
+                    class="error-edit-project"
+                  ></p>
+                </div>
+                <div>
+                  Project Description: <br />
+                  <textarea name="description" style="width: 100%"></textarea>
+                  <p id="error-edit-description" class="error-edit-project"></p>
+                </div>
+                <div>
+                  Quoted Description: <br />
+                  <textarea
+                    name="quoteddescription"
+                    style="width: 100%"
+                  ></textarea>
+                  <p
+                    id="error-edit-quoted-description"
+                    class="error-edit-project"
+                  ></p>
+                </div>
+                <div>
+                  Type(s): (Enter Array)<br />
+                  <input type="text" name="type" style="width: 100%" />
+                  <p id="error-edit-type" class="error-edit-project"></p>
+                </div>
+                <div>
+                  My 2 Sats: <br />
+                  <textarea name="twosats" style="width: 100%"></textarea>
+                  <p id="error-edit-two-sats" class="error-edit-project"></p>
+                </div>
+                <div>
+                  Audits: ({} If None)<br />
+                  <input type="text" name="audit" style="width: 100%" />
+                  <p id="error-edit-audit" class="error-edit-project"></p>
+                </div>
+                <div>
+                  Socials: ({} If None)<br />
+                  <input type="text" name="socials" style="width: 100%" />
+                  <p id="error-edit-socials" class="error-edit-project"></p>
+                </div>
+                <div>
+                  Helpful Links: ({} If None)<br />
+                  <input type="text" name="links" style="width: 100%" />
+                  <p id="error-edit-links" class="error-edit-project"></p>
+                </div>
+                <div class="form-check inline">
+                  <input type="checkbox" name="dyor" />
+                  <label class="form-check-label" for="dyor">DYOR?</label>
+                  <p id="error-edit-dyor" class="error-edit-project"></p>
+                </div>
+                <div class="form-check inline">
+                  <input type="checkbox" name="upcoming" />
+                  <label class="form-check-label" for="upcoming"
+                    >Upcoming?</label
+                  >
+                  <p id="error-edit-upcoming" class="error-edit-project"></p>
+                </div>
+                <div class="form-check inline">
+                  <input type="checkbox" name="rugged" />
+                  <label class="form-check-label" for="rugged">Rugged?</label>
+                  <p id="error-edit-rugged" class="error-edit-project"></p>
+                </div>
+                <div>
+                  Bias: <br />
+                  <input
+                    type="text"
+                    name="bias"
+                    value="z"
+                    style="width: 100%"
+                  />
+                  <p id="error-edit-bias" class="error-edit-project"></p>
+                </div>
+                <div>
+                  Project Logo:
+                  <img
+                    id="form-edit-image-tag"
+                    style="display: block"
+                    alt="Project logo"
+                  />
+                  <p id="error-edit-logo" class="error-add-project"></p>
+                  <input
+                    id="form-edit-image-button"
+                    type="file"
+                    value="Upload"
+                  />
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    class="btn btn-outline-success"
+                    style="margin-top: 5px"
+                  >
+                    Update
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: Add Donation -->
+      <div
+        class="modal fade"
+        id="modal-form-add-donation"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-add-donation-label">
+                Add a New Donation or Expenditure
+              </h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="form-add-donation" method="post">
+                <div>
+                  Donation or Expediture Title: <br />
+                  <input type="text" name="title" style="width: 100%" />
+                  <p
+                    id="error-add-title"
+                    class="error-add-donation"
+                    style="color: #dc3545"
+                  ></p>
+                </div>
+                <div>
+                  BCH Amount: <br />
+                  <input type="text" name="bchAmount" style="width: 100%" />
+                  <p
+                    id="error-add-bch-amount"
+                    class="error-add-donation"
+                    style="color: #dc3545"
+                  ></p>
+                </div>
+                <div>
+                  USD Amount: <br />
+                  <input type="text" name="usdAmount" style="width: 100%" />
+                  <p
+                    id="error-add-usd-amount"
+                    class="error-add-donation"
+                    style="color: #dc3545"
+                  ></p>
+                </div>
+                <div class="form-check inline">
+                  <input type="checkbox" name="isDonation" />
+                  <label class="form-check-isDonation" for="isDonation"
+                    >Donation</label
+                  >
+                </div>
+                <div class="form-check inline">
+                  <input type="checkbox" name="isSpending" />
+                  <label class="form-check-isSpending" for="isSpending"
+                    >Spending</label
+                  >
+                </div>
+                <p
+                  id="error-add-isDonation"
+                  class="error-add-donation"
+                  style="color: #dc3545"
+                ></p>
+                <div>
+                  <button
+                    type="submit"
+                    class="btn btn-outline-success"
+                    style="margin-top: 5px"
+                  >
+                    Add
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        id="main-content"
+        class="flex-container wrapper"
+        style="padding: 10px"
+      >
+        <div id="content-sidebar" class="rounded border padding-right"></div>
+        <div id="content" class="padding-left" style="overflow: auto">
+          <!-- This is where the content will go. -->
+        </div>
+      </div>
+      <div class="footer">
+        <div class="footer-content" style="z-index: 1; padding-top: 5px">
+          <p class="inline">
+            Copyright &copy; <span id="copyrightYear">20XX</span> —
+            &#x20BF;randon —
+            <a href="mailto:brandon@borracho.cash">brandon@borracho.cash</a> —
+          </p>
+          <p class="inline">Personal:</p>
+          <div class="inline sibling-fade">
+            <a class="inline" href="https://t.me/borrachomejor" target="_blank"
+              ><img
+                src="./images/telegram.png"
+                alt="Telegram logo"
+                style="height: 2em; padding: 5px"
+            /></a>
+            <a
+              class="inline"
+              href="https://twitter.com/borrachomejor"
+              target="_blank"
+              ><img
+                class="light-mode"
+                src="./images/x_transparent_black_small.png"
+                alt="Twitter X logo"
+                style="height: 2em; padding: 5px" /><img
+                class="dark-mode"
+                src="./images/x_transparent_white_small.png"
+                alt="Twitter X logo"
+                style="height: 2em; padding: 5px"
+            /></a>
+            <a
+              class="inline"
+              href="https://www.reddit.com/user/Borracho_mejor"
+              target="_blank"
+              ><img
+                src="./images/reddit.png"
+                alt="Reddit logo"
+                style="height: 2em; padding: 5px"
+            /></a>
+          </div>
+          <p class="inline">—&nbsp&nbspAnnouncements:</p>
+          <div class="inline sibling-fade">
+            <a
+              class="inline"
+              href="https://t.me/borrachocashannouncements"
+              target="_blank"
+              ><img
+                src="./images/telegram.png"
+                alt="Telegram logo"
+                style="height: 2em; padding: 5px"
+            /></a>
+          </div>
+          <p class="inline">—&nbsp&nbspSupport:</p>
+          <div class="inline sibling-fade">
+            <a class="inline" href="https://t.me/borrachocash" target="_blank"
+              ><img
+                src="./images/telegram.png"
+                alt="Telegram logo"
+                style="height: 2em; padding: 5px"
+            /></a>
+          </div>
+          <p class="inline">
+            —&nbsp&nbsp
+            <a
+              id="footer-donations"
+              class="inline"
+              style="cursor: pointer"
+              data-toggle="modal"
+              data-target="#modal-donations"
+              >Donations/Spending</a
+            >
+            ✌️💚🚀
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
